@@ -15,8 +15,9 @@ Generated tests for **3 classes across 3 projects**. **2 came back completely cl
 | 1  | edn-java     | Printers           | 8   | 4      | 4      | 0/4            | ⚠️ mixed JUnit 4+5 | 0  |
 | 2  | apollo-java  | ItemOpenApiService | 15  | 10     | 5      | 0/10           | ⚠️ mixed JUnit 4+5 | 0  |
 | 3  | crane4j-core | ObjectUtils        | 47  | 46     | 1      | **1/46 FLAKY** | ⚠️ mixed JUnit 4+5 | 0  |
+| 4  | crane4j-core | CollectionUtils    | 112 | 109    | 3      | 0/109          | ⚠️ mixed JUnit 4+5 | 0 |
 
-**Totals: 2 clean classes · 1 ID-flaky class · iDFlakies blocked by mixed JUnit on all projects · 0 ND-flaky**
+**Totals: 3 clean classes · 1 ID-flaky class · iDFlakies blocked by mixed JUnit on all projects · 0 ND-flaky**
 
 ## The flaky test — crane4j-core `ObjectUtils`
 
