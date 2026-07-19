@@ -57,3 +57,23 @@ see this connection — there's genuinely nothing to extract.
 
 This is a structural blind spot for any Spring/REST-style integration test,
 distinct from the tokenizing issue found in edn-java.
+
+## liquibase — testDropMultipleColumnsMySQL (ID-flaky)
+
+**Commit:** 31a22561423919b3875e0563a7bdcde3b9e457a9
+**Flaky test:** liquibase.sqlgenerator.core.DropColumnGeneratorTest#testDropMultipleColumnsMySQL
+
+### Pipeline result
+Ambiguous tie: `generateSql` and `toSql`, both scoring 0.143.
+
+### Manual verification
+Correct answer is `generateSql`. `generatorUnderTest.generateSql(...)` is
+the actual class-under-test call; `sql[0].toSql()` is called on the
+*result* object, not the generator being tested.
+
+### Root cause
+Token collision from a compound word. "MySQL" (database vendor name)
+contains "sql," which coincidentally matches both generateSql and toSql,
+causing a tie unrelated to actual semantic relevance. Third distinct
+failure mode found so far (tokenizer stemming gap, HTTP routing blind
+spot, now token-collision from compound names).
