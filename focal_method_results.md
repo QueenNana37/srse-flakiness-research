@@ -32,3 +32,28 @@ call a local helper method (assertRoundTrip) defined in the test class
 itself, never touching src/main directly. Correct behavior given current
 scope (only src/main methods count as candidates), but means the real
 focal method is one level deeper than the tool currently looks.
+
+## apollo — testReleaseBuild (ID-flaky)
+
+**Commit:** 75f9950d5e1675dbb0617555c4502685ef4d4618
+**Flaky test:** com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest#testReleaseBuild
+
+### Pipeline result
+No candidates found.
+
+### Manual verification
+Confirmed the actual focal method is `publish` in ReleaseController.java —
+matched by the @PostMapping URL pattern, which exactly matches the URL
+the test hits via restTemplate.postForEntity(...).
+
+### Root cause
+Different limitation than edn-java's. This test is an integration test —
+it calls the code under test via an HTTP request (restTemplate.postForEntity)
+rather than a direct method call. Spring routes the HTTP request to the
+correct controller method at runtime via annotations (@PostMapping), not
+via a literal method invocation visible in the test's source code. Since
+the tool only extracts direct method calls from the AST, it has no way to
+see this connection — there's genuinely nothing to extract.
+
+This is a structural blind spot for any Spring/REST-style integration test,
+distinct from the tokenizing issue found in edn-java.
