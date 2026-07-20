@@ -118,3 +118,22 @@ expecting success), which is exactly what the test name describes.
 
 ### Notes
 Clean, high-confidence result — no failure mode found here.
+
+## common-kafka — nextRecord_manyRecords (ID-flaky)
+
+**Commit:** d7873514c1705575c642ed99d2fa501f9b319790
+**Flaky test:** com.cerner.common.kafka.consumer.ProcessingPartitionTest#nextRecord_manyRecords
+
+### Pipeline result
+Focal method: `nextRecord` (score=0.5)
+
+### Manual verification
+Correct. partition.nextRecord() is called 3 times throughout the test,
+matching "manyRecords" in the test name. Clean, unambiguous result.
+
+### Notes
+Whole test file (26 tests) scored very well overall — 24/26 clean
+unambiguous matches, several at 1.0. Only 2 minor ties at the end
+(getResetOffset tests, tied between getResetOffset and a legitimately
+related helper method like getEarliestOffset) — genuinely close calls,
+not a real failure mode.
