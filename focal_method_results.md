@@ -33,6 +33,29 @@ itself, never touching src/main directly. Correct behavior given current
 scope (only src/main methods count as candidates), but means the real
 focal method is one level deeper than the tool currently looks.
 
+## hop — testProvidesModelerMeta (ID-flaky)
+
+**Commit:** be70e6fa1d4bf180c2766edc4c21d10fc215118b (NOTE: differs from
+CSV's Zenodo zip filename hash 96cfd6a — both exist in repo history,
+used flaky_commit column, test file confirmed present there)
+**Flaky test:** org.apache.hop.pipeline.transforms.databaselookup.DatabaseLookupMetaTest#testProvidesModelerMeta
+
+### Pipeline result
+Focal method: `getRowMeta` (score=0.167)
+
+### Manual verification
+Correct as primary answer. meta.getRowMeta(...) is directly checked
+with assertEquals first, and shares the "meta" token with the test
+name ("ModelerMeta"). However, this test also verifies getDatabaseFields
+and getStreamFields afterward — similar multi-method scenario as
+karate's testPojoConversion, though getRowMeta is clearly the strongest
+single answer here given it's checked first and most directly.
+
+### Notes
+2/5 tests in this file tied at 0.0 (testXmlRoundTrip, testInjection) —
+likely scenario-named tests, same recurring pattern.
+
+
 ## apollo — testReleaseBuild (ID-flaky)
 
 **Commit:** 75f9950d5e1675dbb0617555c4502685ef4d4618
