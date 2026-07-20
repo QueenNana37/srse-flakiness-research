@@ -7,6 +7,25 @@ AST parsing; this scorer picks the best match by token overlap.
 
 ---
 
+## Summary
+
+### ID tests (10/10 focal method found)
+| Project | Flaky test | Focal method | Score | Note |
+|---------|-----------|--------------|-------|------|
+| edn-java | testPrettyPrinting | prettyPrinterProtocol | 0.20 | wrong, real answer is printString (stemming gap) |
+| hop | testProvidesModelerMeta | getRowMeta | 0.17 | correct, primary of 3 methods tested |
+| apollo | testReleaseBuild | (none) | — | HTTP routing, real answer is publish |
+| liquibase | testDropMultipleColumnsMySQL | generateSql | 0.14 | tie w/ toSql, correct after manual check |
+| karate | testPojoConversion | (tie, 0.0) | 0.00 | scenario-named, 3 real methods tested |
+| snakeyaml-engine | dumpToStringTwice | dumpToString | 0.75 | correct |
+| common-kafka | nextRecord_manyRecords | nextRecord | 0.50 | correct |
+| hbase | testClone | clone | 0.50 | correct |
+| asset-share-commons | pack | (tie, 0.0) | 0.00 | scenario-named, real answer is execute |
+| servicecomb-java-chassis | should_convert_unknown_client_exception... | convert | 0.14 | correct |
+
+6/10 clean correct matches, 4/10 needed manual verification (1 wrong pick,
+3 ties/scenario-named). Full root-cause breakdown for each below.
+
 ## edn-java — testPrettyPrinting (ID-flaky)
 
 **Commit:** 4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b
