@@ -137,3 +137,26 @@ unambiguous matches, several at 1.0. Only 2 minor ties at the end
 (getResetOffset tests, tied between getResetOffset and a legitimately
 related helper method like getEarliestOffset) — genuinely close calls,
 not a real failure mode.
+
+## hbase — testClone (ID-flaky)
+
+**Commit:** 07a3ffdd97 (NOTE: CSV's flaky_commit column, 6bb4b387a34..., 
+does not exist anywhere in hbase's repo history — searched all branches,
+no match. Used the short hash from the CSV's Zenodo zip filename instead,
+which resolved correctly. Flagged to Suzzana, possible data error affecting
+other rows too.)
+**Flaky test:** org.apache.hadoop.hbase.monitoring.TestTaskMonitor#testClone
+
+### Pipeline result
+Focal method: `clone` (score=0.5)
+
+### Manual verification
+Correct. monitor.clone() is the exact call under test; everything after
+(getDescription, getState, getStatus, toString, toMap, toJSON) are
+comparison assertions checking the clone matches the original, not
+additional focal methods.
+
+### Notes
+Whole file scored reasonably well — 6/8 tests got clean matches. 2 ties
+(testTaskMonitorBasics, testTaskLimit) both landed at 0.0, likely
+scenario-named tests (same category as karate's testPojoConversion).
