@@ -160,3 +160,32 @@ additional focal methods.
 Whole file scored reasonably well — 6/8 tests got clean matches. 2 ties
 (testTaskMonitorBasics, testTaskLimit) both landed at 0.0, likely
 scenario-named tests (same category as karate's testPojoConversion).
+
+## asset-share-commons — pack (ID-flaky)
+
+**Commit:** ee3ef7051e3ea3eb7f5d904fac177bc56623c6ed (NOTE: differs from
+CSV's Zenodo zip filename hash 79fcce8 — both exist in repo history,
+used flaky_commit column since it's the more specific/intended value
+and the test file confirmed present there)
+**Flaky test:** com.adobe.aem.commons.assetshare.content.renditions.download.impl.AssetRenditionsZipperImplTest#pack
+
+### Pipeline result
+Ambiguous tie at 0.0 among getResource, execute, getContentType.
+
+### Manual verification
+Correct answer is `execute` — zipper.execute(...) called on
+AssetRenditionsZipperImpl (the class under test) is the real action
+being tested. getResource is test setup (fetching a mock resource),
+getContentType is a post-call assertion.
+
+### Root cause
+Scenario-named test, single-word variant. "pack" describes the class's
+conceptual purpose, not the specific method name ("execute"), so zero
+token overlap despite execute being unambiguously correct given the
+class name and file structure. Same category as karate's
+testPojoConversion, but here the test name doesn't even hint at
+multiple methods — it's abstracted one level further.
+
+### Notes
+Rest of file (8/9 tests) scored well, several strong single-word
+matches at 0.6-1.0.
