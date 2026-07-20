@@ -102,3 +102,19 @@ candidate shares tokens with the test name — hence the 0.0 tie across
 the board. This test also highlights that "one test = one focal method"
 doesn't always hold; some tests legitimately verify multiple methods
 in one round-trip scenario.
+
+## snakeyaml-engine — dumpToStringTwice (ID-flaky)
+
+**Commit:** 9d2bca887ad1be7575bae2e427d074e2c49ff109
+**Flaky test:** org.snakeyaml.engine.issues.issue25.DumpToStringTest#dumpToStringTwice
+
+### Pipeline result
+Focal method: `dumpToString` (score=0.75)
+
+### Manual verification
+Correct. Confirmed by source — dump.dumpToString(data) is called twice
+in the test (once inside a try/catch expecting failure, once after,
+expecting success), which is exactly what the test name describes.
+
+### Notes
+Clean, high-confidence result — no failure mode found here.
