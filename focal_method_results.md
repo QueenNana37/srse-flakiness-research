@@ -189,3 +189,21 @@ multiple methods — it's abstracted one level further.
 ### Notes
 Rest of file (8/9 tests) scored well, several strong single-word
 matches at 0.6-1.0.
+
+## servicecomb-java-chassis — should_convert_unknown_client_exception_to_invocation_exception (ID-flaky)
+
+**Commit:** 9ba66ebc452db6aa5207e5cc7ebd03d48d358e9f
+**Flaky test:** org.apache.servicecomb.core.exception.ExceptionsTest#should_convert_unknown_client_exception_to_invocation_exception
+
+### Pipeline result
+Focal method: `convert` (score=0.143)
+
+### Manual verification
+Correct. Exceptions.convert(null, exception, BAD_REQUEST) is the exact
+call under test — matches the test name directly. getStatus() is a
+post-call assertion, not the focal method.
+
+### Notes
+Whole file scored well — 3/4 tests correctly matched to `convert`.
+1 tie (should_protect_when_converter_throw_exception) at 0.0, likely
+scenario-named (describes a protective behavior, not a method call).
