@@ -77,3 +77,28 @@ contains "sql," which coincidentally matches both generateSql and toSql,
 causing a tie unrelated to actual semantic relevance. Third distinct
 failure mode found so far (tokenizer stemming gap, HTTP routing blind
 spot, now token-collision from compound names).
+
+
+## karate — testPojoConversion (ID-flaky)
+
+**Commit:** 14807dbf8d7c45f709299574222dd498b1fa5e67
+**Flaky test:** com.intuit.karate.JsonUtilsTest#testPojoConversion
+
+### Pipeline result
+Ambiguous tie at 0.0 among asList, toJson, fromJson, getName, size, toXml.
+
+### Manual verification
+No single correct answer — this test genuinely exercises 3 real focal
+methods in sequence: JsonUtils.toJson (object->JSON), JsonUtils.fromJson
+(JSON->object, called twice), and XmlUtils.toXml (object->XML). asList,
+getName, and size are JDK library calls used only to build test data,
+not real candidates — worth checking why they weren't filtered out by
+the src/main project-method check.
+
+### Root cause
+Scenario-named test (same category Devanshi found). "PojoConversion"
+describes the concept under test, not any single method name, so no
+candidate shares tokens with the test name — hence the 0.0 tie across
+the board. This test also highlights that "one test = one focal method"
+doesn't always hold; some tests legitimately verify multiple methods
+in one round-trip scenario.
