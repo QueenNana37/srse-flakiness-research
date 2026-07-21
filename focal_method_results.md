@@ -331,3 +331,26 @@ calling one shared private helper with different boolean flags.
 ### Notes
 Only testSetInstance_Fake in this file got a clean result (setInstance,
 0.5) since it doesn't use the shared helper pattern.
+
+## wildfly — testJavaContext (OD-flaky)
+
+**Commit:** b19048b72669fc0e96665b1b125dc1fda21f5993
+**Module:** naming
+**Polluter:** WritableServiceBasedNamingStoreTestCase#testPermissions
+**Flaky test (victim):** org.jboss.as.naming.InitialContextFactoryTestCase#testJavaContext
+
+### Pipeline result
+Ambiguous tie at 0.0 between getName and lookup.
+
+### Manual verification
+Correct answer is `lookup`. initialContext.lookup("java:") is the real
+call under test — verifying the "java:" namespace resolves correctly.
+getName (InitialContextFactory.class.getName()) is just setup, used to
+set a system property, not the thing being tested.
+
+### Root cause
+Scenario-named test with zero token overlap on either candidate.
+"testJavaContext" shares no words with "lookup" or "getName" — both
+tied at 0.0 by coincidence rather than genuine ambiguity. A case where
+the tokenizer has literally nothing to work with, distinct from the
+karate/asset-share-commons ties which at least shared partial words.
