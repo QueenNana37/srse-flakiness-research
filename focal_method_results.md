@@ -302,3 +302,32 @@ exact call under test — clean direct match, no complications.
 Clean result, no failure mode found. Note: polluter and victim test
 are both in the same file/class, unlike the ormlite-core batch where
 the polluter lived in a completely separate class (LoggerFactoryTest).
+
+## accumulo — testSetInstance_HdfsZooInstance_Implicit (OD-flaky)
+
+**Commit:** a573f96d434fb5ef3016b8f7d3d9904e4fd88d65
+**Module:** core
+**Polluter:** ShellSetInstanceTest#testSetInstance_HdfsZooInstance_InstanceGiven
+**Flaky test (victim):** org.apache.accumulo.core.util.shell.ShellSetInstanceTest#testSetInstance_HdfsZooInstance_Implicit
+
+### Pipeline result
+No candidates found.
+
+### Manual verification
+Test calls testSetInstance_HdfsZooInstance(false, false, false) — a
+private helper method defined inside the same test class, not in
+src/main. The helper itself does the real mocking/testing work
+(ShellOptionsJC expectations, etc.), but since it's not a project
+method, it gets filtered out. No true single focal method exists in
+src/main for this specific test — the closest equivalent would require
+following the private helper's own body.
+
+### Root cause
+Same indirection pattern first found in edn-java (assertRoundTrip
+helper). All 6 of the "no candidates" results in this file follow this
+same structure — each testSetInstance_* variant is a thin wrapper
+calling one shared private helper with different boolean flags.
+
+### Notes
+Only testSetInstance_Fake in this file got a clean result (setInstance,
+0.5) since it doesn't use the shared helper pattern.
