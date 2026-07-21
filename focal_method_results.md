@@ -10,15 +10,15 @@ This uses Jaccard similarity (steps 4 & 6 of the UTFix based pipeline) to find t
 
 | Project | Flaky test | Focal method | Score | Note |
 |---------|-----------|--------------|-------|------|
-| edn-java | testPrettyPrinting | prettyPrinterProtocol | 0.20 | ❌ wrong, real answer is printString (stemming gap) |
+| edn-java | testPrettyPrinting | prettyPrinterProtocol | 0.20 | wrong, real answer is printString (stemming gap) |
 | hop | testProvidesModelerMeta | getRowMeta | 0.17 | ✅ correct, main one of 3 methods tested |
-| apollo | testReleaseBuild | (none) | — | 🔍 HTTP routing, real answer is publish |
-| liquibase | testDropMultipleColumnsMySQL | generateSql | 0.14 | ⚠️ tied with toSql, correct after checking manually |
-| karate | testPojoConversion | (tie, 0.0) | 0.00 | ⚠️ scenario named test, 3 real methods tested |
+| apollo | testReleaseBuild | (none) | — | HTTP routing, real answer is publish |
+| liquibase | testDropMultipleColumnsMySQL | generateSql | 0.14 | tied with toSql, correct after checking manually |
+| karate | testPojoConversion | (tie, 0.0) | 0.00 | scenario named test, 3 real methods tested |
 | snakeyaml engine | dumpToStringTwice | dumpToString | 0.75 | ✅ correct |
 | common kafka | nextRecord_manyRecords | nextRecord | 0.50 | ✅ correct |
 | hbase | testClone | clone | 0.50 | ✅ correct |
-| asset share commons | pack | (tie, 0.0) | 0.00 | ⚠️ scenario named, real answer is execute |
+| asset share commons | pack | (tie, 0.0) | 0.00 | scenario named, real answer is execute |
 | servicecomb java chassis | should_convert_unknown_client_exception... | convert | 0.14 | ✅ correct |
 
 6 out of 10 were clean correct matches right away. The other 4 needed me to check manually (1 wrong pick, 3 ties or scenario named tests). Full breakdown for each is below.
@@ -35,8 +35,8 @@ This uses Jaccard similarity (steps 4 & 6 of the UTFix based pipeline) to find t
 | ormlite core | testUpdateRawThrow | updateRaw | 0.50 | ✅ correct |
 | ormlite core | testCloseLastIteratorThrow | closeLastIterator | 0.60 | ✅ correct |
 | wikidata toolkit | createDirectoryManagerIoException | createDirectoryManager | 0.60 | ✅ correct |
-| accumulo | testSetInstance_HdfsZooInstance_Implicit | (none) | — | 🔍 indirection, real call is hidden behind a private helper |
-| wildfly | testJavaContext | (tie, 0.0) | 0.00 | ⚠️ scenario named, real answer is lookup |
+| accumulo | testSetInstance_HdfsZooInstance_Implicit | (none) | — | indirection, real call is hidden behind a private helper |
+| wildfly | testJavaContext | (tie, 0.0) | 0.00 | scenario named, real answer is lookup |
 
 8 out of 10 clean matches here. Only 2 needed manual digging (1 indirection miss, 1 zero overlap tie).
 
