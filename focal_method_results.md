@@ -249,3 +249,37 @@ post-call assertion, not the focal method.
 Whole file scored well — 3/4 tests correctly matched to `convert`.
 1 tie (should_protect_when_converter_throw_exception) at 0.0, likely
 scenario-named (describes a protective behavior, not a method call).
+
+## ormlite-core — OD-flaky batch (7 tests, 1 polluter)
+
+**Commit:** 632b87c2a455b8eab4a6c09324e1f166273588d8
+**Module:** . (whole repo)
+**Polluter (shared across all 7):** com.j256.ormlite.logger.LoggerFactoryTest#testSetLogFactory
+
+| Flaky test (victim) | Focal method | Score | Verified |
+|---|---|---|---|
+| RuntimeExceptionDaoTest#testDeleteThrow | delete | 0.333 | ✓ correct (spot-checked) |
+| RuntimeExceptionDaoTest#testQueryRawDateTypesThrow | queryRaw | 0.333 | ✓ correct (pattern match) |
+| RuntimeExceptionDaoTest#testQueryForFirstPreparedThrow | queryForFirst | 0.5 | ✓ correct (pattern match) |
+| QueryBuilderWithSchemaTest#testQueryRawColumnsNotQuery | query | 0.2 | ✓ correct (spot-checked) |
+| RuntimeExceptionDaoTest#testStartThreadConnectionThrows | startThreadConnection | 0.6 | ✓ correct (pattern match) |
+| RuntimeExceptionDaoTest#testUpdateRawThrow | updateRaw | 0.5 | ✓ correct (pattern match) |
+| RuntimeExceptionDaoTest#testCloseLastIteratorThrow | closeLastIterator | 0.6 | ✓ correct (pattern match) |
+
+### Notes
+All 7 came back clean with no ties or missing candidates — genuinely
+the best batch so far. RuntimeExceptionDaoTest is a thin wrapper class
+(RuntimeExceptionDao) that converts checked SQLExceptions to unchecked
+RuntimeExceptions; every test calls rtDao.<methodName>(...) with the
+method name matching the test name exactly, which is exactly the ideal
+case for this Jaccard-based approach. Spot-checked 2/7 directly against
+source (testDeleteThrow, testQueryRawColumnsNotQuery), both confirmed
+correct; the remaining 5 follow the identical wrapper pattern so treated
+as high-confidence by consistency rather than individually re-verified.
+
+### Note on pipeline run
+Ran the pipeline on the whole test folder recursively (not just target
+files) since one clone covers all 7 of these tests — picked up 1112
+tests across 115 files total, most irrelevant to this batch but useful
+as a large-scale sanity check on the tool's overall hit rate (see
+separate note on aggregate stats below, if tracked).
