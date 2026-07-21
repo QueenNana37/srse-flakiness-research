@@ -283,3 +283,22 @@ files) since one clone covers all 7 of these tests — picked up 1112
 tests across 115 files total, most irrelevant to this batch but useful
 as a large-scale sanity check on the tool's overall hit rate (see
 separate note on aggregate stats below, if tracked).
+
+## wikidata-toolkit — createDirectoryManagerIoException (OD-flaky)
+
+**Commit:** 20de6f7f12319f54eb962ff6e8357b3f5695d54d
+**Module:** wdtk-util
+**Polluter:** DirectoryManagerFactoryTest#createDirectoryManagerNoConstructor
+**Flaky test (victim):** org.wikidata.wdtk.util.DirectoryManagerFactoryTest#createDirectoryManagerIoException
+
+### Pipeline result
+Focal method: `createDirectoryManager` (score=0.6)
+
+### Manual verification
+Correct. DirectoryManagerFactory.createDirectoryManager(...) is the
+exact call under test — clean direct match, no complications.
+
+### Notes
+Clean result, no failure mode found. Note: polluter and victim test
+are both in the same file/class, unlike the ormlite-core batch where
+the polluter lived in a completely separate class (LoggerFactoryTest).
