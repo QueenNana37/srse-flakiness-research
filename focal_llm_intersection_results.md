@@ -77,3 +77,39 @@ name). The LLM read the actual method calls and correctly understood
 generatorUnderTest.generateSql as the real call under test and
 sql[0].toSql() as just operating on the result, so toSql was never
 even considered a real candidate.
+
+## karate, JsonUtilsTest.java (7 tests)
+
+**Commit:** 14807dbf8d7c45f709299574222dd498b1fa5e67
+**Target flaky test:** com.intuit.karate.JsonUtilsTest#testPojoConversion
+
+| Test | Jaccard focal | LLM focal | Status |
+|---|---|---|---|
+| fromJsonStrictRetainsKeyOrder | fromJsonStrict | JsonUtils.fromJsonStrict | agreed |
+| testBeanConversion | toJson | JsonUtils.toJson | agreed |
+| testDeepCopy | deepCopy | JsonUtils.deepCopy | agreed |
+| testParse | toStrictJson | JsonUtils.toStrictJson | agreed |
+| testDetect | assertTrue | JsonUtils.isJson | disagreed |
+| testMalformed | toString | JsonUtils.fromJsonStrict | disagreed |
+| testPojoConversion (target) | asList | JsonUtils.toJson | disagreed |
+
+**Result: 4/7 confirmed. Target test still not fully resolved by either approach.**
+
+Checked the 3 disagreements against real source:
+
+- testDetect: LLM correct (isJson), matches every assertion in the test. Jaccard picked assertTrue, a plain JUnit assertion method with no real testing logic behind it, should have been filtered out as a library call but wasn't.
+- testMalformed: LLM correct (fromJsonStrict), the call inside the try/catch expecting failure. Jaccard picked toString, which comes from FileUtils.toString(...), just loading test data from a file, not the actual focal method.
+- testPojoConversion (the target): this is the scenario named, multi-method test found earlier (real answer involves 3 methods: toJson, fromJson called twice, and toXml). The LLM picked toJson, genuinely one of the 3 correct answers, but only at 0.4 confidence, honestly reflecting the uncertainty rather than confidently committing. Jaccard picked asList, a plain JDK library call, clearly wrong. Neither approach fully captures that this test legitimately checks 3 separate methods in one round trip, but the LLM at least landed on a real one with appropriately low confidence, while Jaccard missed entirely.
+
+## snakeyaml-engine, DumpToStringTest.java (1 test)
+
+**Commit:** 9d2bca887ad1be7575bae2e427d074e2c49ff109
+**Target flaky test:** org.snakeyaml.engine.issues.issue25.DumpToStringTest#dumpToStringTwice
+
+| Test | Jaccard focal | LLM focal | Status |
+|---|---|---|---|
+| dumpToStringTwice (target) | dumpToString | dump.dumpToString | agreed |
+
+**Result: 1/1 confirmed.**
+
+Both approaches agreed on dumpToString, matching what was manually verified earlier (dump.dumpToString(data) is called twice in the test, once expecting failure and once expecting success). Clean confirmed result, nothing more to dig into here.

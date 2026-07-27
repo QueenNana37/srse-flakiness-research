@@ -11,3 +11,15 @@ bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testLoosePrinter,newLo
 
 apolloconfig/apollo,75f9950d5e1675dbb0617555c4502685ef4d4618,id,testMessageSendAfterBuildRelease,publish,publish,com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest,apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/controller/ReleaseController.java
 apolloconfig/apollo,75f9950d5e1675dbb0617555c4502685ef4d4618,id,testReleaseBuild,(none),restTemplate.postForEntity,com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest,not resolved (real answer is apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/controller/ReleaseController.java, publish method, per manual URL match)
+
+liquibase/liquibase,31a22561423919b3875e0563a7bdcde3b9e457a9,id,testDropMultipleColumnsMySQL,generateSql,generatorUnderTest.generateSql,liquibase.sqlgenerator.core.DropColumnGeneratorTest,liquibase-core/src/main/java/liquibase/sqlgenerator/core/DropColumnGenerator.java
+
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,fromJsonStrictRetainsKeyOrder,fromJsonStrict,JsonUtils.fromJsonStrict,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testBeanConversion,toJson,JsonUtils.toJson,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testDeepCopy,deepCopy,JsonUtils.deepCopy,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testParse,toStrictJson,JsonUtils.toStrictJson,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testDetect,assertTrue,JsonUtils.isJson,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testMalformed,toString,JsonUtils.fromJsonStrict,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java
+karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testPojoConversion,asList,JsonUtils.toJson,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java (partial; real answer also includes fromJson and XmlUtils.toXml)
+
+snakeyaml/snakeyaml-engine,9d2bca887ad1be7575bae2e427d074e2c49ff109,id,dumpToStringTwice,dumpToString,dump.dumpToString,org.snakeyaml.engine.issues.issue25.DumpToStringTest,src/main/java/org/snakeyaml/engine/api/Dump.java
