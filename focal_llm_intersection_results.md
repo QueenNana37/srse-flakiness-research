@@ -155,3 +155,14 @@ Worth noting: in this file the LLM tended to latch onto the first setup or state
 pack: Jaccard picked getResource, LLM picked execute. Already manually verified earlier, execute is correct, zipper.execute(...) called on AssetRenditionsZipperImpl (the class under test) is the real action being tested, getResource is just test setup fetching a mock resource. The LLM correctly avoided the same scenario named trap that caught Jaccard here, "pack" describes what the class conceptually does rather than naming the specific method, so there was zero token overlap for Jaccard to work with, but the LLM read the actual body and picked the right one anyway.
 
 Rest of the file (8/9) was a clean sweep, both approaches agreeing on every single-word method match.
+
+## servicecomb-java-chassis, ExceptionsTest.java (4 tests)
+
+**Commit:** 9ba66ebc452db6aa5207e5cc7ebd03d48d358e9f
+**Target flaky test:** org.apache.servicecomb.core.exception.ExceptionsTest#should_convert_unknown_client_exception_to_invocation_exception
+
+**Result: 3/4 confirmed, including the target test.**
+
+should_protect_when_converter_throw_exception: LLM correct (processor.convert), the real call under test, whose result and resulting log message are what get asserted. Jaccard picked setConverters, which is just setup, configuring the processor with a converter designed to throw. Another likely stemming/pluralization mismatch behind the wrong pick (converter vs converters), similar to earlier cases.
+
+This wraps up all 10 of the ID flaky tests for the LLM plus intersection step.
