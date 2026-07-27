@@ -181,3 +181,18 @@ This wraps up all 10 of the ID flaky tests for the LLM plus intersection step.
 - testXmlRoundTrip: LLM correct (XmlMetadataUtil.deSerializeFromXml), the actual method being tested. Jaccard picked get again, same generic mismatch as above.
 
 This wraps up all 10 ID flaky tests for the LLM plus intersection step.
+
+## ormlite-core, RuntimeExceptionDaoTest.java (81 tests, 6 are OD targets)
+
+**Commit:** 632b87c2a455b8eab4a6c09324e1f166273588d8
+**Target flaky tests:** testDeleteThrow, testQueryRawDateTypesThrow, testQueryForFirstPreparedThrow, testStartThreadConnectionThrows, testUpdateRawThrow, testCloseLastIteratorThrow (testQueryRawColumnsNotQuery, the 7th OD target, lives in QueryBuilderWithSchemaTest.java instead)
+
+**Result: 76/81 confirmed, all 6 target OD tests from this file confirmed clean.**
+
+Note: originally ran this intersection against the full 1112 test Jaccard file from the big recursive pipeline run, which produced a meaningless 76/981 comparison since the LLM only ran on this one file. Filtered the Jaccard results down to just RuntimeExceptionDaoTest.java's 81 tests first, then re-ran the intersection properly.
+
+5 issues found, checked against source:
+
+- testCoverage, testCoverage2, testCoverage3: these are deliberately broad tests exercising many wrapper methods for coverage purposes, not testing one single method. LLM picked create (the first substantial DAO action after setup), Jaccard picked createDao (just the setup call that builds the underlying real DAO). Neither is fully wrong since these tests intentionally touch dozens of methods, there isn't really one correct single focal method here.
+- testDeletes: similarly multi-method, matching the plural in the name, both deleteById and delete(collection) get tested. LLM's pick (dao.deleteById) is a genuine one of the two real answers. Jaccard's pick (createDao) is just setup, clearly wrong.
+- testIfAllMethodsAreThere: a structural, reflection based test. It checks that RuntimeExceptionDao implements every method from Dao, CloseableIterable, and Iterable by comparing method lists via reflection (getDeclaredMethods()). There's no real business logic focal method here at all. Jaccard picked addAll, which turned out to be a plain JDK List.addAll call, not defined anywhere in the project, meaning it leaked past the src/main only candidate filter. Worth flagging to Devanshi as a possible bug in focal_extract.py's filtering. The LLM correctly returned no candidates for this one, which is actually the more honest answer, since this test doesn't exercise any single method under test in the usual sense.
