@@ -220,3 +220,14 @@ This completes all 7 ormlite-core OD targets across both files.
 **Result: 4/4 confirmed, including the target test.**
 
 Clean sweep, both approaches agreed on createDirectoryManager for every single test in this file. Nothing to dig into here, straightforward result.
+
+## accumulo, ShellSetInstanceTest.java (7 tests)
+
+**Commit:** a573f96d434fb5ef3016b8f7d3d9904e4fd88d65
+**Target flaky test:** org.apache.accumulo.core.util.shell.ShellSetInstanceTest#testSetInstance_HdfsZooInstance_Implicit
+
+**Result: 1/7 confirmed (agreed). 6/7 llm only, matching the same indirection pattern found earlier.**
+
+Same story as edn-java's assertRoundTrip case. The LLM correctly identified that all 6 testSetInstance_* variants call one of two shared private helper methods (testSetInstance_HdfsZooInstance or testSetInstance_ZKInstance), both defined inside the test class itself, not src/main. Jaccard's filter correctly excludes these by design, since they're not project methods, so it comes back with nothing for any of them. The LLM has no such restriction and just reports what's literally called in the body.
+
+Worth noting for the methodology itself: under the strict "confirmed only when both agree" rule, none of these 6 count as confirmed, even though the LLM's answer is correct and matches manual verification. That's a real limitation of the intersection approach as currently defined, a correct LLM answer gets zero credit whenever Jaccard has a structural blind spot rather than a wrong guess, since there's nothing for it to agree with.
