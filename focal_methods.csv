@@ -1,0 +1,10 @@
+project,sha,test_type,test_name,jaccard_focal_method,llm_focal_method,test_class,focal_class
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testSingleValues,(none),assertRoundTrip,us.bpsm.edn.printer.PrinterTest,us.bpsm.edn.printer.PrinterTest (local helper)
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testRoundTripCommaCharacterLiteralIssue45,(none),assertRoundTrip,us.bpsm.edn.printer.PrinterTest,us.bpsm.edn.printer.PrinterTest (local helper)
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testSymbolAsMapKeyWithSetAsValue,(none),assertRoundTrip,us.bpsm.edn.printer.PrinterTest,us.bpsm.edn.printer.PrinterTest (local helper)
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testTaggedSymbol,(none),assertRoundTrip,us.bpsm.edn.printer.PrinterTest,us.bpsm.edn.printer.PrinterTest (local helper)
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testComplexValue,(none),assertRoundTrip,us.bpsm.edn.printer.PrinterTest,us.bpsm.edn.printer.PrinterTest (local helper)
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testDefaultPrinter,newPrinter,p.printValue,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,issue31,newPrinter,Printers.printString,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testPrettyPrinting,prettyPrinterProtocol,Printers.printString,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
+bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testLoosePrinter,newLoosePrinter,p.printValue,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
