@@ -166,3 +166,18 @@ Rest of the file (8/9) was a clean sweep, both approaches agreeing on every sing
 should_protect_when_converter_throw_exception: LLM correct (processor.convert), the real call under test, whose result and resulting log message are what get asserted. Jaccard picked setConverters, which is just setup, configuring the processor with a converter designed to throw. Another likely stemming/pluralization mismatch behind the wrong pick (converter vs converters), similar to earlier cases.
 
 This wraps up all 10 of the ID flaky tests for the LLM plus intersection step.
+
+## hop, DatabaseLookupMetaTest.java (5 tests)
+
+**Commit:** be70e6fa1d4bf180c2766edc4c21d10fc215118b
+**Target flaky test:** org.apache.hop.pipeline.transforms.databaselookup.DatabaseLookupMetaTest#testProvidesModelerMeta
+
+**Result: 2/5 confirmed, including the target test (testProvidesModelerMeta).**
+
+3 disagreements, LLM correct on all 3 after checking source:
+
+- getFieldWithValueUsedTwice: LLM correct (databaseLookupMeta.getFields), the real call checked right after with assertions on the resulting row. Jaccard picked get, too generic and only matched by coincidence.
+- testInjection: LLM correct (injector.setProperty), called 8 times throughout the test, each followed by an assertion checking the injected value landed correctly. Jaccard picked build, likely from RowMetaBuilder().build(), which is just setup for test data.
+- testXmlRoundTrip: LLM correct (XmlMetadataUtil.deSerializeFromXml), the actual method being tested. Jaccard picked get again, same generic mismatch as above.
+
+This wraps up all 10 ID flaky tests for the LLM plus intersection step.
