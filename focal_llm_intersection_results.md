@@ -144,3 +144,14 @@ Worth noting a new pattern found here: tests that call other @Test methods as sh
 - testWarnStuckTasks: Jaccard correct (getWarnTime, checked 3 times to verify timing behavior). LLM picked setRPC, the one setup call that triggers the state being measured, not the thing actually being asserted on repeatedly.
 
 Worth noting: in this file the LLM tended to latch onto the first setup or state changing call in the test rather than the method being repeatedly checked afterward, opposite of the pattern seen in edn-java where the LLM outperformed Jaccard by avoiding setup calls. Neither approach is consistently better, it depends on the shape of the individual test.
+
+## asset-share-commons, AssetRenditionsZipperImplTest.java (9 tests)
+
+**Commit:** ee3ef7051e3ea3eb7f5d904fac177bc56623c6ed
+**Target flaky test:** com.adobe.aem.commons.assetshare.content.renditions.download.impl.AssetRenditionsZipperImplTest#pack
+
+**Result: 8/9 confirmed. The one disagreement is the target test itself.**
+
+pack: Jaccard picked getResource, LLM picked execute. Already manually verified earlier, execute is correct, zipper.execute(...) called on AssetRenditionsZipperImpl (the class under test) is the real action being tested, getResource is just test setup fetching a mock resource. The LLM correctly avoided the same scenario named trap that caught Jaccard here, "pack" describes what the class conceptually does rather than naming the specific method, so there was zero token overlap for Jaccard to work with, but the LLM read the actual body and picked the right one anyway.
+
+Rest of the file (8/9) was a clean sweep, both approaches agreeing on every single-word method match.
