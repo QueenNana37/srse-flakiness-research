@@ -113,3 +113,19 @@ Checked the 3 disagreements against real source:
 **Result: 1/1 confirmed.**
 
 Both approaches agreed on dumpToString, matching what was manually verified earlier (dump.dumpToString(data) is called twice in the test, once expecting failure and once expecting success). Clean confirmed result, nothing more to dig into here.
+
+## common-kafka, ProcessingPartitionTest.java (26 tests)
+
+**Commit:** d7873514c1705575c642ed99d2fa501f9b319790
+**Target flaky test:** com.cerner.common.kafka.consumer.ProcessingPartitionTest#nextRecord_manyRecords
+
+**Result: 22/26 confirmed, including the target test (nextRecord_manyRecords).**
+
+4 disagreements, checked each against real source:
+
+- commitableOffsets: LLM picked getCommittableOffset (called 3 times in the test), Jaccard picked getCommittableOffsetsSize (called once). Both methods genuinely appear and get exercised, another case of a test legitimately checking multiple related methods rather than one clean answer.
+- pause_moreRecordsLoaded: LLM's pick (partition.maybeUnpause) is the more central one, directly described in a code comment ("Un-pause the partition"). Jaccard's pick (getFailPauseTime) is just a helper call used to compute an argument value, not the real action being tested.
+- pause_thenClosePartition: genuinely interesting one. The test body literally calls pause_thresholdMet(), which is a different @Test method in the same file being reused as shared setup. The LLM picked up on that literal call and named it as the focal method, but that's not meaningful since it's not a src/main method, just chained test setup. Jaccard's pick (close) is the better answer here, since partition.close() is the real new behavior being verified once the shared setup finishes.
+- pause_thresholdMet: LLM's pick (partition.fail) is the more central one, the repeated fail() calls are what actually trigger the pausing behavior the test name describes. Jaccard's pick (getFailPauseTime) is a minor helper used only to compute an assertion bound.
+
+Worth noting a new pattern found here: tests that call other @Test methods as shared setup helpers (pause_thenClosePartition calling pause_thresholdMet). Neither approach handles this cleanly, since a test method isn't a valid focal method candidate at all, but nothing currently filters that case out.
