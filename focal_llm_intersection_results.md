@@ -129,3 +129,18 @@ Both approaches agreed on dumpToString, matching what was manually verified earl
 - pause_thresholdMet: LLM's pick (partition.fail) is the more central one, the repeated fail() calls are what actually trigger the pausing behavior the test name describes. Jaccard's pick (getFailPauseTime) is a minor helper used only to compute an assertion bound.
 
 Worth noting a new pattern found here: tests that call other @Test methods as shared setup helpers (pause_thenClosePartition calling pause_thresholdMet). Neither approach handles this cleanly, since a test method isn't a valid focal method candidate at all, but nothing currently filters that case out.
+
+## hbase, TestTaskMonitor.java (8 tests)
+
+**Commit:** 07a3ffdd97
+**Target flaky test:** org.apache.hadoop.hbase.monitoring.TestTaskMonitor#testClone
+
+**Result: 4/8 confirmed, including the target test (testClone).**
+
+4 disagreements, checked each against real source. This file is a good contrast to earlier ones, Jaccard actually did better than the LLM here on 3 out of 4.
+
+- testStatusJournal: Jaccard correct (getStatusJournal, checked repeatedly to verify journal entries). LLM picked setStatus, which is just the trigger action, not what's actually being verified.
+- testTaskMonitorBasics: scenario named, multi-method test (getTasks called twice and checked, alongside markComplete and getState). Jaccard's pick (getTasks) is still the more central answer despite scoring 0.0, another stemming gap since "tasks" plural in the method doesn't match "task" singular in the test name. LLM picked createStatus, which is just setup, not the real focus of the test.
+- testWarnStuckTasks: Jaccard correct (getWarnTime, checked 3 times to verify timing behavior). LLM picked setRPC, the one setup call that triggers the state being measured, not the thing actually being asserted on repeatedly.
+
+Worth noting: in this file the LLM tended to latch onto the first setup or state changing call in the test rather than the method being repeatedly checked afterward, opposite of the pattern seen in edn-java where the LLM outperformed Jaccard by avoiding setup calls. Neither approach is consistently better, it depends on the shape of the individual test.

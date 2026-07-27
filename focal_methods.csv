@@ -23,3 +23,14 @@ karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testMalformed,toSt
 karatelabs/karate,14807dbf8d7c45f709299574222dd498b1fa5e67,id,testPojoConversion,asList,JsonUtils.toJson,com.intuit.karate.JsonUtilsTest,karate-core/src/main/java/com/intuit/karate/JsonUtils.java (partial; real answer also includes fromJson and XmlUtils.toXml)
 
 snakeyaml/snakeyaml-engine,9d2bca887ad1be7575bae2e427d074e2c49ff109,id,dumpToStringTwice,dumpToString,dump.dumpToString,org.snakeyaml.engine.issues.issue25.DumpToStringTest,src/main/java/org/snakeyaml/engine/api/Dump.java
+
+#
+
+apache/hbase,07a3ffdd97,id,testClone,clone,clone,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/MonitoredRPCHandlerImpl.java
+apache/hbase,07a3ffdd97,id,testDoNotPurgeRPCTask,createRPCStatus,createRPCStatus,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/TaskMonitor.java
+apache/hbase,07a3ffdd97,id,testGetTasksWithFilter,getTasks,getTasks,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/TaskMonitor.java
+apache/hbase,07a3ffdd97,id,testStatusJournal,getStatusJournal,setStatus,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/MonitoredTask.java
+apache/hbase,07a3ffdd97,id,testTaskLimit,createStatus,createStatus,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/TaskMonitor.java
+apache/hbase,07a3ffdd97,id,testTaskMonitorBasics,getTasks,TaskMonitor.createStatus,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/TaskMonitor.java
+apache/hbase,07a3ffdd97,id,testTasksGetAbortedOnLeak,getTasks,TaskMonitor.createStatus,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/TaskMonitor.java
+apache/hbase,07a3ffdd97,id,testWarnStuckTasks,getWarnTime,MonitoredRPCHandler.setRPC,org.apache.hadoop.hbase.monitoring.TestTaskMonitor,hbase-server/src/main/java/org/apache/hadoop/hbase/monitoring/MonitoredRPCHandlerImpl.java
