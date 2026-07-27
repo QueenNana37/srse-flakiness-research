@@ -92,3 +92,8 @@ j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testCoverage2,crea
 j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testCoverage3,createDao,create,com.j256.ormlite.dao.RuntimeExceptionDaoTest,src/main/java/com/j256/ormlite/dao/RuntimeExceptionDao.java
 j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testDeletes,createDao,dao.deleteById,com.j256.ormlite.dao.RuntimeExceptionDaoTest,src/main/java/com/j256/ormlite/dao/RuntimeExceptionDao.java
 j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testIfAllMethodsAreThere,addAll (filter leak, not a real project method),(none, correctly),com.j256.ormlite.dao.RuntimeExceptionDaoTest,no real focal class, reflection based structural test
+
+j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testAlias,setAlias,prepareStatementString,com.j256.ormlite.stmt.QueryBuilderWithSchemaTest,src/main/java/com/j256/ormlite/stmt/QueryBuilder.java
+j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testClear,createDao,qb.reset,com.j256.ormlite.stmt.QueryBuilderWithSchemaTest,src/main/java/com/j256/ormlite/stmt/QueryBuilder.java
+j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testQueryRawColumnsNotQuery,query,dao.query,com.j256.ormlite.stmt.QueryBuilderWithSchemaTest,src/main/java/com/j256/ormlite/dao/BaseDaoImpl.java
+j256/ormlite-core,632b87c2a455b8eab4a6c09324e1f166273588d8,od,testSelectAll,appendEscapedEntityName,prepareStatementString,com.j256.ormlite.stmt.QueryBuilderWithSchemaTest,src/main/java/com/j256/ormlite/stmt/QueryBuilder.java

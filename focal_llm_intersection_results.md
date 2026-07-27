@@ -196,3 +196,18 @@ Note: originally ran this intersection against the full 1112 test Jaccard file f
 - testCoverage, testCoverage2, testCoverage3: these are deliberately broad tests exercising many wrapper methods for coverage purposes, not testing one single method. LLM picked create (the first substantial DAO action after setup), Jaccard picked createDao (just the setup call that builds the underlying real DAO). Neither is fully wrong since these tests intentionally touch dozens of methods, there isn't really one correct single focal method here.
 - testDeletes: similarly multi-method, matching the plural in the name, both deleteById and delete(collection) get tested. LLM's pick (dao.deleteById) is a genuine one of the two real answers. Jaccard's pick (createDao) is just setup, clearly wrong.
 - testIfAllMethodsAreThere: a structural, reflection based test. It checks that RuntimeExceptionDao implements every method from Dao, CloseableIterable, and Iterable by comparing method lists via reflection (getDeclaredMethods()). There's no real business logic focal method here at all. Jaccard picked addAll, which turned out to be a plain JDK List.addAll call, not defined anywhere in the project, meaning it leaked past the src/main only candidate filter. Worth flagging to Devanshi as a possible bug in focal_extract.py's filtering. The LLM correctly returned no candidates for this one, which is actually the more honest answer, since this test doesn't exercise any single method under test in the usual sense.
+
+## ormlite-core, QueryBuilderWithSchemaTest.java (4 tests, 1 is the 7th OD target)
+
+**Commit:** 632b87c2a455b8eab4a6c09324e1f166273588d8
+**Target flaky test:** com.j256.ormlite.stmt.QueryBuilderWithSchemaTest#testQueryRawColumnsNotQuery
+
+**Result: 1/4 confirmed, target test confirmed clean (query).**
+
+3 disagreements, LLM correct on all 3 after checking source:
+
+- testAlias: ends with assertEquals(sb.toString(), qb.prepareStatementString()), so prepareStatementString is the real assertion target. LLM correct. Jaccard picked setAlias, which is just one configuration call feeding into the final generated string, not the thing directly verified.
+- testClear: qb.reset() is the action matching "Clear" in the name, its effect then verified through prepareStatementString(). LLM correct (qb.reset). Jaccard picked createDao, just setup, clearly wrong.
+- testSelectAll: same pattern, prepareStatementString() is what gets asserted against a manually built expected string. LLM correct. Jaccard picked appendEscapedEntityName, a helper call used to build the comparison string, not the actual method under test.
+
+This completes all 7 ormlite-core OD targets across both files.
