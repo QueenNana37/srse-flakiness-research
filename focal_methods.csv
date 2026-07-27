@@ -8,3 +8,6 @@ bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testDefaultPrinter,new
 bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,issue31,newPrinter,Printers.printString,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
 bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testPrettyPrinting,prettyPrinterProtocol,Printers.printString,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
 bpsm/edn-java,4cf29ffe2d063269cb09c9bf4f6fd5c1a3cb4e1b,id,testLoosePrinter,newLoosePrinter,p.printValue,us.bpsm.edn.printer.PrinterTest,src/main/java/us/bpsm/edn/printer/Printers.java
+
+apolloconfig/apollo,75f9950d5e1675dbb0617555c4502685ef4d4618,id,testMessageSendAfterBuildRelease,publish,publish,com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest,apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/controller/ReleaseController.java
+apolloconfig/apollo,75f9950d5e1675dbb0617555c4502685ef4d4618,id,testReleaseBuild,(none),restTemplate.postForEntity,com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest,not resolved (real answer is apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/controller/ReleaseController.java, publish method, per manual URL match)
