@@ -231,3 +231,16 @@ Clean sweep, both approaches agreed on createDirectoryManager for every single t
 Same story as edn-java's assertRoundTrip case. The LLM correctly identified that all 6 testSetInstance_* variants call one of two shared private helper methods (testSetInstance_HdfsZooInstance or testSetInstance_ZKInstance), both defined inside the test class itself, not src/main. Jaccard's filter correctly excludes these by design, since they're not project methods, so it comes back with nothing for any of them. The LLM has no such restriction and just reports what's literally called in the body.
 
 Worth noting for the methodology itself: under the strict "confirmed only when both agree" rule, none of these 6 count as confirmed, even though the LLM's answer is correct and matches manual verification. That's a real limitation of the intersection approach as currently defined, a correct LLM answer gets zero credit whenever Jaccard has a structural blind spot rather than a wrong guess, since there's nothing for it to agree with.
+
+## wildfly, InitialContextFactoryTestCase.java (2 tests)
+
+**Commit:** b19048b72669fc0e96665b1b125dc1fda21f5993
+**Target flaky test:** org.jboss.as.naming.InitialContextFactoryTestCase#testJavaContext
+
+**Result: 0/2 confirmed, but the LLM is correct on both after manual verification.**
+
+testJavaContext: LLM correct (lookup), exactly matching what was manually verified earlier. initialContext.lookup("java:") is the real call under test, getName (InitialContextFactory.class.getName()) is just setup used to configure a system property, not the thing being tested. Jaccard's tie between getName and lookup (both scoring 0.0 due to zero token overlap with the test name) is fully resolved by the LLM, which reads the body semantically instead of relying on shared words.
+
+testInitialFactory: same pattern, LLM picked InitialContext.lookup, consistent with the other test in this file.
+
+This is the last of the 20 original tests for the LLM plus intersection step. Overall, the LLM was especially good at resolving cases where Jaccard's tokenizer had zero signal to work with (scenario named tests, zero overlap ties), since it reads the test body's actual logic instead of comparing word lists.
