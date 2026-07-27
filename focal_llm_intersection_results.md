@@ -1,3 +1,31 @@
+## Overall Summary (20 tests)
+
+| Project | Target flaky test | Jaccard focal | LLM focal | Status | Manual verdict |
+|---|---|---|---|---|---|
+| edn-java | testPrettyPrinting | prettyPrinterProtocol | Printers.printString | disagreed | ✅ LLM correct |
+| hop | testProvidesModelerMeta | getRowMeta | meta.getRowMeta | agreed | ✅ confirmed |
+| apollo | testReleaseBuild | (none) | restTemplate.postForEntity | llm only | ❌ neither correct |
+| liquibase | testDropMultipleColumnsMySQL | generateSql | generatorUnderTest.generateSql | agreed | ✅ confirmed |
+| karate | testPojoConversion | asList | JsonUtils.toJson | disagreed | ⚠️ llm partially correct (1 of 3 real methods) |
+| snakeyaml-engine | dumpToStringTwice | dumpToString | dump.dumpToString | agreed | ✅ confirmed |
+| common-kafka | nextRecord_manyRecords | nextRecord | partition.nextRecord | agreed | ✅ confirmed |
+| hbase | testClone | clone | clone | agreed | ✅ confirmed |
+| asset-share-commons | pack | getResource | execute | disagreed | ✅ LLM correct |
+| servicecomb-java-chassis | should_convert_unknown_client_exception... | convert | Exceptions.convert | agreed | ✅ confirmed |
+| ormlite-core | testDeleteThrow | delete | delete | agreed | ✅ confirmed |
+| ormlite-core | testQueryRawDateTypesThrow | queryRaw | queryRaw | agreed | ✅ confirmed |
+| ormlite-core | testQueryForFirstPreparedThrow | queryForFirst | queryForFirst | agreed | ✅ confirmed |
+| ormlite-core | testQueryRawColumnsNotQuery | query | dao.query | agreed | ✅ confirmed |
+| ormlite-core | testStartThreadConnectionThrows | startThreadConnection | rtDao.startThreadConnection | agreed | ✅ confirmed |
+| ormlite-core | testUpdateRawThrow | updateRaw | updateRaw | agreed | ✅ confirmed |
+| ormlite-core | testCloseLastIteratorThrow | closeLastIterator | closeLastIterator | agreed | ✅ confirmed |
+| wikidata-toolkit | createDirectoryManagerIoException | createDirectoryManager | DirectoryManagerFactory.createDirectoryManager | agreed | ✅ confirmed |
+| accumulo | testSetInstance_HdfsZooInstance_Implicit | (none) | testSetInstance_HdfsZooInstance (local helper) | llm only | ✅ LLM correct |
+| wildfly | testJavaContext | getName | lookup | disagreed | ✅ LLM correct |
+
+**14/20 confirmed (both agreed). Of the remaining 6: 4 were correct via the LLM alone (Jaccard had a structural blind spot), 1 was partial credit (genuine multi-method test), 1 was a true miss for both approaches (HTTP routing, would need extra context fed to the LLM to catch).**
+
+
 # Focal Method: LLM + Jaccard Intersection Results
 
 Running both approaches from the UTFix paper on the same tests: Jaccard similarity (already built, word overlap based) and an LLM based approach (feeds the test body to GPT, asks it directly which method is under test). A focal method only counts as "confirmed" when both approaches agree on the exact same method.
