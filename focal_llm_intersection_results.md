@@ -33,3 +33,27 @@ This one's worth digging into properly rather than just reading the confirmed co
 
 **Why Jaccard lost across the whole file:** there's one consistent root cause behind almost every miss here. newPrinter and newLoosePrinter both share the word "printer" with the test class name, so Jaccard's word overlap scoring favors them. Meanwhile printValue only shares the word "print", which doesn't match "printer" as a token since there's no stemming (this is the same tokenizer limitation found earlier on testPrettyPrinting, just showing up again in a different form across the rest of the file). The LLM doesn't have this blind spot since it reads the full method body semantically instead of just comparing word lists, so it picks the real action method every time instead of getting distracted by a setup call that happens to share a partial word with the class name.
 
+
+## apollo, ReleaseControllerTest.java (2 tests)
+
+**Commit:** 75f9950d5e1675dbb0617555c4502685ef4d4618
+**Target flaky test:** com.ctrip.framework.apollo.adminservice.controller.ReleaseControllerTest#testReleaseBuild
+
+| Test | Jaccard focal | LLM focal | Status |
+|---|---|---|---|
+| testMessageSendAfterBuildRelease | publish | publish | agreed |
+| testReleaseBuild (target) | (none) | restTemplate.postForEntity | llm only |
+
+**Result: 1/2 confirmed. Target test still not correctly resolved by either approach.**
+
+testReleaseBuild is the same HTTP routing case found earlier with Jaccard,
+but this time the LLM also got it wrong, just differently. It picked
+restTemplate.postForEntity, the visible call in the test body, instead
+of the real answer (publish in ReleaseController.java, confirmed earlier
+by matching the @PostMapping URL). This shows the HTTP routing blind
+spot isn't unique to Jaccard's word matching approach, it's a limitation
+of reading the test file in isolation. Neither approach can trace an
+HTTP request through Spring's routing to find the actual handler method
+without also being given the controller's source code as context. Would
+need a smarter prompt (e.g. also feeding the controller class to the
+LLM) or a different technique entirely to catch this kind of test.
