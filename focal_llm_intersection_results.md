@@ -211,3 +211,12 @@ Note: originally ran this intersection against the full 1112 test Jaccard file f
 - testSelectAll: same pattern, prepareStatementString() is what gets asserted against a manually built expected string. LLM correct. Jaccard picked appendEscapedEntityName, a helper call used to build the comparison string, not the actual method under test.
 
 This completes all 7 ormlite-core OD targets across both files.
+
+## wikidata-toolkit, DirectoryManagerFactoryTest.java (4 tests)
+
+**Commit:** 20de6f7f12319f54eb962ff6e8357b3f5695d54d
+**Target flaky test:** org.wikidata.wdtk.util.DirectoryManagerFactoryTest#createDirectoryManagerIoException
+
+**Result: 4/4 confirmed, including the target test.**
+
+Clean sweep, both approaches agreed on createDirectoryManager for every single test in this file. Nothing to dig into here, straightforward result.
