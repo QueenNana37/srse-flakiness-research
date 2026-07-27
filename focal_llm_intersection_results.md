@@ -57,3 +57,23 @@ HTTP request through Spring's routing to find the actual handler method
 without also being given the controller's source code as context. Would
 need a smarter prompt (e.g. also feeding the controller class to the
 LLM) or a different technique entirely to catch this kind of test.
+
+## liquibase, DropColumnGeneratorTest.java (1 test)
+
+**Commit:** 31a22561423919b3875e0563a7bdcde3b9e457a9
+**Target flaky test:** liquibase.sqlgenerator.core.DropColumnGeneratorTest#testDropMultipleColumnsMySQL
+
+| Test | Jaccard focal | LLM focal | Status |
+|---|---|---|---|
+| testDropMultipleColumnsMySQL (target) | generateSql | generatorUnderTest.generateSql | agreed |
+
+**Result: 1/1 confirmed.**
+
+Both approaches landed on generateSql, matching what was manually
+verified earlier. Worth noting the LLM completely avoided the token
+collision problem that caused Jaccard to tie generateSql against toSql
+(both scored equally due to sharing "sql" from "MySQL" in the test
+name). The LLM read the actual method calls and correctly understood
+generatorUnderTest.generateSql as the real call under test and
+sql[0].toSql() as just operating on the result, so toSql was never
+even considered a real candidate.
