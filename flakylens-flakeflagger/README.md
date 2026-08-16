@@ -71,59 +71,45 @@ behavior rather than a bug in this pipeline.
 No ground-truth labels exist for this dataset (confirmed with Suzzana), so
 these are FlakyLens's raw predictions, not an accuracy/F1 evaluation.
 
-## Update: full 811-test FlakeFlagger run
 
-The first analysis (85 tests) used a subset with no ground truth. Suzzana
-then confirmed the full FlakeFlagger set is FlakeFlagger's own known-flaky
-list — every one of these 811 tests is *supposed* to be flaky. That gives
-this batch an implicit ground truth the first batch didn't have.
+## Update: full FlakeFlagger run — corrected with Suzanna's official method bodies
 
-### Extracting the code
+**This section supersedes an earlier version of this analysis.** The first
+pass extracted test method source code ourselves (811 tests, 23 cloned
+repos) and found low recall on known-flaky tests. Suzanna then sent her own
+official extraction with real method bodies
+(`flaky_flakeflagger_with_project_info_with_method_bodies.csv`, 799 tests).
+Diffing our extraction against hers surfaced a real bug: for methods
+annotated with something like `@Deployment(resources = { "path.xml" })`, the
+annotation's own embedded `{` confused our brace-matching logic and truncated
+~13.5% of extracted method bodies right after the annotation, cutting off the
+actual method body entirely. All results below use Suzanna's official,
+verified 799-test file -> this is the correct, current analysis. The
+self-extracted 811-test files and script have been removed from this repo.
 
-Suzzana's file (`flaky_flakeflagger_with_project_info.csv`) only has
-`Project`, `ProjectURL`, `SHA`, and a fully-qualified `Test` identifier
-(`package.Class#method`) — no source code. `extract_flakeflagger_811.py`
-clones each of the 23 unique (project, commit) pairs, locates the matching
-`.java` file by class name, and extracts the target method's body via brace
-matching (handles JUnit5 parameterized-test suffixes like `[0]`, `[1]` by
-stripping them before searching, since those refer to one underlying method).
+### Results: FlakyLens recall on FlakeFlagger's known-flaky tests (799 tests)
 
-**809/811 (99.75%) extracted successfully.** The 2 failures are both cases
-where the named class doesn't directly contain the method (likely inherited
-from a superclass) — a data-quality note in FlakeFlagger's own list, not an
-extraction bug.
-
-### Running inference across all 4 fold checkpoints
-
-Same `infer_flakeflagger.py` script as the 85-test batch, run once per fold
-(1-4) on `flakeflagger_811_reformatted.csv`. Consolidated in
-`flakeflagger_811_consolidated.csv`.
-
-### Results: FlakyLens has low recall on FlakeFlagger's known-flaky tests
-
-Since every one of these 809 tests is confirmed flaky, any "Not Flaky"
-prediction is a miss — these numbers are recall, not just raw counts:
+Since every one of these 799 tests is confirmed flaky, any "Not Flaky"
+prediction is a miss — these are recall numbers:
 
 | Fold | Flaky-catch rate |
 |---|---|
-| 1 | 9.5% (77/809) |
-| 2 | 3.2% (26/809) |
-| 3 | 8.9% (72/809) |
-| 4 | 13.3% (108/809) |
+| 1 | 24.8% (198/799) |
+| 2 | 13.4% (107/799) |
+| 3 | 20.7% (165/799) |
+| 4 | 25.2% (201/799) |
 
 Combined across all 4 folds:
-- Flagged flaky by **at least 1** fold: 13.6% (110/809)
-- Flagged flaky by **majority** (2+ of 4): 10.6% (86/809)
-- Flagged flaky by **all 4** (unanimous): 2.8% (23/809)
+- Flagged flaky by **at least 1** fold: 25.3% (202/799)
+- Flagged flaky by **majority** (2+ of 4): 24.8% (198/799)
+- Flagged flaky by **all 4** (unanimous): 13.0% (104/799)
 
-The folds also disagree substantially on *which* tests and *which category*
-— e.g. rows corresponding to one project (square-okhttp) get called "Async
-Wait" by fold 1 but "Order Dependent" by folds 3/4, and are barely flagged at
-all by fold 2. This isn't just missed detections; the categorical signal
-itself is unstable across independently-trained checkpoints of the same
-model.
+Recall roughly doubled compared to the buggy extraction (which is expected —
+truncated method bodies gave the model far less signal to work with). Even
+so, FlakyLens still misses roughly 3 in 4 known-flaky FlakeFlagger tests even
+counted generously (any single fold flagging it).
 
-### Why this is plausible (not a bug)
+### Why this is plausible (not a bug in the inference pipeline)
 
 - **Distribution shift.** FlakyLens is trained entirely on FlakeBench (97
   projects). FlakeFlagger is an older, largely non-overlapping set of OSS
@@ -137,10 +123,9 @@ model.
   boundary defaults toward "Not Flaky" unless the signal is very strong.
 - **Consistent with the paper's own interpretability finding.** The FlakyLens
   paper shows the model leans on surface-level token patterns (`sleep`,
-  `wait`, `Duration`, etc.) rather than deep code semantics, and that
-  injecting/removing these tokens can flip predictions. If FlakeFlagger's
-  real-world flaky tests achieve flakiness through different code patterns
-  than FlakeBench's labeled examples, the token-level heuristics the model
-  learned simply may not fire — which also explains why different folds
-  (each seeing a slightly different slice of FlakeBench during training)
-  disagree so much with each other on this new distribution.
+  `wait`, `Duration`, etc.) rather than deep code semantics. If
+  FlakeFlagger's real-world flaky tests achieve flakiness through different
+  code patterns than FlakeBench's labeled examples, those learned
+  token-level heuristics simply may not fire — which also explains why the 4
+  independently-trained folds disagree with each other on this new
+  distribution.
