@@ -29,6 +29,7 @@ import argparse
 import csv
 import glob
 import os
+import re
 import sys
 import tarfile
 import xml.etree.ElementTree as ET
@@ -47,95 +48,205 @@ EXPECTED_PROJECTS = {
     "jknack-handlebars.java", "joel-costigliola-assertj-core",
 }
 
-# Coarse category buckets, keyed by substring match against the exception
-# class name (case-insensitive). Order matters -- first match wins.
-CATEGORY_RULES = [
-    ("Timeout / Async Wait", ["timeout", "timeoutexception", "sockettimeout"]),
-    ("Connection / Network", ["connectexception", "connection", "sockettimeout",
-                              "unknownhostexception", "ioexception", "eofexception"]),
-    ("Concurrency", ["interruptedexception", "concurrentmodification",
-                     "illegalmonitorstate", "timeoutexception"]),
-    ("Null Pointer", ["nullpointerexception"]),
-    ("Assertion Failure", ["assertionerror", "comparisonfailure", "assertionfailederror"]),
-    ("Ordering / State", ["illegalstateexception", "indexoutofbounds",
-                          "concurrentmodificationexception"]),
-    ("File / Resource", ["filenotfound", "noSuch file", "resourcenotfound"]),
-]
+# =============================================================================
+# IMPORTANT / HONESTY NOTE ABOUT CATEGORIZATION:
+# The categorize_flakylens() function below is a heuristic Claude wrote.
+# It is NOT derived from FlakeFlagger's own labels, not from FlakyLens
+# itself, and not verified against any ground truth. It is a best-effort
+# attempt to map raw failure text onto FlakyLens's actual 5 flaky categories
+# (Async Wait, Concurrency, Time, Unordered Collections, Order Dependent),
+# based on how those categories are described in the FlakyLens paper. Treat
+# every flakylens_category value as a PROPOSED GUESS with visible reasoning,
+# not a fact -- the category_reasoning column states exactly which signal
+# fired so it can be audited or thrown out. The ONE rule that is a verified
+# check rather than a guess is the Unordered Collections detection: it
+# actually compares the sorted characters of the "expected" and "was"
+# strings and only fires when they are a true anagram of each other.
+#
+# The raw exception_type, message, and stack_trace columns are always
+# extracted verbatim from the XML -- nothing is invented, cleaned up, or
+# reworded in those three columns. Categorization is kept in separate
+# columns so the original evidence is never overwritten or lost.
+# =============================================================================
 
 
-def categorize_exception(exception_type):
-    if not exception_type:
-        return "Unknown (no exception type captured)"
-    lowered = exception_type.lower()
-    for category, keywords in CATEGORY_RULES:
-        for kw in keywords:
-            if kw in lowered:
-                return category
-    return f"Other ({exception_type.rsplit('.', 1)[-1]})"
+def _normalize_for_anagram_check(s):
+    """Strip everything except letters/digits and lowercase, for comparing
+    if two strings contain the exact same content in a different order."""
+    return "".join(ch.lower() for ch in s if ch.isalnum())
 
 
-def build_failure_index(tf):
+def _is_reordered_content(message):
     """
-    Given an OPEN tarfile object, build an index of every XML member whose
-    filename matches the 'ClassName#method.xml' convention, WITHOUT
-    extracting anything to disk.
+    Checks the common JUnit 'expected:<X> but was:<Y>' pattern. Returns True
+    only if X and Y are a genuine anagram of each other (same characters,
+    different order) -- this is a real check, not a guess.
 
-    Returns: index[(class_fqn, method_name)] -> list of TarInfo members
+    Requires at least MIN_ANAGRAM_LENGTH characters after normalization to
+    avoid false positives on short, coincidentally-matching strings (e.g.
+    "ab" vs "ba" being unrelated 2-character values rather than a real
+    reordered-collection signal).
+    """
+    MIN_ANAGRAM_LENGTH = 12
+    m = re.search(r"expected:\s*<(.*)>\s*but was:\s*<(.*)>", message, re.IGNORECASE | re.DOTALL)
+    if not m:
+        return False
+    expected_norm = _normalize_for_anagram_check(m.group(1))
+    actual_norm = _normalize_for_anagram_check(m.group(2))
+    if len(expected_norm) < MIN_ANAGRAM_LENGTH or len(actual_norm) < MIN_ANAGRAM_LENGTH:
+        return False
+    return sorted(expected_norm) == sorted(actual_norm)
+
+
+def categorize_flakylens(exception_type, message, stack_trace, test_fqn):
+    """
+    Attempts to map a raw failure onto one of FlakyLens's 5 real categories.
+    Returns (category, reasoning) -- reasoning always states exactly which
+    signal triggered the decision, so this is auditable rather than a black box.
+    """
+    exception_type = exception_type or ""
+    message = message or ""
+    stack_trace = stack_trace or ""
+    test_fqn = test_fqn or ""
+    combined_lower = f"{exception_type} {message} {stack_trace} {test_fqn}".lower()
+
+    # --- Unordered Collections: VERIFIED via anagram check, not a guess ---
+    if _is_reordered_content(message):
+        return ("Unordered Collections",
+                "verified: 'expected' and 'was' strings contain the exact same "
+                "characters in a different order (checked via sorted-character comparison)")
+
+    # --- Async Wait: keywords suggesting an async/callback/future/latch that
+    # wasn't waited on long enough ---
+    async_signals = ["timeoutexception", "conditiontimeout", "countdownlatch",
+                      "completablefuture", "future.get", "async", "callback",
+                      "did not complete within", "time limit", "executor"]
+    if any(sig in combined_lower for sig in async_signals):
+        hit = next(sig for sig in async_signals if sig in combined_lower)
+        return ("Async Wait", f"guess: found async-related keyword '{hit}' in exception/message/test name")
+
+    # --- Time: date/clock/calendar related, and NOT already caught by Async Wait above ---
+    time_signals = ["currenttimemillis", "calendar", "simpledateformat",
+                    "localdatetime", "system.nanotime", "clock.system"]
+    if any(sig in combined_lower for sig in time_signals):
+        hit = next(sig for sig in time_signals if sig in combined_lower)
+        return ("Time", f"guess: found time/clock-related keyword '{hit}' in exception/message/test name")
+
+    # --- Concurrency: race conditions, shared mutable state, thread interference ---
+    concurrency_signals = ["concurrentmodificationexception", "interruptedexception",
+                            "illegalmonitorstateexception", "deadlock",
+                            "wanted but not invoked", "wanted \\d+ time", "race"]
+    for sig in concurrency_signals:
+        if re.search(sig, combined_lower):
+            return ("Concurrency", f"guess: found concurrency-related pattern '{sig}' in exception/message")
+
+    # --- Order Dependent: leftover state from another test, hardest to detect
+    # from a single isolated failure log without cross-test context ---
+    od_signals = ["already exists", "duplicate key", "duplicate entry",
+                  "illegalstateexception", "unique constraint"]
+    if any(sig in combined_lower for sig in od_signals):
+        hit = next(sig for sig in od_signals if sig in combined_lower)
+        return ("Order Dependent",
+                f"low-confidence guess: found phrase '{hit}' which can indicate leftover "
+                f"state from another test, but this cannot be confirmed without cross-test "
+                f"execution context")
+
+    return ("Unclear", f"no rule matched -- raw exception type was '{exception_type}'")
+
+
+def build_failure_content_index(tf, needed_keys):
+    """
+    Single SEQUENTIAL pass through the tar stream -- reads each member once,
+    in the order it physically appears in the archive, and immediately
+    parses+discards any XML matching a (class_fqn, method_name) we actually
+    need for this project.
+
+    This deliberately avoids the pattern of "build an index of member
+    locations, then later call tf.extractfile() on them in arbitrary order" --
+    for a gzip-compressed archive, non-sequential extractfile() calls can
+    force repeated re-decompression of large portions of the stream, which is
+    almost certainly what caused a hang on spring-boot's 713k-member archive.
+    A single forward-only pass has no such penalty.
+
+    needed_keys: set of (class_fqn, method_name) tuples this project's test
+                 list actually references -- anything else is skipped
+                 without even attempting to read its content.
+
+    Returns: index[(class_fqn, method_name)] -> list of parsed result dicts
+             (each already a finished {"exception_type":..., ...} or
+             {"parse_error":...} dict -- no further archive access needed)
     """
     index = defaultdict(list)
     total_xml = 0
     skipped = 0
-    for member in tf.getmembers():
+    members_scanned = 0
+    PROGRESS_INTERVAL = 25000
+
+    for member in tf:  # sequential iteration -- never seeks backward
+        members_scanned += 1
+        if members_scanned % PROGRESS_INTERVAL == 0:
+            print(f"    ... still working, {members_scanned} archive entries scanned so far "
+                  f"({total_xml} were XML files, {len(index)} of our tests found so far)")
+
         if not member.isfile():
             continue
         filename = os.path.basename(member.name)
         if not filename.lower().endswith(".xml"):
             continue
         total_xml += 1
+
         name_part = filename[:-4]
         if "#" not in name_part:
             skipped += 1
             continue
         class_fqn, method_name = name_part.rsplit("#", 1)
-        index[(class_fqn, method_name)].append(member)
-    return index, total_xml, skipped
 
+        if (class_fqn, method_name) not in needed_keys:
+            continue  # not one of our tests -- skip without reading content
 
-def parse_failure_from_member(tf, member, method_name):
-    """
-    Read a tar member's content directly into memory (never touching disk)
-    and pull out the <failure>/<error> block for the given method_name.
-    Returns a dict, or None if this run's XML didn't show a failure for
-    this specific test, or {"parse_error": ...} if the XML was unreadable.
-    """
-    try:
-        fileobj = tf.extractfile(member)
-        if fileobj is None:
-            return {"parse_error": "member has no extractable content (e.g. a directory or symlink)"}
-        content = fileobj.read()
-    except Exception as e:
-        return {"parse_error": f"could not read member from archive: {e}"}
-
-    try:
-        root = ET.fromstring(content)
-    except ET.ParseError as e:
-        return {"parse_error": f"malformed XML: {e}"}
-    except Exception as e:
-        return {"parse_error": f"unexpected parse error: {e}"}
-
-    for testcase in root.iter("testcase"):
-        if testcase.get("name") != method_name:
+        try:
+            fileobj = tf.extractfile(member)  # cheap here: stream is already positioned right at this member
+            if fileobj is None:
+                index[(class_fqn, method_name)].append({"parse_error": "member has no extractable content"})
+                continue
+            content = fileobj.read()
+        except Exception as e:
+            index[(class_fqn, method_name)].append({"parse_error": f"could not read member from archive: {e}"})
             continue
-        for tag in ("failure", "error"):
-            node = testcase.find(tag)
-            if node is not None:
-                return {
-                    "exception_type": node.get("type", ""),
-                    "message": (node.get("message", "") or "")[:500],
-                    "stack_trace_snippet": (node.text or "").strip()[:500],
-                    "report_type": tag,
-                }
-    return None  # this specific run's XML didn't show this test failing
+
+        try:
+            root = ET.fromstring(content)
+        except ET.ParseError as e:
+            index[(class_fqn, method_name)].append({"parse_error": f"malformed XML: {e}"})
+            continue
+        except Exception as e:
+            index[(class_fqn, method_name)].append({"parse_error": f"unexpected parse error: {e}"})
+            continue
+
+        found = None
+        for testcase in root.iter("testcase"):
+            if testcase.get("name") != method_name:
+                continue
+            for tag in ("failure", "error"):
+                node = testcase.find(tag)
+                if node is not None:
+                    found = {
+                        "exception_type": node.get("type", ""),
+                        "message": node.get("message", "") or "",
+                        "stack_trace": (node.text or "").strip(),
+                        "report_type": tag,
+                    }
+                    break
+            if found:
+                break
+
+        if found:
+            index[(class_fqn, method_name)].append(found)
+        # if not found: this run's XML for this member didn't show a failure
+        # for this specific method (rare, but skip silently rather than
+        # recording a misleading empty entry)
+
+    return index, total_xml, skipped
 
 
 def find_archive_path(archives_dir, project):
@@ -199,7 +310,7 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"no archive available ({archive_status[project]})",
-                    "exception_type": "", "category": "", "message": "",
+                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
@@ -213,7 +324,7 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"archive present but unreadable ({archive_status[project]})",
-                    "exception_type": "", "category": "", "message": "",
+                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
@@ -224,16 +335,26 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"archive present but unreadable ({archive_status[project]})",
-                    "exception_type": "", "category": "", "message": "",
+                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
 
         try:
-            index, total_xml, skipped = build_failure_index(tf)
+            # Only look for tests this project's CSV rows actually reference --
+            # lets the single pass skip reading content for irrelevant XML entries.
+            needed_keys = set()
+            for row in tests_by_project[project]:
+                t = row.get("Test", "")
+                if "#" in t:
+                    c, m = t.rsplit("#", 1)
+                    needed_keys.add((c, m))
+
+            index, total_xml, skipped = build_failure_content_index(tf, needed_keys)
             processed_projects.add(project)
-            archive_status[project] = f"ok ({total_xml} xml members, {len(index)} unique test keys, {skipped} skipped)"
-            print(f"  [{project}] indexed in-memory -- {total_xml} XML members, {len(index)} unique tests, 0 bytes written to disk")
+            archive_status[project] = f"ok ({total_xml} xml members scanned, {len(index)} of our tests found, {skipped} skipped)"
+            print(f"  [{project}] single sequential pass complete -- {total_xml} XML members scanned, "
+                  f"{len(index)} of our tests found, 0 bytes written to disk")
 
             for row in tests_by_project[project]:
                 test_fqn = row.get("Test", "")
@@ -241,28 +362,25 @@ def main():
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": "malformed test identifier (no '#')",
-                        "exception_type": "", "category": "", "message": "",
+                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
                 class_fqn, method_name = test_fqn.rsplit("#", 1)
-                candidate_members = index.get((class_fqn, method_name), [])
+                candidate_results = index.get((class_fqn, method_name), [])
 
-                if not candidate_members:
+                if not candidate_results:
                     no_match_count += 1
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": "no matching failure XML found for this test",
-                        "exception_type": "", "category": "", "message": "",
+                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
                 found = None
                 parse_errors = []
-                for member in candidate_members:
-                    result = parse_failure_from_member(tf, member, method_name)
-                    if result is None:
-                        continue
+                for result in candidate_results:
                     if "parse_error" in result:
                         parse_errors.append(result["parse_error"])
                         continue
@@ -271,23 +389,27 @@ def main():
 
                 if found is None:
                     reason = "; ".join(parse_errors) if parse_errors else \
-                        f"{len(candidate_members)} report(s) found but none contained a parsable failure block"
+                        f"{len(candidate_results)} report(s) found but none contained a parsable failure block"
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": f"report(s) found but extraction failed: {reason}",
-                        "exception_type": "", "category": "", "message": "",
+                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
                 matched_count += 1
-                category = categorize_exception(found["exception_type"])
+                category, reasoning = categorize_flakylens(
+                    found["exception_type"], found["message"], found["stack_trace"], test_fqn
+                )
                 category_counter[category] += 1
                 output_rows.append({
                     "project": project, "test": test_fqn,
-                    "match_status": f"matched ({len(candidate_members)} report(s) available)",
+                    "match_status": f"matched ({len(candidate_results)} report(s) available)",
                     "exception_type": found["exception_type"],
-                    "category": category,
+                    "flakylens_category": category,
+                    "category_reasoning": reasoning,
                     "message": found["message"],
+                    "stack_trace": found["stack_trace"],
                 })
         finally:
             tf.close()  # release the archive handle; nothing to clean up on disk
@@ -295,7 +417,8 @@ def main():
     # --- Write output ---
     with open(args.output, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["project", "test", "match_status",
-                                                "exception_type", "category", "message"])
+                                                "exception_type", "flakylens_category",
+                                                "category_reasoning", "message", "stack_trace"])
         writer.writeheader()
         writer.writerows(output_rows)
 
