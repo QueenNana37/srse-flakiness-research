@@ -56,7 +56,7 @@ EXPECTED_PROJECTS = {
 # attempt to map raw failure text onto FlakyLens's actual 5 flaky categories
 # (Async Wait, Concurrency, Time, Unordered Collections, Order Dependent),
 # based on how those categories are described in the FlakyLens paper. Treat
-# every flakylens_category value as a PROPOSED GUESS with visible reasoning,
+# every error_log_guessed_category value as a PROPOSED GUESS with visible reasoning,
 # not a fact -- the category_reasoning column states exactly which signal
 # fired so it can be audited or thrown out. The ONE rule that is a verified
 # check rather than a guess is the Unordered Collections detection: it
@@ -310,7 +310,7 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"no archive available ({archive_status[project]})",
-                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                    "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
@@ -324,7 +324,7 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"archive present but unreadable ({archive_status[project]})",
-                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                    "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
@@ -335,7 +335,7 @@ def main():
                 output_rows.append({
                     "project": project, "test": row.get("Test", ""),
                     "match_status": f"archive present but unreadable ({archive_status[project]})",
-                    "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                    "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                 })
                 no_archive_count += 1
             continue
@@ -362,7 +362,7 @@ def main():
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": "malformed test identifier (no '#')",
-                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                        "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
@@ -374,7 +374,7 @@ def main():
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": "no matching failure XML found for this test",
-                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                        "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
@@ -393,7 +393,7 @@ def main():
                     output_rows.append({
                         "project": project, "test": test_fqn,
                         "match_status": f"report(s) found but extraction failed: {reason}",
-                        "exception_type": "", "flakylens_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
+                        "exception_type": "", "error_log_guessed_category": "", "category_reasoning": "", "message": "", "stack_trace": "",
                     })
                     continue
 
@@ -406,7 +406,7 @@ def main():
                     "project": project, "test": test_fqn,
                     "match_status": f"matched ({len(candidate_results)} report(s) available)",
                     "exception_type": found["exception_type"],
-                    "flakylens_category": category,
+                    "error_log_guessed_category": category,
                     "category_reasoning": reasoning,
                     "message": found["message"],
                     "stack_trace": found["stack_trace"],
@@ -417,7 +417,7 @@ def main():
     # --- Write output ---
     with open(args.output, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["project", "test", "match_status",
-                                                "exception_type", "flakylens_category",
+                                                "exception_type", "error_log_guessed_category",
                                                 "category_reasoning", "message", "stack_trace"])
         writer.writeheader()
         writer.writerows(output_rows)
