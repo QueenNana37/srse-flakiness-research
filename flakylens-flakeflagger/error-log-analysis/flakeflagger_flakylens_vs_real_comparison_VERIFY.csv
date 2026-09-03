@@ -1,0 +1,800 @@
+project,test,flakylens_predicted,real_error_category,exception_type
+Alluxio-alluxio,tachyon.MasterFaultToleranceTest#getClientsTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterFaultToleranceTest#faultTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createFileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteFileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteDirectoryWithDirectoriesTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#lsTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#addCheckpointTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#notFileCheckpointTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createFilePerfTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createDirectoryTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createFileInvalidPathTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createAlreadyExistFileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#createRawTableTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#negativeColumnTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#tooManyColumnsTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteEmptyDirectoryTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteDirectoryWithFilesTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteDirectoryWithFilesTest2,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#deleteDirectoryWithDirectoriesTest2,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#getCapacityBytesTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#clientFileInfoEmptyFileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.MasterInfoTest#clientFileInfoDirectoryTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.DataServerTest#readPartialTest2,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.DataServerTest#readPartialTest1,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.DataServerTest#readTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.client.LocalBlockInStreamTest#readTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.LocalBlockInStreamTest#readTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.LocalBlockInStreamTest#readTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.LocalBlockInStreamTest#skipTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#skipTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest7,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest4,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest6,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.RemoteBlockInStreamTest#readTest5,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.MasterClientTest#openCloseTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.WorkerServiceHandlerTest#returnSpaceTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.WorkerServiceHandlerTest#evictionTest,Not Flaky,Unclear,java.lang.AssertionError:
+Alluxio-alluxio,tachyon.WorkerServiceHandlerTest#overCapacityRequestSpaceTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.WorkerServiceHandlerTest#totalOverCapacityRequestSpaceTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.WorkerServiceHandlerTest#overReturnSpaceTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFileTest#isInMemoryTest2,Not Flaky,Unclear,junit.framework.AssertionFailedError:
+Alluxio-alluxio,tachyon.client.TachyonFileTest#isInMemoryTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFileTest#isInMemoryTest3,Not Flaky,Unclear,junit.framework.AssertionFailedError:
+Alluxio-alluxio,tachyon.client.TachyonFileTest#writeEmptyFileTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.FileOutStreamTest#writeTest1,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.client.FileOutStreamTest#writeTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.FileOutStreamTest#writeTest3,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.command.TFsShellTest#locationTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#mkdirTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#mkdirShortPathTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#mkdirComplexPathTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#mkdirExistingTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#mkdirInvalidPathTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#rmTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#rmNotExistingFileTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#renameTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#renameToExistingFileTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#renameParentDirectoryTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#copyFromLocalTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#copyFromLocalLargeTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#copyToLocalTest,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.command.TFsShellTest#copyToLocalLargeTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.command.TFsShellTest#fileinfoTest,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.client.table.RawColumnTest#basicTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.FileInStreamTest#readTest1,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.client.FileInStreamTest#readTest2,Not Flaky,Unclear,java.io.IOException
+Alluxio-alluxio,tachyon.client.FileInStreamTest#readTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.FileInStreamTest#skipTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.JournalTest#EmptyImageTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#FileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#ManyFileTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#FileFolderTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#RenameTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#DeleteTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#AddBlockTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.JournalTest#AddCheckpointTest,Not Flaky,Unclear,java.lang.NullPointerException:
+Alluxio-alluxio,tachyon.client.table.RawTableTest#getIdTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#rawtablePerfTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#getColumnsTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#getNameTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#getPathTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#getMetadataTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.table.RawTableTest#updateMetadataTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.BlockInStreamTest#readTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.BlockInStreamTest#readTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.BlockInStreamTest#readTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.BlockInStreamTest#skipTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createFileWithInvalidPathExceptionTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createFileWithFileAlreadyExistExceptionTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createFileWithCheckpointFileTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableTestEmptyMetadata,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableTestWithMetadata,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithInvalidPathExceptionTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithInvalidPathExceptionTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithFileAlreadyExistExceptionTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithTableColumnExceptionTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithTableColumnExceptionTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createRawTableWithTableColumnExceptionTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#renameFileTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#lockBlockTest1,Not Flaky,Unclear,java.lang.AssertionError:
+Alluxio-alluxio,tachyon.client.TachyonFSTest#lockBlockTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#lockBlockTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#lockBlockTest4,Not Flaky,Unclear,java.lang.AssertionError:
+Alluxio-alluxio,tachyon.client.TachyonFSTest#unlockBlockTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#unlockBlockTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#unlockBlockTest3,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createFileTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#renameFileTest1,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#renameFileTest2,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#createFileTest,Not Flaky,Unclear,java.net.UnknownHostException
+Alluxio-alluxio,tachyon.client.TachyonFSTest#deleteFileTest,Not Flaky,Unclear,java.lang.AssertionError
+activiti-activiti,org.activiti.spring.test.servicetask.ServiceTaskSpringDelegationTest#testAsyncMethodExpressionOnSpringBean,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.spring.test.jobexecutor.SpringAsyncExecutorTest#testHappyJobExecutorPath,Not Flaky,Async Wait,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.jobexecutor.AsyncExecutorTest#testAsyncExecutorDisabledOnOneEngine,Not Flaky,Async Wait,java.lang.AssertionError
+activiti-activiti,org.activiti.engine.test.jobexecutor.AsyncExecutorTest#testRegularAsyncExecution,Not Flaky,Async Wait,java.lang.AssertionError
+activiti-activiti,org.activiti.engine.test.jobexecutor.AsyncExecutorTest#testAsyncFailingScript,Not Flaky,Async Wait,java.lang.AssertionError
+activiti-activiti,org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testDelayedActivateProcessDefinition,Not Flaky,Async Wait,org.apache.ibatis.exceptions.PersistenceException
+activiti-activiti,org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testSuspendProcessInstancesDuringProcessDefinitionSuspend,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testDelayedSuspendMultipleProcessDefinitionsByKey,Time,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.jobexecutor.JobExecutorTest#testBasicJobExecutorOperation,Async Wait,Async Wait,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.gateway.EventBasedGatewayTest#testCatchTimerCancelsSignal,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.StartTimerEventRepeatWithEndTest#testCycleDateStartTimerEvent,Time,Unclear,java.lang.NullPointerException
+activiti-activiti,org.activiti.engine.test.jobexecutor.JobExecutorExceptionsTest#testQueryByExceptionWithRealJobExecutor,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.compatibility.StartTimerEventRepeatCompatibilityTest#testCycleDateStartTimerEvent,Time,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.end.TerminateEndEventTest#testTerminateInSubProcessWithBoundary,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.BoundaryTimerEventTest#testExpressionOnTimer,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.BoundaryTimerEventTest#testMultipleTimersOnUserTask,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.StartTimerEventTest#testDurationStartTimerEvent,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.subprocess.SubProcessTest#testNestedSimpleSubprocessWithTimerOnInnerSubProcess,Not Flaky,Unclear,junit.framework.ComparisonFailure
+activiti-activiti,org.activiti.engine.test.bpmn.subprocess.SubProcessTest#testSimpleSubProcessWithTimer,Not Flaky,Unclear,junit.framework.ComparisonFailure
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.compatibility.BoundaryTimerEventRepeatCompatibilityTest#testRepeatWithoutEnd,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.IntermediateTimerEventTest#testCatchingTimerEvent,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.IntermediateTimerEventTest#testTimerEventWithStartAndDuration,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.async.AsyncExclusiveJobsTest#testExclusiveJobs,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.api.event.JobEventsTest#testTimerFiredForIntermediateTimer,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.exclusive.ExclusiveTimerEventTest#testCatchingTimerEvent,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.bpmn.async.AsyncTaskTest#testAsyncTask,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.bpmn.async.AsyncTaskTest#testBasicAsyncCallActivity,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.api.task.TaskServiceTest#testGetVariableByHistoricActivityInstance,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.BoundaryTimerNonInterruptingEventTest#testJoin,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.bpmn.event.timer.BoundaryTimerNonInterruptingEventTest#testMultipleTimersOnUserTask,Not Flaky,Unclear,junit.framework.AssertionFailedError
+activiti-activiti,org.activiti.engine.test.api.event.ActivityEventsTest#testActivityTimeOutEvent,Not Flaky,Async Wait,org.activiti.engine.ActivitiException
+activiti-activiti,org.activiti.engine.test.history.HistoricVariableInstanceTest#testHistoricVariableQueryByTaskIds,Unordered Collections,Unclear,junit.framework.ComparisonFailure
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetClusters,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetClustersWithFilters,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServices,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServicesWithFilters,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponents,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentsWithFilters,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentHosts,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentHostsWithFilters,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetHosts,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateBasic,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateInvalidRequest,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateInvalidUpdates,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateRecursive,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceComponentUpdateRecursive,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceComponentHostUpdateRecursive,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testStartClientComponent,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testStartClientHostComponent,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetRequestAndTaskStatus,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetActions,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateActions,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateAndGetUsers,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetUsers,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testUpdateUsers,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testDeleteUsers,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testRcaOnJobtrackerHost,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testConfigUpdates,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testClientServiceSmokeTests,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithInvalidStack,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithDesiredClusterConfigs,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterSimple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithHostMapping,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesSimple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesWithInvalidRequest,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceWithInvalidInfo,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesMultiple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentSimple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithInvalidRequest,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentWithInvalidRequest,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentWithConfigs,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentMultiple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostSimple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostMultiple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostWithInvalidRequest,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostSimple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostMultiple,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostWithInvalidRequests,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.controller.AmbariManagementControllerTest#testInstallAndStartService,Not Flaky,Unclear,com.google.inject.ProvisionException
+apache-ambari,org.apache.ambari.server.agent.TestHeartbeatMonitor#testHeartbeatStateCommandsEnqueueing,Not Flaky,Unclear,java.lang.AssertionError
+apache-ambari,org.apache.ambari.server.agent.TestActionQueue#testConcurrentOperations,Not Flaky,Unclear,java.lang.AssertionError
+apache-ambari,org.apache.ambari.server.bootstrap.BootStrapTest#testRun,Not Flaky,Unclear,java.net.UnknownHostException
+apache-ambari,org.apache.ambari.server.security.authorization.AmbariLdapAuthenticationProviderTest#testBadCredential,Not Flaky,Unclear,java.lang.Exception
+apache-ambari,org.apache.ambari.server.security.authorization.AmbariLdapAuthenticationProviderTest#testAuthenticate,Not Flaky,Unclear,org.springframework.security.authentication.InternalAuthenticationServiceException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteAdmin#testDeleteTable,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteAdmin#testCreateTable,Not Flaky,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestStatusResource#testGetClusterStatusXML,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestStatusResource#testGetClusterStatusPB,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.Test00MiniCluster#testDFSMiniCluster,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.Test00MiniCluster#testZooKeeperMiniCluster,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.Test00MiniCluster#testHBaseMiniCluster,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.Test00MiniCluster#testStargateServlet,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testGetTableDescriptor,Not Flaky,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testGet,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testPut,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testDelete,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testScanner,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestTableResource#testTableListText,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestTableResource#testTableListJSON,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestTableResource#testTableListXML,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestTableResource#testTableListPB,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testNoFilter,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testPrefixFilter,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testPageFilter,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testInclusiveStopFilter,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testQualifierFilter,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testRowFilter,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testValueFilter,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testSkipFilter,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testFilterList,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testFirstKeyOnlyFilter,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.util.TestHTableTokenBucket#testTokenBucketConfig,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.util.TestHTableTokenBucket#testTokenBucket,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestZooKeeperAuthenticator#testGetPlainUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestZooKeeperAuthenticator#testGetAdminUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestZooKeeperAuthenticator#testGetUserUnknown,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestZooKeeperAuthenticator#testGetDisabledUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStargateVersionText,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStargateVersionXML,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStargateVersionJSON,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStargateVersionPB,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStorageClusterVersionText,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStorageClusterVersionXML,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStorageClusterVersionJSON,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testDelete,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetPutXML,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetPutPB,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetPutBinary,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetJSON,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testURLEncodedKey,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testMultiCellGetPutXML,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestRowResource#testMultiCellGetPutPB,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestHTableAuthenticator#testGetPlainUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestHTableAuthenticator#testGetAdminUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestHTableAuthenticator#testGetUserUnknown,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.auth.TestHTableAuthenticator#testGetDisabledUser,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestSchemaResource#testTableCreateAndDeleteXML,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestSchemaResource#testTableCreateAndDeletePB,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerXML,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerPB,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerBinary,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.stargate.TestScannerResource#testFullTableScan,Order Dependent,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.TestMergeTable#testMergeTable,Order Dependent,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.mapred.TestTableMapReduce#testMultiRegionTable,Not Flaky,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableMapReduce#testMultiRegionTable,Not Flaky,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testUsingMetaAndBinary,Async Wait,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testGetClosestRowBefore3,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testGetClosestRowBefore2,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestScannerTimeout#test2481,Not Flaky,Unclear,org.apache.hadoop.hbase.UnknownScannerException
+apache-hbase,org.apache.hadoop.hbase.TestZooKeeper#testRegionServerSessionExpired,Not Flaky,Async Wait,org.apache.hadoop.hbase.master.NotAllMetaRegionsOnlineException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestHRegion#testWritesWhileGetting,Async Wait,Unclear,java.lang.AssertionError
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestStoreReconstruction#runReconstructionLog,Not Flaky,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.master.TestRegionManager#testGetFirstMetaRegionForRegionAfterMetaSplit,Not Flaky,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestHLog#testSplit,Async Wait,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestHLog#testFindMemstoresWithEditsOlderThan,Unordered Collections,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestHLog#testEditAdd,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestHLog#testAppend,Time,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.TestMergeMeta#testMergeMeta,Order Dependent,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testFilters,Not Flaky,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testStopRow,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testRaceBetweenClientAndTimeout,Async Wait,Concurrency,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testScanner,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testScanAndSyncFlush,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestScanner#testScanAndRealConcurrentFlush,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestLogRolling#testLogRolling,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.wal.TestLogRolling#testLogRollOnDatanodeDeath,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.util.TestMergeTool#testMergeTool,Async Wait,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.TestRegionRebalancing#testRebalancing,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.TestInfoServers#testInfoServersAreUp,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testFilters,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testSimpleMissing,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testSingleRowMultipleFamily,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testVersions,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testVersionLimits,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testDeletes,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest867,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest861,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest33,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest1014,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest1182,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest52,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testGet_EmptyTable,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testGet_NonExistentRow,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPut,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPutBufferedOneFlush,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPutBufferedManyManyFlushes,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testHBase737,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testListTables,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testMiscHTableStuff,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestFromClientSide#testGetClosestRowBefore,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.TestScanMultipleVersions#testScanMultipleVersions,Time,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestGetDeleteTracker#testIsDeleted_NotDeleted,Unordered Collections,Unclear,junit.framework.AssertionFailedError
+apache-hbase,org.apache.hadoop.hbase.io.hfile.TestLruBlockCache#testBackgroundEvictionThread,Async Wait,Unclear,junit.framework.AssertionFailedError
+apache-hbase,org.apache.hadoop.hbase.master.TestMasterTransitions#testRegionCloseWhenNoMetaHBase2428,Not Flaky,Unclear,java.lang.Exception
+apache-hbase,org.apache.hadoop.hbase.master.TestMasterTransitions#testAddingServerBeforeOldIsDead2413,Not Flaky,Unclear,org.apache.hadoop.hbase.client.RetriesExhaustedException
+apache-hbase,org.apache.hadoop.hbase.master.TestMasterTransitions#testKillRSWithOpeningRegion2482,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.master.TestMinimumServerCount#testMinimumServerCount,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.client.TestTimestamp#testTimestamps,Order Dependent,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTimeRangeMapRed#testTimeRangeMapRed,Not Flaky,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.thrift.TestThriftServer#testAll,Order Dependent,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanEmptyToEmpty,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanEmptyToAPP,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanEmptyToBBA,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanEmptyToBBB,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanEmptyToOPP,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanOBBToOPP,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanOBBToQPP,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanOPPToEmpty,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanYYXToEmpty,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanYYYToEmpty,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.mapreduce.TestTableInputFormatScan#testScanYZYToEmpty,Not Flaky,Unclear,java.lang.NullPointerException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testCreateTable,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testCreateTableWithRegions,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testForceSplit,Not Flaky,Unclear,java.lang.RuntimeException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testEnableDisableAddColumnDeleteColumn,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testCreateBadTables,Not Flaky,Unclear,java.lang.AssertionError
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testTableNameClash,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testReadOnlyTable,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testTableNotFoundExceptionWithATable,Not Flaky,Async Wait,java.lang.Exception
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testHundredsOfTable,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestAdmin#testGetTableDescriptor,Not Flaky,Async Wait,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.TestEmptyMetaInfo#testEmptyMetaInfo,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestStoreFile#testBasicHalfMapFile,Order Dependent,Unclear,org.apache.hadoop.ipc.RemoteException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestStoreFile#testReference,Not Flaky,Unclear,java.net.ConnectException
+apache-hbase,org.apache.hadoop.hbase.TestMultiParallelPut#testMultiPut,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestWideScanner#testWideScanBatching,Concurrency,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestCompaction#testCompaction,Async Wait,Unclear,java.net.UnknownHostException
+apache-hbase,org.apache.hadoop.hbase.regionserver.TestCompaction#testMajorCompactingToNoOutput,Async Wait,Unclear,java.io.IOException
+apache-hbase,org.apache.hadoop.hbase.client.TestGetRowVersions#testGetRowMultipleVersions,Async Wait,Unclear,org.apache.hadoop.hbase.client.NoServerForRegionException
+apache-httpcore,org.apache.http.impl.pool.TestBasicConnPool#testHttpCreateConnection,Not Flaky,Async Wait,java.net.SocketTimeoutException
+apache-httpcore,org.apache.http.pool.TestConnPool#testStatefulConnectionRedistributionOnPerRouteMaxLimit,Not Flaky,Concurrency,Wanted but not invoked
+apache-httpcore,org.apache.http.pool.TestConnPool#testCreateNewIfExpired,Not Flaky,Concurrency,org.mockito.exceptions.verification.TooLittleActualInvocations
+apache-httpcore,org.apache.http.pool.TestConnPool#testCloseExpired,Not Flaky,Concurrency,Wanted but not invoked
+apache-httpcore,org.apache.http.pool.TestConnPool#testLeaseTimeout,Not Flaky,Unclear,junit.framework.AssertionFailedError
+apache-httpcore,org.apache.http.pool.TestConnPool#testCloseIdle,Not Flaky,Concurrency,Wanted but not invoked
+apache-httpcore,org.apache.http.nio.protocol.TestNIOSSLHttp#testHttpPostsWithContentLength,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.impl.nio.reactor.TestDefaultIOReactors#testGracefulShutdown,Not Flaky,Concurrency,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testHttpPostsChunked,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpGets,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testHttpException,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpException,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testNoServiceHandler,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testHttpPostWithNoEntities,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testNoRequestHandler,Not Flaky,Async Wait,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestBufferingNHttpHandlers#testHttpPostsChunked,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestBufferingNHttpHandlers#testHttpPostsHTTP10,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestBufferingNHttpHandlers#testHttpPostsWithExpectContinue,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testSimpleHttpGets,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testSimpleHttpPostsChunked,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testSimpleHttpPostsHTTP10,Not Flaky,Unclear,java.lang.AssertionError
+apache-httpcore,org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testInputThrottling,Not Flaky,Unclear,java.lang.AssertionError
+apache-incubator-dubbo,org.apache.dubbo.registry.multicast.MulticastRegistryTest#testGetCustomPort,Not Flaky,Order Dependent,java.lang.IllegalStateException
+apache-incubator-dubbo,org.apache.dubbo.registry.multicast.MulticastRegistryTest#testCustomedPort,Not Flaky,Order Dependent,java.lang.IllegalStateException
+apache-incubator-dubbo,org.apache.dubbo.rpc.cluster.support.AbstractClusterInvokerTest#testBindingAttachment,Not Flaky,Unclear,java.lang.AssertionError
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ListTelnetHandlerTest#testList,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ListTelnetHandlerTest#testListDefault,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ListTelnetHandlerTest#testListService,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.ExplicitCallbackTest#TestCallbackMultiInstans,Not Flaky,Async Wait,java.lang.IllegalStateException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ChangeTelnetHandlerTest#testChangeSimpleName,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ChangeTelnetHandlerTest#testChangeName,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.ChangeTelnetHandlerTest#testChangePath,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.DubboProtocolTest#testPerm,Not Flaky,Async Wait,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.InvokerTelnetHandlerTest#testInvokeAutoFindMethod,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.rpc.protocol.dubbo.telnet.InvokerTelnetHandlerTest#testInvokeDefaultSService,Not Flaky,Unclear,org.apache.dubbo.rpc.RpcException
+apache-incubator-dubbo,org.apache.dubbo.remoting.exchange.support.header.HeartbeatHandlerTest#testClientHeartbeat,Not Flaky,Unclear,org.apache.dubbo.remoting.RemotingException
+apache-incubator-dubbo,org.apache.dubbo.remoting.exchange.support.header.HeartbeatHandlerTest#testHeartbeat,Not Flaky,Unclear,org.apache.dubbo.remoting.RemotingException
+apache-incubator-dubbo,org.apache.dubbo.remoting.exchange.support.header.HeartbeatHandlerTest#testServerHeartbeat,Not Flaky,Unclear,org.apache.dubbo.remoting.RemotingException
+apache-incubator-dubbo,org.apache.dubbo.remoting.transport.netty.ThreadNameTest#testThreadName,Not Flaky,Unclear,org.apache.dubbo.remoting.RemotingException
+apache-incubator-dubbo,org.apache.dubbo.common.concurrent.ExecutionListTest#testAddNullRunnable,Not Flaky,Unclear,java.lang.Exception
+doanduyhai-Achilles,info.archinnov.achilles.test.integration.tests.ClusteredEntityIT#should_persist_with_ttl,Not Flaky,Unclear,java.lang.AssertionError
+doanduyhai-Achilles,info.archinnov.achilles.test.integration.tests.ClusteredEntityIT#should_update_with_ttl,Not Flaky,Unclear,java.lang.AssertionError
+doanduyhai-Achilles,info.archinnov.achilles.test.integration.tests.SecondaryIndexIT#should_return_entities_for_indexed_query,Not Flaky,Async Wait,com.datastax.driver.core.exceptions.InvalidQueryException
+doanduyhai-Achilles,info.archinnov.achilles.internal.statement.wrapper.RegularStatementWrapperTest#should_trace_query,Not Flaky,Concurrency,java.net.UnknownHostException
+elasticjob-elastic-job-lite,io.elasticjob.lite.event.rdb.JobEventRdbSearchTest#assertFindJobExecutionEventsWithTime,Not Flaky,Unclear,java.lang.AssertionError
+elasticjob-elastic-job-lite,io.elasticjob.lite.event.rdb.JobEventRdbSearchTest#assertFindJobStatusTraceEventsWithTime,Not Flaky,Concurrency,java.lang.AssertionError
+elasticjob-elastic-job-lite,io.elasticjob.lite.reg.zookeeper.ZookeeperRegistryCenterQueryWithoutCacheTest#assertGetRegistryCenterTime,Not Flaky,Unclear,java.lang.AssertionError
+hector-client-hector,me.prettyprint.cassandra.dao.SimpleCassandraDaoTest#testInsertGetDelete,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testInsertAndGetAndRemove,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testInsertSuper,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testBatchMutate,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testBatchMutateBatchMutation,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testBatchUpdateInsertAndDelOnSame,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testGetSlice,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testGetSuperSlice,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testMultigetSlice,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.KeyspaceTest#testMultigetCount,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testInsertGetRemove,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testBatchInsertGetRemove,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSuperInsertGetRemove,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSubColumnQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSuperSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSubSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSuperSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSubSliceQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testCountQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSuperCountQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hector.api.ApiV2SystemTest#testSubCountQuery,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.utils.TimeUUIDUtilsTest#testTimeUUIDWithClockResolution,Not Flaky,Unclear,java.lang.AssertionError
+hector-client-hector,me.prettyprint.cassandra.model.MultigetCountQueryTest#testMultigetCount,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.service.CassandraAuthTest#testInsertAndGetAndRemove,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.model.MutatorTest#testInsert,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.model.MutatorTest#testSubDelete,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.model.MutatorTest#testBatchMutationManagement,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.model.MutatorTest#testRowDeletion,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.examples.ExampleDaoV2Test#testInsertGetDelete,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.cassandra.examples.ExampleDaoV2Test#testMultiInsertGetDelete,Not Flaky,Unclear,me.prettyprint.hector.api.exceptions.HCassandraInternalException
+hector-client-hector,me.prettyprint.hom.EntityManagerFactoryTest#testCreateEntityManager,Not Flaky,Unclear,java.lang.AssertionError:
+jknack-handlebars.java,com.github.jknack.handlebars.HumanizeHelperTest#naturalTime,Not Flaky,Unclear,org.junit.ComparisonFailure
+joel-costigliola-assertj-core,org.assertj.core.api.date.DateAssert_with_string_based_date_representation_Test#date_assertion_should_support_timestamp_string_representation,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#basicProxyAuthentication,Not Flaky,Unclear,com.github.kevinsawicki.http.HttpRequest$HttpRequestException
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getUrlEncodedWithUnicode,Not Flaky,Unclear,org.junit.ComparisonFailure
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getUrlEncodedWithPercent,Not Flaky,Unclear,org.junit.ComparisonFailure
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getUrlEncodedWithSpace,Not Flaky,Unclear,org.junit.ComparisonFailure
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#verifierAccepts,Not Flaky,Unclear,java.lang.ClassCastException
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#singleVerifier,Not Flaky,Unclear,java.lang.ClassCastException
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#singleSslSocketFactory,Not Flaky,Unclear,java.lang.ClassCastException
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#postWithMappedQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#postWithVaragsQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#postWithEscapedMappedQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#postWithEscapedVarargsQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#postWithNumericQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getWithMappedQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getWithVarargsQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getWithEscapedMappedQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#getWithEscapedVarargsQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#deleteWithMappedQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+kevinsawicki-http-request,com.github.kevinsawicki.http.HttpRequestTest#deleteWithVarargsQueryParams,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.StatelessActorTest#statelessTest,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.ReminderTest#persistedTimerTest,Not Flaky,Unclear,junit.framework.AssertionFailedError
+orbit-orbit,com.ea.orbit.actors.test.TimerTest#timerTest,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.ObserverTest#observerGarbageCollection,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.DeactivationTest#cleanupTest,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.DeactivationTest#statelessWorkerDeactivationTest,Not Flaky,Unclear,java.lang.AssertionError
+orbit-orbit,com.ea.orbit.actors.test.LifeCycleTest#deactivationTest,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.pattern.ConverterTest#testRelativeTime,Not Flaky,Unclear,org.junit.ComparisonFailure
+qos-ch-logback,ch.qos.logback.classic.net.SMTPAppender_GreenTest#testCustomEvaluator,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.net.SMTPAppender_GreenTest#testCustomBufferSize,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.net.SMTPAppender_GreenTest#synchronousSmoke,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.net.SMTPAppender_GreenTest#LBCLASSIC_104,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.sift.MDCBasedDiscriminatorTest#nullMDC,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.spi.PackagingDataCalculatorTest#perfTest,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.turbo.ReconfigureOnChangeTest#fallbackToSafe,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.turbo.ReconfigureOnChangeTest#gafferInstallFilter,Not Flaky,Unclear,java.lang.ArrayIndexOutOfBoundsException
+qos-ch-logback,ch.qos.logback.classic.turbo.ReconfigureOnChangeTest#fallbackToSafeWithIncludedFile,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.turbo.ReconfigureOnChangeTest#scan_LOGBACK_474,Not Flaky,Unclear,java.lang.Exception
+qos-ch-logback,ch.qos.logback.classic.net.SyslogAppenderTest#basic,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.classic.rolling.UniqueFileTest#basic,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.core.net.DefaultSocketConnectorTest#testConnectionFails,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.core.rolling.TimeBasedRollingTest#withMissingTargetDirWithCompression,Not Flaky,Unclear,java.io.FileNotFoundException
+qos-ch-logback,ch.qos.logback.core.rolling.TimeBasedRollingTest#withMissingTargetDirWithZipCompression,Not Flaky,Unclear,java.io.FileNotFoundException
+qos-ch-logback,ch.qos.logback.core.recovery.ResilientOutputStreamTest#verifyRecuperationAfterFailure,Not Flaky,Concurrency,Wanted but not invoked
+qos-ch-logback,ch.qos.logback.core.FileAppenderResilienceTest#smoke,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.core.recovery.RecoveryCoordinatorTest#actualTime,Not Flaky,Unclear,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.core.AsyncAppenderBaseTest#workerShouldStopEvenIfInterruptExceptionConsumedWithinSubappender,Not Flaky,Async Wait,java.lang.AssertionError
+qos-ch-logback,ch.qos.logback.core.util.FileUtilTest#basicCopyingWorks,Not Flaky,Unclear,ch.qos.logback.core.rolling.RolloverFailure
+qos-ch-logback,ch.qos.logback.core.rolling.TimeBasedRollingWithArchiveRemoval_Test#dailyRolloverWithInactivity10,Not Flaky,Unclear,java.lang.AssertionError
+spring-projects-spring-boot,sample.data.redis.SampleRedisApplicationTests#testDefaultSettings,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,sample.parent.consumer.SampleIntegrationParentApplicationTests#testVanillaExchange,Not Flaky,Unclear,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfigurationTests#disabled,Not Flaky,Unclear,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfigurationTests#onSamePort,Not Flaky,Unclear,java.io.IOException
+spring-projects-spring-boot,org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfigurationTests#portPropertiesOnSamePort,Not Flaky,Unclear,java.io.IOException
+spring-projects-spring-boot,sample.bitronix.SampleBitronixApplicationTests#testExposesXaAndNonXa,Not Flaky,Unclear,org.springframework.beans.factory.UnsatisfiedDependencyException
+spring-projects-spring-boot,sample.data.gemfire.SampleDataGemFireApplicationTests#testGemstonesApp,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.JarCommandIT#jarCreation,Not Flaky,Unclear,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.JarCommandIT#jarCreationWithIncludes,Not Flaky,Unclear,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.JarCommandIT#jarCreationWithGrabResolver,Not Flaky,Async Wait,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideContexts,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideDropFirst,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideDataSource,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideDefaultSchema,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideChangeLog,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testDefaultSpringLiquibase,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.jta.JtaAutoConfigurationTests#defaultAtomikosTransactionManagerName,Not Flaky,Unclear,java.net.UnknownHostException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.jta.JtaAutoConfigurationTests#defaultBitronixServerId,Not Flaky,Unclear,java.net.UnknownHostException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurationTests#testLiquibasePlusValidation,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+spring-projects-spring-boot,org.springframework.boot.autoconfigure.jms.hornetq.HornetQAutoConfigurationTests#embeddedWithPersistentMode,Not Flaky,Unclear,org.springframework.jms.UncategorizedJmsException
+spring-projects-spring-boot,org.springframework.boot.gradle.NoJarTests#nojar,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[0],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[0],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[1],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[1],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[2],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[2],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[3],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[3],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[4],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[4],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[5],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[5],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[6],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[6],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[7],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[7],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[8],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[8],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[9],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[9],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[10],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[10],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[11],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[11],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[12],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[12],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[13],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[13],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[14],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[14],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[15],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[15],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[16],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[16],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[17],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[17],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[18],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[18],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[19],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[19],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[20],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[20],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[21],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[21],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[22],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[22],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[23],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[23],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[24],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[24],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[25],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[25],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[26],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[26],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[27],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[27],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[28],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[28],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[29],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[29],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[30],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[30],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[31],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[31],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[32],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[32],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[33],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[33],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[34],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[34],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[35],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[35],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[36],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[36],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[37],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[37],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[38],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.starter.StarterDependenciesIntegrationTests#oldSpringModulesAreNotTransitiveDependencies[38],Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.MainClassTests#buildFromRunTask,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.FlatdirTests#flatdir,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.WarPackagingTests#onlyJettyIsPackackedInWebInfLibProvided,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.WarPackagingTests#onlyTomcatIsPackackedInWebInfLibProvided,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.ClassifierTests#classifierInBootExtension,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.ClassifierTests#classifierInBootTask,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.MultiProjectRepackagingTests#repackageWithCommonFileDependency,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.MultiProjectRepackagingTests#repackageWithTransitiveFileDependency,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.CustomVersionManagementTests#customSpringVersionIsUsed,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.CustomVersionManagementTests#exclusionsAreStillInPlace,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.InstallTests#cleanInstallApp,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.InstallTests#cleanInstallVersionManagement,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.InstallTests#cleanInstall,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingEnabled,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingEnabledWithCustomRepackagedJar,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingDisabledWithCustomRepackagedJarUsingStringJarTaskReference,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingEnableWithCustomRepackagedJarUsingStringJarTaskReference,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackageWithFileDependency,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingDisabled,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.RepackagingTests#repackagingDisabledWithCustomRepackagedJar,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.SpringLoadedTests#defaultJvmArgsArePreservedWhenLoadedAgentIsConfigured,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,org.springframework.boot.gradle.SpringLoadedTests#springLoadedCanBeUsedWithGradle16,Not Flaky,Async Wait,org.gradle.tooling.GradleConnectionException
+spring-projects-spring-boot,sample.atomikos.SampleAtomikosApplicationTests#testTransactionRollback,Not Flaky,Unclear,org.springframework.jms.UncategorizedJmsException
+spring-projects-spring-boot,sample.data.elasticsearch.SampleElasticsearchApplicationTests#testDefaultSettings,Not Flaky,Async Wait,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#spockAndJunitTester,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#integrationAutoConfigEmbeddedTest,Not Flaky,Async Wait,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#spockTester,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#integrationAutoConfigTest,Not Flaky,Async Wait,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#verifyFailures,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.TestCommandIntegrationTests#integrationTest,Not Flaky,Async Wait,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.DirectorySourcesIntegrationTests#runPathPattern,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.DirectorySourcesIntegrationTests#runDirectory,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.DirectorySourcesIntegrationTests#runDirectoryRecursive,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.ClassLoaderIntegrationTests#runWithIsolatedClassLoader,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.command.CommandRunnerIntegrationTests#debugAddsAutoconfigReport,Not Flaky,Unclear,java.lang.AssertionError:
+spring-projects-spring-boot,org.springframework.boot.cli.GrabCommandIntegrationTests#customMetadata,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.ReproIntegrationTests#securityDependencies,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.ReproIntegrationTests#dataJpaDependencies,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.ReproIntegrationTests#grabAntBuilder,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.ReproIntegrationTests#shellDependencies,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#beansSample,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#templateSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#xmlSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#webSample,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#uiSample,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#deviceSample,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#jmsSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#caching,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#httpSample,Not Flaky,Async Wait,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#jobSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#actuatorSample,Not Flaky,Order Dependent,java.lang.IllegalStateException
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#appSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#txSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#jobWebSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#reactorSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.SampleIntegrationTests#integrationSample,Not Flaky,Order Dependent,java.lang.AssertionError
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#dependencyResolution,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#resolutionWithClassifier,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#dependencyResolutionWithCustomClassLoader,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#pomDependencyResolutionViaType,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#nonTransitiveDependencyResolution,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#dependencyResolutionWithExclusions,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#pomDependencyResolutionViaExt,Not Flaky,Async Wait,org.springframework.boot.cli.compiler.grape.DependencyResolutionFailedException
+spring-projects-spring-boot,sample.liquibase.SampleLiquibaseApplicationTests#testDefaultSettings,Not Flaky,Async Wait,org.springframework.beans.factory.BeanCreationException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#cacheCanUseCriteriaBesidesVariantObeyed,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#requestOnlyIfCachedWithNoResponseCached,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#maxAgePreferredWithMaxAgeAndExpires,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#contentLocationDoesNotPopulateCache,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#clientPrematureDisconnectWithNoLengthHeaders,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#setIfModifiedSince,Time,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#noDefaultExpirationForUrlsWithQueryString,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#maxAgeInTheFutureWithDateHeader,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#serverReturnsDocumentOlderThanCache,Time,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#responseCachingAndInputStreamSkipWithChunkedEncoding,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#clientSuppliedConditionWithoutCachedResult,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#requestPragmaNoCache,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#cacheControlNoStoreAndExpirationDateInTheFuture,Not Flaky,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#getHeadersDeletesCached100LevelWarnings,Async Wait,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#clientPrematureDisconnectWithContentLengthHeader,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#etag,Not Flaky,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#authorizationResponseCachedWithMustRevalidate,Not Flaky,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#maxAgePreferredOverLowerSharedMaxAge,Not Flaky,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.ResponseCacheTest#responseCachingAndRedirects,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.AsyncApiTest#redirect,Async Wait,Async Wait,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#receiveGoAwayHttp2,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#pushPromiseStream,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#serverClosesClientInputStream,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#replyWithNoData,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#headersOnlyStreamIsClosedAfterReplyHeaders,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#readSendsWindowUpdateHttp2,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#remoteSendsDataAfterInFinished,Async Wait,Unclear,java.io.IOException
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#initialSettingsWithWindowSizeAdjustsConnection,Async Wait,Unclear,java.lang.NullPointerException:
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#maxFrameSizeHonored,Async Wait,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.spdy.SpdyConnectionTest#peerHttp2ServerZerosCompressionTable,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseSourceHeaderConditionalCacheNotFetched,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseCaching_410,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#clientPrematureDisconnectWithChunkedEncoding,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#statisticsConditionalCacheMiss,Time,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#expirationDateInThePastWithLastModifiedHeader,Time,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseSourceHeaderFetched,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseCachingByResponseCode,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#postFailsWithFixedLengthRequestForLargeRequest,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response300MultipleChoiceWithPost,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#digestAuthentication,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#requestBodySurvivesRetriesWithFixedLength,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#connectRetriesUntilConnectedOrFailed,Async Wait,Unclear,java.lang.AssertionError:
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#connectViaHttpProxyToHttpsUsingBadProxyAndHttpResponseCache,Async Wait,Unclear,java.lang.NoSuchMethodError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#canSetNegativeChunkedStreamingMode,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#requestBodySurvivesRetriesWithBufferedBody,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#emptyResponseHeaderNameIsLenient,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#gzipWithRedirectAndConnectionReuse,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#redirectedWithNoLengthHeaders,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#fullyBufferedPostIsTooShort,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#fixedLengthUpload_smallBuffers,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#postFailsWithChunkedRequestForSmallRequest,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#chunkedUpload_byteByByte,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#redirectedWithChunkedEncoding,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#setInvalidRequestMethodLowercase,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#fullyBufferedPostIsTooLong,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#authenticateRealmUppercase,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#postFailsWithBufferedRequestForSmallRequest,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#inputStreamAvailableWithContentLengthHeader,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#setProtocols,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#connectionCloseInRequest,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response307WithOptions,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#getOutputStreamOnGetFails,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#earlyDisconnectDoesntHarmPoolingWithFixedLengthEncoding,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#unauthorizedResponseHandling,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#clientConfiguredCustomContentEncoding,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#cannotSetNegativeFixedLengthStreamingMode,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response303SeeOtherWithPost,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#chunkedUpload_smallBuffers,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#setInvalidRequestMethodConnect,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#serverShutdownOutput,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#responseHeaders,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#fixedLengthUpload_largeBuffers,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#singleByteReadIsSigned,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#postFailsWithFixedLengthRequestForSmallRequest,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#serverSendsInvalidCodeTooLarge,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response305UseProxy,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#readAfterLastByte,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#serverShutdownInput,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#inputStreamAvailableWithNoLengthHeaders,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#zeroLengthPut,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response307WithHead,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response307WithPost,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#response302MovedTemporarilyWithPost,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#authenticateWithChunkedStreaming,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#nonHexChunkSize,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#requestBodySurvivesRetriesWithChunkedStreaming,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#getContentLengthConnects,Not Flaky,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#contentDisagreesWithChunkedHeader,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#connectViaProxyUsingProxySystemProperty,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#postFailsWithChunkedRequestForLargeRequest,Order Dependent,Unclear,java.net.SocketException
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#veryLargeFixedLengthRequest,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#zeroLengthPost,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#getContent,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#setProtocolsWithoutHttp11,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#disconnectedConnection,Async Wait,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#getRequestPropertyReturnsLastValue,Order Dependent,Unclear,java.lang.AssertionError
+square-okhttp,com.squareup.okhttp.internal.http.URLConnectionTest#responseCacheReturnsNullOutputStream,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue580Test#runNoCloseBlockingTestScenario7,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario0,Not Flaky,Async Wait,java.lang.Exception
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario1,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario2,Not Flaky,Async Wait,java.lang.Exception
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario3,Not Flaky,Async Wait,java.lang.Exception
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario4,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario5,Not Flaky,Async Wait,java.lang.Exception
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario6,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario7,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario8,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectScenario9,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario0,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario1,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario2,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario3,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario4,Not Flaky,Async Wait,java.lang.Exception
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario5,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario6,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario7,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario8,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue256Test#runReconnectBlockingScenario9,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.issues.Issue677Test#testIssue,Not Flaky,Unclear,java.lang.AssertionError
+tootallnate-java-websocket,org.java_websocket.protocols.ProtoclHandshakeRejectionTest#testHandshakeRejectionTestCase10,Not Flaky,Unclear,java.lang.AssertionError
+undertow-io-undertow,io.undertow.server.handlers.DateHandlerTestCase#testDateHandler,Not Flaky,Unclear,java.lang.AssertionError
+undertow-io-undertow,io.undertow.server.security.DigestAuthenticationAuthTestCase#testDigestSuccess,Not Flaky,Unclear,java.lang.AssertionError
+undertow-io-undertow,io.undertow.server.security.SpnegoAuthenticationTestCase#testSpnegoSuccess,Not Flaky,Unclear,java.security.PrivilegedActionException:
+undertow-io-undertow,io.undertow.server.security.DigestAuthentication2069TestCase#testDigestSuccess,Not Flaky,Unclear,java.lang.AssertionError
+undertow-io-undertow,io.undertow.server.security.DigestAuthentication2069TestCase#testNonceReUse,Not Flaky,Unclear,java.lang.AssertionError
+undertow-io-undertow,io.undertow.server.handlers.proxy.LoadBalancingProxyTestCase#testLoadSharedWithServerShutdown,Not Flaky,Unclear,java.lang.AssertionError
+wildfly-wildfly,org.wildfly.iiop.openjdk.IIOPSubsystemTransformersTestCase#testRejectTransformersEAP_7_0_0,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.wildfly.iiop.openjdk.IIOPSubsystemTransformersTestCase#testTransformersEAP_7_0_0,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.naming.subsystem.NamingSubsystemTestCase#testRejectionsEAP6,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.naming.subsystem.NamingSubsystemTestCase#testRejectionsEAP7,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testRejectTransformersEAP640,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testRejectTransformersEAP700,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testRejectTransformersEAP710,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testTransformersFullEAP640,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testTransformersFullEAP700,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.txn.subsystem.TransactionSubsystemTestCase#testTransformersFullEAP710,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.clustering.infinispan.subsystem.InfinispanTransformersTestCase#testTransformerEAP640,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.clustering.infinispan.subsystem.InfinispanTransformersTestCase#testTransformerEAP700,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.clustering.infinispan.subsystem.InfinispanTransformersTestCase#testTransformerEAP710,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.messaging.test.MessagingSubsystem30TestCase#testRejectExpressionsEAP_6_4_0,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.messaging.test.MessagingSubsystem30TestCase#testTransformersEAP_6_4_0,Not Flaky,Async Wait,java.lang.RuntimeException
+wildfly-wildfly,org.jboss.as.test.smoke.jms.JMSBridgeTest#sendAndReceiveMessage,Not Flaky,Async Wait,java.lang.AssertionError
+wildfly-wildfly,org.jboss.as.test.smoke.jms.SendToQueueIgnoreJTATest#sendIgnoreJTA,Not Flaky,Async Wait,javax.ejb.EJBException
+wildfly-wildfly,org.jboss.as.test.smoke.jms.SendToQueueIgnoreJTATest#sendAndRollbackInJTA,Not Flaky,Async Wait,java.lang.AssertionError
+wildfly-wildfly,org.jboss.as.test.smoke.jms.SendToJMSQueueTest#sendAndReceiveMessage,Not Flaky,Async Wait,java.lang.AssertionError
+wildfly-wildfly,org.jboss.as.test.integration.jsp.JspTagTestCase#test,Not Flaky,Async Wait,java.util.concurrent.TimeoutException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldFailWhenInvalidSassCssIsProcessed,Not Flaky,Unclear,java.lang.RuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldTestFromFolder,Not Flaky,Unclear,ro.isdc.wro.WroRuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldBeThreadSafe,Not Flaky,Async Wait,java.util.concurrent.ExecutionException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldSucceedAfterAFailure,Not Flaky,Unclear,ro.isdc.wro.WroRuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#executeMultipleTimesDoesntThrowOutOfMemoryException,Not Flaky,Unclear,ro.isdc.wro.WroRuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidCss,Not Flaky,Unclear,ro.isdc.wro.WroRuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidSass,Not Flaky,Unclear,ro.isdc.wro.WroRuntimeException
+wro4j-wro4j,ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#cannotProcessInvalidCss,Not Flaky,Unclear,java.lang.Exception
+wro4j-wro4j,ro.isdc.wro.extensions.processor.TestBourbonCssProcessor#shouldBeThreadSafe,Not Flaky,Async Wait,java.util.concurrent.ExecutionException
+wro4j-wro4j,ro.isdc.wro.maven.plugin.TestWro4jMojo#shouldBeFasterWhenRunningProcessingInParallel,Not Flaky,Unclear,java.lang.AssertionError
+wro4j-wro4j,ro.isdc.wro.util.concurrent.TestTaskExecutor#shouldBeFasterWhenRunningMultipleSlowTasks,Not Flaky,Async Wait,java.lang.AssertionError
+wro4j-wro4j,ro.isdc.wro.util.concurrent.TestTaskExecutor#shouldHaveMinimalOverheadWhenRunningASingleTask,Not Flaky,Async Wait,java.lang.AssertionError
+wro4j-wro4j,ro.isdc.wro.model.group.processor.TestPreProcessorExecutor#preProcessingInParallelIsFaster,Not Flaky,Async Wait,java.lang.AssertionError
+wro4j-wro4j,ro.isdc.wro.cache.support.TestDefaultSynchronizedCacheStrategyDecorator#shouldCheckOnlyAfterTimeout,Not Flaky,Concurrency,org.mockito.exceptions.verification.TooManyActualInvocations
+wro4j-wro4j,ro.isdc.wro.model.resource.locator.support.TestDispatcherStreamLocator#canLocateValidResource,Not Flaky,Unclear,java.net.UnknownHostException
+wro4j-wro4j,ro.isdc.wro.model.resource.locator.TestUrlUriLocator#testValidUrl,Not Flaky,Unclear,java.net.UnknownHostException
+zxing-zxing,com.google.zxing.aztec.encoder.EncoderTest#testAztecWriter,Not Flaky,Unclear,com.google.zxing.FormatException:
+zxing-zxing,com.google.zxing.pdf417.decoder.ec.ErrorCorrectionTestCase#testTooManyErrors,Not Flaky,Unclear,java.lang.AssertionError
