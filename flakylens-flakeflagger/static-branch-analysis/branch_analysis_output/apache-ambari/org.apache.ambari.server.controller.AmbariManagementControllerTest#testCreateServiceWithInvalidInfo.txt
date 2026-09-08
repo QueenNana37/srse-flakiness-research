@@ -1,0 +1,16 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceWithInvalidInfo
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 35: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 7: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 13: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 19: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

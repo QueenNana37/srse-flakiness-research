@@ -1,0 +1,14 @@
+Test: org.jboss.as.test.smoke.jms.JMSBridgeTest#sendAndReceiveMessage
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 36: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 39: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 8: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+    -> finally-block always runs

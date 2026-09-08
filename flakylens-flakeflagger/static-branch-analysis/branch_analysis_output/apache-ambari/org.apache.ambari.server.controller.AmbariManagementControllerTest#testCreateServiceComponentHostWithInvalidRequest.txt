@@ -1,0 +1,40 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostWithInvalidRequest
+STATUS: parsed successfully
+Branch points found: 12
+
+Line 17: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 28: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 39: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 51: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 63: try statement
+    -> try-block completes normally
+    -> catch triggered: ClusterNotFoundException
+Line 85: try statement
+    -> try-block completes normally
+    -> catch triggered: AmbariException
+Line 108: try statement
+    -> try-block completes normally
+    -> catch triggered: AmbariException
+Line 131: try statement
+    -> try-block completes normally
+    -> catch triggered: AmbariException
+Line 162: try statement
+    -> try-block completes normally
+    -> catch triggered: AmbariException
+Line 189: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 205: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 221: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException

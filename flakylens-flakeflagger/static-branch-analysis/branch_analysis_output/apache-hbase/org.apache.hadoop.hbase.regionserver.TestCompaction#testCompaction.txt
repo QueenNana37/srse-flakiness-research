@@ -1,0 +1,18 @@
+Test: org.apache.hadoop.hbase.regionserver.TestCompaction#testCompaction
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 86: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 80: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 100: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 84: do-while statement
+    -> loop body runs at least once (always)

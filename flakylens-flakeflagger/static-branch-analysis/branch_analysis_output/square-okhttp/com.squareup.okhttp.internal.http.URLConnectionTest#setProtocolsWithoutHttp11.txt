@@ -1,0 +1,7 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#setProtocolsWithoutHttp11
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 3: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException

@@ -1,0 +1,7 @@
+Test: org.apache.hadoop.hbase.master.TestMinimumServerCount#testMinimumServerCount
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 15: try statement
+    -> try-block completes normally
+    -> catch triggered: IOException

@@ -1,0 +1,5 @@
+Test: com.github.kevinsawicki.http.HttpRequestTest#postWithEscapedMappedQueryParams
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

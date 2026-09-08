@@ -1,0 +1,10 @@
+Test: org.apache.hadoop.hbase.client.TestAdmin#testEnableDisableAddColumnDeleteColumn
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 7: try statement
+    -> try-block completes normally
+    -> catch triggered: org.apache.hadoop.hbase.client.RegionOfflineException
+Line 14: try statement
+    -> try-block completes normally
+    -> catch triggered: TableNotDisabledException

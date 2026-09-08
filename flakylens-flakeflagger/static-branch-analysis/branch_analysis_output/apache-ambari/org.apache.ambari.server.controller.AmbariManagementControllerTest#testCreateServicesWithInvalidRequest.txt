@@ -1,0 +1,25 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesWithInvalidRequest
+STATUS: parsed successfully
+Branch points found: 7
+
+Line 10: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 20: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 30: try statement
+    -> try-block completes normally
+    -> catch triggered: ClusterNotFoundException
+Line 45: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 57: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 68: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 88: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

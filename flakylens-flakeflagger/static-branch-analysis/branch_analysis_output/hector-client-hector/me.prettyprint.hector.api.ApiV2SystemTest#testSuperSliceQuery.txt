@@ -1,0 +1,16 @@
+Test: me.prettyprint.hector.api.ApiV2SystemTest#testSuperSliceQuery
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 44: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 7: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 43: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 51: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

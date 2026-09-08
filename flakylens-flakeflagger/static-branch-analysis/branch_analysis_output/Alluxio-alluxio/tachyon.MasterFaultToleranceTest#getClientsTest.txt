@@ -1,0 +1,10 @@
+Test: tachyon.MasterFaultToleranceTest#getClientsTest
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

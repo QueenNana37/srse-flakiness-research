@@ -1,0 +1,13 @@
+Test: org.activiti.engine.test.jobexecutor.AsyncExecutorTest#testRegularAsyncExecution
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 43: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 7: try statement
+    -> try-block completes normally
+    -> finally-block always runs
+Line 18: try statement
+    -> try-block completes normally
+    -> catch triggered: ActivitiException

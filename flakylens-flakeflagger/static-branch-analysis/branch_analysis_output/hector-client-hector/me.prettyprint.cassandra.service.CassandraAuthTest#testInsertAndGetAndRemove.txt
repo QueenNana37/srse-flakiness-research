@@ -1,0 +1,19 @@
+Test: me.prettyprint.cassandra.service.CassandraAuthTest#testInsertAndGetAndRemove
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 11: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 17: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 25: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 30: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 31: try statement
+    -> try-block completes normally
+    -> catch triggered: HNotFoundException

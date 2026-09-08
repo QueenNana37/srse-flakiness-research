@@ -1,0 +1,7 @@
+Test: ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldBeThreadSafe
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 8: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

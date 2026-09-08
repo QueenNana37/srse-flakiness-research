@@ -1,0 +1,10 @@
+Test: sample.data.gemfire.SampleDataGemFireApplicationTests#testGemstonesApp
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 14: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalGemstoneException
+Line 31: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalGemstoneException

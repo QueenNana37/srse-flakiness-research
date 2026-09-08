@@ -1,0 +1,28 @@
+Test: tachyon.client.BlockInStreamTest#readTest1
+STATUS: parsed successfully
+Branch points found: 8
+
+Line 11: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 27: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 5: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 19: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 35: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line None: ternary statement
+    -> true-expression used
+    -> false-expression used
+Line None: ternary statement
+    -> true-expression used
+    -> false-expression used

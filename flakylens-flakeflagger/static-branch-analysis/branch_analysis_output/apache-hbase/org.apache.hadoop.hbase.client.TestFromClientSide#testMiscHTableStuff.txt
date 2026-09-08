@@ -1,0 +1,19 @@
+Test: org.apache.hadoop.hbase.client.TestFromClientSide#testMiscHTableStuff
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 24: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 26: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 54: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 71: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 23: try statement
+    -> try-block completes normally
+    -> finally-block always runs

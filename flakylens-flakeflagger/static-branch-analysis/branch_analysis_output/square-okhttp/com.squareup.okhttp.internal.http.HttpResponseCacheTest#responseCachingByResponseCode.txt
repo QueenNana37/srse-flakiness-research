@@ -1,0 +1,16 @@
+Test: com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseCachingByResponseCode
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 20: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 23: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 30: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 33: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

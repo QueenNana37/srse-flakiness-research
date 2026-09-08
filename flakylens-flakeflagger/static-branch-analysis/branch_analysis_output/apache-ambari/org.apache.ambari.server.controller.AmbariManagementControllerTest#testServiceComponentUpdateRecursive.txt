@@ -1,0 +1,13 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceComponentUpdateRecursive
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 167: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 82: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 108: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

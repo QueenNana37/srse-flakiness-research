@@ -1,0 +1,7 @@
+Test: org.springframework.boot.cli.SampleIntegrationTests#reactorSample
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 6: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

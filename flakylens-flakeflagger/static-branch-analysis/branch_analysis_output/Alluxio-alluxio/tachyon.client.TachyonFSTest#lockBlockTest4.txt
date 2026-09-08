@@ -1,0 +1,13 @@
+Test: tachyon.client.TachyonFSTest#lockBlockTest4
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 16: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 8: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 12: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

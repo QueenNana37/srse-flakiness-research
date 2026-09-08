@@ -1,0 +1,10 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#responseHeaders
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 18: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedOperationException
+Line 23: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedOperationException

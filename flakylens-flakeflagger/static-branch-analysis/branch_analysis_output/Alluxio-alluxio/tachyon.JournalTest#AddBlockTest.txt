@@ -1,0 +1,7 @@
+Test: tachyon.JournalTest#AddBlockTest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 7: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

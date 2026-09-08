@@ -1,0 +1,13 @@
+Test: com.ea.orbit.actors.test.StatelessActorTest#statelessTest
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 33: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 43: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

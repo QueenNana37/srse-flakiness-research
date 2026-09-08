@@ -1,0 +1,22 @@
+Test: org.apache.hadoop.hbase.regionserver.wal.TestHLog#testSplit
+STATUS: parsed successfully
+Branch points found: 6
+
+Line 38: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 9: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 15: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 16: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 14: try statement
+    -> try-block completes normally
+    -> finally-block always runs

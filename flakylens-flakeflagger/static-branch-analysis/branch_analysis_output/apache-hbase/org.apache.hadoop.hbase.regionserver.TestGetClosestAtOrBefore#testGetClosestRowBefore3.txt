@@ -1,0 +1,13 @@
+Test: org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testGetClosestRowBefore3
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 98: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 6: try statement
+    -> try-block completes normally
+    -> finally-block always runs
+Line 99: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

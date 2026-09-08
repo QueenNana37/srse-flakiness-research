@@ -1,0 +1,7 @@
+Test: ro.isdc.wro.model.group.processor.TestPreProcessorExecutor#preProcessingInParallelIsFaster
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 8: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes

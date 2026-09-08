@@ -1,0 +1,7 @@
+Test: org.activiti.engine.test.api.task.TaskServiceTest#testGetVariableByHistoricActivityInstance
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 4: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes

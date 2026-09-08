@@ -1,0 +1,37 @@
+Test: org.apache.hadoop.hbase.client.TestAdmin#testForceSplit
+STATUS: parsed successfully
+Branch points found: 11
+
+Line 60: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 62: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 76: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 9: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 10: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 11: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 32: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 47: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 74: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 48: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException
+Line 55: try statement
+    -> try-block completes normally
+    -> catch triggered: IOException

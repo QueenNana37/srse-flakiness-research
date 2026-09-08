@@ -1,0 +1,5 @@
+Test: org.springframework.boot.starter.StarterDependenciesIntegrationTests#commonsLoggingIsNotATransitiveDependency[29]
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

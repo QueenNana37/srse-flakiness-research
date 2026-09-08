@@ -1,0 +1,7 @@
+Test: org.springframework.boot.gradle.FlatdirTests#flatdir
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 5: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes

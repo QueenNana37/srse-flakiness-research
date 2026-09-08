@@ -1,0 +1,7 @@
+Test: ch.qos.logback.classic.spi.PackagingDataCalculatorTest#perfTest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 15: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes

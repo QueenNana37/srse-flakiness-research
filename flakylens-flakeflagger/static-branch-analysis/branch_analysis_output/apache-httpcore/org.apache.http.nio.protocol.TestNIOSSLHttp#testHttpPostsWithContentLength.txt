@@ -1,0 +1,7 @@
+Test: org.apache.http.nio.protocol.TestNIOSSLHttp#testHttpPostsWithContentLength
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 11: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedEncodingException

@@ -1,0 +1,7 @@
+Test: org.apache.http.nio.protocol.TestBufferingNHttpHandlers#testHttpPostsHTTP10
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 12: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedEncodingException

@@ -1,0 +1,16 @@
+Test: org.apache.hadoop.hbase.client.TestFromClientSide#testDeletes
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 265: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 271: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 279: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 286: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

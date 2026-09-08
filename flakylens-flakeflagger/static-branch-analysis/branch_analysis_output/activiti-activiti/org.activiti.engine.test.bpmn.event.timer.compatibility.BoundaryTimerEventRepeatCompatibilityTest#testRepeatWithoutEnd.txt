@@ -1,0 +1,13 @@
+Test: org.activiti.engine.test.bpmn.event.timer.compatibility.BoundaryTimerEventRepeatCompatibilityTest#testRepeatWithoutEnd
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 49: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 62: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 74: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

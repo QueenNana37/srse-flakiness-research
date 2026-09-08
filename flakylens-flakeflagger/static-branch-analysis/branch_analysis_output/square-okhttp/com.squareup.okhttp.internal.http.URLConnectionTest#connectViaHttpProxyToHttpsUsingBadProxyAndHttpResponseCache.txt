@@ -1,0 +1,10 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#connectViaHttpProxyToHttpsUsingBadProxyAndHttpResponseCache
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 24: try statement
+    -> try-block completes normally
+    -> catch triggered: IOException

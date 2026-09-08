@@ -1,0 +1,5 @@
+Test: org.jboss.as.naming.subsystem.NamingSubsystemTestCase#testRejectionsEAP6
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

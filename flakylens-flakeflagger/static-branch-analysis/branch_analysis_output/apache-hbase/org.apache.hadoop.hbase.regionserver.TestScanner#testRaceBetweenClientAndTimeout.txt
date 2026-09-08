@@ -1,0 +1,10 @@
+Test: org.apache.hadoop.hbase.regionserver.TestScanner#testRaceBetweenClientAndTimeout
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 3: try statement
+    -> try-block completes normally
+    -> finally-block always runs
+Line 9: try statement
+    -> try-block completes normally
+    -> catch triggered: UnknownScannerException

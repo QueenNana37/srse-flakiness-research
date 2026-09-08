@@ -1,0 +1,7 @@
+Test: org.apache.hadoop.hbase.stargate.util.TestHTableTokenBucket#testTokenBucket
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

@@ -1,0 +1,10 @@
+Test: me.prettyprint.cassandra.model.MutatorTest#testRowDeletion
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 8: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 24: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

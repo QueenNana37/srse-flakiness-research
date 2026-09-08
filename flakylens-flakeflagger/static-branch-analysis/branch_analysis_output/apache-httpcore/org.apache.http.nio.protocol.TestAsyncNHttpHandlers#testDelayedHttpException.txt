@@ -1,0 +1,28 @@
+Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpException
+STATUS: parsed successfully
+Branch points found: 8
+
+Line 101: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 112: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 40: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 44: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 91: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 109: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 98: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 18: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException

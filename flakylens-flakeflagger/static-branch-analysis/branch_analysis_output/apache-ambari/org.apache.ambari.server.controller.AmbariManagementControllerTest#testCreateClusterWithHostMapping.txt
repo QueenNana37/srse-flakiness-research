@@ -1,0 +1,10 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithHostMapping
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 9: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 16: try statement
+    -> try-block completes normally
+    -> catch triggered: ClusterNotFoundException

@@ -1,0 +1,5 @@
+Test: info.archinnov.achilles.test.integration.tests.SecondaryIndexIT#should_return_entities_for_indexed_query
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

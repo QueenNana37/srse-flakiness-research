@@ -1,0 +1,7 @@
+Test: com.ea.orbit.actors.test.DeactivationTest#cleanupTest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 11: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

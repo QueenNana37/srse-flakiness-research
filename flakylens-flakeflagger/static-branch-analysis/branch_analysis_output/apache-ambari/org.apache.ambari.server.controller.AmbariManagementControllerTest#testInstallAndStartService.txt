@@ -1,0 +1,89 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testInstallAndStartService
+STATUS: parsed successfully
+Branch points found: 28
+
+Line 75: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 76: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 78: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 80: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 85: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 86: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 88: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 176: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 182: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 221: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 49: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 53: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 68: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 104: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 109: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 110: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 156: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 159: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 173: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 181: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 194: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 199: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 217: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 220: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 249: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 253: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 261: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 225: switch statement
+    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=0)]
+    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=1)]
+    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=2)]

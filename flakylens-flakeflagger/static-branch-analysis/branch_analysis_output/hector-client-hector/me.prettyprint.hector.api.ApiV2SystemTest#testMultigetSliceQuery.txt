@@ -1,0 +1,13 @@
+Test: me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSliceQuery
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 48: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 43: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 47: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

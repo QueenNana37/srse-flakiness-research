@@ -1,0 +1,16 @@
+Test: com.ea.orbit.actors.test.DeactivationTest#statelessWorkerDeactivationTest
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 42: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 47: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

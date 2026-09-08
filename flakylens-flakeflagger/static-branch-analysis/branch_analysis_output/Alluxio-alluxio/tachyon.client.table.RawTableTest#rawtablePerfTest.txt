@@ -1,0 +1,13 @@
+Test: tachyon.client.table.RawTableTest#rawtablePerfTest
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 29: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 39: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

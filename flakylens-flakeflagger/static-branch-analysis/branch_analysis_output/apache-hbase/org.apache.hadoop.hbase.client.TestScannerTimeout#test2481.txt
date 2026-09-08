@@ -1,0 +1,16 @@
+Test: org.apache.hadoop.hbase.client.TestScannerTimeout#test2481
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 18: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 16: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 14: try statement
+    -> try-block completes normally
+    -> catch triggered: ScannerTimeoutException

@@ -1,0 +1,10 @@
+Test: org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetPutBinary
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 14: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

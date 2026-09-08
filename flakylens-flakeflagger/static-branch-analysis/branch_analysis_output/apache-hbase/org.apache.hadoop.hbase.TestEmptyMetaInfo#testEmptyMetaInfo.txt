@@ -1,0 +1,24 @@
+Test: org.apache.hadoop.hbase.TestEmptyMetaInfo#testEmptyMetaInfo
+STATUS: parsed successfully
+Branch points found: 7
+
+Line 37: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 36: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 19: do-while statement
+    -> loop body runs at least once (always)
+Line 21: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException
+Line 33: try statement
+    -> try-block completes normally
+    -> finally-block always runs
+Line None: ternary statement
+    -> true-expression used
+    -> false-expression used

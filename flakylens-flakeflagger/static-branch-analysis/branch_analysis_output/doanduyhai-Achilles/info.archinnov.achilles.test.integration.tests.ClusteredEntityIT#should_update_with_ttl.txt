@@ -1,0 +1,5 @@
+Test: info.archinnov.achilles.test.integration.tests.ClusteredEntityIT#should_update_with_ttl
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

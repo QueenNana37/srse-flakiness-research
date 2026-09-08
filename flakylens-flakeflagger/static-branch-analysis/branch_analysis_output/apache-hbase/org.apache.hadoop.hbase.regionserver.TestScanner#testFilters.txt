@@ -1,0 +1,7 @@
+Test: org.apache.hadoop.hbase.regionserver.TestScanner#testFilters
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 3: try statement
+    -> try-block completes normally
+    -> finally-block always runs

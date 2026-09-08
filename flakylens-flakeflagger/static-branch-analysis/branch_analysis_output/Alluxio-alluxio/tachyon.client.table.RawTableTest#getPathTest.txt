@@ -1,0 +1,7 @@
+Test: tachyon.client.table.RawTableTest#getPathTest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

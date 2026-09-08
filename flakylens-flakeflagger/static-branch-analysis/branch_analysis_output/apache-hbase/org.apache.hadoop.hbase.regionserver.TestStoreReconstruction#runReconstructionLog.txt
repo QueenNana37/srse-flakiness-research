@@ -1,0 +1,7 @@
+Test: org.apache.hadoop.hbase.regionserver.TestStoreReconstruction#runReconstructionLog
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 25: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

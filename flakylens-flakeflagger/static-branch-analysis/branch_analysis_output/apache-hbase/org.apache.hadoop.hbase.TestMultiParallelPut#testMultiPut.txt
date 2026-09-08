@@ -1,0 +1,13 @@
+Test: org.apache.hadoop.hbase.TestMultiParallelPut#testMultiPut
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 8: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 17: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 33: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

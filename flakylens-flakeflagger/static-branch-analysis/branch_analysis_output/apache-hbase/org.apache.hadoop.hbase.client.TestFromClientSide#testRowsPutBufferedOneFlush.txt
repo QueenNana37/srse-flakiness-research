@@ -1,0 +1,13 @@
+Test: org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPutBufferedOneFlush
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 12: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 24: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 36: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

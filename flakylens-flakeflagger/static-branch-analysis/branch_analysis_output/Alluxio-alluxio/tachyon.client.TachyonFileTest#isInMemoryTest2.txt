@@ -1,0 +1,16 @@
+Test: tachyon.client.TachyonFileTest#isInMemoryTest2
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 5: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 29: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

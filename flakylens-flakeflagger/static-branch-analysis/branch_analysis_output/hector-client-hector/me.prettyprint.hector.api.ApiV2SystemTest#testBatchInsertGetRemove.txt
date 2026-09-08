@@ -1,0 +1,16 @@
+Test: me.prettyprint.hector.api.ApiV2SystemTest#testBatchInsertGetRemove
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 7: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 16: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 27: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 35: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

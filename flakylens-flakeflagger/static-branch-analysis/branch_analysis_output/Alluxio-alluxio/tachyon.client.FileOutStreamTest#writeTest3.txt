@@ -1,0 +1,10 @@
+Test: tachyon.client.FileOutStreamTest#writeTest3
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 5: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

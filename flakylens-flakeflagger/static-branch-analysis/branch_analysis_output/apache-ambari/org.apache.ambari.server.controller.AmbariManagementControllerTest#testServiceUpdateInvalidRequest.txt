@@ -1,0 +1,16 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateInvalidRequest
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 16: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 32: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 46: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 63: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

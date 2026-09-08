@@ -1,0 +1,5 @@
+Test: ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidCss
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

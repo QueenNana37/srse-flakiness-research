@@ -1,0 +1,5 @@
+Test: org.apache.hadoop.hbase.stargate.client.TestRemoteAdmin#testDeleteTable
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

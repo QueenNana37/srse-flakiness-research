@@ -1,0 +1,10 @@
+Test: tachyon.JournalTest#RenameTest
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

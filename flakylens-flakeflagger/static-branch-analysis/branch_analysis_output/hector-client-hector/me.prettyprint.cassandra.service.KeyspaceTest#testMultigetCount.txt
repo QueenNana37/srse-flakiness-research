@@ -1,0 +1,13 @@
+Test: me.prettyprint.cassandra.service.KeyspaceTest#testMultigetCount
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 12: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 7: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

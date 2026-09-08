@@ -1,0 +1,31 @@
+Test: me.prettyprint.cassandra.service.KeyspaceTest#testBatchMutate
+STATUS: parsed successfully
+Branch points found: 9
+
+Line 5: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 10: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 28: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 29: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 42: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 46: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 60: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 61: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 64: try statement
+    -> try-block completes normally
+    -> catch triggered: HNotFoundException

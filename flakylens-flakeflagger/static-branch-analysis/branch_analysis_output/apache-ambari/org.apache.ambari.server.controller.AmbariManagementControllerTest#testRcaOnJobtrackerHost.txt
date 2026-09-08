@@ -1,0 +1,10 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testRcaOnJobtrackerHost
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 60: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 67: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

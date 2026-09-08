@@ -1,0 +1,13 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostWithInvalidRequests
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 10: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 26: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 39: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

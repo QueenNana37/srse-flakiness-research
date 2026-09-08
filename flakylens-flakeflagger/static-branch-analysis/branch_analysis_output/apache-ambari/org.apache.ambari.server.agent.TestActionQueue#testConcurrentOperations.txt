@@ -1,0 +1,34 @@
+Test: org.apache.ambari.server.agent.TestActionQueue#testConcurrentOperations
+STATUS: parsed successfully
+Branch points found: 10
+
+Line 47: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 12: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 19: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 26: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 37: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 46: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 55: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 60: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 63: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 43: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

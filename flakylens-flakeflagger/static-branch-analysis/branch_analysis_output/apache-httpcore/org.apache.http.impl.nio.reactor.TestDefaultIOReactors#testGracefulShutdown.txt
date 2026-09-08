@@ -1,0 +1,19 @@
+Test: org.apache.http.impl.nio.reactor.TestDefaultIOReactors#testGracefulShutdown
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 38: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 139: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 129: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 31: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 136: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

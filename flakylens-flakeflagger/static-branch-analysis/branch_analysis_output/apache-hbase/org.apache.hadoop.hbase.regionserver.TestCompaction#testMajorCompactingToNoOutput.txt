@@ -1,0 +1,17 @@
+Test: org.apache.hadoop.hbase.regionserver.TestCompaction#testMajorCompactingToNoOutput
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 13: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 24: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 9: do-while statement
+    -> loop body runs at least once (always)
+Line 21: do-while statement
+    -> loop body runs at least once (always)

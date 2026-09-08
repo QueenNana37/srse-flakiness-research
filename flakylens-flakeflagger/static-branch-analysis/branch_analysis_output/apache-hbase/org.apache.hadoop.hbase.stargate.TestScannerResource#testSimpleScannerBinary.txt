@@ -1,0 +1,16 @@
+Test: org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerBinary
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 22: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 24: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 26: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 21: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

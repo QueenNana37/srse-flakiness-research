@@ -1,0 +1,5 @@
+Test: org.jboss.as.clustering.infinispan.subsystem.InfinispanTransformersTestCase#testTransformerEAP700
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

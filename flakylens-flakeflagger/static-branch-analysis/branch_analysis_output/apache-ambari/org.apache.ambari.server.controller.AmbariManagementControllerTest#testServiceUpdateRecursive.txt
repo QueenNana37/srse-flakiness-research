@@ -1,0 +1,25 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateRecursive
+STATUS: parsed successfully
+Branch points found: 7
+
+Line 198: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 199: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 200: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 184: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 197: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 99: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 126: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

@@ -1,0 +1,17 @@
+Test: org.jboss.as.test.smoke.jms.SendToJMSQueueTest#sendAndReceiveMessage
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 35: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 38: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 8: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+    -> finally-block always runs
+Line 19: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException

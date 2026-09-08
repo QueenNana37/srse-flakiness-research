@@ -1,0 +1,28 @@
+Test: org.activiti.engine.test.bpmn.event.timer.StartTimerEventRepeatWithEndTest#testCycleDateStartTimerEvent
+STATUS: parsed successfully
+Branch points found: 8
+
+Line 94: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 102: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 110: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 93: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 101: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 109: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 121: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 67: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

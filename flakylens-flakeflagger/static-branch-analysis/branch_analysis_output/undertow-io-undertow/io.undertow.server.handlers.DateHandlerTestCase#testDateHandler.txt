@@ -1,0 +1,7 @@
+Test: io.undertow.server.handlers.DateHandlerTestCase#testDateHandler
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 6: try statement
+    -> try-block completes normally
+    -> finally-block always runs

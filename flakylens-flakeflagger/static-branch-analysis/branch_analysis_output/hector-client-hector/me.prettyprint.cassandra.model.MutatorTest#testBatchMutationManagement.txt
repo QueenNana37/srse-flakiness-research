@@ -1,0 +1,16 @@
+Test: me.prettyprint.cassandra.model.MutatorTest#testBatchMutationManagement
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 7: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 14: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 22: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 31: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

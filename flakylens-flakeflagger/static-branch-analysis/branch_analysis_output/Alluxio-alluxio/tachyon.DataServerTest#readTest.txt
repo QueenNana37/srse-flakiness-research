@@ -1,0 +1,13 @@
+Test: tachyon.DataServerTest#readTest
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 16: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 10: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 14: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

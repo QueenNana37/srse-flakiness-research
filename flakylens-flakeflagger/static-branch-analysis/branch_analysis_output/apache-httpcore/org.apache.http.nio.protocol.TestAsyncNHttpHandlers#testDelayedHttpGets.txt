@@ -1,0 +1,16 @@
+Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpGets
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 20: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 27: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 36: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException
+Line 38: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedEncodingException

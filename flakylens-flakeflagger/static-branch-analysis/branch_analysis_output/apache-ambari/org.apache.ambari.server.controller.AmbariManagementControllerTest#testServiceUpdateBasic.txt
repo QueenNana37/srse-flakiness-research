@@ -1,0 +1,7 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateBasic
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 21: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

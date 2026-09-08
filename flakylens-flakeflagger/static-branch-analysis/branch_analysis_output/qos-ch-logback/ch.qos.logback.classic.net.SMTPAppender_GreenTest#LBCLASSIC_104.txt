@@ -1,0 +1,5 @@
+Test: ch.qos.logback.classic.net.SMTPAppender_GreenTest#LBCLASSIC_104
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

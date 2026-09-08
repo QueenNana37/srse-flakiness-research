@@ -1,0 +1,7 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#veryLargeFixedLengthRequest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 13: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

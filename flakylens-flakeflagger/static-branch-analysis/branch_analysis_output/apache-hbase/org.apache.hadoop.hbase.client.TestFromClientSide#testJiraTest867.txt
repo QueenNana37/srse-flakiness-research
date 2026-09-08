@@ -1,0 +1,28 @@
+Test: org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest867
+STATUS: parsed successfully
+Branch points found: 8
+
+Line 16: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 18: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 31: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 42: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 60: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 71: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 39: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 68: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

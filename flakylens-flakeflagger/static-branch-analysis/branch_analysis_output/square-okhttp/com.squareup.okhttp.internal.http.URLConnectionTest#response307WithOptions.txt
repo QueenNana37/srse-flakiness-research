@@ -1,0 +1,5 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#response307WithOptions
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

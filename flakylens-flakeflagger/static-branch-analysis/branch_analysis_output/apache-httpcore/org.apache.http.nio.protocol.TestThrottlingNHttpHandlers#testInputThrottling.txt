@@ -1,0 +1,53 @@
+Test: org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testInputThrottling
+STATUS: parsed successfully
+Branch points found: 16
+
+Line 14: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 21: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 39: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 47: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 62: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 77: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 150: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 161: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 86: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 90: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 140: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 158: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 56: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 147: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 25: try statement
+    -> try-block completes normally
+    -> catch triggered: UnsupportedEncodingException
+Line 48: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException
+    -> catch triggered: IOException

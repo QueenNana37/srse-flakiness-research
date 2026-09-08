@@ -1,0 +1,7 @@
+Test: org.apache.dubbo.rpc.protocol.dubbo.DubboProtocolTest#testPerm
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 8: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

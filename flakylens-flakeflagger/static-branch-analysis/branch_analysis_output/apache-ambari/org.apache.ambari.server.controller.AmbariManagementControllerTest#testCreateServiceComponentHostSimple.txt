@@ -1,0 +1,16 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostSimple
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 32: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 44: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 53: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+Line 73: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

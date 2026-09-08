@@ -1,0 +1,8 @@
+Test: org.apache.hadoop.hbase.regionserver.TestScanner#testScanAndSyncFlush
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 5: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception
+    -> finally-block always runs

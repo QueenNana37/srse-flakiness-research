@@ -1,0 +1,7 @@
+Test: ch.qos.logback.core.net.DefaultSocketConnectorTest#testConnectionFails
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 8: try statement
+    -> try-block completes normally
+    -> catch triggered: TimeoutException

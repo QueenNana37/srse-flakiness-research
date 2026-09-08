@@ -1,0 +1,29 @@
+Test: org.apache.hadoop.hbase.client.TestAdmin#testCreateBadTables
+STATUS: parsed successfully
+Branch points found: 8
+
+Line 32: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 47: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 50: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 51: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 5: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 14: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException
+Line 36: try statement
+    -> try-block completes normally
+    -> catch triggered: TableExistsException
+    -> catch triggered: IOException
+Line 52: try statement
+    -> try-block completes normally
+    -> catch triggered: InterruptedException

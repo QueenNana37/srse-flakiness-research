@@ -1,0 +1,19 @@
+Test: tachyon.client.RemoteBlockInStreamTest#readTest3
+STATUS: parsed successfully
+Branch points found: 5
+
+Line 10: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 19: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 26: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 38: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 4: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

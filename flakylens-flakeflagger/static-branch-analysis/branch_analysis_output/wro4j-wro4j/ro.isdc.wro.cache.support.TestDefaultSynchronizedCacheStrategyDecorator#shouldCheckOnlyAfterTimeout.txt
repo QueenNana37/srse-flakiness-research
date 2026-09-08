@@ -1,0 +1,6 @@
+Test: ro.isdc.wro.cache.support.TestDefaultSynchronizedCacheStrategyDecorator#shouldCheckOnlyAfterTimeout
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 9: do-while statement
+    -> loop body runs at least once (always)

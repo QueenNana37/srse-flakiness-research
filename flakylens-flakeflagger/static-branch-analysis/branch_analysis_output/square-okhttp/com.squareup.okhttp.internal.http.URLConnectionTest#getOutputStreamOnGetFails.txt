@@ -1,0 +1,7 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#getOutputStreamOnGetFails
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 6: try statement
+    -> try-block completes normally
+    -> catch triggered: ProtocolException

@@ -1,0 +1,25 @@
+Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testHttpPostWithNoEntities
+STATUS: parsed successfully
+Branch points found: 7
+
+Line 80: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 91: if statement
+    -> then-branch executes
+    -> else-branch executes
+Line 19: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 23: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 70: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 88: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 77: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

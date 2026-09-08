@@ -1,0 +1,25 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testClientServiceSmokeTests
+STATUS: parsed successfully
+Branch points found: 7
+
+Line 43: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 47: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 59: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 62: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 77: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 81: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 88: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

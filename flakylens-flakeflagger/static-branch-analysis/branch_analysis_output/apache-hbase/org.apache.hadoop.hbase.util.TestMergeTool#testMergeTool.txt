@@ -1,0 +1,13 @@
+Test: org.apache.hadoop.hbase.util.TestMergeTool#testMergeTool
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 5: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 6: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 25: try statement
+    -> try-block completes normally
+    -> finally-block always runs

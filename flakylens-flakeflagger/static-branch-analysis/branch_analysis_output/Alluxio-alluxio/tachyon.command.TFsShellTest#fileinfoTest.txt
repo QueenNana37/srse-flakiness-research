@@ -1,0 +1,7 @@
+Test: tachyon.command.TFsShellTest#fileinfoTest
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 15: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

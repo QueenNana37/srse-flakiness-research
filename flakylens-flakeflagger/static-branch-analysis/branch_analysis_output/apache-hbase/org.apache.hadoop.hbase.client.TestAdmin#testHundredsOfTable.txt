@@ -1,0 +1,10 @@
+Test: org.apache.hadoop.hbase.client.TestAdmin#testHundredsOfTable
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 9: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 17: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

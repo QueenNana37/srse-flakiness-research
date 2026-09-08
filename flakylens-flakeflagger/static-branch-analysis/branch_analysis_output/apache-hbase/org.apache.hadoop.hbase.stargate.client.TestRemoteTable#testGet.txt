@@ -1,0 +1,13 @@
+Test: org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testGet
+STATUS: parsed successfully
+Branch points found: 3
+
+Line 92: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 96: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 91: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

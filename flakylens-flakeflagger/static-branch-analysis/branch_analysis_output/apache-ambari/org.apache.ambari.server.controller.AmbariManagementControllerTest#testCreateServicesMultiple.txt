@@ -1,0 +1,7 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesMultiple
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 14: try statement
+    -> try-block completes normally
+    -> catch triggered: IllegalArgumentException

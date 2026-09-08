@@ -1,0 +1,15 @@
+Test: org.apache.hadoop.hbase.regionserver.TestWideScanner#testWideScanBatching
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 24: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 27: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 14: do-while statement
+    -> loop body runs at least once (always)
+Line 3: try statement
+    -> try-block completes normally
+    -> finally-block always runs

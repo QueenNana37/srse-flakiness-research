@@ -1,0 +1,10 @@
+Test: org.apache.hadoop.hbase.regionserver.wal.TestLogRolling#testLogRolling
+STATUS: parsed successfully
+Branch points found: 2
+
+Line 12: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 4: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

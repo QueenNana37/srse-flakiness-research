@@ -1,0 +1,7 @@
+Test: io.undertow.server.security.DigestAuthenticationAuthTestCase#testDigestSuccess
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 26: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times

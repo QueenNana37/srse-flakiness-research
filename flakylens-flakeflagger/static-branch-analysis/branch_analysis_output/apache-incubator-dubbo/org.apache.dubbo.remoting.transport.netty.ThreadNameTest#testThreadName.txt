@@ -1,0 +1,7 @@
+Test: org.apache.dubbo.remoting.transport.netty.ThreadNameTest#testThreadName
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 6: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes

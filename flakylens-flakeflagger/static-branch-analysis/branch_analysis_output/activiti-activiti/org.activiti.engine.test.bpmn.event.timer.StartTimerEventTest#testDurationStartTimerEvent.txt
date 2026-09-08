@@ -1,0 +1,5 @@
+Test: org.activiti.engine.test.bpmn.event.timer.StartTimerEventTest#testDurationStartTimerEvent
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

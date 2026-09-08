@@ -1,0 +1,7 @@
+Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentsWithFilters
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 74: try statement
+    -> try-block completes normally
+    -> catch triggered: Exception

@@ -1,0 +1,5 @@
+Test: io.undertow.server.security.DigestAuthentication2069TestCase#testDigestSuccess
+STATUS: parsed successfully
+Branch points found: 0
+
+(no branches -- this test has a single straight-line execution path)

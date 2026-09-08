@@ -1,0 +1,7 @@
+Test: com.squareup.okhttp.internal.http.URLConnectionTest#fullyBufferedPostIsTooShort
+STATUS: parsed successfully
+Branch points found: 1
+
+Line 13: try statement
+    -> try-block completes normally
+    -> catch triggered: IOException

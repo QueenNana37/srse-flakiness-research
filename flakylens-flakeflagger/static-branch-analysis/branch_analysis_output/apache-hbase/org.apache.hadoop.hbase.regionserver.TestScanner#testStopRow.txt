@@ -1,0 +1,16 @@
+Test: org.apache.hadoop.hbase.regionserver.TestScanner#testStopRow
+STATUS: parsed successfully
+Branch points found: 4
+
+Line 30: if statement
+    -> then-branch executes
+    -> if-condition false, nothing in this if executes
+Line 28: for statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 15: while statement
+    -> loop body runs 0 times
+    -> loop body runs 1+ times
+Line 5: try statement
+    -> try-block completes normally
+    -> finally-block always runs
