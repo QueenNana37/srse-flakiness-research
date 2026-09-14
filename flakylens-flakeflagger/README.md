@@ -1,6 +1,6 @@
 # FlakyLens on FlakeFlagger data
 
-Runs the FlakyLens pretrained classifier (Rahman, Dutta, Shi — OOPSLA2 2025) on
+Runs the FlakyLens pretrained classifier (Rahman, Dutta, Shi- OOPSLA2 2025) on
 Suzzana's FlakeFlagger test-code extract to predict a flakiness category for
 each test.
 
@@ -34,7 +34,7 @@ convention:
 
 ## Files
 
-- `infer_flakeflagger.py` — standalone inference script. Run inside the
+- `infer_flakeflagger.py` - standalone inference script. Run inside the
   FlakyLens Docker container from `/app/src`:
   ```
   python3 infer_flakeflagger.py <input_csv> <output_csv> [fold=1]
