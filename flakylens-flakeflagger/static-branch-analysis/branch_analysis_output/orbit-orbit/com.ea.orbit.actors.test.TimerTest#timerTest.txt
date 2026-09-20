@@ -1,5 +1,20 @@
 Test: com.ea.orbit.actors.test.TimerTest#timerTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 28 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  observer.messagesReceived.poll: called 6x (line(s): 12, 14, 15, 16, 17, 21)
+  assertNotNull: called 5x (line(s): 12, 14, 15, 16, 17)
+  getRight: called 5x (line(s): 12, 14, 15, 16, 17)
+  get: called 2x (line(s): 9, 10)
+  System.currentTimeMillis: called 2x (line(s): 13, 19)
+  createStage: called 1x (line(s): 4)
+  createClient: called 1x (line(s): 5)
+  frontend.getReference: called 1x (line(s): 7)
+  SomeChatObserver: called 1x (line(s): 8)
+  chatRoom.join: called 1x (line(s): 9)
+  chatRoom.startCountdown: called 1x (line(s): 10)
+  assertTrue: called 1x (line(s): 19)
+  assertNull: called 1x (line(s): 21)

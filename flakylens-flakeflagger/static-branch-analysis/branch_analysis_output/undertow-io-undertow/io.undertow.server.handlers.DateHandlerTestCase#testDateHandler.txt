@@ -1,7 +1,46 @@
 Test: io.undertow.server.handlers.DateHandlerTestCase#testDateHandler
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 33 method call(s), 17 unique method(s) called
 
-Line 6: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 5: try ---
+try {
+            HttpResponse result = client.execute(get);
+            Assert.assertEquals(200, result.getStatusLine().getStatusCode());
+            Header date = result.getHeaders("Date")[0];
+            final long firstDate = DateUtils.parseDate(date.getValue()).getTime();
+            Assert.assertTrue((firstDate + 3000) > System.currentTimeMillis());
+            Assert.assertTrue(System.currentTimeMillis() > firstDate);
+            HttpClientUtils.readResponse(result);
+            Thread.sleep(1500);
+            result = client.execute(get);
+            Assert.assertEquals(200, result.getStatusLine().getStatusCode());
+            date = result.getHeaders("Date")[0];
+            final long secondDate = DateUtils.parseDate(date.getValue()).getTime();
+            Assert.assertTrue((secondDate + 2000) > System.currentTimeMillis());
+            Assert.assertTrue(System.currentTimeMillis() >= secondDate);
+            Assert.assertTrue(secondDate > firstDate);
+            HttpClientUtils.readResponse(result);
+        } finally {
+
+            client.getConnectionManager().shutdown();
+        }
+  Calls inside this branch:
+    Assert.assertTrue: called 5x (line(s): 10, 11, 18, 19, 20)
+    System.currentTimeMillis: called 4x (line(s): 10, 11, 18, 19)
+    client.execute: called 2x (line(s): 6, 14)
+    Assert.assertEquals: called 2x (line(s): 7, 15)
+    result.getStatusLine: called 2x (line(s): 7, 15)
+    getStatusCode: called 2x (line(s): 7, 15)
+    result.getHeaders: called 2x (line(s): 8, 16)
+    DateUtils.parseDate: called 2x (line(s): 9, 17)
+    date.getValue: called 2x (line(s): 9, 17)
+    getTime: called 2x (line(s): 9, 17)
+    HttpClientUtils.readResponse: called 2x (line(s): 12, 21)
+    Thread.sleep: called 1x (line(s): 13)
+    client.getConnectionManager: called 1x (line(s): 24)
+    shutdown: called 1x (line(s): 24)
+
+Calls NOT inside any branch (always run):
+  HttpGet: called 1x (line(s): 3)
+  DefaultServer.getDefaultServerURL: called 1x (line(s): 3)
+  TestHttpClient: called 1x (line(s): 4)

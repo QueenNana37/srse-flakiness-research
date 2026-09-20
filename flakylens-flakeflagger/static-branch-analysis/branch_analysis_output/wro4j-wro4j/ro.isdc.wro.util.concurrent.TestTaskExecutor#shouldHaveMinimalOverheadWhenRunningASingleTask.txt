@@ -1,5 +1,14 @@
 Test: ro.isdc.wro.util.concurrent.TestTaskExecutor#shouldHaveMinimalOverheadWhenRunningASingleTask
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  System.currentTimeMillis: called 2x (line(s): 8, 10)
+  ArrayList<Callable<Void>>: called 1x (line(s): 4)
+  callables.add: called 1x (line(s): 6)
+  createSlowCallable: called 1x (line(s): 6)
+  victim.submit: called 1x (line(s): 9)
+  LOG.debug: called 1x (line(s): 13)
+  assertTrue: called 1x (line(s): 16)

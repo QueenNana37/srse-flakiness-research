@@ -1,5 +1,20 @@
 Test: com.squareup.okhttp.internal.http.ResponseCacheTest#getHeadersDeletesCached100LevelWarnings
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 23 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 10, 11, 14, 15)
+  addHeader: called 3x (line(s): 2, 3, 4)
+  server.enqueue: called 2x (line(s): 2, 6)
+  MockResponse: called 2x (line(s): 2, 6)
+  openConnection: called 2x (line(s): 9, 13)
+  server.getUrl: called 2x (line(s): 9, 13)
+  readAscii: called 2x (line(s): 10, 14)
+  formatDate: called 1x (line(s): 3)
+  setBody: called 1x (line(s): 5)
+  setResponseCode: called 1x (line(s): 6)
+  server.play: called 1x (line(s): 7)
+  connection1.getHeaderField: called 1x (line(s): 11)
+  connection2.getHeaderField: called 1x (line(s): 15)

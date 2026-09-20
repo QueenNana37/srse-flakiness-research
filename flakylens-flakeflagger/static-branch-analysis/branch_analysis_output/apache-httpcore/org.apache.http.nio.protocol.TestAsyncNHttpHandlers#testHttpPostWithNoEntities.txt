@@ -1,25 +1,118 @@
 Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testHttpPostWithNoEntities
 STATUS: parsed successfully
-Branch points found: 7
+Summary: 7 branch point(s), 61 method call(s), 54 unique method(s) called
 
-Line 80: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 91: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 19: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 23: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 70: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 88: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 77: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 18: for ---
+for (int i = 0; i < jobs.length; i++) {
+            jobs[i] = new Job();
+        }
+  Calls inside this branch:
+    Job: called 1x (line(s): 19)
+
+--- Line 22: for ---
+for (int i = 0; i < jobs.length; i++) {
+            queue.add(jobs[i]);
+        }
+  Calls inside this branch:
+    queue.add: called 1x (line(s): 23)
+
+--- Line 69: for ---
+for (int i = 0; i < connNo; i++) {
+            SessionRequest sessionRequest = this.client.openConnection(
+                    new InetSocketAddress("localhost", serverAddress.getPort()),
+                    queue);
+            connRequests.add(sessionRequest);
+        }
+  Calls inside this branch:
+    this.client.openConnection: called 1x (line(s): 70)
+    InetSocketAddress: called 1x (line(s): 71)
+    serverAddress.getPort: called 1x (line(s): 71)
+    connRequests.add: called 1x (line(s): 73)
+
+--- Line 76: while ---
+while (!connRequests.isEmpty()) {
+            SessionRequest sessionRequest = connRequests.remove();
+            sessionRequest.waitFor();
+            if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+            Assert.assertNotNull(sessionRequest.getSession());
+        }
+  Calls inside this branch:
+    connRequests.isEmpty: called 1x (line(s): 76)
+    connRequests.remove: called 1x (line(s): 77)
+    sessionRequest.waitFor: called 1x (line(s): 78)
+    Assert.assertNotNull: called 1x (line(s): 82)
+    sessionRequest.getSession: called 1x (line(s): 82)
+
+--- Line 79: if ---
+if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+  Calls inside this branch:
+    sessionRequest.getException: called 2x (line(s): 79, 80)
+
+--- Line 87: for ---
+for (int i = 0; i < jobs.length; i++) {
+            Job testjob = jobs[i];
+            testjob.waitFor();
+            if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_OK, testjob.getStatusCode());
+                Assert.assertEquals("", testjob.getResult());
+            } else {
+                Assert.fail(testjob.getFailureMessage());
+            }
+        }
+  Calls inside this branch:
+    testjob.waitFor: called 1x (line(s): 89)
+    Assert.fail: called 1x (line(s): 94)
+    testjob.getFailureMessage: called 1x (line(s): 94)
+
+--- Line 90: if ---
+if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_OK, testjob.getStatusCode());
+                Assert.assertEquals("", testjob.getResult());
+            }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 91, 92)
+    testjob.isSuccessful: called 1x (line(s): 90)
+    testjob.getStatusCode: called 1x (line(s): 91)
+    testjob.getResult: called 1x (line(s): 92)
+
+Calls NOT inside any branch (always run):
+  ImmutableHttpProcessor: called 2x (line(s): 26, 44)
+  DefaultConnectionReuseStrategy: called 2x (line(s): 36, 54)
+  SimpleEventListener: called 2x (line(s): 42, 57)
+  Assert.assertEquals: called 2x (line(s): 66, 85)
+  testjob.getPattern: called 1x (line(s): 7)
+  testjob.getCount: called 1x (line(s): 7)
+  BasicHttpEntityEnclosingRequest: called 1x (line(s): 8)
+  r.setEntity: called 1x (line(s): 9)
+  ConcurrentLinkedQueue<Job>: called 1x (line(s): 21)
+  ResponseDate: called 1x (line(s): 27)
+  ResponseServer: called 1x (line(s): 28)
+  ResponseContent: called 1x (line(s): 29)
+  ResponseConnControl: called 1x (line(s): 30)
+  AsyncNHttpServiceHandler: called 1x (line(s): 33)
+  DefaultHttpResponseFactory: called 1x (line(s): 35)
+  this.server.getParams: called 1x (line(s): 37)
+  serviceHandler.setHandlerResolver: called 1x (line(s): 39)
+  SimpleNHttpRequestHandlerResolver: called 1x (line(s): 40)
+  RequestHandler: called 1x (line(s): 40)
+  serviceHandler.setEventListener: called 1x (line(s): 41)
+  RequestContent: called 1x (line(s): 45)
+  RequestTargetHost: called 1x (line(s): 46)
+  RequestConnControl: called 1x (line(s): 47)
+  RequestUserAgent: called 1x (line(s): 48)
+  RequestExpectContinue: called 1x (line(s): 49)
+  AsyncNHttpClientHandler: called 1x (line(s): 51)
+  this.client.getParams: called 1x (line(s): 55)
+  clientHandler.setEventListener: called 1x (line(s): 57)
+  this.server.start: called 1x (line(s): 59)
+  this.client.start: called 1x (line(s): 60)
+  this.server.getListenerEndpoint: called 1x (line(s): 62)
+  endpoint.waitFor: called 1x (line(s): 63)
+  endpoint.getAddress: called 1x (line(s): 64)
+  this.server.getStatus: called 1x (line(s): 66)
+  LinkedList<SessionRequest>: called 1x (line(s): 68)
+  this.client.getStatus: called 1x (line(s): 85)

@@ -1,16 +1,48 @@
 Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpGets
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 20 method call(s), 19 unique method(s) called
 
-Line 20: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 27: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 36: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-Line 38: try statement
-    -> try-block completes normally
-    -> catch triggered: UnsupportedEncodingException
+--- Line 19: if ---
+if (idx == -1) {
+                    throw new HttpException("Unexpected request-URI format");
+                }
+  Calls inside this branch:
+    HttpException: called 1x (line(s): 20)
+
+--- Line 26: for ---
+for (int i = 0; i < count; i++) {
+                    buffer.append(pattern);
+                }
+  Calls inside this branch:
+    buffer.append: called 1x (line(s): 27)
+
+--- Line 35: try ---
+try { Thread.sleep(10); } catch(InterruptedException ie) {}
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 35)
+
+--- Line 37: try ---
+try {
+                            NStringEntity entity = new NStringEntity(content, "US-ASCII");
+                            response.setEntity(entity);
+                        }  catch (UnsupportedEncodingException ex) {
+                        }
+  Calls inside this branch:
+    NStringEntity: called 1x (line(s): 38)
+    response.setEntity: called 1x (line(s): 39)
+
+Calls NOT inside any branch (always run):
+  s.substring: called 2x (line(s): 22, 23)
+  request.getRequestLine: called 1x (line(s): 17)
+  getUri: called 1x (line(s): 17)
+  s.indexOf: called 1x (line(s): 18)
+  Integer.parseInt: called 1x (line(s): 23)
+  s.length: called 1x (line(s): 23)
+  StringBuilder: called 1x (line(s): 25)
+  buffer.toString: called 1x (line(s): 29)
+  trigger.submitResponse: called 1x (line(s): 42)
+  start: called 1x (line(s): 44)
+  testjob.getPattern: called 1x (line(s): 53)
+  testjob.getCount: called 1x (line(s): 53)
+  BasicHttpRequest: called 1x (line(s): 54)
+  executeStandardTest: called 1x (line(s): 58)

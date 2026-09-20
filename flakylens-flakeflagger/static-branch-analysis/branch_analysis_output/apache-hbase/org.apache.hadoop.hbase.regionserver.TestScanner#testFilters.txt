@@ -1,7 +1,42 @@
 Test: org.apache.hadoop.hbase.regionserver.TestScanner#testFilters
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 18 method call(s), 15 unique method(s) called
 
-Line 3: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 2: try ---
+try {
+      this.r = createNewHRegion(REGION_INFO.getTableDesc(), null, null);
+      addContent(this.r, HConstants.CATALOG_FAMILY);
+      byte [] prefix = Bytes.toBytes("ab");
+      Filter newFilter = new PrefixFilter(prefix);
+      Scan scan = new Scan();
+      scan.setFilter(newFilter);
+      rowPrefixFilter(scan);
+
+      byte[] stopRow = Bytes.toBytes("bbc");
+      newFilter = new WhileMatchFilter(new InclusiveStopFilter(stopRow));
+      scan = new Scan();
+      scan.setFilter(newFilter);
+      rowInclusiveStopFilter(scan, stopRow);
+
+    } finally {
+      this.r.close();
+      this.r.getLog().closeAndDelete();
+      shutdownDfs(this.cluster);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 2x (line(s): 5, 11)
+    Scan: called 2x (line(s): 7, 13)
+    scan.setFilter: called 2x (line(s): 8, 14)
+    createNewHRegion: called 1x (line(s): 3)
+    REGION_INFO.getTableDesc: called 1x (line(s): 3)
+    addContent: called 1x (line(s): 4)
+    PrefixFilter: called 1x (line(s): 6)
+    rowPrefixFilter: called 1x (line(s): 9)
+    WhileMatchFilter: called 1x (line(s): 12)
+    InclusiveStopFilter: called 1x (line(s): 12)
+    rowInclusiveStopFilter: called 1x (line(s): 15)
+    this.r.close: called 1x (line(s): 18)
+    this.r.getLog: called 1x (line(s): 19)
+    closeAndDelete: called 1x (line(s): 19)
+    shutdownDfs: called 1x (line(s): 20)
+

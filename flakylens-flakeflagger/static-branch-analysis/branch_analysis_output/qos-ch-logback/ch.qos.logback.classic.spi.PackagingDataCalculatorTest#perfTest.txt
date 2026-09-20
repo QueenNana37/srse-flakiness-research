@@ -1,7 +1,17 @@
 Test: ch.qos.logback.classic.spi.PackagingDataCalculatorTest#perfTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 9 method call(s), 5 unique method(s) called
 
-Line 15: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
+--- Line 14: if ---
+if (!SystemInfo.getJavaVendor().contains("Sun")) {
+      // be more lenient with other JDKs
+      slackFactor = 10;
+    }
+  Calls inside this branch:
+    SystemInfo.getJavaVendor: called 1x (line(s): 14)
+    contains: called 1x (line(s): 14)
+
+Calls NOT inside any branch (always run):
+  loop: called 4x (line(s): 4, 5, 7, 10)
+  System.out.println: called 2x (line(s): 8, 11)
+  assertTrue: called 1x (line(s): 18)

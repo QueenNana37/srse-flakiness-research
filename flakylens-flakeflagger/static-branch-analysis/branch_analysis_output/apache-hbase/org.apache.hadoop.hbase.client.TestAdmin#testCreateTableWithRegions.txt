@@ -1,7 +1,37 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testCreateTableWithRegions
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 198 method call(s), 20 unique method(s) called
 
-Line 153: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
+--- Line 152: try ---
+try {
+      admin.createTable(desc, splitKeys);
+      assertTrue("Should not be able to create this table because of " +
+          "duplicate split keys", false);
+    } catch(IllegalArgumentException iae) {
+      // Expected
+    }
+  Calls inside this branch:
+    admin.createTable: called 1x (line(s): 153)
+    assertTrue: called 1x (line(s): 154)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 40x (line(s): 32, 33, 35, 36, 38, 39, 41, 42, 44, 45, 47, 48, 50, 51, 53, 54, 56, 57, 59, 60, 89, 90, 92, 93, 95, 96, 98, 99, 101, 102, 104, 105, 107, 108, 110, 111, 113, 114, 116, 117)
+  Bytes.equals: called 36x (line(s): 33, 35, 36, 38, 39, 41, 42, 44, 45, 47, 48, 50, 51, 53, 54, 56, 57, 59, 90, 92, 93, 95, 96, 98, 99, 101, 102, 104, 105, 107, 108, 110, 111, 113, 114, 116)
+  hri.getStartKey: called 22x (line(s): 32, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 89, 89, 92, 95, 98, 101, 104, 107, 110, 113, 116)
+  hri.getEndKey: called 22x (line(s): 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 60, 90, 93, 96, 99, 102, 105, 108, 111, 114, 117, 117)
+  hris.next: called 20x (line(s): 31, 34, 37, 40, 43, 46, 49, 52, 55, 58, 88, 91, 94, 97, 100, 103, 106, 109, 112, 115)
+  regions.size: called 9x (line(s): 26, 27, 28, 83, 84, 85, 136, 137, 138)
+  TEST_UTIL.getConfiguration: called 6x (line(s): 23, 77, 80, 130, 133, 151)
+  Bytes.toBytes: called 4x (line(s): 4, 73, 126, 148)
+  HTableDescriptor: called 4x (line(s): 19, 75, 128, 149)
+  desc.addFamily: called 4x (line(s): 20, 76, 129, 150)
+  HColumnDescriptor: called 4x (line(s): 20, 76, 129, 150)
+  admin.createTable: called 3x (line(s): 21, 78, 131)
+  HTable: called 3x (line(s): 23, 80, 133)
+  ht.getRegionsInfo: called 3x (line(s): 24, 81, 134)
+  assertEquals: called 3x (line(s): 25, 82, 135)
+  System.err.println: called 3x (line(s): 28, 85, 138)
+  Bytes.add: called 3x (line(s): 73, 126, 148)
+  HBaseAdmin: called 3x (line(s): 77, 130, 151)
+  regions.keySet: called 2x (line(s): 30, 87)
+  iterator: called 2x (line(s): 30, 87)

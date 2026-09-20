@@ -1,19 +1,106 @@
 Test: org.apache.http.impl.nio.reactor.TestDefaultIOReactors#testGracefulShutdown
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 73 method call(s), 59 unique method(s) called
 
-Line 38: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 139: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 129: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 31: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 136: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 30: while ---
+while (requestConns.getCount() > 0) {
+                    requestConns.countDown();
+                }
+  Calls inside this branch:
+    requestConns.getCount: called 1x (line(s): 30)
+    requestConns.countDown: called 1x (line(s): 31)
+
+--- Line 37: if ---
+if (b == null) {
+                    BasicHttpRequest get = new BasicHttpRequest("GET", "/");
+                    context.setAttribute("done", Boolean.TRUE);
+                    return get;
+                }
+  Calls inside this branch:
+    BasicHttpRequest: called 1x (line(s): 38)
+    context.setAttribute: called 1x (line(s): 39)
+
+--- Line 128: for ---
+for (int i = 0; i < connNo; i++) {
+            SessionRequest sessionRequest = this.client.openConnection(
+                    new InetSocketAddress("localhost", serverAddress.getPort()),
+                    null);
+            connRequests.add(sessionRequest);
+        }
+  Calls inside this branch:
+    this.client.openConnection: called 1x (line(s): 129)
+    InetSocketAddress: called 1x (line(s): 130)
+    serverAddress.getPort: called 1x (line(s): 130)
+    connRequests.add: called 1x (line(s): 132)
+
+--- Line 135: while ---
+while (!connRequests.isEmpty()) {
+            SessionRequest sessionRequest = connRequests.remove();
+            sessionRequest.waitFor();
+            if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+            Assert.assertNotNull(sessionRequest.getSession());
+        }
+  Calls inside this branch:
+    connRequests.isEmpty: called 1x (line(s): 135)
+    connRequests.remove: called 1x (line(s): 136)
+    sessionRequest.waitFor: called 1x (line(s): 137)
+    Assert.assertNotNull: called 1x (line(s): 141)
+    sessionRequest.getSession: called 1x (line(s): 141)
+
+--- Line 138: if ---
+if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+  Calls inside this branch:
+    sessionRequest.getException: called 2x (line(s): 138, 139)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 5x (line(s): 125, 144, 147, 152, 153)
+  AtomicInteger: called 4x (line(s): 9, 10, 11, 12)
+  super.connectionOpen: called 2x (line(s): 57, 91)
+  super.connectionClosed: called 2x (line(s): 63, 97)
+  ImmutableHttpProcessor: called 2x (line(s): 68, 102)
+  DefaultConnectionReuseStrategy: called 2x (line(s): 78, 112)
+  CountDownLatch: called 1x (line(s): 8)
+  context.getAttribute: called 1x (line(s): 36)
+  requestConns.countDown: called 1x (line(s): 47)
+  openServerConns.incrementAndGet: called 1x (line(s): 56)
+  closedServerConns.incrementAndGet: called 1x (line(s): 62)
+  ResponseDate: called 1x (line(s): 69)
+  ResponseServer: called 1x (line(s): 70)
+  ResponseContent: called 1x (line(s): 71)
+  ResponseConnControl: called 1x (line(s): 72)
+  BufferingHttpServiceHandler: called 1x (line(s): 75)
+  DefaultHttpResponseFactory: called 1x (line(s): 77)
+  this.server.getParams: called 1x (line(s): 79)
+  serviceHandler.setHandlerResolver: called 1x (line(s): 81)
+  SimpleHttpRequestHandlerResolver: called 1x (line(s): 82)
+  serviceHandler.setEventListener: called 1x (line(s): 83)
+  openClientConns.incrementAndGet: called 1x (line(s): 90)
+  closedClientConns.incrementAndGet: called 1x (line(s): 96)
+  RequestContent: called 1x (line(s): 103)
+  RequestTargetHost: called 1x (line(s): 104)
+  RequestConnControl: called 1x (line(s): 105)
+  RequestUserAgent: called 1x (line(s): 106)
+  RequestExpectContinue: called 1x (line(s): 107)
+  BufferingHttpClientHandler: called 1x (line(s): 109)
+  this.client.getParams: called 1x (line(s): 113)
+  clientHandler.setEventListener: called 1x (line(s): 115)
+  this.server.start: called 1x (line(s): 118)
+  this.client.start: called 1x (line(s): 119)
+  this.server.getListenerEndpoint: called 1x (line(s): 121)
+  endpoint.waitFor: called 1x (line(s): 122)
+  endpoint.getAddress: called 1x (line(s): 123)
+  this.server.getStatus: called 1x (line(s): 125)
+  LinkedList<SessionRequest>: called 1x (line(s): 127)
+  this.client.getStatus: called 1x (line(s): 144)
+  requestConns.await: called 1x (line(s): 146)
+  requestConns.getCount: called 1x (line(s): 147)
+  this.client.shutdown: called 1x (line(s): 149)
+  this.server.shutdown: called 1x (line(s): 150)
+  openClientConns.get: called 1x (line(s): 152)
+  closedClientConns.get: called 1x (line(s): 152)
+  openServerConns.get: called 1x (line(s): 153)
+  closedServerConns.get: called 1x (line(s): 153)

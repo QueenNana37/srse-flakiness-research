@@ -1,16 +1,34 @@
 Test: com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseCachingByResponseCode
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 18 method call(s), 1 unique method(s) called
 
-Line 20: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 23: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 30: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 33: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 19: for ---
+for (int i = 302; i <= 308; ++i) {
+      assertCached(false, i);
+    }
+  Calls inside this branch:
+    assertCached: called 1x (line(s): 20)
+
+--- Line 22: for ---
+for (int i = 400; i <= 406; ++i) {
+      assertCached(false, i);
+    }
+  Calls inside this branch:
+    assertCached: called 1x (line(s): 23)
+
+--- Line 29: for ---
+for (int i = 411; i <= 418; ++i) {
+      assertCached(false, i);
+    }
+  Calls inside this branch:
+    assertCached: called 1x (line(s): 30)
+
+--- Line 32: for ---
+for (int i = 500; i <= 506; ++i) {
+      assertCached(false, i);
+    }
+  Calls inside this branch:
+    assertCached: called 1x (line(s): 33)
+
+Calls NOT inside any branch (always run):
+  assertCached: called 14x (line(s): 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27)

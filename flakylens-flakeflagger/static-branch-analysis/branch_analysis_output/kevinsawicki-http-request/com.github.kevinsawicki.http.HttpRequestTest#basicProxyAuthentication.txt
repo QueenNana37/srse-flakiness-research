@@ -1,5 +1,20 @@
 Test: com.github.kevinsawicki.http.HttpRequestTest#basicProxyAuthentication
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 16 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 13, 14, 15, 16)
+  AtomicBoolean: called 1x (line(s): 3)
+  finalHostReached.set: called 1x (line(s): 8)
+  response.setStatus: called 1x (line(s): 9)
+  assertTrue: called 1x (line(s): 12)
+  get: called 1x (line(s): 12)
+  useProxy: called 1x (line(s): 12)
+  proxyBasic: called 1x (line(s): 12)
+  ok: called 1x (line(s): 12)
+  proxyUser.get: called 1x (line(s): 13)
+  proxyPassword.get: called 1x (line(s): 14)
+  finalHostReached.get: called 1x (line(s): 15)
+  proxyHitCount.get: called 1x (line(s): 16)

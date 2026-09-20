@@ -1,7 +1,27 @@
 Test: com.ea.orbit.actors.test.DeactivationTest#cleanupTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 23 method call(s), 12 unique method(s) called
 
-Line 11: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 10: for ---
+for (int i = 0; i < 25; i++)
+        {
+            set.add(actor1.getUniqueActivationId().get());
+        }
+  Calls inside this branch:
+    set.add: called 1x (line(s): 12)
+    actor1.getUniqueActivationId: called 1x (line(s): 12)
+    get: called 1x (line(s): 12)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 14, 19, 24)
+  set.size: called 3x (line(s): 14, 19, 24)
+  stage.cleanup: called 2x (line(s): 17, 22)
+  set.add: called 2x (line(s): 18, 23)
+  actor1.getUniqueActivationId: called 2x (line(s): 18, 23)
+  get: called 2x (line(s): 18, 23)
+  createStage: called 1x (line(s): 4)
+  createClient: called 1x (line(s): 5)
+  client.getReference: called 1x (line(s): 7)
+  HashSet<>: called 1x (line(s): 9)
+  clock.incrementTimeMillis: called 1x (line(s): 21)
+  TimeUnit.MINUTES.toMillis: called 1x (line(s): 21)

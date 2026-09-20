@@ -1,5 +1,18 @@
 Test: tachyon.JournalTest#EmptyImageTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  mLocalTachyonCluster.stop: called 1x (line(s): 3)
+  Journal: called 1x (line(s): 4)
+  MasterConf.get: called 1x (line(s): 4)
+  MasterInfo: called 1x (line(s): 5)
+  InetSocketAddress: called 1x (line(s): 5)
+  Assert.assertEquals: called 1x (line(s): 6)
+  info.ls: called 1x (line(s): 6)
+  size: called 1x (line(s): 6)
+  Assert.assertTrue: called 1x (line(s): 7)
+  info.getFileId: called 1x (line(s): 7)
+  info.stop: called 1x (line(s): 8)

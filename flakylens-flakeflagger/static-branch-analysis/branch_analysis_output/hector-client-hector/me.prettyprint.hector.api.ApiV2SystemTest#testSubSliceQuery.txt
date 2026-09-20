@@ -1,10 +1,41 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testSubSliceQuery
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 40 method call(s), 21 unique method(s) called
 
-Line 37: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 36: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 35: for ---
+for (HColumn<String, String> column : slice.getColumns()) {
+      if (!column.getName().equals("c000") && !column.getName().equals("c110")) {
+        fail("A columns with unexpected column name returned: " + column.getName());
+      }
+    }
+  Calls inside this branch:
+    slice.getColumns: called 1x (line(s): 35)
+
+--- Line 36: if ---
+if (!column.getName().equals("c000") && !column.getName().equals("c110")) {
+        fail("A columns with unexpected column name returned: " + column.getName());
+      }
+  Calls inside this branch:
+    column.getName: called 3x (line(s): 36, 36, 37)
+    equals: called 2x (line(s): 36, 36)
+    fail: called 1x (line(s): 37)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 6x (line(s): 17, 19, 32, 34, 46, 48)
+  q.execute: called 3x (line(s): 16, 31, 45)
+  r.get: called 3x (line(s): 18, 33, 47)
+  createSubSliceQuery: called 2x (line(s): 10, 25)
+  q.setColumnFamily: called 2x (line(s): 11, 26)
+  q.setSuperColumn: called 2x (line(s): 12, 28)
+  q.setKey: called 2x (line(s): 13, 27)
+  assertEquals: called 2x (line(s): 20, 22)
+  slice.getColumns: called 2x (line(s): 20, 49)
+  insertSuperColumns: called 1x (line(s): 6)
+  q.setColumnNames: called 1x (line(s): 15)
+  size: called 1x (line(s): 20)
+  slice.getColumnByName: called 1x (line(s): 22)
+  getValue: called 1x (line(s): 22)
+  q.setRange: called 1x (line(s): 30)
+  deleteColumns: called 1x (line(s): 42)
+  assertTrue: called 1x (line(s): 49)
+  isEmpty: called 1x (line(s): 49)

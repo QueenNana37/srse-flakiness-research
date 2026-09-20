@@ -1,10 +1,27 @@
 Test: tachyon.JournalTest#FileFolderTest
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 8 method call(s), 7 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int i = 0; i < 10; i ++) {
+      mTfs.mkdir("/i" + i);
+      for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+      }
+    }
+  Calls inside this branch:
+    mTfs.mkdir: called 1x (line(s): 4)
+
+--- Line 5: for ---
+for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+      }
+  Calls inside this branch:
+    mTfs.createFile: called 1x (line(s): 6)
+
+Calls NOT inside any branch (always run):
+  FileFolderUtil: called 2x (line(s): 10, 13)
+  mLocalTachyonCluster.stop: called 1x (line(s): 9)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 11)
+  UnderFileSystem.get: called 1x (line(s): 12)
+  delete: called 1x (line(s): 12)

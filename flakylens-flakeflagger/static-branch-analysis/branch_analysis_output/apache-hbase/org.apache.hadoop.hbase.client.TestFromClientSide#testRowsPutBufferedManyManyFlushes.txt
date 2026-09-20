@@ -1,10 +1,34 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPutBufferedManyManyFlushes
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 18 method call(s), 14 unique method(s) called
 
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 27: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 12: for ---
+for (int i = 0; i < NB_BATCH_ROWS * 10; i++) {
+      byte[] row = Bytes.toBytes("row" + i);
+      Put put = new Put(row);
+      put.add(CONTENTS_FAMILY, null, value);
+      rowsUpdate.add(put);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 13)
+    Put: called 1x (line(s): 14)
+    put.add: called 1x (line(s): 15)
+    rowsUpdate.add: called 1x (line(s): 16)
+
+--- Line 26: for ---
+for (@SuppressWarnings("unused")
+    Result row : scanner)
+      nbRows++;
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 4x (line(s): 3, 4, 5, 7)
+  TEST_UTIL.createTable: called 1x (line(s): 7)
+  table.setAutoFlush: called 1x (line(s): 9)
+  table.setWriteBufferSize: called 1x (line(s): 10)
+  ArrayList<Put>: called 1x (line(s): 11)
+  table.put: called 1x (line(s): 18)
+  table.flushCommits: called 1x (line(s): 20)
+  Scan: called 1x (line(s): 22)
+  scan.addFamily: called 1x (line(s): 23)
+  table.getScanner: called 1x (line(s): 24)
+  assertEquals: called 1x (line(s): 29)

@@ -1,5 +1,11 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testTableNameClash
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 4 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  admin.createTable: called 2x (line(s): 4, 5)
+  HTableDescriptor: called 2x (line(s): 4, 5)
+  HTable: called 1x (line(s): 7)
+  TEST_UTIL.getConfiguration: called 1x (line(s): 7)

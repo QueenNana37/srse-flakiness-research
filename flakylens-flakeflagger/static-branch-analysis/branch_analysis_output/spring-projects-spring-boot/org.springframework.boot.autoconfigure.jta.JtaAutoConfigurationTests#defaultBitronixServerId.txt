@@ -1,5 +1,15 @@
 Test: org.springframework.boot.autoconfigure.jta.JtaAutoConfigurationTests#defaultBitronixServerId
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  AnnotationConfigApplicationContext: called 1x (line(s): 3)
+  this.context.getBean: called 1x (line(s): 5)
+  getServerId: called 1x (line(s): 6)
+  assertThat: called 1x (line(s): 7)
+  is: called 1x (line(s): 7)
+  equalTo: called 1x (line(s): 7)
+  InetAddress.getLocalHost: called 1x (line(s): 7)
+  getHostAddress: called 1x (line(s): 7)

@@ -1,5 +1,22 @@
 Test: com.squareup.okhttp.internal.http.URLConnectionTest#gzipWithRedirectAndConnectionReuse
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  server.enqueue: called 2x (line(s): 2, 7)
+  MockResponse: called 2x (line(s): 2, 7)
+  addHeader: called 2x (line(s): 4, 5)
+  setBody: called 2x (line(s): 6, 7)
+  server.takeRequest: called 2x (line(s): 13, 16)
+  assertEquals: called 2x (line(s): 14, 17)
+  setResponseCode: called 1x (line(s): 3)
+  gzip: called 1x (line(s): 6)
+  getBytes: called 1x (line(s): 6)
+  server.play: called 1x (line(s): 8)
+  client.open: called 1x (line(s): 10)
+  server.getUrl: called 1x (line(s): 10)
+  assertContent: called 1x (line(s): 11)
+  requestA.getSequenceNumber: called 1x (line(s): 14)
+  requestB.getSequenceNumber: called 1x (line(s): 17)

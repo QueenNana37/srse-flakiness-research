@@ -1,13 +1,42 @@
 Test: tachyon.DataServerTest#readTest
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 22 method call(s), 17 unique method(s) called
 
-Line 16: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 10: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 9: while ---
+while (!sendMsg.finishSending()) {
+      sendMsg.send(socketChannel);
+    }
+  Calls inside this branch:
+    sendMsg.finishSending: called 1x (line(s): 9)
+    sendMsg.send: called 1x (line(s): 10)
+
+--- Line 13: while ---
+while (!recvMsg.isMessageReady()) {
+      int numRead = recvMsg.recv(socketChannel);
+      if (numRead == -1) {
+        break;
+      }
+    }
+  Calls inside this branch:
+    recvMsg.isMessageReady: called 1x (line(s): 13)
+    recvMsg.recv: called 1x (line(s): 14)
+
+--- Line 15: if ---
+if (numRead == -1) {
+        break;
+      }
+
+Calls NOT inside any branch (always run):
+  get: called 4x (line(s): 7, 7, 8, 8)
+  mTFS.getFileBlocks: called 2x (line(s): 7, 8)
+  getLocations: called 2x (line(s): 7, 8)
+  TestUtils.createByteFile: called 1x (line(s): 3)
+  mTFS.getBlockId: called 1x (line(s): 4)
+  DataServerMessage.createBlockRequestMessage: called 1x (line(s): 5)
+  SocketChannel.open: called 1x (line(s): 6)
+  InetSocketAddress: called 1x (line(s): 6)
+  DataServerMessage.createBlockResponseMessage: called 1x (line(s): 12)
+  socketChannel.close: called 1x (line(s): 19)
+  Assert.assertEquals: called 1x (line(s): 20)
+  TestUtils.getIncreasingByteBuffer: called 1x (line(s): 20)
+  recvMsg.getReadOnlyData: called 1x (line(s): 20)

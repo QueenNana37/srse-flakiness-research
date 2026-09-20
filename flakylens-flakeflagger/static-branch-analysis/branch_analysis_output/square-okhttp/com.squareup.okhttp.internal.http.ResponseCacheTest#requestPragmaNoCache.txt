@@ -1,5 +1,18 @@
 Test: com.squareup.okhttp.internal.http.ResponseCacheTest#requestPragmaNoCache
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  addHeader: called 3x (line(s): 3, 4, 5)
+  server.enqueue: called 2x (line(s): 2, 7)
+  MockResponse: called 2x (line(s): 3, 7)
+  formatDate: called 2x (line(s): 3, 4)
+  setBody: called 2x (line(s): 6, 7)
+  assertEquals: called 2x (line(s): 11, 14)
+  readAscii: called 2x (line(s): 11, 14)
+  openConnection: called 2x (line(s): 11, 12)
+  server.play: called 1x (line(s): 8)
+  server.getUrl: called 1x (line(s): 10)
+  connection.setRequestProperty: called 1x (line(s): 13)

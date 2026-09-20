@@ -1,28 +1,114 @@
 Test: org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testUsingMetaAndBinary
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 54 method call(s), 30 unique method(s) called
 
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 16: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 28: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 51: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 49: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
+--- Line 11: for ---
+for (char c = 'A'; c < 'D'; c++) {
+      HTableDescriptor htd = new HTableDescriptor("" + c);
+      final int last = 128;
+      final int interval = 2;
+      for (int i = 0; i <= last; i += interval) {
+        HRegionInfo hri = new HRegionInfo(htd,
+          i == 0? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i),
+          i == last? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i + interval));
+        Put put = new Put(hri.getRegionName());
+        put.add(CATALOG_FAMILY, REGIONINFO_QUALIFIER, Writables.getBytes(hri));
+        mr.put(put, false);
+      }
+    }
+  Calls inside this branch:
+    HTableDescriptor: called 1x (line(s): 12)
+
+--- Line 15: for ---
+for (int i = 0; i <= last; i += interval) {
+        HRegionInfo hri = new HRegionInfo(htd,
+          i == 0? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i),
+          i == last? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i + interval));
+        Put put = new Put(hri.getRegionName());
+        put.add(CATALOG_FAMILY, REGIONINFO_QUALIFIER, Writables.getBytes(hri));
+        mr.put(put, false);
+      }
+  Calls inside this branch:
+    HRegionInfo: called 1x (line(s): 16)
+    Put: called 1x (line(s): 19)
+    hri.getRegionName: called 1x (line(s): 19)
+    put.add: called 1x (line(s): 20)
+    Writables.getBytes: called 1x (line(s): 20)
+    mr.put: called 1x (line(s): 21)
+
+--- Line 17: ternary ---
+i == 0? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i)
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 17)
+
+--- Line 18: ternary ---
+i == last? HConstants.EMPTY_BYTE_ARRAY: Bytes.toBytes((byte)i + interval)
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 18)
+
+--- Line 25: try ---
+try {
+      List<KeyValue> keys = new ArrayList<KeyValue>();
+      while(s.next(keys)) {
+        LOG.info(keys);
+        keys.clear();
+      }
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    ArrayList<KeyValue>: called 1x (line(s): 26)
+    s.close: called 1x (line(s): 32)
+
+--- Line 27: while ---
+while(s.next(keys)) {
+        LOG.info(keys);
+        keys.clear();
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 27)
+    LOG.info: called 1x (line(s): 28)
+    keys.clear: called 1x (line(s): 29)
+
+--- Line 48: try ---
+try {
+      List<KeyValue> keys = new ArrayList<KeyValue>();
+      while (s.next(keys)) {
+        mr.delete(new Delete(keys.get(0).getRow()), null, false);
+        keys.clear();
+      }
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    ArrayList<KeyValue>: called 1x (line(s): 49)
+    s.close: called 1x (line(s): 55)
+
+--- Line 50: while ---
+while (s.next(keys)) {
+        mr.delete(new Delete(keys.get(0).getRow()), null, false);
+        keys.clear();
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 50)
+    mr.delete: called 1x (line(s): 51)
+    Delete: called 1x (line(s): 51)
+    keys.get: called 1x (line(s): 51)
+    getRow: called 1x (line(s): 51)
+    keys.clear: called 1x (line(s): 52)
+
+Calls NOT inside any branch (always run):
+  findRow: called 16x (line(s): 34, 35, 36, 37, 39, 40, 41, 42, 58, 59, 60, 61, 63, 64, 65, 66)
+  mr.getScanner: called 2x (line(s): 24, 47)
+  Scan: called 2x (line(s): 24, 46)
+  mr.flushcache: called 2x (line(s): 38, 62)
+  FileSystem.get: called 1x (line(s): 2)
+  filesystem.makeQualified: called 1x (line(s): 3)
+  Path: called 1x (line(s): 3)
+  conf.get: called 1x (line(s): 3)
+  filesystem.mkdirs: called 1x (line(s): 4)
+  HRegionInfo.FIRST_META_REGIONINFO.getTableDesc: called 1x (line(s): 6)
+  setMemStoreFlushSize: called 1x (line(s): 7)
+  HRegion.createHRegion: called 1x (line(s): 8)
+  HRegionInfo.createRegionName: called 1x (line(s): 44)
+  Bytes.toBytes: called 1x (line(s): 44)

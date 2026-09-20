@@ -1,5 +1,22 @@
 Test: org.springframework.boot.cli.JarCommandIT#jarCreationWithGrabResolver
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 25 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  invocation.getErrorOutput: called 4x (line(s): 7, 10, 10, 18)
+  jar.getAbsolutePath: called 3x (line(s): 4, 8, 14)
+  invocation.await: called 3x (line(s): 6, 9, 16)
+  this.cli.invoke: called 2x (line(s): 4, 8)
+  assertThat: called 2x (line(s): 7, 18)
+  equalTo: called 2x (line(s): 7, 18)
+  File: called 1x (line(s): 3)
+  assertEquals: called 1x (line(s): 10)
+  length: called 1x (line(s): 10)
+  assertTrue: called 1x (line(s): 11)
+  jar.exists: called 1x (line(s): 11)
+  JavaExecutable: called 1x (line(s): 13)
+  processBuilder: called 1x (line(s): 13)
+  start: called 1x (line(s): 14)
+  Invocation: called 1x (line(s): 15)

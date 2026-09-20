@@ -1,10 +1,45 @@
 Test: com.squareup.okhttp.internal.http.URLConnectionTest#responseHeaders
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 46 method call(s), 21 unique method(s) called
 
-Line 18: try statement
-    -> try-block completes normally
-    -> catch triggered: UnsupportedOperationException
-Line 23: try statement
-    -> try-block completes normally
-    -> catch triggered: UnsupportedOperationException
+--- Line 17: try ---
+try {
+      responseHeaders.put("N", Arrays.asList("o"));
+      fail("Modified an unmodifiable view.");
+    } catch (UnsupportedOperationException expected) {
+    }
+  Calls inside this branch:
+    responseHeaders.put: called 1x (line(s): 18)
+    Arrays.asList: called 1x (line(s): 18)
+    fail: called 1x (line(s): 19)
+
+--- Line 22: try ---
+try {
+      responseHeaders.get("A").add("f");
+      fail("Modified an unmodifiable view.");
+    } catch (UnsupportedOperationException expected) {
+    }
+  Calls inside this branch:
+    responseHeaders.get: called 1x (line(s): 23)
+    add: called 1x (line(s): 23)
+    fail: called 1x (line(s): 24)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 12x (line(s): 10, 11, 12, 14, 15, 16, 27, 28, 29, 30, 31, 32)
+  connection.getHeaderField: called 4x (line(s): 12, 28, 30, 32)
+  addHeader: called 3x (line(s): 3, 4, 5)
+  responseHeaders.get: called 3x (line(s): 14, 15, 16)
+  connection.getHeaderFieldKey: called 3x (line(s): 27, 29, 31)
+  newSet: called 2x (line(s): 15, 16)
+  HashSet<String>: called 2x (line(s): 15, 16)
+  server.enqueue: called 1x (line(s): 2)
+  MockResponse: called 1x (line(s): 2)
+  setStatus: called 1x (line(s): 2)
+  setChunkedBody: called 1x (line(s): 6)
+  server.play: called 1x (line(s): 7)
+  client.open: called 1x (line(s): 9)
+  server.getUrl: called 1x (line(s): 9)
+  connection.getResponseCode: called 1x (line(s): 10)
+  connection.getResponseMessage: called 1x (line(s): 11)
+  connection.getHeaderFields: called 1x (line(s): 13)
+  Arrays.asList: called 1x (line(s): 14)

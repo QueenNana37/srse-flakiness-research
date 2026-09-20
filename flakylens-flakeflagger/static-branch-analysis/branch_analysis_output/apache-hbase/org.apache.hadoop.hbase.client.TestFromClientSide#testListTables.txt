@@ -1,19 +1,58 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testListTables
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 15 method call(s), 12 unique method(s) called
 
-Line 22: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 19: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 21: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < tables.length; i++) {
+      TEST_UTIL.createTable(tables[i], FAMILY);
+    }
+  Calls inside this branch:
+    TEST_UTIL.createTable: called 1x (line(s): 8)
+
+--- Line 13: for ---
+for (int i = 0; i < ts.length; i++) {
+      result.add(ts[i]);
+    }
+  Calls inside this branch:
+    result.add: called 1x (line(s): 14)
+
+--- Line 18: for ---
+for (int i = 0; i < tables.length && i < size; i++) {
+      boolean found = false;
+      for (int j = 0; j < ts.length; j++) {
+        if (Bytes.equals(ts[j].getName(), tables[i])) {
+          found = true;
+          break;
+        }
+      }
+      assertTrue("Not found: " + Bytes.toString(tables[i]), found);
+    }
+  Calls inside this branch:
+    assertTrue: called 1x (line(s): 26)
+    Bytes.toString: called 1x (line(s): 26)
+
+--- Line 20: for ---
+for (int j = 0; j < ts.length; j++) {
+        if (Bytes.equals(ts[j].getName(), tables[i])) {
+          found = true;
+          break;
+        }
+      }
+
+--- Line 21: if ---
+if (Bytes.equals(ts[j].getName(), tables[i])) {
+          found = true;
+          break;
+        }
+  Calls inside this branch:
+    Bytes.equals: called 1x (line(s): 21)
+    getName: called 1x (line(s): 21)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 3x (line(s): 3, 4, 5)
+  HBaseAdmin: called 1x (line(s): 10)
+  TEST_UTIL.getConfiguration: called 1x (line(s): 10)
+  admin.listTables: called 1x (line(s): 11)
+  HashSet<HTableDescriptor>: called 1x (line(s): 12)
+  result.size: called 1x (line(s): 16)
+  assertTrue: called 1x (line(s): 17)

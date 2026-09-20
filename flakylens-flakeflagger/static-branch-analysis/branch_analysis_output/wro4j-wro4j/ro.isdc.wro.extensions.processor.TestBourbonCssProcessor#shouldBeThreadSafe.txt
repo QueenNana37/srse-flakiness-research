@@ -1,7 +1,18 @@
 Test: ro.isdc.wro.extensions.processor.TestBourbonCssProcessor#shouldBeThreadSafe
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 5 method call(s), 5 unique method(s) called
 
-Line 6: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 5: try ---
+try {
+          processor.process(new StringReader("h3#heading {  font-size: modular-scale(14px, 1, 1.618); }"), new StringWriter());
+        } catch (final Exception e) {
+          throw new RuntimeException(e);
+        }
+  Calls inside this branch:
+    processor.process: called 1x (line(s): 6)
+    StringReader: called 1x (line(s): 6)
+    StringWriter: called 1x (line(s): 6)
+    RuntimeException: called 1x (line(s): 8)
+
+Calls NOT inside any branch (always run):
+  WroTestUtils.runConcurrently: called 1x (line(s): 13)

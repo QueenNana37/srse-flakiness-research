@@ -1,5 +1,39 @@
 Test: org.activiti.engine.test.bpmn.event.timer.BoundaryTimerNonInterruptingEventTest#testMultipleTimersOnUserTask
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 83 method call(s), 32 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 14x (line(s): 9, 13, 23, 26, 28, 29, 35, 36, 43, 46, 48, 49, 55, 57)
+  taskService.createTaskQuery: called 9x (line(s): 8, 26, 27, 35, 36, 46, 47, 55, 56)
+  taskList.get: called 6x (line(s): 28, 29, 32, 48, 49, 52)
+  getName: called 5x (line(s): 28, 29, 36, 48, 49)
+  singleResult: called 4x (line(s): 8, 17, 36, 56)
+  count: called 4x (line(s): 26, 35, 46, 55)
+  Date: called 3x (line(s): 4, 16, 39)
+  taskService.complete: called 3x (line(s): 32, 52, 59)
+  managementService.createTimerJobQuery: called 2x (line(s): 11, 17)
+  pi.getId: called 2x (line(s): 11, 62)
+  processEngineConfiguration.getClock: called 2x (line(s): 16, 39)
+  setCurrentTime: called 2x (line(s): 16, 39)
+  startTime.getTime: called 2x (line(s): 16, 39)
+  job.getId: called 2x (line(s): 19, 20)
+  jobQuery.count: called 2x (line(s): 23, 43)
+  orderByTaskName: called 2x (line(s): 27, 47)
+  desc: called 2x (line(s): 27, 47)
+  list: called 2x (line(s): 27, 47)
+  getId: called 2x (line(s): 32, 52)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 7)
+  task1.getName: called 1x (line(s): 9)
+  processInstanceId: called 1x (line(s): 11)
+  jobQuery.list: called 1x (line(s): 12)
+  jobs.size: called 1x (line(s): 13)
+  executable: called 1x (line(s): 17)
+  assertNotNull: called 1x (line(s): 18)
+  managementService.moveTimerToExecutableJob: called 1x (line(s): 19)
+  managementService.executeJob: called 1x (line(s): 20)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 40)
+  escalationTask.getName: called 1x (line(s): 57)
+  escalationTask.getId: called 1x (line(s): 59)
+  assertProcessEnded: called 1x (line(s): 62)

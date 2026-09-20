@@ -1,7 +1,19 @@
 Test: ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldBeThreadSafe
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 5 method call(s), 5 unique method(s) called
 
-Line 8: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 7: try ---
+try {
+          processor.process(new StringReader(
+              "$side: top;$radius: 10px;.rounded-#{$side} {border-#{$side}-radius: $radius;}"), new StringWriter());
+        } catch (final Exception e) {
+          throw new RuntimeException(e);
+        }
+  Calls inside this branch:
+    processor.process: called 1x (line(s): 8)
+    StringReader: called 1x (line(s): 8)
+    StringWriter: called 1x (line(s): 9)
+    RuntimeException: called 1x (line(s): 11)
+
+Calls NOT inside any branch (always run):
+  WroTestUtils.runConcurrently: called 1x (line(s): 16)

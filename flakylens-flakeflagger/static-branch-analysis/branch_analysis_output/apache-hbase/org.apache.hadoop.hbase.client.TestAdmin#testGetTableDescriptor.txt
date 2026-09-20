@@ -1,5 +1,15 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testGetTableDescriptor
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 12 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  HColumnDescriptor: called 3x (line(s): 3, 4, 5)
+  htd.addFamily: called 3x (line(s): 7, 8, 9)
+  HTableDescriptor: called 1x (line(s): 6)
+  this.admin.createTable: called 1x (line(s): 10)
+  HTable: called 1x (line(s): 11)
+  table.getTableDescriptor: called 1x (line(s): 12)
+  assertEquals: called 1x (line(s): 14)
+  htd.compareTo: called 1x (line(s): 14)

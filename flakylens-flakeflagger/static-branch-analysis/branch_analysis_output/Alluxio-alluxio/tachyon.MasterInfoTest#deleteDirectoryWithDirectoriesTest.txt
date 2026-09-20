@@ -1,5 +1,13 @@
 Test: tachyon.MasterInfoTest#deleteDirectoryWithDirectoriesTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 24 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 8x (line(s): 9, 10, 11, 12, 14, 15, 16, 17)
+  mMasterInfo.getFileId: called 8x (line(s): 9, 10, 11, 12, 14, 15, 16, 17)
+  Assert.assertTrue: called 3x (line(s): 4, 5, 13)
+  mMasterInfo.mkdir: called 2x (line(s): 4, 5)
+  mMasterInfo.createFile: called 2x (line(s): 6, 7)
+  mMasterInfo.delete: called 1x (line(s): 13)

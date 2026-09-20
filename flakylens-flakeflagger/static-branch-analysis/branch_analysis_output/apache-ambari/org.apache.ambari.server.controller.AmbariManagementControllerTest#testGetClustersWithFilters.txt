@@ -1,5 +1,24 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetClustersWithFilters
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 46 method call(s), 17 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 6x (line(s): 19, 23, 24, 29, 33, 34)
+  clusters.addCluster: called 4x (line(s): 3, 4, 5, 6)
+  clusters.getCluster: called 4x (line(s): 8, 9, 10, 11)
+  ClusterRequest: called 4x (line(s): 17, 21, 27, 31)
+  controller.getClusters: called 4x (line(s): 18, 22, 28, 32)
+  Collections.singleton: called 4x (line(s): 18, 22, 28, 32)
+  resp.size: called 4x (line(s): 19, 23, 29, 33)
+  StackId: called 3x (line(s): 13, 14, 15)
+  resp.iterator: called 2x (line(s): 25, 35)
+  next: called 2x (line(s): 25, 35)
+  getClusterId: called 2x (line(s): 25, 35)
+  longValue: called 2x (line(s): 25, 35)
+  c1.setDesiredStackVersion: called 1x (line(s): 13)
+  c2.setDesiredStackVersion: called 1x (line(s): 14)
+  c3.setDesiredStackVersion: called 1x (line(s): 15)
+  c1.getClusterId: called 1x (line(s): 24)
+  c4.getClusterId: called 1x (line(s): 34)

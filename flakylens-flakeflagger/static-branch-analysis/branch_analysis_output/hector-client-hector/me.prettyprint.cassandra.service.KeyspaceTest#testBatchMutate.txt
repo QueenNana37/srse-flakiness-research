@@ -1,31 +1,170 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testBatchMutate
 STATUS: parsed successfully
-Branch points found: 9
+Summary: 9 branch point(s), 48 method call(s), 31 unique method(s) called
 
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 10: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 28: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 29: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 42: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 46: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 60: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 61: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 64: try statement
-    -> try-block completes normally
-    -> catch triggered: HNotFoundException
+--- Line 4: for ---
+for (int i = 0; i < 10; i++) {
+
+      Map<String, List<Mutation>> mutationMap = new HashMap<String, List<Mutation>>();
+
+      ArrayList<Mutation> mutations = new ArrayList<Mutation>(10);
+      for (int j = 0; j < 10; j++) {
+        Column col = new Column(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j),
+            StringSerializer.get().toByteBuffer("testBatchMutateColumn_value_" + j), connectionManager.createClock());
+        //list.add(col);
+        ColumnOrSuperColumn cosc = new ColumnOrSuperColumn();
+        cosc.setColumn(col);
+        Mutation mutation = new Mutation();
+        mutation.setColumn_or_supercolumn(cosc);
+        mutations.add(mutation);
+      }
+      mutationMap.put("Standard1", mutations);
+      outerMutationMap.put("testBatchMutateColumn_" + i, mutationMap);
+    }
+  Calls inside this branch:
+    HashMap<String, List<Mutation>>: called 1x (line(s): 6)
+    ArrayList<Mutation>: called 1x (line(s): 8)
+    mutationMap.put: called 1x (line(s): 19)
+    outerMutationMap.put: called 1x (line(s): 20)
+
+--- Line 9: for ---
+for (int j = 0; j < 10; j++) {
+        Column col = new Column(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j),
+            StringSerializer.get().toByteBuffer("testBatchMutateColumn_value_" + j), connectionManager.createClock());
+        //list.add(col);
+        ColumnOrSuperColumn cosc = new ColumnOrSuperColumn();
+        cosc.setColumn(col);
+        Mutation mutation = new Mutation();
+        mutation.setColumn_or_supercolumn(cosc);
+        mutations.add(mutation);
+      }
+  Calls inside this branch:
+    StringSerializer.get: called 2x (line(s): 10, 11)
+    toByteBuffer: called 2x (line(s): 10, 11)
+    Column: called 1x (line(s): 10)
+    connectionManager.createClock: called 1x (line(s): 11)
+    ColumnOrSuperColumn: called 1x (line(s): 13)
+    cosc.setColumn: called 1x (line(s): 14)
+    Mutation: called 1x (line(s): 15)
+    mutation.setColumn_or_supercolumn: called 1x (line(s): 16)
+    mutations.add: called 1x (line(s): 17)
+
+--- Line 27: for ---
+for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+
+        Column col = keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+        assertNotNull(col);
+        String value = string(col.getValue());
+        assertEquals("testBatchMutateColumn_value_" + j, value);
+
+      }
+    }
+
+--- Line 28: for ---
+for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+
+        Column col = keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+        assertNotNull(col);
+        String value = string(col.getValue());
+        assertEquals("testBatchMutateColumn_value_" + j, value);
+
+      }
+  Calls inside this branch:
+    ColumnPath: called 1x (line(s): 29)
+    cp.setColumn: called 1x (line(s): 30)
+    bytes: called 1x (line(s): 30)
+    keyspace.getColumn: called 1x (line(s): 32)
+    assertNotNull: called 1x (line(s): 33)
+    string: called 1x (line(s): 34)
+    col.getValue: called 1x (line(s): 34)
+    assertEquals: called 1x (line(s): 35)
+
+--- Line 41: for ---
+for (int i = 0; i < 10; i++) {
+      ArrayList<Mutation> mutations = new ArrayList<Mutation>(10);
+      Map<String, List<Mutation>> mutationMap = new HashMap<String, List<Mutation>>();
+      SlicePredicate slicePredicate = new SlicePredicate();
+      for (int j = 0; j < 10; j++) {
+        slicePredicate.addToColumn_names(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j));
+      }
+      Mutation mutation = new Mutation();
+      Deletion deletion = new Deletion(connectionManager.createClock());
+      deletion.setPredicate(slicePredicate);
+      mutation.setDeletion(deletion);
+      mutations.add(mutation);
+
+      mutationMap.put("Standard1", mutations);
+      outerMutationMap.put("testBatchMutateColumn_"+i, mutationMap);
+    }
+  Calls inside this branch:
+    ArrayList<Mutation>: called 1x (line(s): 42)
+    HashMap<String, List<Mutation>>: called 1x (line(s): 43)
+    SlicePredicate: called 1x (line(s): 44)
+    Mutation: called 1x (line(s): 48)
+    Deletion: called 1x (line(s): 49)
+    connectionManager.createClock: called 1x (line(s): 49)
+    deletion.setPredicate: called 1x (line(s): 50)
+    mutation.setDeletion: called 1x (line(s): 51)
+    mutations.add: called 1x (line(s): 52)
+    mutationMap.put: called 1x (line(s): 54)
+    outerMutationMap.put: called 1x (line(s): 55)
+
+--- Line 45: for ---
+for (int j = 0; j < 10; j++) {
+        slicePredicate.addToColumn_names(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j));
+      }
+  Calls inside this branch:
+    slicePredicate.addToColumn_names: called 1x (line(s): 46)
+    StringSerializer.get: called 1x (line(s): 46)
+    toByteBuffer: called 1x (line(s): 46)
+
+--- Line 59: for ---
+for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+        try {
+          keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+          fail();
+        } catch (HNotFoundException e) {
+        }
+
+      }
+    }
+
+--- Line 60: for ---
+for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+        try {
+          keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+          fail();
+        } catch (HNotFoundException e) {
+        }
+
+      }
+  Calls inside this branch:
+    ColumnPath: called 1x (line(s): 61)
+    cp.setColumn: called 1x (line(s): 62)
+    bytes: called 1x (line(s): 62)
+
+--- Line 63: try ---
+try {
+          keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+          fail();
+        } catch (HNotFoundException e) {
+        }
+  Calls inside this branch:
+    keyspace.getColumn: called 1x (line(s): 64)
+    fail: called 1x (line(s): 65)
+
+Calls NOT inside any branch (always run):
+  keyspace.batchMutate: called 2x (line(s): 22, 57)
+  se.toBytesMap: called 2x (line(s): 22, 57)
+  HashMap<String, Map<String,List<Mutation>>>: called 1x (line(s): 3)
+  outerMutationMap.clear: called 1x (line(s): 24)

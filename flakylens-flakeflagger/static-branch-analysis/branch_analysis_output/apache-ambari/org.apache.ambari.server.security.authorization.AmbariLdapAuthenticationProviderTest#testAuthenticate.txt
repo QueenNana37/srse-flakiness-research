@@ -1,5 +1,14 @@
 Test: org.apache.ambari.server.security.authorization.AmbariLdapAuthenticationProviderTest#testAuthenticate
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  userDAO.findLdapUserByName: called 2x (line(s): 3, 7)
+  authenticationProvider.authenticate: called 2x (line(s): 5, 8)
+  assertTrue: called 2x (line(s): 6, 9)
+  result.isAuthenticated: called 2x (line(s): 6, 9)
+  assertNull: called 1x (line(s): 3)
+  UsernamePasswordAuthenticationToken: called 1x (line(s): 4)
+  assertNotNull: called 1x (line(s): 7)

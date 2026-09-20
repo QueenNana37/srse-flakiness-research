@@ -1,5 +1,21 @@
 Test: com.squareup.okhttp.internal.http.ResponseCacheTest#cacheCanUseCriteriaBesidesVariantObeyed
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 34 method call(s), 14 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 7x (line(s): 13, 16, 17, 21, 22, 26, 27)
+  addHeader: called 4x (line(s): 3, 4, 6, 7)
+  openConnection: called 4x (line(s): 11, 14, 19, 24)
+  readAscii: called 4x (line(s): 13, 16, 21, 26)
+  server.getRequestCount: called 3x (line(s): 17, 22, 27)
+  server.enqueue: called 2x (line(s): 2, 5)
+  MockResponse: called 2x (line(s): 3, 6)
+  setBody: called 2x (line(s): 4, 7)
+  server.play: called 1x (line(s): 8)
+  server.getUrl: called 1x (line(s): 10)
+  connection1.addRequestProperty: called 1x (line(s): 12)
+  connection2.addRequestProperty: called 1x (line(s): 15)
+  connection3.addRequestProperty: called 1x (line(s): 20)
+  connection4.addRequestProperty: called 1x (line(s): 25)

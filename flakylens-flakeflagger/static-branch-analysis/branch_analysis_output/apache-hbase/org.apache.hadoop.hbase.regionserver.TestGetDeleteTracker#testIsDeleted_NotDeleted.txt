@@ -1,7 +1,18 @@
 Test: org.apache.hadoop.hbase.regionserver.TestGetDeleteTracker#testIsDeleted_NotDeleted
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 9 method call(s), 6 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 8: for ---
+for(Delete del : dels){
+      dt.add(del.buffer, del.qualifierOffset, del.qualifierLength,
+          del.timestamp, del.type);
+    }
+  Calls inside this branch:
+    dt.add: called 1x (line(s): 9)
+
+Calls NOT inside any branch (always run):
+  dels.add: called 2x (line(s): 4, 5)
+  assertEquals: called 2x (line(s): 14, 15)
+  dt.isDeleted: called 2x (line(s): 14, 15)
+  ArrayList<Delete>: called 1x (line(s): 3)
+  dt.update: called 1x (line(s): 13)

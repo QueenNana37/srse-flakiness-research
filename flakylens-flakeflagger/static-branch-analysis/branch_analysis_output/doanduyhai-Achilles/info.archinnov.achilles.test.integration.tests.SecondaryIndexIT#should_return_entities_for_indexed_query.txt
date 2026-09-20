@@ -1,5 +1,19 @@
 Test: info.archinnov.achilles.test.integration.tests.SecondaryIndexIT#should_return_entities_for_indexed_query
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 18 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  CompleteBeanTestBuilder.builder: called 2x (line(s): 3, 4)
+  randomId: called 2x (line(s): 3, 4)
+  name: called 2x (line(s): 3, 4)
+  buid: called 2x (line(s): 3, 4)
+  manager.persist: called 2x (line(s): 6, 7)
+  assertThat: called 2x (line(s): 12, 15)
+  IndexCondition: called 1x (line(s): 9)
+  manager.indexedQuery: called 1x (line(s): 10)
+  get: called 1x (line(s): 10)
+  hasSize: called 1x (line(s): 12)
+  actual.get: called 1x (line(s): 14)
+  isNotNull: called 1x (line(s): 15)

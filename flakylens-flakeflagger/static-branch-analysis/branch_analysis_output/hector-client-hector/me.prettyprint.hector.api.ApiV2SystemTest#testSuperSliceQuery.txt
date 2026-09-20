@@ -1,16 +1,66 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testSuperSliceQuery
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 50 method call(s), 29 unique method(s) called
 
-Line 44: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 43: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 51: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 6: for ---
+for (int j = 1; j <= 3; ++j) {
+      @SuppressWarnings("unchecked")
+      HSuperColumn<String, String, String> sc = createSuperColumn("testSuperSliceQuery" + j,
+          Arrays.asList(createColumn("name", "value", se, se)), se, se, se);
+      m.addInsertion("testSuperSliceQuery", cf, sc);
+    }
+  Calls inside this branch:
+    createSuperColumn: called 1x (line(s): 8)
+    Arrays.asList: called 1x (line(s): 9)
+    createColumn: called 1x (line(s): 9)
+    m.addInsertion: called 1x (line(s): 10)
+
+--- Line 42: for ---
+for (HSuperColumn<String, String, String> scolumn : slice.getSuperColumns()) {
+      if (!scolumn.getName().equals("testSuperSliceQuery1")
+          && !scolumn.getName().equals("testSuperSliceQuery2")) {
+        fail("A columns with unexpected column name returned: " + scolumn.getName());
+      }
+    }
+  Calls inside this branch:
+    slice.getSuperColumns: called 1x (line(s): 42)
+
+--- Line 43: if ---
+if (!scolumn.getName().equals("testSuperSliceQuery1")
+          && !scolumn.getName().equals("testSuperSliceQuery2")) {
+        fail("A columns with unexpected column name returned: " + scolumn.getName());
+      }
+  Calls inside this branch:
+    scolumn.getName: called 3x (line(s): 43, 44, 45)
+    equals: called 2x (line(s): 43, 44)
+    fail: called 1x (line(s): 45)
+
+--- Line 50: for ---
+for (int j = 1; j <= 3; ++j) {
+      m.addDeletion("testSuperSliceQuery", cf, "testSuperSliceQuery" + j, se);
+    }
+  Calls inside this branch:
+    m.addDeletion: called 1x (line(s): 51)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 6x (line(s): 24, 26, 39, 41, 57, 59)
+  q.execute: called 3x (line(s): 23, 38, 56)
+  r.get: called 3x (line(s): 25, 40, 58)
+  m.execute: called 2x (line(s): 13, 53)
+  assertTrue: called 2x (line(s): 14, 60)
+  mr.getExecutionTimeMicro: called 2x (line(s): 14, 15)
+  createSuperSliceQuery: called 2x (line(s): 18, 33)
+  q.setColumnFamily: called 2x (line(s): 19, 34)
+  q.setKey: called 2x (line(s): 20, 35)
+  assertEquals: called 2x (line(s): 27, 29)
+  slice.getSuperColumns: called 2x (line(s): 27, 60)
+  createMutator: called 1x (line(s): 5)
+  log.debug: called 1x (line(s): 15)
+  q.setColumnNames: called 1x (line(s): 22)
+  size: called 1x (line(s): 27)
+  slice.getColumnByName: called 1x (line(s): 29)
+  getColumns: called 1x (line(s): 29)
+  get: called 1x (line(s): 29)
+  getValue: called 1x (line(s): 30)
+  q.setRange: called 1x (line(s): 37)
+  isEmpty: called 1x (line(s): 60)

@@ -1,22 +1,103 @@
 Test: tachyon.client.FileInStreamTest#readTest1
 STATUS: parsed successfully
-Branch points found: 6
+Summary: 6 branch point(s), 19 method call(s), 8 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 15: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 27: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
+--- Line 3: for ---
+for (int k = MIN_LEN; k <= MAX_LEN; k += DELTA) {
+      for (WriteType op : WriteType.values()) {
+        int fileId = TestUtils.createByteFile(mTfs, "/root/testFile_" + k + "_" + op, op, k);
+
+        TachyonFile file = mTfs.getFile(fileId);
+        InStream is = (k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        byte[] ret = new byte[k];
+        int value = is.read();
+        int cnt = 0;
+        while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+        Assert.assertTrue(TestUtils.equalIncreasingByteArray(k, ret));
+        is.close();
+
+        is = (k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        ret = new byte[k];
+        value = is.read();
+        cnt = 0;
+        while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+        Assert.assertTrue(TestUtils.equalIncreasingByteArray(k, ret));
+        is.close();
+      }
+    }
+
+--- Line 4: for ---
+for (WriteType op : WriteType.values()) {
+        int fileId = TestUtils.createByteFile(mTfs, "/root/testFile_" + k + "_" + op, op, k);
+
+        TachyonFile file = mTfs.getFile(fileId);
+        InStream is = (k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        byte[] ret = new byte[k];
+        int value = is.read();
+        int cnt = 0;
+        while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+        Assert.assertTrue(TestUtils.equalIncreasingByteArray(k, ret));
+        is.close();
+
+        is = (k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        ret = new byte[k];
+        value = is.read();
+        cnt = 0;
+        while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+        Assert.assertTrue(TestUtils.equalIncreasingByteArray(k, ret));
+        is.close();
+      }
+  Calls inside this branch:
+    Assert.assertTrue: called 4x (line(s): 10, 18, 22, 30)
+    is.read: called 2x (line(s): 12, 24)
+    TestUtils.equalIncreasingByteArray: called 2x (line(s): 18, 30)
+    is.close: called 2x (line(s): 19, 31)
+    WriteType.values: called 1x (line(s): 4)
+    TestUtils.createByteFile: called 1x (line(s): 5)
+    mTfs.getFile: called 1x (line(s): 7)
+
+--- Line 8: ternary ---
+k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE)
+  Calls inside this branch:
+    file.getInStream: called 2x (line(s): 9, 9)
+
+--- Line 14: while ---
+while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+  Calls inside this branch:
+    is.read: called 1x (line(s): 16)
+
+--- Line 21: ternary ---
+k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE)
+  Calls inside this branch:
+    file.getInStream: called 2x (line(s): 21, 21)
+
+--- Line 26: while ---
+while (value != -1) {
+          ret[cnt ++] = (byte) value;
+          value = is.read();
+        }
+  Calls inside this branch:
+    is.read: called 1x (line(s): 28)
+

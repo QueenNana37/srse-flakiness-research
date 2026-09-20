@@ -1,10 +1,61 @@
 Test: tachyon.client.TachyonFSTest#deleteFileTest
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 38 method call(s), 15 unique method(s) called
 
-Line 10: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 22: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 9: for ---
+for (int k = 0; k < 5; k ++) {
+      int fileId = TestUtils.createByteFile(mTfs, "/file" + k, WriteType.MUST_CACHE, writeBytes);
+      TachyonFile file = mTfs.getFile(fileId);
+      Assert.assertTrue(file.isInMemory());
+      Assert.assertTrue(mTfs.exist("/file" + k));
+
+      workers = mTfs.getWorkersInfo();
+      Assert.assertEquals(1, workers.size());
+      Assert.assertEquals(WORKER_CAPACITY_BYTES, workers.get(0).getCapacityBytes());
+      Assert.assertEquals(writeBytes * (k + 1), workers.get(0).getUsedBytes());
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 3x (line(s): 16, 17, 18)
+    Assert.assertTrue: called 2x (line(s): 12, 13)
+    workers.get: called 2x (line(s): 17, 18)
+    TestUtils.createByteFile: called 1x (line(s): 10)
+    mTfs.getFile: called 1x (line(s): 11)
+    file.isInMemory: called 1x (line(s): 12)
+    mTfs.exist: called 1x (line(s): 13)
+    mTfs.getWorkersInfo: called 1x (line(s): 15)
+    workers.size: called 1x (line(s): 16)
+    getCapacityBytes: called 1x (line(s): 17)
+    getUsedBytes: called 1x (line(s): 18)
+
+--- Line 21: for ---
+for (int k = 0; k < 5; k ++) {
+      int fileId = mTfs.getFileId("/file" + k);
+      mTfs.delete(fileId, true);
+      Assert.assertFalse(mTfs.exist("/file" + k));
+
+      CommonUtils.sleepMs(null, SLEEP_MS);
+      workers = mTfs.getWorkersInfo();
+      Assert.assertEquals(1, workers.size());
+      Assert.assertEquals(WORKER_CAPACITY_BYTES, workers.get(0).getCapacityBytes());
+      Assert.assertEquals(writeBytes * (4 - k), workers.get(0).getUsedBytes());
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 3x (line(s): 28, 29, 30)
+    workers.get: called 2x (line(s): 29, 30)
+    mTfs.getFileId: called 1x (line(s): 22)
+    mTfs.delete: called 1x (line(s): 23)
+    Assert.assertFalse: called 1x (line(s): 24)
+    mTfs.exist: called 1x (line(s): 24)
+    CommonUtils.sleepMs: called 1x (line(s): 26)
+    mTfs.getWorkersInfo: called 1x (line(s): 27)
+    workers.size: called 1x (line(s): 28)
+    getCapacityBytes: called 1x (line(s): 29)
+    getUsedBytes: called 1x (line(s): 30)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 3x (line(s): 4, 5, 6)
+  workers.get: called 2x (line(s): 5, 6)
+  mTfs.getWorkersInfo: called 1x (line(s): 3)
+  workers.size: called 1x (line(s): 4)
+  getCapacityBytes: called 1x (line(s): 5)
+  getUsedBytes: called 1x (line(s): 6)

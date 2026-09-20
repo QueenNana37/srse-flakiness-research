@@ -1,5 +1,15 @@
 Test: org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#dependencyResolutionWithCustomClassLoader
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 10, 11)
+  HashMap<String, Object>: called 1x (line(s): 3)
+  GroovyClassLoader: called 1x (line(s): 4)
+  args.put: called 1x (line(s): 5)
+  this.grapeEngine.grab: called 1x (line(s): 7)
+  createDependency: called 1x (line(s): 8)
+  this.groovyClassLoader.getURLs: called 1x (line(s): 10)
+  customClassLoader.getURLs: called 1x (line(s): 11)

@@ -1,5 +1,26 @@
 Test: org.activiti.engine.test.api.event.ActivityEventsTest#testActivityTimeOutEvent
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 14, 16)
+  listener.getEventsReceived: called 2x (line(s): 14, 15)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 3)
+  managementService.createTimerJobQuery: called 1x (line(s): 4)
+  processInstanceId: called 1x (line(s): 4)
+  processInstance.getId: called 1x (line(s): 4)
+  singleResult: called 1x (line(s): 4)
+  assertNotNull: called 1x (line(s): 5)
+  Calendar.getInstance: called 1x (line(s): 8)
+  tomorrow.add: called 1x (line(s): 9)
+  processEngineConfiguration.getClock: called 1x (line(s): 10)
+  setCurrentTime: called 1x (line(s): 10)
+  tomorrow.getTime: called 1x (line(s): 10)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 11)
+  size: called 1x (line(s): 14)
+  get: called 1x (line(s): 15)
+  activitiEvent.getType: called 1x (line(s): 16)
+  assertTrue: called 1x (line(s): 18)
+  cancelledEvent.getCause: called 1x (line(s): 18)

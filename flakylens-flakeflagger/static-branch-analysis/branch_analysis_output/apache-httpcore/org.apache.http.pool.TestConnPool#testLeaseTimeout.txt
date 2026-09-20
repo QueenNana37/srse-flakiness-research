@@ -1,5 +1,27 @@
 Test: org.apache.http.pool.TestConnPool#testLeaseTimeout
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 25 method call(s), 20 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Mockito.mock: called 2x (line(s): 3, 5)
+  pool.lease: called 2x (line(s): 10, 13)
+  GetPoolEntryThread: called 2x (line(s): 11, 14)
+  Assert.assertTrue: called 2x (line(s): 18, 22)
+  Assert.assertFalse: called 2x (line(s): 23, 24)
+  Mockito.when: called 1x (line(s): 6)
+  connFactory.create: called 1x (line(s): 6)
+  Mockito.eq: called 1x (line(s): 6)
+  thenReturn: called 1x (line(s): 6)
+  LocalConnPool: called 1x (line(s): 8)
+  t1.start: called 1x (line(s): 12)
+  t2.start: called 1x (line(s): 15)
+  t1.join: called 1x (line(s): 17)
+  future1.isDone: called 1x (line(s): 18)
+  t1.getEntry: called 1x (line(s): 19)
+  Assert.assertNotNull: called 1x (line(s): 20)
+  t2.join: called 1x (line(s): 21)
+  t2.getException: called 1x (line(s): 22)
+  future2.isDone: called 1x (line(s): 23)
+  future2.isCancelled: called 1x (line(s): 24)

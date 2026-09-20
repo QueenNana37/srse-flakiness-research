@@ -1,7 +1,64 @@
 Test: ro.isdc.wro.model.group.processor.TestPreProcessorExecutor#preProcessingInParallelIsFaster
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 29 method call(s), 19 unique method(s) called
 
-Line 8: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
+--- Line 7: if ---
+if (availableProcessors > 1) {
+      final StopWatch watch = new StopWatch();
+      final WroConfiguration config = Context.get().getConfig();
+
+      initExecutor(createSlowPreProcessor(100), createSlowPreProcessor(100), createSlowPreProcessor(100));
+      final List<Resource> resources = createResources(Resource.create("r1", ResourceType.JS),
+          Resource.create("r2", ResourceType.JS));
+
+      // warm up
+      config.setParallelPreprocessing(true);
+      victim.processAndMerge(resources, true);
+
+      // parallel
+      watch.start("parallel preProcessing");
+      config.setParallelPreprocessing(true);
+      victim.processAndMerge(resources, true);
+      watch.stop();
+      final long parallelExecution = watch.getLastTaskTimeMillis();
+
+      // sequential
+      config.setParallelPreprocessing(false);
+      watch.start("sequential preProcessing");
+      victim.processAndMerge(resources, true);
+      watch.stop();
+      final long sequentialExecution = watch.getLastTaskTimeMillis();
+
+      final String message = "Processing details: \n" + watch.prettyPrint();
+      LOG.debug(message);
+
+      // prove that running in parallel is faster
+      // delta indicates the improvement relative to parallel execution (we use 80% relative improvement, but it
+      // normally
+      // should be about 100%).
+      final double delta = parallelExecution * 0.8;
+      Assert.assertTrue(String.format("%s  > %s + %s", sequentialExecution, parallelExecution, delta),
+          sequentialExecution > parallelExecution + delta);
+    }
+  Calls inside this branch:
+    createSlowPreProcessor: called 3x (line(s): 11, 11, 11)
+    config.setParallelPreprocessing: called 3x (line(s): 16, 21, 27)
+    victim.processAndMerge: called 3x (line(s): 17, 22, 29)
+    Resource.create: called 2x (line(s): 12, 13)
+    watch.start: called 2x (line(s): 20, 28)
+    watch.stop: called 2x (line(s): 23, 30)
+    watch.getLastTaskTimeMillis: called 2x (line(s): 24, 31)
+    StopWatch: called 1x (line(s): 8)
+    Context.get: called 1x (line(s): 9)
+    getConfig: called 1x (line(s): 9)
+    initExecutor: called 1x (line(s): 11)
+    createResources: called 1x (line(s): 12)
+    watch.prettyPrint: called 1x (line(s): 33)
+    LOG.debug: called 1x (line(s): 34)
+    Assert.assertTrue: called 1x (line(s): 41)
+    String.format: called 1x (line(s): 41)
+
+Calls NOT inside any branch (always run):
+  Runtime.getRuntime: called 1x (line(s): 4)
+  availableProcessors: called 1x (line(s): 4)
+  LOG.info: called 1x (line(s): 5)

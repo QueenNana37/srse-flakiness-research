@@ -1,5 +1,15 @@
 Test: ch.qos.logback.classic.turbo.ReconfigureOnChangeTest#gafferInstallFilter
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  getConfigurationFileList: called 2x (line(s): 5, 11)
+  assertThatListContainsFile: called 2x (line(s): 6, 12)
+  assertThatFirstFilterIsROCF: called 2x (line(s): 7, 13)
+  File: called 1x (line(s): 3)
+  gConfigure: called 1x (line(s): 4)
+  rocfDetachReconfigurationToNewThreadAndAwaitTermination: called 1x (line(s): 9)
+  assertEquals: called 1x (line(s): 16)
+  checker.matchCount: called 1x (line(s): 16)

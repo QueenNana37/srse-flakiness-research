@@ -1,7 +1,23 @@
 Test: tachyon.JournalTest#AddBlockTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 13 method call(s), 12 unique method(s) called
 
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 6: for ---
+for (int k = 0; k < 1000; k ++) {
+      os.write(k);
+    }
+  Calls inside this branch:
+    os.write: called 1x (line(s): 7)
+
+Calls NOT inside any branch (always run):
+  AddBlockTestUtil: called 2x (line(s): 12, 15)
+  mTfs.createFile: called 1x (line(s): 3)
+  mTfs.getFile: called 1x (line(s): 4)
+  file.getOutStream: called 1x (line(s): 5)
+  os.close: called 1x (line(s): 9)
+  mLocalTachyonCluster.getMasterInfo: called 1x (line(s): 10)
+  getClientFileInfo: called 1x (line(s): 10)
+  mLocalTachyonCluster.stop: called 1x (line(s): 11)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 13)
+  UnderFileSystem.get: called 1x (line(s): 14)
+  delete: called 1x (line(s): 14)

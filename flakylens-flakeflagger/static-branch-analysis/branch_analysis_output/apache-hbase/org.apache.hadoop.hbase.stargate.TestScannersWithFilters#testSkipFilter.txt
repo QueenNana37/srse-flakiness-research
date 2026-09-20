@@ -1,5 +1,15 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testSkipFilter
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 25 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  KeyValue: called 18x (line(s): 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31)
+  SkipFilter: called 1x (line(s): 5)
+  QualifierFilter: called 1x (line(s): 5)
+  BinaryComparator: called 1x (line(s): 6)
+  Bytes.toBytes: called 1x (line(s): 6)
+  Scan: called 1x (line(s): 7)
+  s.setFilter: called 1x (line(s): 8)
+  verifyScanFull: called 1x (line(s): 33)

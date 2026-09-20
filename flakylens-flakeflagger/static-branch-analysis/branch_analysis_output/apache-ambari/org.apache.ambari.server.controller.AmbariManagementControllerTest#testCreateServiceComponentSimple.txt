@@ -1,10 +1,50 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentSimple
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 29 method call(s), 20 unique method(s) called
 
-Line 10: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 17: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 9: try ---
+try {
+      createServiceComponent(clusterName, serviceName, componentName,
+          State.INSTALLING);
+      fail("ServiceComponent creation should fail for invalid state");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createServiceComponent: called 1x (line(s): 10)
+    fail: called 1x (line(s): 12)
+
+--- Line 16: try ---
+try {
+      clusters.getCluster(clusterName).getService(serviceName)
+          .getServiceComponent(componentName);
+      fail("ServiceComponent creation should have failed");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 17)
+    getService: called 1x (line(s): 17)
+    getServiceComponent: called 1x (line(s): 18)
+    fail: called 1x (line(s): 19)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 5x (line(s): 32, 35, 36, 37, 38)
+  createCluster: called 1x (line(s): 4)
+  createService: called 1x (line(s): 6)
+  createServiceComponent: called 1x (line(s): 24)
+  Assert.assertNotNull: called 1x (line(s): 26)
+  clusters.getCluster: called 1x (line(s): 26)
+  getService: called 1x (line(s): 27)
+  getServiceComponent: called 1x (line(s): 27)
+  ServiceComponentRequest: called 1x (line(s): 30)
+  controller.getComponents: called 1x (line(s): 31)
+  Collections.singleton: called 1x (line(s): 31)
+  response.size: called 1x (line(s): 32)
+  response.iterator: called 1x (line(s): 34)
+  next: called 1x (line(s): 34)
+  State.INIT.toString: called 1x (line(s): 35)
+  sc.getDesiredState: called 1x (line(s): 35)
+  sc.getComponentName: called 1x (line(s): 36)
+  sc.getClusterName: called 1x (line(s): 37)
+  sc.getServiceName: called 1x (line(s): 38)

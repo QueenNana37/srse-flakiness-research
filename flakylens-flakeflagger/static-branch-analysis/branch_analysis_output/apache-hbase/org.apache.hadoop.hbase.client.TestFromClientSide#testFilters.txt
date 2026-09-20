@@ -1,10 +1,45 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testFilters
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 35 method call(s), 20 unique method(s) called
 
-Line 14: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 13: for ---
+for(int i=0;i<10;i++) {
+      Put put = new Put(ROWS[i]);
+      put.add(FAMILY, QUALIFIERS[i], VALUE);
+      ht.put(put);
+    }
+  Calls inside this branch:
+    Put: called 1x (line(s): 14)
+    put.add: called 1x (line(s): 15)
+    ht.put: called 1x (line(s): 16)
+
+--- Line 25: for ---
+for(Result result : ht.getScanner(scan)) {
+      assertEquals(result.size(), 1);
+      assertTrue(Bytes.equals(result.raw()[0].getRow(), ROWS[expectedIndex]));
+      assertTrue(Bytes.equals(result.raw()[0].getQualifier(),
+          QUALIFIERS[expectedIndex]));
+      expectedIndex++;
+    }
+  Calls inside this branch:
+    assertTrue: called 2x (line(s): 27, 28)
+    Bytes.equals: called 2x (line(s): 27, 28)
+    result.raw: called 2x (line(s): 27, 28)
+    ht.getScanner: called 1x (line(s): 25)
+    assertEquals: called 1x (line(s): 26)
+    result.size: called 1x (line(s): 26)
+    getRow: called 1x (line(s): 27)
+    getQualifier: called 1x (line(s): 28)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 11x (line(s): 3, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11)
+  TEST_UTIL.createTable: called 1x (line(s): 4)
+  makeN: called 1x (line(s): 5)
+  Scan: called 1x (line(s): 18)
+  scan.addFamily: called 1x (line(s): 19)
+  QualifierFilter: called 1x (line(s): 20)
+  RegexStringComparator: called 1x (line(s): 21)
+  scan.setFilter: called 1x (line(s): 22)
+  ht.getScanner: called 1x (line(s): 23)
+  assertEquals: called 1x (line(s): 32)
+  scanner.close: called 1x (line(s): 33)

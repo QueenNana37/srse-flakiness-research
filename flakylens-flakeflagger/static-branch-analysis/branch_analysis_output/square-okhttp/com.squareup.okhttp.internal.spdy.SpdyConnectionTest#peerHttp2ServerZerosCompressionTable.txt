@@ -1,5 +1,13 @@
 Test: com.squareup.okhttp.internal.spdy.SpdyConnectionTest#peerHttp2ServerZerosCompressionTable
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 7 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 10, 12)
+  Settings: called 1x (line(s): 3)
+  settings.set: called 1x (line(s): 4)
+  sendHttp2SettingsAndCheckForAck: called 1x (line(s): 6)
+  connection.peerSettings.getHeaderTableSize: called 1x (line(s): 10)
+  frameReader.hpackReader.maxHeaderTableByteCount: called 1x (line(s): 12)

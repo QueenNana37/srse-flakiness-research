@@ -1,10 +1,32 @@
 Test: tachyon.JournalTest#RenameTest
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 10 method call(s), 8 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int i = 0; i < 10; i ++) {
+      mTfs.mkdir("/i" + i);
+      for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+        mTfs.rename("/i" + i + "/j" + j, "/i" + i + "/jj" + j);
+      }
+      mTfs.rename("/i" + i, "/ii" + i);
+    }
+  Calls inside this branch:
+    mTfs.mkdir: called 1x (line(s): 4)
+    mTfs.rename: called 1x (line(s): 9)
+
+--- Line 5: for ---
+for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+        mTfs.rename("/i" + i + "/j" + j, "/i" + i + "/jj" + j);
+      }
+  Calls inside this branch:
+    mTfs.createFile: called 1x (line(s): 6)
+    mTfs.rename: called 1x (line(s): 7)
+
+Calls NOT inside any branch (always run):
+  RenameTestUtil: called 2x (line(s): 12, 15)
+  mLocalTachyonCluster.stop: called 1x (line(s): 11)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 13)
+  UnderFileSystem.get: called 1x (line(s): 14)
+  delete: called 1x (line(s): 14)

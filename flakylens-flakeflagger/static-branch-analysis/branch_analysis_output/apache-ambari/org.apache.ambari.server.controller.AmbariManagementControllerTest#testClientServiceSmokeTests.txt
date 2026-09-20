@@ -1,25 +1,127 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testClientServiceSmokeTests
 STATUS: parsed successfully
-Branch points found: 7
+Summary: 7 branch point(s), 90 method call(s), 40 unique method(s) called
 
-Line 43: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 47: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 59: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 62: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 77: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 81: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 88: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 42: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INIT, sch.getState());
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 43)
+    getService: called 1x (line(s): 43)
+    getServiceComponents: called 1x (line(s): 44)
+    values: called 1x (line(s): 44)
+    Assert.assertEquals: called 1x (line(s): 45)
+    sc.getDesiredState: called 1x (line(s): 45)
+
+--- Line 46: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INIT, sch.getState());
+      }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 47, 48)
+    sc.getServiceComponentHosts: called 1x (line(s): 46)
+    values: called 1x (line(s): 46)
+    sch.getDesiredState: called 1x (line(s): 47)
+    sch.getState: called 1x (line(s): 48)
+
+--- Line 58: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+          .getServiceComponents().values()) {
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        sch.setState(State.INSTALLED);
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 59)
+    getService: called 1x (line(s): 59)
+    getServiceComponents: called 1x (line(s): 60)
+    values: called 1x (line(s): 60)
+
+--- Line 61: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        sch.setState(State.INSTALLED);
+      }
+  Calls inside this branch:
+    sc.getServiceComponentHosts: called 1x (line(s): 61)
+    values: called 1x (line(s): 61)
+    sch.setState: called 1x (line(s): 62)
+
+--- Line 76: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+          .getServiceComponents().values()) {
+      Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INSTALLED, sch.getState());
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 77)
+    getService: called 1x (line(s): 77)
+    getServiceComponents: called 1x (line(s): 78)
+    values: called 1x (line(s): 78)
+    Assert.assertEquals: called 1x (line(s): 79)
+    sc.getDesiredState: called 1x (line(s): 79)
+
+--- Line 80: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INSTALLED, sch.getState());
+      }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 81, 82)
+    sc.getServiceComponentHosts: called 1x (line(s): 80)
+    values: called 1x (line(s): 80)
+    sch.getDesiredState: called 1x (line(s): 81)
+    sch.getState: called 1x (line(s): 82)
+
+--- Line 87: for ---
+for (Stage s : stages) {
+      LOG.info("Stage dump : " + s.toString());
+    }
+  Calls inside this branch:
+    LOG.info: called 1x (line(s): 88)
+    s.toString: called 1x (line(s): 88)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 7x (line(s): 39, 53, 56, 73, 90, 93, 94)
+  clusters.getHost: called 4x (line(s): 15, 18, 20, 21)
+  clusters.getCluster: called 3x (line(s): 5, 40, 74)
+  clusters.addHost: called 2x (line(s): 14, 17)
+  persist: called 2x (line(s): 15, 18)
+  setOsType: called 2x (line(s): 20, 21)
+  clusters.mapHostToCluster: called 2x (line(s): 22, 23)
+  createServiceComponentHost: called 2x (line(s): 27, 29)
+  ServiceRequest: called 2x (line(s): 32, 66)
+  requests.add: called 2x (line(s): 35, 69)
+  controller.updateServices: called 2x (line(s): 38, 71)
+  getService: called 2x (line(s): 40, 74)
+  getDesiredState: called 2x (line(s): 41, 75)
+  trackAction.getTasks: called 2x (line(s): 52, 92)
+  taskStatuses.size: called 2x (line(s): 53, 93)
+  actionDB.getAllStages: called 2x (line(s): 55, 86)
+  trackAction.getRequestId: called 2x (line(s): 55, 86)
+  stages.size: called 2x (line(s): 56, 90)
+  createCluster: called 1x (line(s): 4)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 6)
+  createService: called 1x (line(s): 8)
+  createServiceComponent: called 1x (line(s): 10)
+  State.INSTALLED.toString: called 1x (line(s): 33)
+  HashSet<ServiceRequest>: called 1x (line(s): 34)
+  State.STARTED.toString: called 1x (line(s): 67)
+  requests.clear: called 1x (line(s): 68)
+  Assert.assertNotNull: called 1x (line(s): 72)
+  Role.PIG_SERVICE_CHECK.toString: called 1x (line(s): 94)
+  taskStatuses.get: called 1x (line(s): 95)
+  getRole: called 1x (line(s): 95)

@@ -1,40 +1,290 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostWithInvalidRequest
 STATUS: parsed successfully
-Branch points found: 12
+Summary: 12 branch point(s), 152 method call(s), 48 unique method(s) called
 
-Line 17: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 28: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 39: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 51: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 63: try statement
-    -> try-block completes normally
-    -> catch triggered: ClusterNotFoundException
-Line 85: try statement
-    -> try-block completes normally
-    -> catch triggered: AmbariException
-Line 108: try statement
-    -> try-block completes normally
-    -> catch triggered: AmbariException
-Line 131: try statement
-    -> try-block completes normally
-    -> catch triggered: AmbariException
-Line 162: try statement
-    -> try-block completes normally
-    -> catch triggered: AmbariException
-Line 189: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 205: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 221: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
+--- Line 16: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest(null, null, null, null, null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 17)
+    ServiceComponentHostRequest: called 1x (line(s): 19)
+    set1.add: called 1x (line(s): 20)
+    controller.createHostComponents: called 1x (line(s): 21)
+    fail: called 1x (line(s): 22)
+
+--- Line 27: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", null, null, null, null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 28)
+    ServiceComponentHostRequest: called 1x (line(s): 30)
+    set1.add: called 1x (line(s): 31)
+    controller.createHostComponents: called 1x (line(s): 32)
+    fail: called 1x (line(s): 33)
+
+--- Line 38: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", null, null,
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 39)
+    ServiceComponentHostRequest: called 1x (line(s): 41)
+    set1.add: called 1x (line(s): 43)
+    controller.createHostComponents: called 1x (line(s): 44)
+    fail: called 1x (line(s): 45)
+
+--- Line 50: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", null,
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 51)
+    ServiceComponentHostRequest: called 1x (line(s): 53)
+    set1.add: called 1x (line(s): 55)
+    controller.createHostComponents: called 1x (line(s): 56)
+    fail: called 1x (line(s): 57)
+
+--- Line 62: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid cluster");
+    } catch (ClusterNotFoundException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 63)
+    ServiceComponentHostRequest: called 1x (line(s): 65)
+    set1.add: called 1x (line(s): 67)
+    controller.createHostComponents: called 1x (line(s): 68)
+    fail: called 1x (line(s): 69)
+
+--- Line 84: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid service");
+    } catch (AmbariException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 85)
+    ServiceComponentHostRequest: called 1x (line(s): 87)
+    set1.add: called 1x (line(s): 89)
+    controller.createHostComponents: called 1x (line(s): 90)
+    fail: called 1x (line(s): 91)
+
+--- Line 107: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid service");
+    } catch (AmbariException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 108)
+    ServiceComponentHostRequest: called 1x (line(s): 110)
+    set1.add: called 1x (line(s): 112)
+    controller.createHostComponents: called 1x (line(s): 113)
+    fail: called 1x (line(s): 114)
+
+--- Line 130: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid host");
+    } catch (AmbariException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 131)
+    ServiceComponentHostRequest: called 1x (line(s): 133)
+    set1.add: called 1x (line(s): 135)
+    controller.createHostComponents: called 1x (line(s): 136)
+    fail: called 1x (line(s): 137)
+
+--- Line 161: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      set1.add(rInvalid);
+      controller.createHostComponents(set1);
+      fail("Expected failure for invalid host cluster mapping");
+    } catch (AmbariException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 162)
+    ServiceComponentHostRequest: called 1x (line(s): 164)
+    set1.add: called 1x (line(s): 166)
+    controller.createHostComponents: called 1x (line(s): 167)
+    fail: called 1x (line(s): 168)
+
+--- Line 188: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid1 =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h2",
+              null, null);
+      ServiceComponentHostRequest rInvalid2 =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h2",
+              null, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createHostComponents(set1);
+      fail("Expected failure for dup requests");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceComponentHostRequest: called 2x (line(s): 191, 194)
+    set1.add: called 2x (line(s): 196, 197)
+    set1.clear: called 1x (line(s): 189)
+    controller.createHostComponents: called 1x (line(s): 198)
+    fail: called 1x (line(s): 199)
+
+--- Line 204: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid1 =
+          new ServiceComponentHostRequest("c1", "HDFS", "NAMENODE", "h2",
+              null, null);
+      ServiceComponentHostRequest rInvalid2 =
+          new ServiceComponentHostRequest("c2", "HDFS", "NAMENODE", "h3",
+              null, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createHostComponents(set1);
+      fail("Expected failure for multiple clusters");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceComponentHostRequest: called 2x (line(s): 207, 210)
+    set1.add: called 2x (line(s): 212, 213)
+    set1.clear: called 1x (line(s): 205)
+    controller.createHostComponents: called 1x (line(s): 214)
+    fail: called 1x (line(s): 215)
+
+--- Line 220: try ---
+try {
+      set1.clear();
+      ServiceComponentHostRequest rInvalid1 =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h1",
+              null, null);
+      ServiceComponentHostRequest rInvalid2 =
+          new ServiceComponentHostRequest("foo", "HDFS", "NAMENODE", "h2",
+              null, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createHostComponents(set1);
+      fail("Expected failure for already existing");
+    } catch (IllegalArgumentException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceComponentHostRequest: called 2x (line(s): 223, 226)
+    set1.add: called 2x (line(s): 228, 229)
+    set1.clear: called 1x (line(s): 221)
+    controller.createHostComponents: called 1x (line(s): 230)
+    fail: called 1x (line(s): 231)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 6x (line(s): 236, 237, 238, 254, 255, 256)
+  size: called 6x (line(s): 236, 237, 238, 254, 255, 256)
+  foo.getServiceComponentHosts: called 4x (line(s): 236, 237, 238, 254)
+  clusters.addCluster: called 3x (line(s): 74, 75, 76)
+  clusters.getCluster: called 3x (line(s): 77, 78, 79)
+  StackId: called 3x (line(s): 80, 81, 82)
+  serviceFactory.createNew: called 3x (line(s): 96, 99, 102)
+  serviceComponentFactory.createNew: called 3x (line(s): 119, 122, 125)
+  clusters.addHost: called 3x (line(s): 142, 148, 154)
+  clusters.getHost: called 3x (line(s): 143, 149, 155)
+  hostnames.add: called 3x (line(s): 174, 175, 176)
+  clusters.mapHostsToCluster: called 3x (line(s): 177, 178, 179)
+  set1.clear: called 3x (line(s): 181, 240, 247)
+  ServiceComponentHostRequest: called 3x (line(s): 183, 242, 249)
+  set1.add: called 3x (line(s): 185, 244, 251)
+  controller.createHostComponents: called 3x (line(s): 186, 245, 252)
+  HashSet<ServiceComponentHostRequest>: called 1x (line(s): 14)
+  foo.setDesiredStackVersion: called 1x (line(s): 80)
+  c1.setDesiredStackVersion: called 1x (line(s): 81)
+  c2.setDesiredStackVersion: called 1x (line(s): 82)
+  foo.addService: called 1x (line(s): 97)
+  s1.persist: called 1x (line(s): 98)
+  c1.addService: called 1x (line(s): 100)
+  s2.persist: called 1x (line(s): 101)
+  c2.addService: called 1x (line(s): 103)
+  s3.persist: called 1x (line(s): 104)
+  s1.addServiceComponent: called 1x (line(s): 120)
+  sc1.persist: called 1x (line(s): 121)
+  s2.addServiceComponent: called 1x (line(s): 123)
+  sc2.persist: called 1x (line(s): 124)
+  s3.addServiceComponent: called 1x (line(s): 126)
+  sc3.persist: called 1x (line(s): 127)
+  h1.setIPv4: called 1x (line(s): 144)
+  h1.setIPv6: called 1x (line(s): 145)
+  h1.setOsType: called 1x (line(s): 146)
+  h1.persist: called 1x (line(s): 147)
+  h2.setIPv4: called 1x (line(s): 150)
+  h2.setIPv6: called 1x (line(s): 151)
+  h2.setOsType: called 1x (line(s): 152)
+  h2.persist: called 1x (line(s): 153)
+  h3.setIPv4: called 1x (line(s): 156)
+  h3.setIPv6: called 1x (line(s): 157)
+  h3.setOsType: called 1x (line(s): 158)
+  h3.persist: called 1x (line(s): 159)
+  HashSet<String>: called 1x (line(s): 173)
+  c1.getServiceComponentHosts: called 1x (line(s): 255)
+  c2.getServiceComponentHosts: called 1x (line(s): 256)

@@ -1,5 +1,18 @@
 Test: tachyon.command.TFsShellTest#renameParentDirectoryTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 16 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  mTfs.getFile: called 3x (line(s): 8, 9, 10)
+  toCompare.append: called 2x (line(s): 5, 7)
+  getCommandOutput: called 2x (line(s): 5, 7)
+  Assert.assertNull: called 2x (line(s): 9, 10)
+  StringBuilder: called 1x (line(s): 3)
+  mFsShell.mkdir: called 1x (line(s): 4)
+  mFsShell.rename: called 1x (line(s): 6)
+  Assert.assertNotNull: called 1x (line(s): 8)
+  Assert.assertEquals: called 1x (line(s): 11)
+  toCompare.toString: called 1x (line(s): 11)
+  mOutput.toString: called 1x (line(s): 11)

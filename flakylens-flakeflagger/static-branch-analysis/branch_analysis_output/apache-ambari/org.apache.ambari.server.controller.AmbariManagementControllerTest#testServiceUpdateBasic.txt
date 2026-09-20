@@ -1,7 +1,43 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateBasic
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 28 method call(s), 21 unique method(s) called
 
-Line 21: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 20: try ---
+try {
+      r = new ServiceRequest(clusterName, serviceName,
+          null, State.INSTALLING.toString());
+      reqs.clear();
+      reqs.add(r);
+      controller.updateServices(reqs);
+      fail("Expected fail for invalid state transition");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 1x (line(s): 21)
+    State.INSTALLING.toString: called 1x (line(s): 22)
+    reqs.clear: called 1x (line(s): 23)
+    reqs.add: called 1x (line(s): 24)
+    controller.updateServices: called 1x (line(s): 25)
+    fail: called 1x (line(s): 26)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 3x (line(s): 13, 14, 15)
+  clusters.getCluster: called 2x (line(s): 6, 11)
+  createCluster: called 1x (line(s): 4)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 7)
+  createService: called 1x (line(s): 8)
+  getService: called 1x (line(s): 11)
+  Assert.assertNotNull: called 1x (line(s): 12)
+  s.getName: called 1x (line(s): 13)
+  s.getDesiredState: called 1x (line(s): 14)
+  s.getCluster: called 1x (line(s): 15)
+  getClusterName: called 1x (line(s): 15)
+  HashSet<ServiceRequest>: called 1x (line(s): 17)
+  ServiceRequest: called 1x (line(s): 31)
+  State.INSTALLED.toString: called 1x (line(s): 32)
+  reqs.clear: called 1x (line(s): 33)
+  reqs.add: called 1x (line(s): 34)
+  controller.updateServices: called 1x (line(s): 35)
+  Assert.assertNull: called 1x (line(s): 36)

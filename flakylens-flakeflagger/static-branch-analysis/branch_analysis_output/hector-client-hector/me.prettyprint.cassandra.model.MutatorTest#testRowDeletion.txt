@@ -1,10 +1,33 @@
 Test: me.prettyprint.cassandra.model.MutatorTest#testRowDeletion
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 24 method call(s), 15 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 24: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < 5; i++) {
+      m.addInsertion("key" + i, cf, createColumn("name", "value" + i, se, se));
+    }
+  Calls inside this branch:
+    m.addInsertion: called 1x (line(s): 8)
+    createColumn: called 1x (line(s): 8)
+
+--- Line 23: for ---
+for (int i = 0; i < 5; i++) {
+      m.addDeletion("key" + i, cf, null, se);
+    }
+  Calls inside this branch:
+    m.addDeletion: called 1x (line(s): 24)
+
+Calls NOT inside any branch (always run):
+  m.execute: called 3x (line(s): 10, 15, 26)
+  createColumnQuery: called 2x (line(s): 19, 29)
+  setColumnFamily: called 2x (line(s): 19, 30)
+  setKey: called 2x (line(s): 19, 30)
+  setName: called 2x (line(s): 20, 30)
+  execute: called 2x (line(s): 20, 30)
+  columnResult.get: called 2x (line(s): 21, 31)
+  keyspace.createClock: called 1x (line(s): 4)
+  createMutator: called 1x (line(s): 6)
+  m.addDeletion: called 1x (line(s): 14)
+  assertEquals: called 1x (line(s): 21)
+  getValue: called 1x (line(s): 21)
+  assertNull: called 1x (line(s): 31)

@@ -1,5 +1,17 @@
 Test: com.squareup.okhttp.internal.spdy.SpdyConnectionTest#headersOnlyStreamIsClosedAfterReplyHeaders
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 15 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  headerEntries: called 3x (line(s): 3, 7, 9)
+  assertEquals: called 3x (line(s): 8, 9, 10)
+  connection.openStreamCount: called 2x (line(s): 8, 10)
+  peer.acceptFrame: called 1x (line(s): 2)
+  peer.sendFrame: called 1x (line(s): 3)
+  synReply: called 1x (line(s): 3)
+  peer.play: called 1x (line(s): 4)
+  connection: called 1x (line(s): 6)
+  connection.newStream: called 1x (line(s): 7)
+  stream.getResponseHeaders: called 1x (line(s): 9)

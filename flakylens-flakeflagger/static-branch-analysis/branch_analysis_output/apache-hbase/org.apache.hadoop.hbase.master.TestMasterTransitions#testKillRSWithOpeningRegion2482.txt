@@ -1,19 +1,74 @@
 Test: org.apache.hadoop.hbase.master.TestMasterTransitions#testKillRSWithOpeningRegion2482
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 29 method call(s), 20 unique method(s) called
 
-Line 6: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 22: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 36: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 39: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 27: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 5: if ---
+if (cluster.getLiveRegionServerThreads().size() < 2) {
+      // Need at least two servers.
+      cluster.startRegionServer();
+    }
+  Calls inside this branch:
+    cluster.getLiveRegionServerThreads: called 1x (line(s): 5)
+    size: called 1x (line(s): 5)
+    cluster.startRegionServer: called 1x (line(s): 7)
+
+--- Line 21: while ---
+while (hrs.getOnlineRegions().size() < minimumRegions) Threads.sleep(100);
+  Calls inside this branch:
+    hrs.getOnlineRegions: called 1x (line(s): 21)
+    size: called 1x (line(s): 21)
+    Threads.sleep: called 1x (line(s): 21)
+
+--- Line 26: try ---
+try {
+      // Go close all non-catalog regions on this new server
+      closeAllNonCatalogRegions(cluster, hrs);
+      // After all closes, add blocking message before the region opens start to
+      // come in.
+      cluster.addMessageToSendRegionServer(hrs,
+        new HMsg(HMsg.Type.TESTING_MSG_BLOCK_RS));
+      // Wait till one of the above close messages has an effect before we start
+      // wait on all regions back online.
+      while (!listener.closed) Threads.sleep(100);
+      LOG.info("Past close");
+      // Make sure the abort server message was sent.
+      while(!listener.abortSent) Threads.sleep(100);
+      LOG.info("Past abort send; waiting on all regions to redeploy");
+      // Now wait for regions to come back online.
+      assertRegionIsBackOnline(listener.regionToFind);
+    } finally {
+      m.getRegionServerOperationQueue().
+        unregisterRegionServerOperationListener(listener);
+    }
+  Calls inside this branch:
+    LOG.info: called 2x (line(s): 36, 39)
+    closeAllNonCatalogRegions: called 1x (line(s): 28)
+    cluster.addMessageToSendRegionServer: called 1x (line(s): 31)
+    HMsg: called 1x (line(s): 32)
+    assertRegionIsBackOnline: called 1x (line(s): 41)
+    m.getRegionServerOperationQueue: called 1x (line(s): 43)
+    unregisterRegionServerOperationListener: called 1x (line(s): 44)
+
+--- Line 35: while ---
+while (!listener.closed) Threads.sleep(100);
+  Calls inside this branch:
+    Threads.sleep: called 1x (line(s): 35)
+
+--- Line 38: while ---
+while(!listener.abortSent) Threads.sleep(100);
+  Calls inside this branch:
+    Threads.sleep: called 1x (line(s): 38)
+
+Calls NOT inside any branch (always run):
+  LOG.info: called 2x (line(s): 3, 17)
+  TEST_UTIL.getHBaseCluster: called 1x (line(s): 4)
+  countOfMetaRegions: called 1x (line(s): 11)
+  cluster.getMaster: called 1x (line(s): 13)
+  cluster.startRegionServer: called 1x (line(s): 16)
+  getRegionServer: called 1x (line(s): 16)
+  hrs.toString: called 1x (line(s): 17)
+  cluster.getRegionServerThreads: called 1x (line(s): 20)
+  size: called 1x (line(s): 20)
+  HBase2482Listener: called 1x (line(s): 23)
+  m.getRegionServerOperationQueue: called 1x (line(s): 24)
+  registerRegionServerOperationListener: called 1x (line(s): 25)

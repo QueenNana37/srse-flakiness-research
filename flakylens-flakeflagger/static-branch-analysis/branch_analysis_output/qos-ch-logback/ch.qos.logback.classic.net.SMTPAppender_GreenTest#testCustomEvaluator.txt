@@ -1,5 +1,16 @@
 Test: ch.qos.logback.classic.net.SMTPAppender_GreenTest#testCustomEvaluator
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  logger.debug: called 3x (line(s): 6, 8, 9)
+  configure: called 1x (line(s): 3)
+  waitUntilEmailIsSent: called 1x (line(s): 10)
+  verifyAndExtractMimeMultipart: called 1x (line(s): 11)
+  this.getClass: called 1x (line(s): 11)
+  getName: called 1x (line(s): 11)
+  GreenMailUtil.getBody: called 1x (line(s): 12)
+  mp.getBodyPart: called 1x (line(s): 12)
+  assertEquals: called 1x (line(s): 13)

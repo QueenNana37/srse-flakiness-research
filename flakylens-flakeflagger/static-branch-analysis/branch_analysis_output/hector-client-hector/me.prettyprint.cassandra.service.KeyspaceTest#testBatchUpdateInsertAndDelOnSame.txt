@@ -1,19 +1,90 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testBatchUpdateInsertAndDelOnSame
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 37 method call(s), 24 unique method(s) called
 
-Line 15: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 17: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 37: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 38: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 31: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 14: for ---
+for (int i = 0; i < 10; i++) {
+
+      for (int j = 0; j < 10; j++) {
+        Column col = new Column(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j),
+            StringSerializer.get().toByteBuffer("testBatchMutateColumn_value_" + j), connectionManager.createClock());
+        batchMutation.addInsertion("testBatchMutateColumn_" + i, columnFamilies, col);
+      }
+    }
+
+--- Line 16: for ---
+for (int j = 0; j < 10; j++) {
+        Column col = new Column(StringSerializer.get().toByteBuffer("testBatchMutateColumn_" + j),
+            StringSerializer.get().toByteBuffer("testBatchMutateColumn_value_" + j), connectionManager.createClock());
+        batchMutation.addInsertion("testBatchMutateColumn_" + i, columnFamilies, col);
+      }
+  Calls inside this branch:
+    StringSerializer.get: called 2x (line(s): 17, 18)
+    toByteBuffer: called 2x (line(s): 17, 18)
+    Column: called 1x (line(s): 17)
+    connectionManager.createClock: called 1x (line(s): 18)
+    batchMutation.addInsertion: called 1x (line(s): 19)
+
+--- Line 30: try ---
+try {
+      keyspace.getColumn("deleteThroughInserBatch_key", sta1);
+      fail("Should not have found a value here");
+    } catch (Exception e) {
+    }
+  Calls inside this branch:
+    keyspace.getColumn: called 1x (line(s): 31)
+    fail: called 1x (line(s): 32)
+
+--- Line 36: for ---
+for (int i = 0; i < 10; i++) {
+      for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+
+        Column col = keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+        assertNotNull(col);
+        String value = string(col.getValue());
+        assertEquals("testBatchMutateColumn_value_" + j, value);
+
+      }
+    }
+
+--- Line 37: for ---
+for (int j = 0; j < 10; j++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(bytes("testBatchMutateColumn_" + j));
+
+        Column col = keyspace.getColumn("testBatchMutateColumn_" + i, cp);
+        assertNotNull(col);
+        String value = string(col.getValue());
+        assertEquals("testBatchMutateColumn_value_" + j, value);
+
+      }
+  Calls inside this branch:
+    ColumnPath: called 1x (line(s): 38)
+    cp.setColumn: called 1x (line(s): 39)
+    bytes: called 1x (line(s): 39)
+    keyspace.getColumn: called 1x (line(s): 41)
+    assertNotNull: called 1x (line(s): 42)
+    string: called 1x (line(s): 43)
+    col.getValue: called 1x (line(s): 43)
+    assertEquals: called 1x (line(s): 44)
+
+Calls NOT inside any branch (always run):
+  StringSerializer.get: called 3x (line(s): 7, 12, 23)
+  toByteBuffer: called 2x (line(s): 7, 23)
+  ColumnPath: called 1x (line(s): 4)
+  sta1.setColumn: called 1x (line(s): 5)
+  bytes: called 1x (line(s): 5)
+  keyspace.insert: called 1x (line(s): 7)
+  keyspace.getColumn: called 1x (line(s): 9)
+  assertNotNull: called 1x (line(s): 10)
+  BatchMutation<String>: called 1x (line(s): 12)
+  Arrays.asList: called 1x (line(s): 13)
+  SlicePredicate: called 1x (line(s): 22)
+  slicePredicate.addToColumn_names: called 1x (line(s): 23)
+  Deletion: called 1x (line(s): 25)
+  connectionManager.createClock: called 1x (line(s): 25)
+  deletion.setPredicate: called 1x (line(s): 26)
+  batchMutation.addDeletion: called 1x (line(s): 28)
+  keyspace.batchMutate: called 1x (line(s): 29)

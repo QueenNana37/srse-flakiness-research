@@ -1,13 +1,145 @@
 Test: org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testGetClosestRowBefore3
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 99 method call(s), 18 unique method(s) called
 
-Line 98: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 6: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 99: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 5: try ---
+try {
+      HTableDescriptor htd = createTableDescriptor(getName());
+      region = createNewHRegion(htd, null, null);
+
+      Put p = new Put(T00);
+      p.add(c0, c0, T00);
+      region.put(p);
+
+      p = new Put(T10);
+      p.add(c0, c0, T10);
+      region.put(p);
+
+      p = new Put(T20);
+      p.add(c0, c0, T20);
+      region.put(p);
+
+      Result r = region.getClosestRowBefore(T20, c0);
+      assertTrue(Bytes.equals(T20, r.getRow()));
+
+      Delete d = new Delete(T20);
+      d.deleteColumn(c0, c0);
+      region.delete(d, null, false);
+
+      r = region.getClosestRowBefore(T20, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      p = new Put(T30);
+      p.add(c0, c0, T30);
+      region.put(p);
+
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T30, r.getRow()));
+
+      d = new Delete(T30);
+      d.deleteColumn(c0, c0);
+      region.delete(d, null, false);
+
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      region.flushcache();
+
+      // try finding "010" after flush
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      // Put into a different column family.  Should make it so I still get t10
+      p = new Put(T20);
+      p.add(c1, c1, T20);
+      region.put(p);
+
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      region.flushcache();
+
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      // Now try combo of memcache and mapfiles.  Delete the t20 COLUMS[1]
+      // in memory; make sure we get back t10 again.
+      d = new Delete(T20);
+      d.deleteColumn(c1, c1);
+      region.delete(d, null, false);
+      r = region.getClosestRowBefore(T30, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      // Ask for a value off the end of the file.  Should return t10.
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+      region.flushcache();
+      r = region.getClosestRowBefore(T31, c0);
+      assertTrue(Bytes.equals(T10, r.getRow()));
+
+      // Ok.  Let the candidate come out of hfile but have delete of
+      // the candidate be in memory.
+      p = new Put(T11);
+      p.add(c0, c0, T11);
+      region.put(p);
+      d = new Delete(T10);
+      d.deleteColumn(c1, c1);
+      r = region.getClosestRowBefore(T12, c0);
+      assertTrue(Bytes.equals(T11, r.getRow()));
+    } finally {
+      if (region != null) {
+        try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        region.getLog().closeAndDelete();
+      }
+    }
+  Calls inside this branch:
+    region.getClosestRowBefore: called 15x (line(s): 21, 28, 35, 42, 44, 50, 52, 60, 62, 67, 69, 77, 81, 84, 94)
+    assertTrue: called 15x (line(s): 22, 29, 36, 43, 45, 51, 53, 61, 63, 68, 70, 78, 82, 85, 95)
+    Bytes.equals: called 15x (line(s): 22, 29, 36, 43, 45, 51, 53, 61, 63, 68, 70, 78, 82, 85, 95)
+    r.getRow: called 15x (line(s): 22, 29, 36, 43, 45, 51, 53, 61, 63, 68, 70, 78, 82, 85, 95)
+    Put: called 6x (line(s): 9, 13, 17, 31, 56, 89)
+    p.add: called 6x (line(s): 10, 14, 18, 32, 57, 90)
+    region.put: called 6x (line(s): 11, 15, 19, 33, 58, 91)
+    Delete: called 4x (line(s): 24, 38, 74, 92)
+    d.deleteColumn: called 4x (line(s): 25, 39, 75, 93)
+    region.delete: called 3x (line(s): 26, 40, 76)
+    region.flushcache: called 3x (line(s): 47, 65, 83)
+    createTableDescriptor: called 1x (line(s): 6)
+    getName: called 1x (line(s): 6)
+    createNewHRegion: called 1x (line(s): 7)
+
+--- Line 97: if ---
+if (region != null) {
+        try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        region.getLog().closeAndDelete();
+      }
+  Calls inside this branch:
+    region.getLog: called 1x (line(s): 103)
+    closeAndDelete: called 1x (line(s): 103)
+
+--- Line 98: try ---
+try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+  Calls inside this branch:
+    region.close: called 1x (line(s): 99)
+    e.printStackTrace: called 1x (line(s): 101)
+

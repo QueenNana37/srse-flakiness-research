@@ -1,5 +1,26 @@
 Test: org.java_websocket.issues.Issue677Test#testIssue
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 24 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 5x (line(s): 70, 72, 74, 76, 78)
+  URI: called 2x (line(s): 4, 25)
+  SocketUtil.getAvailablePort: called 1x (line(s): 3)
+  countDownLatch0.countDown: called 1x (line(s): 17)
+  InetSocketAddress: called 1x (line(s): 43)
+  countServerDownLatch.countDown: called 1x (line(s): 64)
+  server.start: called 1x (line(s): 67)
+  countServerDownLatch.await: called 1x (line(s): 68)
+  webSocket0.connectBlocking: called 1x (line(s): 69)
+  webSocket0.isOpen: called 1x (line(s): 70)
+  webSocket0.close: called 1x (line(s): 71)
+  webSocket0.isClosing: called 1x (line(s): 72)
+  countDownLatch0.await: called 1x (line(s): 73)
+  webSocket0.isClosed: called 1x (line(s): 74)
+  webSocket1.connectBlocking: called 1x (line(s): 75)
+  webSocket1.isOpen: called 1x (line(s): 76)
+  webSocket1.closeConnection: called 1x (line(s): 77)
+  webSocket1.isClosed: called 1x (line(s): 78)
+  server.stop: called 1x (line(s): 79)

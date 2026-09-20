@@ -1,5 +1,16 @@
 Test: org.springframework.boot.autoconfigure.jta.JtaAutoConfigurationTests#defaultAtomikosTransactionManagerName
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  AnnotationConfigApplicationContext: called 1x (line(s): 3)
+  EnvironmentTestUtils.addEnvironment: called 1x (line(s): 4)
+  this.context.register: called 1x (line(s): 6)
+  this.context.refresh: called 1x (line(s): 8)
+  File: called 1x (line(s): 10)
+  InetAddress.getLocalHost: called 1x (line(s): 11)
+  getHostAddress: called 1x (line(s): 11)
+  assertTrue: called 1x (line(s): 12)
+  epochFile.isFile: called 1x (line(s): 12)

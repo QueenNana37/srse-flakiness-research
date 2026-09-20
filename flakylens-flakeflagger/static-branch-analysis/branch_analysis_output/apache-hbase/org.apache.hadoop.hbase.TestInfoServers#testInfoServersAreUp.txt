@@ -1,5 +1,16 @@
 Test: org.apache.hadoop.hbase.TestInfoServers#testInfoServersAreUp
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 13 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  getInfoServer: called 2x (line(s): 4, 8)
+  getPort: called 2x (line(s): 4, 8)
+  assertHasExpectedContent: called 2x (line(s): 5, 9)
+  URL: called 2x (line(s): 5, 9)
+  HTable: called 1x (line(s): 3)
+  cluster.getMaster: called 1x (line(s): 4)
+  cluster.getRegionServerThreads: called 1x (line(s): 7)
+  get: called 1x (line(s): 7)
+  getRegionServer: called 1x (line(s): 7)

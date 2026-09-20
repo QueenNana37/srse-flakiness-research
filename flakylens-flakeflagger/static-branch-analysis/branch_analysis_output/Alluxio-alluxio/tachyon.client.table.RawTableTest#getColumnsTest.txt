@@ -1,7 +1,25 @@
 Test: tachyon.client.table.RawTableTest#getColumnsTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 15 method call(s), 5 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int k = 1; k < Constants.MAX_COLUMNS; k += Constants.MAX_COLUMNS / 5) {
+      int fileId = mTfs.createRawTable("/table" + k, k);
+      RawTable table = mTfs.getRawTable(fileId);
+      Assert.assertEquals(k, table.getColumns());
+      table = mTfs.getRawTable("/table" + k);
+      Assert.assertEquals(k, table.getColumns());
+
+      fileId = mTfs.createRawTable("/tabl" + k, k, TestUtils.getIncreasingByteBuffer(k % 10));
+      table = mTfs.getRawTable(fileId);
+      Assert.assertEquals(k, table.getColumns());
+      table = mTfs.getRawTable("/tabl" + k);
+      Assert.assertEquals(k, table.getColumns());
+    }
+  Calls inside this branch:
+    mTfs.getRawTable: called 4x (line(s): 5, 7, 11, 13)
+    Assert.assertEquals: called 4x (line(s): 6, 8, 12, 14)
+    table.getColumns: called 4x (line(s): 6, 8, 12, 14)
+    mTfs.createRawTable: called 2x (line(s): 4, 10)
+    TestUtils.getIncreasingByteBuffer: called 1x (line(s): 10)
+

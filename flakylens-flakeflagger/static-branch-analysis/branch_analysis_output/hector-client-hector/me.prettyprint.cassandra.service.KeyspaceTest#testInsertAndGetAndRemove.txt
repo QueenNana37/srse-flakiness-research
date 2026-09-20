@@ -1,19 +1,60 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testInsertAndGetAndRemove
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 14 method call(s), 13 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 15: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 23: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 28: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 29: try statement
-    -> try-block completes normally
-    -> catch triggered: HNotFoundException
+--- Line 8: for ---
+for (int i = 0; i < 100; i++) {
+      keyspace.insert("testInsertAndGetAndRemove_" + i, cp,
+          StringSerializer.get().toByteBuffer("testInsertAndGetAndRemove_value_" + i));
+    }
+  Calls inside this branch:
+    keyspace.insert: called 1x (line(s): 9)
+    StringSerializer.get: called 1x (line(s): 10)
+    toByteBuffer: called 1x (line(s): 10)
+
+--- Line 14: for ---
+for (int i = 0; i < 100; i++) {
+      Column col = keyspace.getColumn("testInsertAndGetAndRemove_" + i, cp);
+      assertNotNull(col);
+      String value = string(col.getValue());
+      assertEquals("testInsertAndGetAndRemove_value_" + i, value);
+    }
+  Calls inside this branch:
+    keyspace.getColumn: called 1x (line(s): 15)
+    assertNotNull: called 1x (line(s): 16)
+    string: called 1x (line(s): 17)
+    col.getValue: called 1x (line(s): 17)
+    assertEquals: called 1x (line(s): 18)
+
+--- Line 22: for ---
+for (int i = 0; i < 100; i++) {
+      keyspace.remove("testInsertAndGetAndRemove_" + i, cp);
+    }
+  Calls inside this branch:
+    keyspace.remove: called 1x (line(s): 23)
+
+--- Line 27: for ---
+for (int i = 0; i < 100; i++) {
+      try {
+        keyspace.getColumn("testInsertAndGetAndRemove_" + i, cp);
+        fail("the value should already being deleted");
+      } catch (HNotFoundException e) {
+        // good
+      }
+    }
+
+--- Line 28: try ---
+try {
+        keyspace.getColumn("testInsertAndGetAndRemove_" + i, cp);
+        fail("the value should already being deleted");
+      } catch (HNotFoundException e) {
+        // good
+      }
+  Calls inside this branch:
+    keyspace.getColumn: called 1x (line(s): 29)
+    fail: called 1x (line(s): 30)
+
+Calls NOT inside any branch (always run):
+  ColumnPath: called 1x (line(s): 6)
+  cp.setColumn: called 1x (line(s): 7)
+  bytes: called 1x (line(s): 7)

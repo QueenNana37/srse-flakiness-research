@@ -1,16 +1,62 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceWithInvalidInfo
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 25 method call(s), 16 unique method(s) called
 
-Line 35: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 7: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 13: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 19: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 6: try ---
+try {
+      createService(clusterName, serviceName, State.INSTALLING);
+      fail("Service creation should fail for invalid state");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createService: called 1x (line(s): 7)
+    fail: called 1x (line(s): 8)
+
+--- Line 12: try ---
+try {
+      clusters.getCluster(clusterName).getService(serviceName);
+      fail("Service creation should have failed");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 13)
+    getService: called 1x (line(s): 13)
+    fail: called 1x (line(s): 14)
+
+--- Line 18: try ---
+try {
+      createService(clusterName, serviceName, State.INSTALLED);
+      fail("Service creation should fail for invalid initial state");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createService: called 1x (line(s): 19)
+    fail: called 1x (line(s): 20)
+
+--- Line 34: for ---
+for (ServiceResponse svc : response) {
+      Assert.assertTrue(svc.getServiceName().equals(serviceName)
+          || svc.getServiceName().equals(serviceName2));
+      Assert.assertEquals("HDP-0.1", svc.getDesiredStackVersion());
+      Assert.assertEquals(State.INIT.toString(), svc.getDesiredState());
+    }
+  Calls inside this branch:
+    svc.getServiceName: called 2x (line(s): 35, 36)
+    equals: called 2x (line(s): 35, 36)
+    Assert.assertEquals: called 2x (line(s): 37, 38)
+    Assert.assertTrue: called 1x (line(s): 35)
+    svc.getDesiredStackVersion: called 1x (line(s): 37)
+    State.INIT.toString: called 1x (line(s): 38)
+    svc.getDesiredState: called 1x (line(s): 38)
+
+Calls NOT inside any branch (always run):
+  createService: called 2x (line(s): 25, 28)
+  createCluster: called 1x (line(s): 4)
+  ServiceRequest: called 1x (line(s): 30)
+  controller.getServices: called 1x (line(s): 31)
+  Collections.singleton: called 1x (line(s): 31)
+  Assert.assertEquals: called 1x (line(s): 32)
+  response.size: called 1x (line(s): 32)

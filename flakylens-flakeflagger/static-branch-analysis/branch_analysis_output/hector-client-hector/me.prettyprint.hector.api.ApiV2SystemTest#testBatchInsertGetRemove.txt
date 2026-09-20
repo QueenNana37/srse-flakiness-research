@@ -1,16 +1,57 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testBatchInsertGetRemove
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 25 method call(s), 17 unique method(s) called
 
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 16: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 27: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 35: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 6: for ---
+for (int i = 0; i < 5; i++) {
+      m.addInsertion("testInsertGetRemove" + i, cf,
+          createColumn("testInsertGetRemove", "testInsertGetRemove_value_" + i, se, se));
+    }
+  Calls inside this branch:
+    m.addInsertion: called 1x (line(s): 7)
+    createColumn: called 1x (line(s): 8)
+
+--- Line 15: for ---
+for (int i = 0; i < 5; i++) {
+      QueryResult<HColumn<String, String>> r = q.setKey("testInsertGetRemove" + i).execute();
+      assertNotNull(r);
+      HColumn<String, String> c = r.get();
+      assertNotNull(c);
+      String value = c.getValue();
+      assertEquals("testInsertGetRemove_value_" + i, value);
+    }
+  Calls inside this branch:
+    assertNotNull: called 2x (line(s): 17, 19)
+    q.setKey: called 1x (line(s): 16)
+    execute: called 1x (line(s): 16)
+    r.get: called 1x (line(s): 18)
+    c.getValue: called 1x (line(s): 20)
+    assertEquals: called 1x (line(s): 21)
+
+--- Line 26: for ---
+for (int i = 0; i < 5; i++) {
+      m.addDeletion("testInsertGetRemove" + i, cf, "testInsertGetRemove", se);
+    }
+  Calls inside this branch:
+    m.addDeletion: called 1x (line(s): 27)
+
+--- Line 34: for ---
+for (int i = 0; i < 5; i++) {
+      QueryResult<HColumn<String, String>> r = q2.setKey("testInsertGetRemove" + i).execute();
+      assertNotNull(r);
+      assertNull("Value should have been deleted", r.get());
+    }
+  Calls inside this branch:
+    q2.setKey: called 1x (line(s): 35)
+    execute: called 1x (line(s): 35)
+    assertNotNull: called 1x (line(s): 36)
+    assertNull: called 1x (line(s): 37)
+    r.get: called 1x (line(s): 37)
+
+Calls NOT inside any branch (always run):
+  createMutator: called 2x (line(s): 5, 25)
+  m.execute: called 2x (line(s): 10, 29)
+  createColumnQuery: called 2x (line(s): 13, 32)
+  setColumnFamily: called 2x (line(s): 14, 33)
+  q.setName: called 1x (line(s): 14)
+  q2.setName: called 1x (line(s): 33)

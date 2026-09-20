@@ -1,13 +1,54 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testMultigetSlice
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 28 method call(s), 27 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < 100; i++) {
+      keyspace.insert("testMultigetSlice_" + i, cp, StringSerializer.get().toByteBuffer("testMultigetSlice_value_" + i));
+      keys.add("testMultigetSlice_" + i);
+    }
+  Calls inside this branch:
+    keyspace.insert: called 1x (line(s): 8)
+    StringSerializer.get: called 1x (line(s): 8)
+    toByteBuffer: called 1x (line(s): 8)
+    keys.add: called 1x (line(s): 9)
+
+--- Line 17: for ---
+for (int i = 0; i < 100; i++) {
+      List<Column> cl = ms.get(keys.get(i));
+      assertNotNull(cl);
+      assertEquals(1, cl.size());
+      assertTrue(string(cl.get(0).getValue()).startsWith("testMultigetSlice_"));
+    }
+  Calls inside this branch:
+    ms.get: called 1x (line(s): 18)
+    keys.get: called 1x (line(s): 18)
+    assertNotNull: called 1x (line(s): 19)
+    assertEquals: called 1x (line(s): 20)
+    cl.size: called 1x (line(s): 20)
+    assertTrue: called 1x (line(s): 21)
+    string: called 1x (line(s): 21)
+    cl.get: called 1x (line(s): 21)
+    getValue: called 1x (line(s): 21)
+    startsWith: called 1x (line(s): 21)
+
+--- Line 25: for ---
+for (int i = 0; i < 100; i++) {
+      keyspace.remove("testMultigetSlice_" + i, cp);
+    }
+  Calls inside this branch:
+    keyspace.remove: called 1x (line(s): 26)
+
+Calls NOT inside any branch (always run):
+  ByteBuffer.wrap: called 2x (line(s): 13, 13)
+  ColumnPath: called 1x (line(s): 4)
+  cp.setColumn: called 1x (line(s): 5)
+  bytes: called 1x (line(s): 5)
+  ArrayList<String>: called 1x (line(s): 6)
+  ColumnParent: called 1x (line(s): 12)
+  SliceRange: called 1x (line(s): 13)
+  SlicePredicate: called 1x (line(s): 14)
+  sp.setSlice_range: called 1x (line(s): 15)
+  se.fromBytesMap: called 1x (line(s): 16)
+  keyspace.multigetSlice: called 1x (line(s): 16)
+  se.toBytesList: called 1x (line(s): 16)

@@ -1,10 +1,41 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testSliceQuery
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 44 method call(s), 19 unique method(s) called
 
-Line 40: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 39: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 38: for ---
+for (HColumn<String, String> column : slice.getColumns()) {
+      if (!column.getName().equals("testSliceQuery1")
+          && !column.getName().equals("testSliceQuery2")) {
+        fail("A columns with unexpected column name returned: " + column.getName());
+      }
+    }
+  Calls inside this branch:
+    slice.getColumns: called 1x (line(s): 38)
+
+--- Line 39: if ---
+if (!column.getName().equals("testSliceQuery1")
+          && !column.getName().equals("testSliceQuery2")) {
+        fail("A columns with unexpected column name returned: " + column.getName());
+      }
+  Calls inside this branch:
+    column.getName: called 3x (line(s): 39, 40, 41)
+    equals: called 2x (line(s): 39, 40)
+    fail: called 1x (line(s): 41)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 6x (line(s): 17, 19, 20, 21, 25, 37)
+  assertNotNull: called 5x (line(s): 14, 16, 24, 34, 36)
+  slice.getColumns: called 3x (line(s): 17, 23, 37)
+  slice.getColumnByName: called 3x (line(s): 19, 20, 21)
+  getValue: called 3x (line(s): 19, 20, 21)
+  createSliceQuery: called 2x (line(s): 8, 28)
+  q.setColumnFamily: called 2x (line(s): 9, 29)
+  q.setKey: called 2x (line(s): 10, 30)
+  q.execute: called 2x (line(s): 13, 33)
+  r.get: called 2x (line(s): 15, 35)
+  size: called 2x (line(s): 17, 37)
+  insertColumns: called 1x (line(s): 5)
+  q.setColumnNames: called 1x (line(s): 12)
+  columns.size: called 1x (line(s): 25)
+  q.setRange: called 1x (line(s): 32)
+  deleteColumns: called 1x (line(s): 45)

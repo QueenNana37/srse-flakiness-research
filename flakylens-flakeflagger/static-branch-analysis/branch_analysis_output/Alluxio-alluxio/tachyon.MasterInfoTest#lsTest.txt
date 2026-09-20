@@ -1,13 +1,35 @@
 Test: tachyon.MasterInfoTest#lsTest
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 20 method call(s), 5 unique method(s) called
 
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 15: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 5: for ---
+for (int i = 0; i < 10; i ++) {
+      mMasterInfo.mkdir("/i" + i);
+      for (int j = 0; j < 10; j ++) {
+        mMasterInfo.createFile("/i" + i + "/j" + j, 64);
+      }
+    }
+  Calls inside this branch:
+    mMasterInfo.mkdir: called 1x (line(s): 6)
+
+--- Line 7: for ---
+for (int j = 0; j < 10; j ++) {
+        mMasterInfo.createFile("/i" + i + "/j" + j, 64);
+      }
+  Calls inside this branch:
+    mMasterInfo.createFile: called 1x (line(s): 8)
+
+--- Line 14: for ---
+for (int i = 0; i < 10; i ++) {
+      Assert.assertEquals(11, mMasterInfo.ls("/i" + i, false).size());
+      Assert.assertEquals(11, mMasterInfo.ls("/i" + i, true).size());
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 15, 16)
+    mMasterInfo.ls: called 2x (line(s): 15, 16)
+    size: called 2x (line(s): 15, 16)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 4x (line(s): 12, 13, 18, 19)
+  mMasterInfo.ls: called 4x (line(s): 12, 13, 18, 19)
+  size: called 4x (line(s): 12, 13, 18, 19)

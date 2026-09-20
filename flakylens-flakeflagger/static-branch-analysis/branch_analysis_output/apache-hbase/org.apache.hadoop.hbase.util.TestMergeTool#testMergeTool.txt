@@ -1,13 +1,78 @@
 Test: org.apache.hadoop.hbase.util.TestMergeTool#testMergeTool
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 33 method call(s), 20 unique method(s) called
 
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 4: for ---
+for (int i = 0; i < regions.length; i++) {
+      for (int j = 0; j < rows[i].length; j++) {
+        Get get = new Get(rows[i][j]);
+        get.addFamily(FAMILY);
+        Result result = regions[i].get(get, null);
+        byte [] bytes = result.sorted()[0].getValue();
+        assertNotNull(bytes);
+        assertTrue(Bytes.equals(bytes, rows[i][j]));
+      }
+      // Close the region and delete the log
+      regions[i].close();
+      regions[i].getLog().closeAndDelete();
+    }
+  Calls inside this branch:
+    close: called 1x (line(s): 14)
+    getLog: called 1x (line(s): 15)
+    closeAndDelete: called 1x (line(s): 15)
+
+--- Line 5: for ---
+for (int j = 0; j < rows[i].length; j++) {
+        Get get = new Get(rows[i][j]);
+        get.addFamily(FAMILY);
+        Result result = regions[i].get(get, null);
+        byte [] bytes = result.sorted()[0].getValue();
+        assertNotNull(bytes);
+        assertTrue(Bytes.equals(bytes, rows[i][j]));
+      }
+  Calls inside this branch:
+    Get: called 1x (line(s): 6)
+    get.addFamily: called 1x (line(s): 7)
+    get: called 1x (line(s): 8)
+    result.sorted: called 1x (line(s): 9)
+    getValue: called 1x (line(s): 9)
+    assertNotNull: called 1x (line(s): 10)
+    assertTrue: called 1x (line(s): 11)
+    Bytes.equals: called 1x (line(s): 11)
+
+--- Line 24: try ---
+try {
+       // Merge Region 0 and Region 1
+      HRegion merged = mergeAndVerify("merging regions 0 and 1",
+        this.sourceRegions[0].getRegionNameAsString(),
+        this.sourceRegions[1].getRegionNameAsString(), log, 2);
+
+      // Merge the result of merging regions 0 and 1 with region 2
+      merged = mergeAndVerify("merging regions 0+1 and 2",
+        merged.getRegionInfo().getRegionNameAsString(),
+        this.sourceRegions[2].getRegionNameAsString(), log, 3);
+
+      // Merge the result of merging regions 0, 1 and 2 with region 3
+      merged = mergeAndVerify("merging regions 0+1+2 and 3",
+        merged.getRegionInfo().getRegionNameAsString(),
+        this.sourceRegions[3].getRegionNameAsString(), log, 4);
+
+      // Merge the result of merging regions 0, 1, 2 and 3 with region 4
+      merged = mergeAndVerify("merging regions 0+1+2+3 and 4",
+        merged.getRegionInfo().getRegionNameAsString(),
+        this.sourceRegions[4].getRegionNameAsString(), log, rows.length);
+    } finally {
+      log.closeAndDelete();
+    }
+  Calls inside this branch:
+    getRegionNameAsString: called 8x (line(s): 27, 28, 32, 33, 37, 38, 42, 43)
+    mergeAndVerify: called 4x (line(s): 26, 31, 36, 41)
+    merged.getRegionInfo: called 3x (line(s): 32, 37, 42)
+    log.closeAndDelete: called 1x (line(s): 45)
+
+Calls NOT inside any branch (always run):
+  Path: called 2x (line(s): 19, 22)
+  System.currentTimeMillis: called 1x (line(s): 20)
+  LOG.info: called 1x (line(s): 21)
+  logPath.toString: called 1x (line(s): 21)
+  HLog: called 1x (line(s): 23)

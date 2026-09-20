@@ -1,5 +1,23 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerPB
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 16 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 9, 15, 19, 23)
+  response.getCode: called 3x (line(s): 9, 15, 23)
+  ScannerModel: called 1x (line(s): 4)
+  model.setBatch: called 1x (line(s): 5)
+  model.addColumn: called 1x (line(s): 6)
+  Bytes.toBytes: called 1x (line(s): 6)
+  client.put: called 1x (line(s): 7)
+  model.createProtobufOutput: called 1x (line(s): 8)
+  response.getLocation: called 1x (line(s): 10)
+  assertNotNull: called 1x (line(s): 11)
+  client.get: called 1x (line(s): 14)
+  CellSetModel: called 1x (line(s): 16)
+  cellSet.getObjectFromMessage: called 1x (line(s): 17)
+  response.getBody: called 1x (line(s): 17)
+  countCellSet: called 1x (line(s): 19)
+  client.delete: called 1x (line(s): 22)

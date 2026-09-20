@@ -1,25 +1,170 @@
 Test: org.apache.hadoop.hbase.regionserver.wal.TestHLog#testEditAdd
 STATUS: parsed successfully
-Branch points found: 7
+Summary: 7 branch point(s), 66 method call(s), 37 unique method(s) called
 
-Line 33: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 58: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 61: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 31: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 44: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 8: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 7: try ---
+try {
+      // Write columns named 1, 2, 3, etc. and then values of single byte
+      // 1, 2, 3...
+      long timestamp = System.currentTimeMillis();
+      WALEdit cols = new WALEdit();
+      for (int i = 0; i < COL_COUNT; i++) {
+        cols.add(new KeyValue(row, Bytes.toBytes("column"),
+            Bytes.toBytes(Integer.toString(i)),
+          timestamp, new byte[] { (byte)(i + '0') }));
+      }
+      HRegionInfo info = new HRegionInfo(new HTableDescriptor(tableName),
+        row,Bytes.toBytes(Bytes.toString(row) + "1"), false);
+      final byte [] regionName = info.getRegionName();
+      log.append(info, tableName, cols, System.currentTimeMillis());
+      long logSeqId = log.startCacheFlush();
+      log.completeCacheFlush(regionName, tableName, logSeqId, info.isMetaRegion());
+      log.close();
+      Path filename = log.computeFilename(log.getFilenum());
+      log = null;
+      // Now open a reader on the log and assert append worked.
+      reader = HLog.getReader(fs, filename, conf);
+      // Above we added all columns on a single row so we only read one
+      // entry in the below... thats why we have '1'.
+      for (int i = 0; i < 1; i++) {
+        HLog.Entry entry = reader.next(null);
+        if (entry == null) break;
+        HLogKey key = entry.getKey();
+        WALEdit val = entry.getEdit();
+        assertTrue(Bytes.equals(regionName, key.getRegionName()));
+        assertTrue(Bytes.equals(tableName, key.getTablename()));
+        KeyValue kv = val.getKeyValues().get(0);
+        assertTrue(Bytes.equals(row, kv.getRow()));
+        assertEquals((byte)(i + '0'), kv.getValue()[0]);
+        System.out.println(key + " " + val);
+      }
+      HLog.Entry entry = null;
+      while ((entry = reader.next(null)) != null) {
+        HLogKey key = entry.getKey();
+        WALEdit val = entry.getEdit();
+        // Assert only one more row... the meta flushed row.
+        assertTrue(Bytes.equals(regionName, key.getRegionName()));
+        assertTrue(Bytes.equals(tableName, key.getTablename()));
+        KeyValue kv = val.getKeyValues().get(0);
+        assertTrue(Bytes.equals(HLog.METAROW, kv.getRow()));
+        assertTrue(Bytes.equals(HLog.METAFAMILY, kv.getFamily()));
+        assertEquals(0, Bytes.compareTo(HLog.COMPLETE_CACHE_FLUSH,
+          val.getKeyValues().get(0).getValue()));
+        System.out.println(key + " " + val);
+      }
+    } finally {
+      if (log != null) {
+        log.closeAndDelete();
+      }
+      if (reader != null) {
+        reader.close();
+      }
+    }
+  Calls inside this branch:
+    System.currentTimeMillis: called 2x (line(s): 10, 20)
+    WALEdit: called 1x (line(s): 11)
+    HRegionInfo: called 1x (line(s): 17)
+    HTableDescriptor: called 1x (line(s): 17)
+    Bytes.toBytes: called 1x (line(s): 18)
+    Bytes.toString: called 1x (line(s): 18)
+    info.getRegionName: called 1x (line(s): 19)
+    log.append: called 1x (line(s): 20)
+    log.startCacheFlush: called 1x (line(s): 21)
+    log.completeCacheFlush: called 1x (line(s): 22)
+    info.isMetaRegion: called 1x (line(s): 22)
+    log.close: called 1x (line(s): 23)
+    log.computeFilename: called 1x (line(s): 24)
+    log.getFilenum: called 1x (line(s): 24)
+    HLog.getReader: called 1x (line(s): 27)
+
+--- Line 12: for ---
+for (int i = 0; i < COL_COUNT; i++) {
+        cols.add(new KeyValue(row, Bytes.toBytes("column"),
+            Bytes.toBytes(Integer.toString(i)),
+          timestamp, new byte[] { (byte)(i + '0') }));
+      }
+  Calls inside this branch:
+    Bytes.toBytes: called 2x (line(s): 13, 14)
+    cols.add: called 1x (line(s): 13)
+    KeyValue: called 1x (line(s): 13)
+    Integer.toString: called 1x (line(s): 14)
+
+--- Line 30: for ---
+for (int i = 0; i < 1; i++) {
+        HLog.Entry entry = reader.next(null);
+        if (entry == null) break;
+        HLogKey key = entry.getKey();
+        WALEdit val = entry.getEdit();
+        assertTrue(Bytes.equals(regionName, key.getRegionName()));
+        assertTrue(Bytes.equals(tableName, key.getTablename()));
+        KeyValue kv = val.getKeyValues().get(0);
+        assertTrue(Bytes.equals(row, kv.getRow()));
+        assertEquals((byte)(i + '0'), kv.getValue()[0]);
+        System.out.println(key + " " + val);
+      }
+  Calls inside this branch:
+    assertTrue: called 3x (line(s): 35, 36, 38)
+    Bytes.equals: called 3x (line(s): 35, 36, 38)
+    reader.next: called 1x (line(s): 31)
+    entry.getKey: called 1x (line(s): 33)
+    entry.getEdit: called 1x (line(s): 34)
+    key.getRegionName: called 1x (line(s): 35)
+    key.getTablename: called 1x (line(s): 36)
+    val.getKeyValues: called 1x (line(s): 37)
+    get: called 1x (line(s): 37)
+    kv.getRow: called 1x (line(s): 38)
+    assertEquals: called 1x (line(s): 39)
+    kv.getValue: called 1x (line(s): 39)
+    System.out.println: called 1x (line(s): 40)
+
+--- Line 32: if ---
+if (entry == null) break;
+
+--- Line 43: while ---
+while ((entry = reader.next(null)) != null) {
+        HLogKey key = entry.getKey();
+        WALEdit val = entry.getEdit();
+        // Assert only one more row... the meta flushed row.
+        assertTrue(Bytes.equals(regionName, key.getRegionName()));
+        assertTrue(Bytes.equals(tableName, key.getTablename()));
+        KeyValue kv = val.getKeyValues().get(0);
+        assertTrue(Bytes.equals(HLog.METAROW, kv.getRow()));
+        assertTrue(Bytes.equals(HLog.METAFAMILY, kv.getFamily()));
+        assertEquals(0, Bytes.compareTo(HLog.COMPLETE_CACHE_FLUSH,
+          val.getKeyValues().get(0).getValue()));
+        System.out.println(key + " " + val);
+      }
+  Calls inside this branch:
+    assertTrue: called 4x (line(s): 47, 48, 50, 51)
+    Bytes.equals: called 4x (line(s): 47, 48, 50, 51)
+    val.getKeyValues: called 2x (line(s): 49, 53)
+    get: called 2x (line(s): 49, 53)
+    reader.next: called 1x (line(s): 43)
+    entry.getKey: called 1x (line(s): 44)
+    entry.getEdit: called 1x (line(s): 45)
+    key.getRegionName: called 1x (line(s): 47)
+    key.getTablename: called 1x (line(s): 48)
+    kv.getRow: called 1x (line(s): 50)
+    kv.getFamily: called 1x (line(s): 51)
+    assertEquals: called 1x (line(s): 52)
+    Bytes.compareTo: called 1x (line(s): 52)
+    getValue: called 1x (line(s): 53)
+    System.out.println: called 1x (line(s): 54)
+
+--- Line 57: if ---
+if (log != null) {
+        log.closeAndDelete();
+      }
+  Calls inside this branch:
+    log.closeAndDelete: called 1x (line(s): 58)
+
+--- Line 60: if ---
+if (reader != null) {
+        reader.close();
+      }
+  Calls inside this branch:
+    reader.close: called 1x (line(s): 61)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 2x (line(s): 3, 4)
+  HLog: called 1x (line(s): 6)

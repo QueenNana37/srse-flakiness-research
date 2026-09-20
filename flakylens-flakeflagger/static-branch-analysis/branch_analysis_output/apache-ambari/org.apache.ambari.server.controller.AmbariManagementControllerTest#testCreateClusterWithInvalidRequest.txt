@@ -1,13 +1,43 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithInvalidRequest
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 12 method call(s), 7 unique method(s) called
 
-Line 7: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 15: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 24: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 6: try ---
+try {
+      controller.createCluster(r);
+      fail("Expected create cluster for invalid request");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createCluster: called 1x (line(s): 7)
+    fail: called 1x (line(s): 8)
+
+--- Line 14: try ---
+try {
+      controller.createCluster(r);
+      fail("Expected create cluster for invalid request");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createCluster: called 1x (line(s): 15)
+    fail: called 1x (line(s): 16)
+
+--- Line 23: try ---
+try {
+      controller.createCluster(r);
+     fail("Expected create cluster for invalid request - no stack version");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createCluster: called 1x (line(s): 24)
+    fail: called 1x (line(s): 25)
+
+Calls NOT inside any branch (always run):
+  r.setClusterId: called 2x (line(s): 13, 20)
+  ClusterRequest: called 1x (line(s): 3)
+  r.toString: called 1x (line(s): 4)
+  Long: called 1x (line(s): 13)
+  r.setClusterName: called 1x (line(s): 22)

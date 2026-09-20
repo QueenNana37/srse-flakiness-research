@@ -1,5 +1,14 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testGet_EmptyTable
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 7 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  TEST_UTIL.createTable: called 1x (line(s): 3)
+  Bytes.toBytes: called 1x (line(s): 3)
+  Get: called 1x (line(s): 4)
+  get.addFamily: called 1x (line(s): 5)
+  table.get: called 1x (line(s): 6)
+  assertTrue: called 1x (line(s): 7)
+  r.isEmpty: called 1x (line(s): 7)

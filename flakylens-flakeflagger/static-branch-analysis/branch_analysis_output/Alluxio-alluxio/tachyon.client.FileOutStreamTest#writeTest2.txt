@@ -1,10 +1,19 @@
 Test: tachyon.client.FileOutStreamTest#writeTest2
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 2 method call(s), 2 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int k = MIN_LEN; k <= MAX_LEN; k += DELTA) {
+      for (WriteType op : WriteType.values()) {
+        writeTest2Util("/root/testFile_" + k + "_" + op, op, k);
+      }
+    }
+
+--- Line 4: for ---
+for (WriteType op : WriteType.values()) {
+        writeTest2Util("/root/testFile_" + k + "_" + op, op, k);
+      }
+  Calls inside this branch:
+    WriteType.values: called 1x (line(s): 4)
+    writeTest2Util: called 1x (line(s): 5)
+

@@ -1,5 +1,12 @@
 Test: ch.qos.logback.classic.sift.MDCBasedDiscriminatorTest#nullMDC
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 4, 6)
+  LoggingEvent: called 1x (line(s): 3)
+  HashMap: called 1x (line(s): 4)
+  event.getMDCPropertyMap: called 1x (line(s): 4)
+  discriminator.getDiscriminatingValue: called 1x (line(s): 5)

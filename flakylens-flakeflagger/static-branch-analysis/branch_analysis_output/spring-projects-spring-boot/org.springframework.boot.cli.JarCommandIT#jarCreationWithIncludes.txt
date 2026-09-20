@@ -1,5 +1,25 @@
 Test: org.springframework.boot.cli.JarCommandIT#jarCreationWithIncludes
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 39 method call(s), 18 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertThat: called 7x (line(s): 15, 16, 17, 19, 21, 22, 24)
+  invocation.getStandardOutput: called 6x (line(s): 16, 17, 19, 21, 22, 24)
+  containsString: called 6x (line(s): 16, 18, 20, 21, 23, 24)
+  invocation.getErrorOutput: called 3x (line(s): 7, 7, 15)
+  jar.getAbsolutePath: called 2x (line(s): 4, 11)
+  invocation.await: called 2x (line(s): 6, 13)
+  not: called 2x (line(s): 18, 20)
+  File: called 1x (line(s): 3)
+  this.cli.invoke: called 1x (line(s): 4)
+  assertEquals: called 1x (line(s): 7)
+  length: called 1x (line(s): 7)
+  assertTrue: called 1x (line(s): 8)
+  jar.exists: called 1x (line(s): 8)
+  JavaExecutable: called 1x (line(s): 10)
+  processBuilder: called 1x (line(s): 10)
+  start: called 1x (line(s): 11)
+  Invocation: called 1x (line(s): 12)
+  equalTo: called 1x (line(s): 15)

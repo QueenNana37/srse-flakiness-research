@@ -1,7 +1,18 @@
 Test: ro.isdc.wro.util.concurrent.TestTaskExecutor#shouldBeFasterWhenRunningMultipleSlowTasks
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 8 method call(s), 7 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < times; i++) {
+      callables.add(createSlowCallable(delay));
+    }
+  Calls inside this branch:
+    callables.add: called 1x (line(s): 8)
+    createSlowCallable: called 1x (line(s): 8)
+
+Calls NOT inside any branch (always run):
+  System.currentTimeMillis: called 2x (line(s): 11, 13)
+  ArrayList<Callable<Void>>: called 1x (line(s): 4)
+  victim.submit: called 1x (line(s): 12)
+  LOG.debug: called 1x (line(s): 16)
+  assertTrue: called 1x (line(s): 17)

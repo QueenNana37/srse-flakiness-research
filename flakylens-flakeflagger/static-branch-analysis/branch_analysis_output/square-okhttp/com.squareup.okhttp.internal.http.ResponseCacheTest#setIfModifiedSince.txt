@@ -1,5 +1,23 @@
 Test: com.squareup.okhttp.internal.http.ResponseCacheTest#setIfModifiedSince
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 16 method call(s), 16 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Date: called 1x (line(s): 2)
+  server.enqueue: called 1x (line(s): 3)
+  MockResponse: called 1x (line(s): 3)
+  setBody: called 1x (line(s): 3)
+  server.play: called 1x (line(s): 4)
+  server.getUrl: called 1x (line(s): 6)
+  openConnection: called 1x (line(s): 7)
+  connection.setIfModifiedSince: called 1x (line(s): 8)
+  since.getTime: called 1x (line(s): 8)
+  assertEquals: called 1x (line(s): 9)
+  readAscii: called 1x (line(s): 9)
+  server.takeRequest: called 1x (line(s): 10)
+  assertTrue: called 1x (line(s): 11)
+  request.getHeaders: called 1x (line(s): 11)
+  contains: called 1x (line(s): 11)
+  formatDate: called 1x (line(s): 11)

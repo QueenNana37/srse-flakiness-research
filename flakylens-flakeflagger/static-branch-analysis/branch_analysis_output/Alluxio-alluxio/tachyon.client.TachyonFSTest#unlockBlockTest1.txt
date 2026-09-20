@@ -1,13 +1,50 @@
 Test: tachyon.client.TachyonFSTest#unlockBlockTest1
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 21 method call(s), 12 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      fileIds.add(TestUtils.createByteFile(
+          mTfs, "/file_" + k, WriteType.CACHE_THROUGH, fileSize));
+    }
+  Calls inside this branch:
+    fileIds.add: called 1x (line(s): 8)
+    TestUtils.createByteFile: called 1x (line(s): 8)
+
+--- Line 11: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+      TachyonByteBuffer tBuf = tFile.readByteBuffer();
+      Assert.assertNotNull(tBuf);
+      tBuf.close();
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 12)
+    fileIds.get: called 1x (line(s): 12)
+    Assert.assertTrue: called 1x (line(s): 13)
+    tFile.isInMemory: called 1x (line(s): 13)
+    tFile.readByteBuffer: called 1x (line(s): 14)
+    Assert.assertNotNull: called 1x (line(s): 15)
+    tBuf.close: called 1x (line(s): 16)
+
+--- Line 24: for ---
+for (int k = 1; k <= numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 25)
+    fileIds.get: called 1x (line(s): 25)
+    Assert.assertTrue: called 1x (line(s): 26)
+    tFile.isInMemory: called 1x (line(s): 26)
+
+Calls NOT inside any branch (always run):
+  ArrayList<Integer>: called 1x (line(s): 6)
+  fileIds.add: called 1x (line(s): 18)
+  TestUtils.createByteFile: called 1x (line(s): 18)
+  CommonUtils.sleepMs: called 1x (line(s): 21)
+  mTfs.getFile: called 1x (line(s): 22)
+  fileIds.get: called 1x (line(s): 22)
+  Assert.assertFalse: called 1x (line(s): 23)
+  tFile.isInMemory: called 1x (line(s): 23)

@@ -1,5 +1,29 @@
 Test: org.activiti.engine.test.bpmn.event.timer.BoundaryTimerNonInterruptingEventTest#testJoin
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 35 method call(s), 22 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 6x (line(s): 9, 13, 20, 23, 29, 31)
+  taskService.createTaskQuery: called 4x (line(s): 8, 23, 29, 30)
+  Date: called 2x (line(s): 4, 16)
+  singleResult: called 2x (line(s): 8, 30)
+  pi.getId: called 2x (line(s): 11, 37)
+  count: called 2x (line(s): 23, 29)
+  taskService.complete: called 2x (line(s): 26, 34)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 7)
+  task1.getName: called 1x (line(s): 9)
+  managementService.createTimerJobQuery: called 1x (line(s): 11)
+  processInstanceId: called 1x (line(s): 11)
+  jobQuery.list: called 1x (line(s): 12)
+  jobs.size: called 1x (line(s): 13)
+  processEngineConfiguration.getClock: called 1x (line(s): 16)
+  setCurrentTime: called 1x (line(s): 16)
+  startTime.getTime: called 1x (line(s): 16)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 17)
+  jobQuery.count: called 1x (line(s): 20)
+  task1.getId: called 1x (line(s): 26)
+  task2.getName: called 1x (line(s): 31)
+  task2.getId: called 1x (line(s): 34)
+  assertProcessEnded: called 1x (line(s): 37)

@@ -1,10 +1,52 @@
 Test: org.apache.hadoop.hbase.regionserver.TestScanner#testRaceBetweenClientAndTimeout
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 14 method call(s), 13 unique method(s) called
 
-Line 3: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 9: try statement
-    -> try-block completes normally
-    -> catch triggered: UnknownScannerException
+--- Line 2: try ---
+try {
+      this.r = createNewHRegion(REGION_INFO.getTableDesc(), null, null);
+      addContent(this.r, HConstants.CATALOG_FAMILY);
+      Scan scan = new Scan();
+      InternalScanner s = r.getScanner(scan);
+      List<KeyValue> results = new ArrayList<KeyValue>();
+      try {
+        s.next(results);
+        s.close();
+        s.next(results);
+        fail("We don't want anything more, we should be failing");
+      } catch (UnknownScannerException ex) {
+        // ok!
+        return;
+      }
+    } finally {
+      this.r.close();
+      this.r.getLog().closeAndDelete();
+      shutdownDfs(this.cluster);
+    }
+  Calls inside this branch:
+    createNewHRegion: called 1x (line(s): 3)
+    REGION_INFO.getTableDesc: called 1x (line(s): 3)
+    addContent: called 1x (line(s): 4)
+    Scan: called 1x (line(s): 5)
+    r.getScanner: called 1x (line(s): 6)
+    ArrayList<KeyValue>: called 1x (line(s): 7)
+    this.r.close: called 1x (line(s): 18)
+    this.r.getLog: called 1x (line(s): 19)
+    closeAndDelete: called 1x (line(s): 19)
+    shutdownDfs: called 1x (line(s): 20)
+
+--- Line 8: try ---
+try {
+        s.next(results);
+        s.close();
+        s.next(results);
+        fail("We don't want anything more, we should be failing");
+      } catch (UnknownScannerException ex) {
+        // ok!
+        return;
+      }
+  Calls inside this branch:
+    s.next: called 2x (line(s): 9, 11)
+    s.close: called 1x (line(s): 10)
+    fail: called 1x (line(s): 12)
+

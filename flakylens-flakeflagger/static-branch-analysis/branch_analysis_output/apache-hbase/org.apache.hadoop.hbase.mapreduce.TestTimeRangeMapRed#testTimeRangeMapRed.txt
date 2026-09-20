@@ -1,5 +1,10 @@
 Test: org.apache.hadoop.hbase.mapreduce.TestTimeRangeMapRed#testTimeRangeMapRed
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 3 method call(s), 3 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  prepareTest: called 1x (line(s): 3)
+  runTestOnTable: called 1x (line(s): 4)
+  verify: called 1x (line(s): 5)

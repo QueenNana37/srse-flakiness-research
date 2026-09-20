@@ -1,5 +1,17 @@
 Test: tachyon.JournalTest#AddCheckpointTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 13 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  mLocalTachyonCluster.getMasterInfo: called 2x (line(s): 4, 7)
+  getClientFileInfo: called 2x (line(s): 4, 7)
+  AddCheckpointTestUtil: called 2x (line(s): 9, 12)
+  TestUtils.createByteFile: called 1x (line(s): 3)
+  fInfo.getCheckpointPath: called 1x (line(s): 5)
+  mTfs.createFile: called 1x (line(s): 6)
+  mLocalTachyonCluster.stop: called 1x (line(s): 8)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 10)
+  UnderFileSystem.get: called 1x (line(s): 11)
+  delete: called 1x (line(s): 11)

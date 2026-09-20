@@ -1,7 +1,25 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterSimple
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 12 method call(s), 10 unique method(s) called
 
-Line 13: try statement
-    -> try-block completes normally
-    -> catch triggered: AmbariException
+--- Line 12: try ---
+try {
+      createCluster(clusterName);
+      fail("Duplicate cluster creation should fail");
+    } catch (AmbariException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createCluster: called 1x (line(s): 13)
+    fail: called 1x (line(s): 14)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 2x (line(s): 8, 10)
+  createCluster: called 1x (line(s): 4)
+  controller.getClusters: called 1x (line(s): 6)
+  Collections.singleton: called 1x (line(s): 6)
+  ClusterRequest: called 1x (line(s): 7)
+  r.size: called 1x (line(s): 8)
+  r.iterator: called 1x (line(s): 9)
+  next: called 1x (line(s): 9)
+  c.getClusterName: called 1x (line(s): 10)

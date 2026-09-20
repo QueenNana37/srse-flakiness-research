@@ -1,10 +1,63 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServicesWithFilters
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 78 method call(s), 32 unique method(s) called
 
-Line 36: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 52: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 35: try ---
+try {
+      controller.getServices(Collections.singleton(r));
+      fail("Expected failure for invalid request");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.getServices: called 1x (line(s): 36)
+    Collections.singleton: called 1x (line(s): 36)
+    fail: called 1x (line(s): 37)
+
+--- Line 51: try ---
+try {
+      r = new ServiceRequest(c2.getClusterName(), s1.getName(), null, null);
+      resp = controller.getServices(Collections.singleton(r));
+      fail("Expected failure for invalid service");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 1x (line(s): 52)
+    c2.getClusterName: called 1x (line(s): 52)
+    s1.getName: called 1x (line(s): 52)
+    controller.getServices: called 1x (line(s): 53)
+    Collections.singleton: called 1x (line(s): 53)
+    fail: called 1x (line(s): 54)
+
+Calls NOT inside any branch (always run):
+  ServiceRequest: called 8x (line(s): 32, 42, 46, 59, 63, 68, 69, 70)
+  Assert.assertEquals: called 6x (line(s): 44, 48, 49, 61, 65, 75)
+  serviceFactory.createNew: called 5x (line(s): 10, 11, 12, 13, 14)
+  controller.getServices: called 5x (line(s): 43, 47, 60, 64, 74)
+  resp.size: called 5x (line(s): 44, 48, 61, 65, 75)
+  c1.getClusterName: called 4x (line(s): 42, 46, 59, 68)
+  Collections.singleton: called 4x (line(s): 43, 47, 60, 64)
+  c1.addService: called 3x (line(s): 16, 17, 18)
+  c2.getClusterName: called 3x (line(s): 63, 69, 70)
+  clusters.addCluster: called 2x (line(s): 3, 4)
+  clusters.getCluster: called 2x (line(s): 5, 6)
+  StackId: called 2x (line(s): 7, 8)
+  c2.addService: called 2x (line(s): 19, 20)
+  s2.getName: called 2x (line(s): 46, 49)
+  c1.setDesiredStackVersion: called 1x (line(s): 7)
+  c2.setDesiredStackVersion: called 1x (line(s): 8)
+  s1.setDesiredState: called 1x (line(s): 22)
+  s2.setDesiredState: called 1x (line(s): 23)
+  s4.setDesiredState: called 1x (line(s): 24)
+  s1.persist: called 1x (line(s): 26)
+  s2.persist: called 1x (line(s): 27)
+  s3.persist: called 1x (line(s): 28)
+  s4.persist: called 1x (line(s): 29)
+  s5.persist: called 1x (line(s): 30)
+  resp.iterator: called 1x (line(s): 49)
+  next: called 1x (line(s): 49)
+  getServiceName: called 1x (line(s): 49)
+  HashSet<ServiceRequest>: called 1x (line(s): 72)
+  reqs.addAll: called 1x (line(s): 73)
+  Arrays.asList: called 1x (line(s): 73)

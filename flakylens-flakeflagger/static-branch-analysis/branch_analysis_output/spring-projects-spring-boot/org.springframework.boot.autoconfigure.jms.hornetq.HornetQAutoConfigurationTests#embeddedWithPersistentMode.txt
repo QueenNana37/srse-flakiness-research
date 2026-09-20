@@ -1,5 +1,21 @@
 Test: org.springframework.boot.autoconfigure.jms.hornetq.HornetQAutoConfigurationTests#embeddedWithPersistentMode
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 17 method call(s), 14 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  load: called 2x (line(s): 6, 21)
+  dataFolder.getAbsolutePath: called 2x (line(s): 8, 23)
+  this.context.getBean: called 2x (line(s): 11, 25)
+  this.folder.newFolder: called 1x (line(s): 3)
+  UUID.randomUUID: called 1x (line(s): 10)
+  toString: called 1x (line(s): 10)
+  jmsTemplate.send: called 1x (line(s): 12)
+  session.createTextMessage: called 1x (line(s): 15)
+  this.context.close: called 1x (line(s): 18)
+  jmsTemplate2.setReceiveTimeout: called 1x (line(s): 26)
+  jmsTemplate2.receive: called 1x (line(s): 27)
+  assertNotNull: called 1x (line(s): 28)
+  assertEquals: called 1x (line(s): 29)
+  getText: called 1x (line(s): 30)

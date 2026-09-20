@@ -1,10 +1,32 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testHundredsOfTable
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 12 method call(s), 7 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 17: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 8: for ---
+for(int i = 0; i < times; i++) {
+      HTableDescriptor htd = new HTableDescriptor("table"+i);
+      htd.addFamily(fam1);
+      htd.addFamily(fam2);
+      htd.addFamily(fam3);
+      this.admin.createTable(htd);
+    }
+  Calls inside this branch:
+    htd.addFamily: called 3x (line(s): 10, 11, 12)
+    HTableDescriptor: called 1x (line(s): 9)
+    this.admin.createTable: called 1x (line(s): 13)
+
+--- Line 16: for ---
+for(int i = 0; i < times; i++) {
+      String tableName = "table"+i;
+      this.admin.disableTable(tableName);
+      this.admin.enableTable(tableName);
+      this.admin.disableTable(tableName);
+      this.admin.deleteTable(tableName);
+    }
+  Calls inside this branch:
+    this.admin.disableTable: called 2x (line(s): 18, 20)
+    this.admin.enableTable: called 1x (line(s): 19)
+    this.admin.deleteTable: called 1x (line(s): 21)
+
+Calls NOT inside any branch (always run):
+  HColumnDescriptor: called 3x (line(s): 4, 5, 6)

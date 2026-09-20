@@ -1,5 +1,8 @@
 Test: tachyon.command.TFsShellTest#mkdirExistingTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 2 method call(s), 1 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  mFsShell.mkdir: called 2x (line(s): 3, 4)

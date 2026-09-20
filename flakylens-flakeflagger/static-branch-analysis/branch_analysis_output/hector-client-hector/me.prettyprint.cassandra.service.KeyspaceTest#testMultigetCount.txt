@@ -1,13 +1,55 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testMultigetCount
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 41 method call(s), 20 unique method(s) called
 
-Line 12: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 5: for ---
+for ( int j=0; j < 10; j++ ) {
+      for (int i = 0; i < 25; i++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(StringSerializer.get().toByteBuffer("testMultigetCount_column_" + i));
+        keyspace.insert("testMultigetCount_key_"+j, cp, StringSerializer.get().toByteBuffer("testMultigetCount_value_" + i));
+      }
+      if (j % 2 == 0) {
+        keys.add(StringSerializer.get().toByteBuffer("testMultigetCount_key_"+j));
+      }
+    }
+
+--- Line 6: for ---
+for (int i = 0; i < 25; i++) {
+        ColumnPath cp = new ColumnPath("Standard1");
+        cp.setColumn(StringSerializer.get().toByteBuffer("testMultigetCount_column_" + i));
+        keyspace.insert("testMultigetCount_key_"+j, cp, StringSerializer.get().toByteBuffer("testMultigetCount_value_" + i));
+      }
+  Calls inside this branch:
+    StringSerializer.get: called 2x (line(s): 8, 9)
+    toByteBuffer: called 2x (line(s): 8, 9)
+    ColumnPath: called 1x (line(s): 7)
+    cp.setColumn: called 1x (line(s): 8)
+    keyspace.insert: called 1x (line(s): 9)
+
+--- Line 11: if ---
+if (j % 2 == 0) {
+        keys.add(StringSerializer.get().toByteBuffer("testMultigetCount_key_"+j));
+      }
+  Calls inside this branch:
+    keys.add: called 1x (line(s): 12)
+    StringSerializer.get: called 1x (line(s): 12)
+    toByteBuffer: called 1x (line(s): 12)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 22, 23, 29, 30)
+  SliceRange: called 2x (line(s): 19, 25)
+  ByteBuffer.wrap: called 2x (line(s): 19, 19)
+  slicePredicate.setSlice_range: called 2x (line(s): 20, 25)
+  keyspace.multigetCount: called 2x (line(s): 21, 27)
+  counts.size: called 2x (line(s): 22, 29)
+  Integer: called 2x (line(s): 23, 30)
+  counts.entrySet: called 2x (line(s): 23, 30)
+  iterator: called 2x (line(s): 23, 30)
+  next: called 2x (line(s): 23, 30)
+  getValue: called 2x (line(s): 23, 30)
+  StringSerializer.get: called 2x (line(s): 25, 26)
+  toByteBuffer: called 2x (line(s): 25, 26)
+  ArrayList<ByteBuffer>: called 1x (line(s): 4)
+  ColumnParent: called 1x (line(s): 17)
+  SlicePredicate: called 1x (line(s): 18)

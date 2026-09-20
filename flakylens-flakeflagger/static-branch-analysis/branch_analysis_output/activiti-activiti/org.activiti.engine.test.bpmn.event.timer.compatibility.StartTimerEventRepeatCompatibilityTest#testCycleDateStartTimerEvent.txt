@@ -1,28 +1,115 @@
 Test: org.activiti.engine.test.bpmn.event.timer.compatibility.StartTimerEventRepeatCompatibilityTest#testCycleDateStartTimerEvent
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 119 method call(s), 47 unique method(s) called
 
-Line 93: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 101: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 109: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 92: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 100: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 108: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 119: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 67: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 66: try ---
+try {
+      waitForJobExecutorToProcessAllJobsAndExecutableTimerJobs(2000, 200);
+    } catch (Exception e) {
+      fail("Because the maximum number of repeats is reached it will not be executed other jobs");
+    }
+  Calls inside this branch:
+    waitForJobExecutorToProcessAllJobsAndExecutableTimerJobs: called 1x (line(s): 67)
+    fail: called 1x (line(s): 69)
+
+--- Line 91: for ---
+for (ActivitiEvent eventReceived : eventsReceived) {
+      if (ActivitiEventType.TIMER_FIRED.equals(eventReceived.getType())) {
+        timerFiredCount++;
+      }
+    }
+
+--- Line 92: if ---
+if (ActivitiEventType.TIMER_FIRED.equals(eventReceived.getType())) {
+        timerFiredCount++;
+      }
+  Calls inside this branch:
+    ActivitiEventType.TIMER_FIRED.equals: called 1x (line(s): 92)
+    eventReceived.getType: called 1x (line(s): 92)
+
+--- Line 99: for ---
+for (ActivitiEvent eventReceived : eventsReceived) {
+      if (ActivitiEventType.ENTITY_CREATED.equals(eventReceived.getType())) {
+        eventCreatedCount++;
+      }
+    }
+
+--- Line 100: if ---
+if (ActivitiEventType.ENTITY_CREATED.equals(eventReceived.getType())) {
+        eventCreatedCount++;
+      }
+  Calls inside this branch:
+    ActivitiEventType.ENTITY_CREATED.equals: called 1x (line(s): 100)
+    eventReceived.getType: called 1x (line(s): 100)
+
+--- Line 107: for ---
+for (ActivitiEvent eventReceived : eventsReceived) {
+      if (ActivitiEventType.ENTITY_DELETED.equals(eventReceived.getType())) {
+        eventDeletedCount++;
+      }
+    }
+
+--- Line 108: if ---
+if (ActivitiEventType.ENTITY_DELETED.equals(eventReceived.getType())) {
+        eventDeletedCount++;
+      }
+  Calls inside this branch:
+    ActivitiEventType.ENTITY_DELETED.equals: called 1x (line(s): 108)
+    eventReceived.getType: called 1x (line(s): 108)
+
+--- Line 118: for ---
+for (ProcessInstance processInstance : processInstances) {
+      tasks = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).list();
+      Task task = tasks.get(0);
+      assertEquals("Task A", task.getName());
+      assertEquals(1, tasks.size());
+      taskService.complete(task.getId());
+    }
+  Calls inside this branch:
+    assertEquals: called 2x (line(s): 121, 122)
+    taskService.createTaskQuery: called 1x (line(s): 119)
+    processInstanceId: called 1x (line(s): 119)
+    processInstance.getProcessInstanceId: called 1x (line(s): 119)
+    list: called 1x (line(s): 119)
+    tasks.get: called 1x (line(s): 120)
+    task.getName: called 1x (line(s): 121)
+    tasks.size: called 1x (line(s): 122)
+    taskService.complete: called 1x (line(s): 123)
+    task.getId: called 1x (line(s): 123)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 20x (line(s): 14, 19, 26, 30, 34, 44, 48, 52, 56, 62, 75, 80, 85, 112, 113, 114, 128, 132, 135, 139)
+  list: called 14x (line(s): 18, 29, 33, 43, 47, 51, 55, 74, 79, 84, 127, 131, 134, 138)
+  jobs.size: called 6x (line(s): 19, 44, 56, 80, 132, 135)
+  managementService.createTimerJobQuery: called 4x (line(s): 18, 43, 55, 134)
+  getTime: called 4x (line(s): 26, 26, 62, 62)
+  runtimeService.createProcessInstanceQuery: called 4x (line(s): 29, 47, 74, 127)
+  processInstances.size: called 4x (line(s): 30, 48, 75, 128)
+  taskService.createTaskQuery: called 4x (line(s): 33, 51, 84, 138)
+  tasks.size: called 4x (line(s): 34, 52, 85, 139)
+  Calendar.getInstance: called 3x (line(s): 8, 22, 60)
+  processEngineConfiguration.setClock: called 2x (line(s): 6, 142)
+  dueDateCalendar.set: called 2x (line(s): 23, 61)
+  Math.abs: called 2x (line(s): 26, 62)
+  dueDateCalendar.getTime: called 2x (line(s): 26, 62)
+  jobs.get: called 2x (line(s): 26, 62)
+  getDuedate: called 2x (line(s): 26, 62)
+  moveByMinutes: called 2x (line(s): 39, 65)
+  managementService.createJobQuery: called 2x (line(s): 79, 131)
+  processEngineConfiguration.getClock: called 1x (line(s): 2)
+  DefaultClockImpl: called 1x (line(s): 4)
+  calendar.set: called 1x (line(s): 9)
+  testClock.setCurrentTime: called 1x (line(s): 10)
+  calendar.getTime: called 1x (line(s): 10)
+  repositoryService.createDeployment: called 1x (line(s): 13)
+  addClasspathResource: called 1x (line(s): 13)
+  deploy: called 1x (line(s): 13)
+  repositoryService.createProcessDefinitionQuery: called 1x (line(s): 14)
+  count: called 1x (line(s): 14)
+  executeJobExecutorForTime: called 1x (line(s): 40)
+  listener.getEventsReceived: called 1x (line(s): 90)
+  listener.clearEventsReceived: called 1x (line(s): 141)
+  repositoryService.deleteDeployment: called 1x (line(s): 144)
+  repositoryService.createDeploymentQuery: called 1x (line(s): 144)
+  singleResult: called 1x (line(s): 144)
+  getId: called 1x (line(s): 144)

@@ -1,5 +1,21 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testDeleteUsers
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 14 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  UserRequest: called 3x (line(s): 8, 15, 19)
+  Collections.singleton: called 3x (line(s): 13, 16, 19)
+  add: called 2x (line(s): 10, 11)
+  roleDao.findByName: called 2x (line(s): 24, 25)
+  Assert.assertNotNull: called 2x (line(s): 26, 27)
+  createUser: called 1x (line(s): 4)
+  users.createDefaultRoles: called 1x (line(s): 6)
+  request.setRoles: called 1x (line(s): 9)
+  controller.updateUsers: called 1x (line(s): 13)
+  controller.deleteUsers: called 1x (line(s): 16)
+  controller.getUsers: called 1x (line(s): 18)
+  Assert.assertEquals: called 1x (line(s): 21)
+  responses.size: called 1x (line(s): 21)
+  injector.getInstance: called 1x (line(s): 23)

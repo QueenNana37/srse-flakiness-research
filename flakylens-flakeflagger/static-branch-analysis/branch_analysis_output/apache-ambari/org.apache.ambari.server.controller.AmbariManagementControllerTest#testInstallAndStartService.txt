@@ -1,89 +1,501 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testInstallAndStartService
 STATUS: parsed successfully
-Branch points found: 28
+Summary: 28 branch point(s), 226 method call(s), 92 unique method(s) called
 
-Line 75: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 76: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 78: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 80: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 85: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 86: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 88: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 176: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 182: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 221: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 49: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 53: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 68: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 104: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 109: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 110: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 156: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 159: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 173: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 181: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 194: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 199: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 217: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 220: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 249: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 253: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 261: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 225: switch statement
-    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=0)]
-    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=1)]
-    -> case: [Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value=2)]
+--- Line 48: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INIT, sch.getState());
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 49)
+    getService: called 1x (line(s): 49)
+    getServiceComponents: called 1x (line(s): 50)
+    values: called 1x (line(s): 50)
+    Assert.assertEquals: called 1x (line(s): 51)
+    sc.getDesiredState: called 1x (line(s): 51)
+
+--- Line 52: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        Assert.assertEquals(State.INIT, sch.getState());
+      }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 53, 54)
+    sc.getServiceComponentHosts: called 1x (line(s): 52)
+    values: called 1x (line(s): 52)
+    sch.getDesiredState: called 1x (line(s): 53)
+    sch.getState: called 1x (line(s): 54)
+
+--- Line 67: for ---
+for (ShortTaskStatus taskStatus : taskStatuses) {
+      LOG.debug("Task dump :"
+          + taskStatus.toString());
+      Assert.assertEquals(RoleCommand.INSTALL.toString(),
+          taskStatus.getCommand());
+      Assert.assertEquals(HostRoleStatus.PENDING.toString(),
+          taskStatus.getStatus());
+      if (taskStatus.getHostName().equals("h1")) {
+        if (Role.NAMENODE.toString().equals(taskStatus.getRole())) {
+          foundH1NN = true;
+        } else if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH1DN = true;
+        } else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH1CLT = true;
+        } else {
+          fail("Found invalid role for host h1");
+        }
+      } else if (taskStatus.getHostName().equals("h2")) {
+        if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH2DN = true;
+        } else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH2CLT = true;
+        } else {
+          fail("Found invalid role for host h2");
+        }
+      } else {
+        fail("Found invalid host in task list");
+      }
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 70, 72)
+    LOG.debug: called 1x (line(s): 68)
+    taskStatus.toString: called 1x (line(s): 69)
+    RoleCommand.INSTALL.toString: called 1x (line(s): 70)
+    taskStatus.getCommand: called 1x (line(s): 71)
+    HostRoleStatus.PENDING.toString: called 1x (line(s): 72)
+    taskStatus.getStatus: called 1x (line(s): 73)
+    fail: called 1x (line(s): 93)
+
+--- Line 74: if ---
+if (taskStatus.getHostName().equals("h1")) {
+        if (Role.NAMENODE.toString().equals(taskStatus.getRole())) {
+          foundH1NN = true;
+        } else if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH1DN = true;
+        } else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH1CLT = true;
+        } else {
+          fail("Found invalid role for host h1");
+        }
+      }
+  Calls inside this branch:
+    taskStatus.getHostName: called 1x (line(s): 74)
+    equals: called 1x (line(s): 74)
+    fail: called 1x (line(s): 82)
+
+--- Line 75: if ---
+if (Role.NAMENODE.toString().equals(taskStatus.getRole())) {
+          foundH1NN = true;
+        }
+  Calls inside this branch:
+    Role.NAMENODE.toString: called 1x (line(s): 75)
+    equals: called 1x (line(s): 75)
+    taskStatus.getRole: called 1x (line(s): 75)
+
+--- Line 77: if ---
+else if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH1DN = true;
+        }
+  Calls inside this branch:
+    Role.DATANODE.toString: called 1x (line(s): 77)
+    equals: called 1x (line(s): 77)
+    taskStatus.getRole: called 1x (line(s): 77)
+
+--- Line 79: if ---
+else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH1CLT = true;
+        }
+  Calls inside this branch:
+    Role.HDFS_CLIENT.toString: called 1x (line(s): 79)
+    equals: called 1x (line(s): 79)
+    taskStatus.getRole: called 1x (line(s): 79)
+
+--- Line 84: if ---
+else if (taskStatus.getHostName().equals("h2")) {
+        if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH2DN = true;
+        } else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH2CLT = true;
+        } else {
+          fail("Found invalid role for host h2");
+        }
+      }
+  Calls inside this branch:
+    taskStatus.getHostName: called 1x (line(s): 84)
+    equals: called 1x (line(s): 84)
+    fail: called 1x (line(s): 90)
+
+--- Line 85: if ---
+if (Role.DATANODE.toString().equals(taskStatus.getRole())) {
+          foundH2DN = true;
+        }
+  Calls inside this branch:
+    Role.DATANODE.toString: called 1x (line(s): 85)
+    equals: called 1x (line(s): 85)
+    taskStatus.getRole: called 1x (line(s): 85)
+
+--- Line 87: if ---
+else if (Role.HDFS_CLIENT.toString().equals(taskStatus.getRole())) {
+          foundH2CLT = true;
+        }
+  Calls inside this branch:
+    Role.HDFS_CLIENT.toString: called 1x (line(s): 87)
+    equals: called 1x (line(s): 87)
+    taskStatus.getRole: called 1x (line(s): 87)
+
+--- Line 103: for ---
+for (Stage stage : stages) {
+      LOG.info("Stage Details for Install Service"
+          + ", stageId="+ stage.getStageId()
+          + ", actionId=" + stage.getActionId());
+
+      for (String host : stage.getHosts()) {
+        for (ExecutionCommandWrapper ecw : stage.getExecutionCommands(host)) {
+          Assert.assertFalse(
+              ecw.getExecutionCommand().getHostLevelParams().get("repo_info").isEmpty());
+
+          LOG.info("Dumping host action details"
+              + ", stageId=" + stage.getStageId()
+              + ", actionId=" + stage.getActionId()
+              + ", commandDetails="
+              + StageUtils.jaxbToString(ecw.getExecutionCommand()));
+        }
+      }
+    }
+  Calls inside this branch:
+    LOG.info: called 1x (line(s): 104)
+    stage.getStageId: called 1x (line(s): 105)
+    stage.getActionId: called 1x (line(s): 106)
+
+--- Line 108: for ---
+for (String host : stage.getHosts()) {
+        for (ExecutionCommandWrapper ecw : stage.getExecutionCommands(host)) {
+          Assert.assertFalse(
+              ecw.getExecutionCommand().getHostLevelParams().get("repo_info").isEmpty());
+
+          LOG.info("Dumping host action details"
+              + ", stageId=" + stage.getStageId()
+              + ", actionId=" + stage.getActionId()
+              + ", commandDetails="
+              + StageUtils.jaxbToString(ecw.getExecutionCommand()));
+        }
+      }
+  Calls inside this branch:
+    stage.getHosts: called 1x (line(s): 108)
+
+--- Line 109: for ---
+for (ExecutionCommandWrapper ecw : stage.getExecutionCommands(host)) {
+          Assert.assertFalse(
+              ecw.getExecutionCommand().getHostLevelParams().get("repo_info").isEmpty());
+
+          LOG.info("Dumping host action details"
+              + ", stageId=" + stage.getStageId()
+              + ", actionId=" + stage.getActionId()
+              + ", commandDetails="
+              + StageUtils.jaxbToString(ecw.getExecutionCommand()));
+        }
+  Calls inside this branch:
+    ecw.getExecutionCommand: called 2x (line(s): 111, 117)
+    stage.getExecutionCommands: called 1x (line(s): 109)
+    Assert.assertFalse: called 1x (line(s): 110)
+    getHostLevelParams: called 1x (line(s): 111)
+    get: called 1x (line(s): 111)
+    isEmpty: called 1x (line(s): 111)
+    LOG.info: called 1x (line(s): 113)
+    stage.getStageId: called 1x (line(s): 114)
+    stage.getActionId: called 1x (line(s): 115)
+    StageUtils.jaxbToString: called 1x (line(s): 117)
+
+--- Line 155: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        sch.setState(State.INSTALLED);
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 156)
+    getService: called 1x (line(s): 156)
+    getServiceComponents: called 1x (line(s): 157)
+    values: called 1x (line(s): 157)
+
+--- Line 158: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        sch.setState(State.INSTALLED);
+      }
+  Calls inside this branch:
+    sc.getServiceComponentHosts: called 1x (line(s): 158)
+    values: called 1x (line(s): 158)
+    sch.setState: called 1x (line(s): 159)
+
+--- Line 172: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      if (sc.getName().equals("HDFS_CLIENT")) {
+        Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      } else {
+        Assert.assertEquals(State.STARTED, sc.getDesiredState());
+      }
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        if (sch.getServiceComponentName().equals("HDFS_CLIENT")) {
+          Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        } else {
+          Assert.assertEquals(State.STARTED, sch.getDesiredState());
+        }
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 173)
+    getService: called 1x (line(s): 173)
+    getServiceComponents: called 1x (line(s): 174)
+    values: called 1x (line(s): 174)
+    Assert.assertEquals: called 1x (line(s): 178)
+    sc.getDesiredState: called 1x (line(s): 178)
+
+--- Line 175: if ---
+if (sc.getName().equals("HDFS_CLIENT")) {
+        Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      }
+  Calls inside this branch:
+    sc.getName: called 1x (line(s): 175)
+    equals: called 1x (line(s): 175)
+    Assert.assertEquals: called 1x (line(s): 176)
+    sc.getDesiredState: called 1x (line(s): 176)
+
+--- Line 180: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        if (sch.getServiceComponentName().equals("HDFS_CLIENT")) {
+          Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        } else {
+          Assert.assertEquals(State.STARTED, sch.getDesiredState());
+        }
+      }
+  Calls inside this branch:
+    sc.getServiceComponentHosts: called 1x (line(s): 180)
+    values: called 1x (line(s): 180)
+    Assert.assertEquals: called 1x (line(s): 184)
+    sch.getDesiredState: called 1x (line(s): 184)
+
+--- Line 181: if ---
+if (sch.getServiceComponentName().equals("HDFS_CLIENT")) {
+          Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+        }
+  Calls inside this branch:
+    sch.getServiceComponentName: called 1x (line(s): 181)
+    equals: called 1x (line(s): 181)
+    Assert.assertEquals: called 1x (line(s): 182)
+    sch.getDesiredState: called 1x (line(s): 182)
+
+--- Line 193: for ---
+for (Stage stage : stages) {
+      LOG.info("Stage Details for Start Service"
+          + ", stageId="+ stage.getStageId()
+          + ", actionId=" + stage.getActionId());
+
+      for (String host : stage.getHosts()) {
+        LOG.info("Dumping host action details"
+            + ", stageId=" + stage.getStageId()
+            + ", actionId=" + stage.getActionId()
+            + ", commandDetails="
+            + StageUtils.jaxbToString(stage.getExecutionCommands(host).get(0)));
+      }
+    }
+  Calls inside this branch:
+    LOG.info: called 1x (line(s): 194)
+    stage.getStageId: called 1x (line(s): 195)
+    stage.getActionId: called 1x (line(s): 196)
+
+--- Line 198: for ---
+for (String host : stage.getHosts()) {
+        LOG.info("Dumping host action details"
+            + ", stageId=" + stage.getStageId()
+            + ", actionId=" + stage.getActionId()
+            + ", commandDetails="
+            + StageUtils.jaxbToString(stage.getExecutionCommands(host).get(0)));
+      }
+  Calls inside this branch:
+    stage.getHosts: called 1x (line(s): 198)
+    LOG.info: called 1x (line(s): 199)
+    stage.getStageId: called 1x (line(s): 200)
+    stage.getActionId: called 1x (line(s): 201)
+    StageUtils.jaxbToString: called 1x (line(s): 203)
+    stage.getExecutionCommands: called 1x (line(s): 203)
+    get: called 1x (line(s): 203)
+
+--- Line 216: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        if (sc.isClientComponent()) {
+          sch.setState(State.INSTALLED);
+        } else {
+          ++counter;
+          switch (counter%1) {
+            case 0:
+              sch.setState(State.START_FAILED);
+              break;
+            case 1:
+              sch.setState(State.STOP_FAILED);
+              break;
+            case 2:
+              sch.setState(State.STARTED);
+              break;
+          }
+        }
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 217)
+    getService: called 1x (line(s): 217)
+    getServiceComponents: called 1x (line(s): 218)
+    values: called 1x (line(s): 218)
+
+--- Line 219: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        if (sc.isClientComponent()) {
+          sch.setState(State.INSTALLED);
+        } else {
+          ++counter;
+          switch (counter%1) {
+            case 0:
+              sch.setState(State.START_FAILED);
+              break;
+            case 1:
+              sch.setState(State.STOP_FAILED);
+              break;
+            case 2:
+              sch.setState(State.STARTED);
+              break;
+          }
+        }
+      }
+  Calls inside this branch:
+    sc.getServiceComponentHosts: called 1x (line(s): 219)
+    values: called 1x (line(s): 219)
+
+--- Line 220: if ---
+if (sc.isClientComponent()) {
+          sch.setState(State.INSTALLED);
+        }
+  Calls inside this branch:
+    sc.isClientComponent: called 1x (line(s): 220)
+    sch.setState: called 1x (line(s): 221)
+
+--- Line 224: switch ---
+switch (counter%1) {
+            case 0:
+              sch.setState(State.START_FAILED);
+              break;
+            case 1:
+              sch.setState(State.STOP_FAILED);
+              break;
+            case 2:
+              sch.setState(State.STARTED);
+              break;
+          }
+  Calls inside this branch:
+    sch.setState: called 3x (line(s): 226, 229, 232)
+
+--- Line 248: for ---
+for (ServiceComponent sc :
+      clusters.getCluster(clusterName).getService(serviceName)
+      .getServiceComponents().values()) {
+      Assert.assertEquals(State.INSTALLED, sc.getDesiredState());
+      for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+      }
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 249)
+    getService: called 1x (line(s): 249)
+    getServiceComponents: called 1x (line(s): 250)
+    values: called 1x (line(s): 250)
+    Assert.assertEquals: called 1x (line(s): 251)
+    sc.getDesiredState: called 1x (line(s): 251)
+
+--- Line 252: for ---
+for (ServiceComponentHost sch : sc.getServiceComponentHosts().values()) {
+        Assert.assertEquals(State.INSTALLED, sch.getDesiredState());
+      }
+  Calls inside this branch:
+    sc.getServiceComponentHosts: called 1x (line(s): 252)
+    values: called 1x (line(s): 252)
+    Assert.assertEquals: called 1x (line(s): 253)
+    sch.getDesiredState: called 1x (line(s): 253)
+
+--- Line 260: for ---
+for (Stage stage : stages) {
+      LOG.info("Stage Details for Stop Service : " + stage.toString());
+    }
+  Calls inside this branch:
+    LOG.info: called 1x (line(s): 261)
+    stage.toString: called 1x (line(s): 261)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 13x (line(s): 45, 59, 101, 127, 131, 133, 143, 152, 169, 191, 213, 245, 263)
+  trackAction.getRequestId: called 7x (line(s): 100, 124, 131, 139, 146, 190, 258)
+  clusters.getCluster: called 4x (line(s): 8, 46, 170, 246)
+  properties.put: called 4x (line(s): 13, 14, 17, 18)
+  ConfigImpl: called 3x (line(s): 16, 19, 20)
+  cluster.addDesiredConfig: called 3x (line(s): 26, 27, 28)
+  ServiceRequest: called 3x (line(s): 38, 163, 239)
+  requests.add: called 3x (line(s): 41, 166, 242)
+  controller.updateServices: called 3x (line(s): 44, 167, 243)
+  getService: called 3x (line(s): 46, 170, 246)
+  getDesiredState: called 3x (line(s): 47, 171, 247)
+  actionDB.getAllStages: called 3x (line(s): 100, 190, 258)
+  stages.size: called 3x (line(s): 101, 191, 263)
+  taskRequests.add: called 3x (line(s): 140, 149, 150)
+  configs.put: called 2x (line(s): 33, 34)
+  State.INSTALLED.toString: called 2x (line(s): 39, 240)
+  RequestStatusRequest: called 2x (line(s): 124, 211)
+  controller.getRequestStatus: called 2x (line(s): 126, 212)
+  statusResponses.size: called 2x (line(s): 127, 213)
+  TaskStatusRequest: called 2x (line(s): 137, 138)
+  controller.getTaskStatus: called 2x (line(s): 142, 151)
+  taskResponses.size: called 2x (line(s): 143, 152)
+  requests.clear: called 2x (line(s): 165, 241)
+  testCreateServiceComponentHostSimple: called 1x (line(s): 3)
+  cluster.getService: called 1x (line(s): 9)
+  HashMap<String, Config>: called 1x (line(s): 11)
+  HashMap<String, String>: called 1x (line(s): 12)
+  c1.setVersionTag: called 1x (line(s): 22)
+  c2.setVersionTag: called 1x (line(s): 23)
+  c3.setVersionTag: called 1x (line(s): 24)
+  c1.persist: called 1x (line(s): 29)
+  c2.persist: called 1x (line(s): 30)
+  c3.persist: called 1x (line(s): 31)
+  c1.getType: called 1x (line(s): 33)
+  c2.getType: called 1x (line(s): 34)
+  s1.updateDesiredConfigs: called 1x (line(s): 35)
+  s1.persist: called 1x (line(s): 36)
+  HashSet<ServiceRequest>: called 1x (line(s): 40)
+  trackAction.getTasks: called 1x (line(s): 58)
+  taskStatuses.size: called 1x (line(s): 59)
+  Assert.assertTrue: called 1x (line(s): 96)
+  statusResponses.iterator: called 1x (line(s): 129)
+  next: called 1x (line(s): 129)
+  Assert.assertNotNull: called 1x (line(s): 130)
+  statusResponse.getRequestId: called 1x (line(s): 132)
+  statusResponse.getTasks: called 1x (line(s): 133)
+  size: called 1x (line(s): 133)
+  HashSet<TaskStatusRequest>: called 1x (line(s): 135)
+  t1.setRequestId: called 1x (line(s): 139)
+  t1.setTaskId: called 1x (line(s): 145)
+  t2.setRequestId: called 1x (line(s): 146)
+  t2.setTaskId: called 1x (line(s): 147)
+  taskRequests.clear: called 1x (line(s): 148)
+  State.STARTED.toString: called 1x (line(s): 164)
+  StringBuilder: called 1x (line(s): 207)
+  clusters.debugDump: called 1x (line(s): 208)
+  LOG.info: called 1x (line(s): 209)
+  sb.toString: called 1x (line(s): 209)

@@ -1,5 +1,20 @@
 Test: org.apache.hadoop.hbase.stargate.TestSchemaResource#testTableCreateAndDeleteXML
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 18 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertFalse: called 2x (line(s): 7, 28)
+  admin.tableExists: called 2x (line(s): 7, 28)
+  TestTableSchemaModel.checkModel: called 2x (line(s): 11, 22)
+  assertEquals: called 2x (line(s): 13, 20)
+  response.getCode: called 2x (line(s): 13, 20)
+  TestTableSchemaModel.buildTestModel: called 1x (line(s): 10)
+  client.put: called 1x (line(s): 12)
+  toXML: called 1x (line(s): 12)
+  admin.enableTable: called 1x (line(s): 16)
+  client.get: called 1x (line(s): 19)
+  fromXML: called 1x (line(s): 21)
+  response.getBody: called 1x (line(s): 21)
+  client.delete: called 1x (line(s): 25)

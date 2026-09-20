@@ -1,28 +1,128 @@
 Test: org.apache.http.nio.protocol.TestAsyncNHttpHandlers#testDelayedHttpException
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 67 method call(s), 58 unique method(s) called
 
-Line 101: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 112: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 40: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 44: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 91: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 109: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 98: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
+--- Line 17: try ---
+try { Thread.sleep(10); } catch(InterruptedException ie) {}
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 17)
+
+--- Line 39: for ---
+for (int i = 0; i < jobs.length; i++) {
+            jobs[i] = new Job();
+        }
+  Calls inside this branch:
+    Job: called 1x (line(s): 40)
+
+--- Line 43: for ---
+for (int i = 0; i < jobs.length; i++) {
+            queue.add(jobs[i]);
+        }
+  Calls inside this branch:
+    queue.add: called 1x (line(s): 44)
+
+--- Line 90: for ---
+for (int i = 0; i < connNo; i++) {
+            SessionRequest sessionRequest = this.client.openConnection(
+                    new InetSocketAddress("localhost", serverAddress.getPort()),
+                    queue);
+            connRequests.add(sessionRequest);
+        }
+  Calls inside this branch:
+    this.client.openConnection: called 1x (line(s): 91)
+    InetSocketAddress: called 1x (line(s): 92)
+    serverAddress.getPort: called 1x (line(s): 92)
+    connRequests.add: called 1x (line(s): 94)
+
+--- Line 97: while ---
+while (!connRequests.isEmpty()) {
+            SessionRequest sessionRequest = connRequests.remove();
+            sessionRequest.waitFor();
+            if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+            Assert.assertNotNull(sessionRequest.getSession());
+        }
+  Calls inside this branch:
+    connRequests.isEmpty: called 1x (line(s): 97)
+    connRequests.remove: called 1x (line(s): 98)
+    sessionRequest.waitFor: called 1x (line(s): 99)
+    Assert.assertNotNull: called 1x (line(s): 103)
+    sessionRequest.getSession: called 1x (line(s): 103)
+
+--- Line 100: if ---
+if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+  Calls inside this branch:
+    sessionRequest.getException: called 2x (line(s): 100, 101)
+
+--- Line 108: for ---
+for (int i = 0; i < jobs.length; i++) {
+            Job testjob = jobs[i];
+            testjob.waitFor();
+            if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, testjob.getStatusCode());
+                Assert.assertEquals(testjob.getPattern() + "x" + testjob.getCount(), testjob.getResult());
+            } else {
+                Assert.fail(testjob.getFailureMessage());
+            }
+        }
+  Calls inside this branch:
+    testjob.waitFor: called 1x (line(s): 110)
+    Assert.fail: called 1x (line(s): 115)
+    testjob.getFailureMessage: called 1x (line(s): 115)
+
+--- Line 111: if ---
+if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, testjob.getStatusCode());
+                Assert.assertEquals(testjob.getPattern() + "x" + testjob.getCount(), testjob.getResult());
+            }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 112, 113)
+    testjob.isSuccessful: called 1x (line(s): 111)
+    testjob.getStatusCode: called 1x (line(s): 112)
+    testjob.getPattern: called 1x (line(s): 113)
+    testjob.getCount: called 1x (line(s): 113)
+    testjob.getResult: called 1x (line(s): 113)
+
+Calls NOT inside any branch (always run):
+  ImmutableHttpProcessor: called 2x (line(s): 47, 65)
+  DefaultConnectionReuseStrategy: called 2x (line(s): 57, 75)
+  SimpleEventListener: called 2x (line(s): 63, 78)
+  Assert.assertEquals: called 2x (line(s): 87, 106)
+  trigger.handleException: called 1x (line(s): 18)
+  HttpException: called 1x (line(s): 19)
+  request.getRequestLine: called 1x (line(s): 19)
+  getUri: called 1x (line(s): 19)
+  start: called 1x (line(s): 21)
+  testjob.getPattern: called 1x (line(s): 30)
+  testjob.getCount: called 1x (line(s): 30)
+  BasicHttpRequest: called 1x (line(s): 31)
+  ConcurrentLinkedQueue<Job>: called 1x (line(s): 42)
+  ResponseDate: called 1x (line(s): 48)
+  ResponseServer: called 1x (line(s): 49)
+  ResponseContent: called 1x (line(s): 50)
+  ResponseConnControl: called 1x (line(s): 51)
+  AsyncNHttpServiceHandler: called 1x (line(s): 54)
+  DefaultHttpResponseFactory: called 1x (line(s): 56)
+  this.server.getParams: called 1x (line(s): 58)
+  serviceHandler.setHandlerResolver: called 1x (line(s): 60)
+  SimpleNHttpRequestHandlerResolver: called 1x (line(s): 61)
+  serviceHandler.setEventListener: called 1x (line(s): 62)
+  RequestContent: called 1x (line(s): 66)
+  RequestTargetHost: called 1x (line(s): 67)
+  RequestConnControl: called 1x (line(s): 68)
+  RequestUserAgent: called 1x (line(s): 69)
+  RequestExpectContinue: called 1x (line(s): 70)
+  AsyncNHttpClientHandler: called 1x (line(s): 72)
+  this.client.getParams: called 1x (line(s): 76)
+  clientHandler.setEventListener: called 1x (line(s): 78)
+  this.server.start: called 1x (line(s): 80)
+  this.client.start: called 1x (line(s): 81)
+  this.server.getListenerEndpoint: called 1x (line(s): 83)
+  endpoint.waitFor: called 1x (line(s): 84)
+  endpoint.getAddress: called 1x (line(s): 85)
+  this.server.getStatus: called 1x (line(s): 87)
+  LinkedList<SessionRequest>: called 1x (line(s): 89)
+  this.client.getStatus: called 1x (line(s): 106)

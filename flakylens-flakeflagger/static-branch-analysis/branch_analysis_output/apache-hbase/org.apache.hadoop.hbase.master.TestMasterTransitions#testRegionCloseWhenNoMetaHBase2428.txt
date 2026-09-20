@@ -1,19 +1,72 @@
 Test: org.apache.hadoop.hbase.master.TestMasterTransitions#testRegionCloseWhenNoMetaHBase2428
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 28 method call(s), 23 unique method(s) called
 
-Line 11: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 10: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 32: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 33: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 27: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 9: for ---
+for (int i = 0; i < cluster.getRegionServerThreads().size(); i++) {
+      if (i == metaIndex) continue;
+      otherServerIndex = i;
+      break;
+    }
+  Calls inside this branch:
+    cluster.getRegionServerThreads: called 1x (line(s): 9)
+    size: called 1x (line(s): 9)
+
+--- Line 10: if ---
+if (i == metaIndex) continue;
+
+--- Line 26: try ---
+try {
+      // Now close the server carrying meta.
+      cluster.abortRegionServer(metaIndex);
+
+      // First wait on receipt of meta server shutdown message.
+      while(!listener.metaShutdownReceived) Threads.sleep(100);
+      while(!listener.isDone()) Threads.sleep(10);
+      // We should not have retried the close more times than it took for the
+      // server shutdown message to exit the delay queue and get processed
+      // (Multiple by two to add in some slop in case of GC or something).
+      assertTrue(listener.getCloseCount() > 1);
+      assertTrue(listener.getCloseCount() <
+        ((HBase2428Listener.SERVER_DURATION/HBase2428Listener.CLOSE_DURATION) * 2));
+
+      // Assert the closed region came back online
+      assertRegionIsBackOnline(hri);
+    } finally {
+      master.getRegionServerOperationQueue().
+        unregisterRegionServerOperationListener(listener);
+    }
+  Calls inside this branch:
+    assertTrue: called 2x (line(s): 36, 37)
+    listener.getCloseCount: called 2x (line(s): 36, 37)
+    cluster.abortRegionServer: called 1x (line(s): 28)
+    assertRegionIsBackOnline: called 1x (line(s): 41)
+    master.getRegionServerOperationQueue: called 1x (line(s): 43)
+    unregisterRegionServerOperationListener: called 1x (line(s): 44)
+
+--- Line 31: while ---
+while(!listener.metaShutdownReceived) Threads.sleep(100);
+  Calls inside this branch:
+    Threads.sleep: called 1x (line(s): 31)
+
+--- Line 32: while ---
+while(!listener.isDone()) Threads.sleep(10);
+  Calls inside this branch:
+    listener.isDone: called 1x (line(s): 32)
+    Threads.sleep: called 1x (line(s): 32)
+
+Calls NOT inside any branch (always run):
+  cluster.getRegionServer: called 2x (line(s): 14, 15)
+  LOG.info: called 1x (line(s): 3)
+  TEST_UTIL.getHBaseCluster: called 1x (line(s): 4)
+  cluster.getMaster: called 1x (line(s): 5)
+  cluster.getServerWithMeta: called 1x (line(s): 6)
+  otherServer.getOnlineRegions: called 1x (line(s): 19)
+  iterator: called 1x (line(s): 19)
+  next: called 1x (line(s): 19)
+  getRegionInfo: called 1x (line(s): 19)
+  HBase2428Listener: called 1x (line(s): 22)
+  metaHRS.getHServerInfo: called 1x (line(s): 23)
+  getServerAddress: called 1x (line(s): 23)
+  master.getRegionServerOperationQueue: called 1x (line(s): 24)
+  registerRegionServerOperationListener: called 1x (line(s): 25)

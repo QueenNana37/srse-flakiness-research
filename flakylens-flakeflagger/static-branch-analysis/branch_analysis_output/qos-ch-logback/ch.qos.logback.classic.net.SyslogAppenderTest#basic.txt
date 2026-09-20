@@ -1,5 +1,20 @@
 Test: ch.qos.logback.classic.net.SyslogAppenderTest#basic
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 15 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 2x (line(s): 12, 20)
+  mockServer.getMessageList: called 2x (line(s): 13, 14)
+  setMockServerAndConfigure: called 1x (line(s): 4)
+  logger.debug: called 1x (line(s): 6)
+  mockServer.join: called 1x (line(s): 10)
+  mockServer.isFinished: called 1x (line(s): 12)
+  assertEquals: called 1x (line(s): 13)
+  size: called 1x (line(s): 13)
+  get: called 1x (line(s): 14)
+  Thread.currentThread: called 1x (line(s): 16)
+  getName: called 1x (line(s): 16)
+  msg.startsWith: called 1x (line(s): 20)
+  checkRegexMatch: called 1x (line(s): 23)

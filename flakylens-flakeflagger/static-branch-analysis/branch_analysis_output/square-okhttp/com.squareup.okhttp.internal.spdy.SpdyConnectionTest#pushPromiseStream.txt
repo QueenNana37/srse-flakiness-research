@@ -1,5 +1,32 @@
 Test: com.squareup.okhttp.internal.spdy.SpdyConnectionTest#pushPromiseStream
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 47 method call(s), 25 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 7x (line(s): 25, 31, 52, 55, 57, 58, 59)
+  Header: called 5x (line(s): 8, 9, 10, 11, 15)
+  peer.sendFrame: called 4x (line(s): 6, 13, 17, 18)
+  events.add: called 4x (line(s): 26, 33, 39, 44)
+  synReply: called 2x (line(s): 6, 17)
+  headerEntries: called 2x (line(s): 6, 51)
+  Arrays.asList: called 2x (line(s): 7, 14)
+  data: called 2x (line(s): 18, 18)
+  AssertionError: called 2x (line(s): 39, 44)
+  events.get: called 2x (line(s): 58, 59)
+  peer.setVariantAndClient: called 1x (line(s): 2)
+  peer.acceptFrame: called 1x (line(s): 5)
+  pushPromise: called 1x (line(s): 13)
+  peer.play: called 1x (line(s): 19)
+  ArrayList: called 1x (line(s): 21)
+  assertTrue: called 1x (line(s): 32)
+  connectionBuilder: called 1x (line(s): 49)
+  pushObserver: called 1x (line(s): 50)
+  build: called 1x (line(s): 50)
+  connection.newStream: called 1x (line(s): 51)
+  client.getSource: called 1x (line(s): 52)
+  read: called 1x (line(s): 52)
+  OkBuffer: called 1x (line(s): 52)
+  peer.takeFrame: called 1x (line(s): 55)
+  events.size: called 1x (line(s): 57)

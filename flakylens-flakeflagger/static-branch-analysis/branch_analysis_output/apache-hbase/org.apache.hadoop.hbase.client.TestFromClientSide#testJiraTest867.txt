@@ -1,28 +1,98 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest867
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 39 method call(s), 19 unique method(s) called
 
-Line 16: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 31: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 42: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 60: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 71: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 39: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 68: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 15: for ---
+for(int i=0;i<numRows;i++) {
+      Put put = new Put(ROWS[i]);
+      for(int j=0;j<numColsPerRow;j++) {
+        put.add(FAMILY, QUALIFIERS[j], QUALIFIERS[j]);
+      }
+      assertTrue("Put expected to contain " + numColsPerRow + " columns but " +
+          "only contains " + put.size(), put.size() == numColsPerRow);
+      ht.put(put);
+    }
+  Calls inside this branch:
+    put.size: called 2x (line(s): 21, 21)
+    Put: called 1x (line(s): 16)
+    assertTrue: called 1x (line(s): 20)
+    ht.put: called 1x (line(s): 22)
+
+--- Line 17: for ---
+for(int j=0;j<numColsPerRow;j++) {
+        put.add(FAMILY, QUALIFIERS[j], QUALIFIERS[j]);
+      }
+  Calls inside this branch:
+    put.add: called 1x (line(s): 18)
+
+--- Line 30: for ---
+for(int i=0;i<result.size();i++) {
+      assertKey(keys[i], ROWS[numRows-1], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+    }
+  Calls inside this branch:
+    result.size: called 1x (line(s): 30)
+    assertKey: called 1x (line(s): 31)
+
+--- Line 38: while ---
+while((result = scanner.next()) != null) {
+      assertNumKeys(result, numColsPerRow);
+      KeyValue [] kvs = result.sorted();
+      for(int i=0;i<numColsPerRow;i++) {
+        assertKey(kvs[i], ROWS[rowCount], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+      }
+      rowCount++;
+    }
+  Calls inside this branch:
+    scanner.next: called 1x (line(s): 38)
+    assertNumKeys: called 1x (line(s): 39)
+    result.sorted: called 1x (line(s): 40)
+
+--- Line 41: for ---
+for(int i=0;i<numColsPerRow;i++) {
+        assertKey(kvs[i], ROWS[rowCount], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+      }
+  Calls inside this branch:
+    assertKey: called 1x (line(s): 42)
+
+--- Line 59: for ---
+for(int i=0;i<result.size();i++) {
+      assertKey(keys[i], ROWS[numRows-1], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+    }
+  Calls inside this branch:
+    result.size: called 1x (line(s): 59)
+    assertKey: called 1x (line(s): 60)
+
+--- Line 67: while ---
+while((result = scanner.next()) != null) {
+      assertNumKeys(result, numColsPerRow);
+      KeyValue [] kvs = result.sorted();
+      for(int i=0;i<numColsPerRow;i++) {
+        assertKey(kvs[i], ROWS[rowCount], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+      }
+      rowCount++;
+    }
+  Calls inside this branch:
+    scanner.next: called 1x (line(s): 67)
+    assertNumKeys: called 1x (line(s): 68)
+    result.sorted: called 1x (line(s): 69)
+
+--- Line 70: for ---
+for(int i=0;i<numColsPerRow;i++) {
+        assertKey(kvs[i], ROWS[rowCount], FAMILY, QUALIFIERS[i], QUALIFIERS[i]);
+      }
+  Calls inside this branch:
+    assertKey: called 1x (line(s): 71)
+
+Calls NOT inside any branch (always run):
+  makeN: called 2x (line(s): 8, 9)
+  Get: called 2x (line(s): 26, 55)
+  ht.get: called 2x (line(s): 27, 56)
+  assertNumKeys: called 2x (line(s): 28, 57)
+  result.sorted: called 2x (line(s): 29, 58)
+  Scan: called 2x (line(s): 35, 64)
+  ht.getScanner: called 2x (line(s): 36, 65)
+  scanner.close: called 2x (line(s): 46, 75)
+  assertTrue: called 2x (line(s): 47, 76)
+  Bytes.toBytes: called 1x (line(s): 6)
+  TEST_UTIL.createTable: called 1x (line(s): 11)
+  TEST_UTIL.flush: called 1x (line(s): 52)

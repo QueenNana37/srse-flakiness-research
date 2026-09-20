@@ -1,5 +1,22 @@
 Test: com.github.kevinsawicki.http.HttpRequestTest#postWithNumericQueryParams
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 20, 21, 22)
+  inputParams.put: called 2x (line(s): 4, 5)
+  outputParams.put: called 2x (line(s): 13, 14)
+  request.getParameter: called 2x (line(s): 13, 14)
+  outputParams.get: called 2x (line(s): 21, 22)
+  HashMap<Object, Object>: called 1x (line(s): 3)
+  HashMap<String, String>: called 1x (line(s): 6)
+  AtomicReference<String>: called 1x (line(s): 7)
+  method.set: called 1x (line(s): 12)
+  request.getMethod: called 1x (line(s): 12)
+  response.setStatus: called 1x (line(s): 15)
+  post: called 1x (line(s): 18)
+  assertTrue: called 1x (line(s): 19)
+  request.ok: called 1x (line(s): 19)
+  method.get: called 1x (line(s): 20)

@@ -1,5 +1,20 @@
 Test: me.prettyprint.cassandra.examples.ExampleDaoV2Test#testMultiInsertGetDelete
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 38 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  ret.get: called 8x (line(s): 9, 20, 21, 26, 27, 28, 36, 37)
+  StringSerializer.get: called 6x (line(s): 7, 15, 18, 24, 31, 34)
+  assertNull: called 5x (line(s): 9, 27, 28, 36, 37)
+  dao.getMulti: called 4x (line(s): 7, 18, 24, 34)
+  assertNotNull: called 4x (line(s): 8, 19, 25, 35)
+  assertEquals: called 3x (line(s): 20, 21, 26)
+  keyValues.put: called 2x (line(s): 13, 14)
+  getOrCreateCluster: called 1x (line(s): 3)
+  ExampleDaoV2: called 1x (line(s): 4)
+  createKeyspace: called 1x (line(s): 4)
+  HashMap<String, String>: called 1x (line(s): 12)
+  dao.insertMulti: called 1x (line(s): 15)
+  dao.delete: called 1x (line(s): 31)

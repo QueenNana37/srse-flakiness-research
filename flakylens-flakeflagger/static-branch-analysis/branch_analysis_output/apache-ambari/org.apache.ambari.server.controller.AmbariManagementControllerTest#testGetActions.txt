@@ -1,5 +1,18 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetActions
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 12 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 10, 12)
+  controller.getActions: called 1x (line(s): 4)
+  add: called 1x (line(s): 6)
+  ActionRequest: called 1x (line(s): 6)
+  assertFalse: called 1x (line(s): 9)
+  responses.isEmpty: called 1x (line(s): 9)
+  responses.size: called 1x (line(s): 10)
+  responses.iterator: called 1x (line(s): 11)
+  next: called 1x (line(s): 11)
+  Role.HDFS_SERVICE_CHECK.name: called 1x (line(s): 12)
+  response.getActionName: called 1x (line(s): 12)

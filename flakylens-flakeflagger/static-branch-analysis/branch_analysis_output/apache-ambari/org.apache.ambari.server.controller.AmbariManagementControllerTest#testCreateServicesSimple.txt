@@ -1,5 +1,29 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesSimple
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 29 method call(s), 22 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 7x (line(s): 13, 14, 21, 23, 24, 25, 27)
+  clusters.getCluster: called 2x (line(s): 6, 11)
+  createCluster: called 1x (line(s): 4)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 7)
+  createService: called 1x (line(s): 8)
+  getService: called 1x (line(s): 11)
+  Assert.assertNotNull: called 1x (line(s): 12)
+  s.getName: called 1x (line(s): 13)
+  s.getCluster: called 1x (line(s): 14)
+  getClusterName: called 1x (line(s): 14)
+  ServiceRequest: called 1x (line(s): 16)
+  controller.getServices: called 1x (line(s): 20)
+  Collections.singleton: called 1x (line(s): 20)
+  r.size: called 1x (line(s): 21)
+  r.iterator: called 1x (line(s): 22)
+  next: called 1x (line(s): 22)
+  resp.getServiceName: called 1x (line(s): 23)
+  resp.getClusterName: called 1x (line(s): 24)
+  State.INIT.toString: called 1x (line(s): 25)
+  resp.getDesiredState: called 1x (line(s): 26)
+  resp.getDesiredStackVersion: called 1x (line(s): 27)

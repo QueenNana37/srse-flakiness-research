@@ -1,19 +1,156 @@
 Test: io.undertow.server.security.SpnegoAuthenticationTestCase#testSpnegoSuccess
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 57 method call(s), 35 unique method(s) called
 
-Line 32: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 38: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 45: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 52: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 29: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 28: while ---
+while (!context.isEstablished()) {
+                    token = context.initSecContext(token, 0, token.length);
+
+                    if (token != null && token.length > 0) {
+                        HttpGet get = new HttpGet(DefaultServer.getDefaultServerURL());
+                        get.addHeader(AUTHORIZATION.toString(), NEGOTIATE + " " + FlexBase64.encodeString(token, false));
+                        HttpResponse result = client.execute(get);
+
+                        Header[] headers = result.getHeaders(WWW_AUTHENTICATE.toString());
+                        if (headers.length > 0) {
+                            String header = getAuthHeader(NEGOTIATE, headers);
+
+                            byte[] headerBytes = header.getBytes("UTF-8");
+                            token = FlexBase64.decode(headerBytes, NEGOTIATE.toString().length() + 1, headerBytes.length).array();
+                        }
+
+                        if (result.getStatusLine().getStatusCode() == 200) {
+                            Header[] values = result.getHeaders("ProcessedBy");
+                            assertEquals(1, values.length);
+                            assertEquals("ResponseHandler", values[0].getValue());
+                            HttpClientUtils.readResponse(result);
+                            assertSingleNotificationType(EventType.AUTHENTICATED);
+                            gotOur200 = true;
+                        } else if (result.getStatusLine().getStatusCode() == 401) {
+                            assertTrue("We did get a header.", headers.length > 0);
+
+                            HttpClientUtils.readResponse(result);
+
+                        } else {
+                            fail(String.format("Unexpected status code %d", result.getStatusLine().getStatusCode()));
+                        }
+                    }
+                }
+  Calls inside this branch:
+    context.isEstablished: called 1x (line(s): 28)
+    context.initSecContext: called 1x (line(s): 29)
+
+--- Line 31: if ---
+if (token != null && token.length > 0) {
+                        HttpGet get = new HttpGet(DefaultServer.getDefaultServerURL());
+                        get.addHeader(AUTHORIZATION.toString(), NEGOTIATE + " " + FlexBase64.encodeString(token, false));
+                        HttpResponse result = client.execute(get);
+
+                        Header[] headers = result.getHeaders(WWW_AUTHENTICATE.toString());
+                        if (headers.length > 0) {
+                            String header = getAuthHeader(NEGOTIATE, headers);
+
+                            byte[] headerBytes = header.getBytes("UTF-8");
+                            token = FlexBase64.decode(headerBytes, NEGOTIATE.toString().length() + 1, headerBytes.length).array();
+                        }
+
+                        if (result.getStatusLine().getStatusCode() == 200) {
+                            Header[] values = result.getHeaders("ProcessedBy");
+                            assertEquals(1, values.length);
+                            assertEquals("ResponseHandler", values[0].getValue());
+                            HttpClientUtils.readResponse(result);
+                            assertSingleNotificationType(EventType.AUTHENTICATED);
+                            gotOur200 = true;
+                        } else if (result.getStatusLine().getStatusCode() == 401) {
+                            assertTrue("We did get a header.", headers.length > 0);
+
+                            HttpClientUtils.readResponse(result);
+
+                        } else {
+                            fail(String.format("Unexpected status code %d", result.getStatusLine().getStatusCode()));
+                        }
+                    }
+  Calls inside this branch:
+    HttpGet: called 1x (line(s): 32)
+    DefaultServer.getDefaultServerURL: called 1x (line(s): 32)
+    get.addHeader: called 1x (line(s): 33)
+    AUTHORIZATION.toString: called 1x (line(s): 33)
+    FlexBase64.encodeString: called 1x (line(s): 33)
+    client.execute: called 1x (line(s): 34)
+    result.getHeaders: called 1x (line(s): 36)
+    WWW_AUTHENTICATE.toString: called 1x (line(s): 36)
+    fail: called 1x (line(s): 57)
+    String.format: called 1x (line(s): 57)
+    result.getStatusLine: called 1x (line(s): 57)
+    getStatusCode: called 1x (line(s): 57)
+
+--- Line 37: if ---
+if (headers.length > 0) {
+                            String header = getAuthHeader(NEGOTIATE, headers);
+
+                            byte[] headerBytes = header.getBytes("UTF-8");
+                            token = FlexBase64.decode(headerBytes, NEGOTIATE.toString().length() + 1, headerBytes.length).array();
+                        }
+  Calls inside this branch:
+    getAuthHeader: called 1x (line(s): 38)
+    header.getBytes: called 1x (line(s): 40)
+    FlexBase64.decode: called 1x (line(s): 41)
+    NEGOTIATE.toString: called 1x (line(s): 41)
+    length: called 1x (line(s): 41)
+    array: called 1x (line(s): 41)
+
+--- Line 44: if ---
+if (result.getStatusLine().getStatusCode() == 200) {
+                            Header[] values = result.getHeaders("ProcessedBy");
+                            assertEquals(1, values.length);
+                            assertEquals("ResponseHandler", values[0].getValue());
+                            HttpClientUtils.readResponse(result);
+                            assertSingleNotificationType(EventType.AUTHENTICATED);
+                            gotOur200 = true;
+                        }
+  Calls inside this branch:
+    assertEquals: called 2x (line(s): 46, 47)
+    result.getStatusLine: called 1x (line(s): 44)
+    getStatusCode: called 1x (line(s): 44)
+    result.getHeaders: called 1x (line(s): 45)
+    getValue: called 1x (line(s): 47)
+    HttpClientUtils.readResponse: called 1x (line(s): 48)
+    assertSingleNotificationType: called 1x (line(s): 49)
+
+--- Line 51: if ---
+else if (result.getStatusLine().getStatusCode() == 401) {
+                            assertTrue("We did get a header.", headers.length > 0);
+
+                            HttpClientUtils.readResponse(result);
+
+                        }
+  Calls inside this branch:
+    result.getStatusLine: called 1x (line(s): 51)
+    getStatusCode: called 1x (line(s): 51)
+    assertTrue: called 1x (line(s): 52)
+    HttpClientUtils.readResponse: called 1x (line(s): 54)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 8, 11)
+  assertTrue: called 2x (line(s): 62, 63)
+  setAuthenticationChain: called 1x (line(s): 3)
+  TestHttpClient: called 1x (line(s): 5)
+  HttpGet: called 1x (line(s): 6)
+  DefaultServer.getDefaultServerURL: called 1x (line(s): 6)
+  client.execute: called 1x (line(s): 7)
+  result.getStatusLine: called 1x (line(s): 8)
+  getStatusCode: called 1x (line(s): 8)
+  result.getHeaders: called 1x (line(s): 9)
+  WWW_AUTHENTICATE.toString: called 1x (line(s): 9)
+  getAuthHeader: called 1x (line(s): 10)
+  NEGOTIATE.toString: called 1x (line(s): 11)
+  HttpClientUtils.readResponse: called 1x (line(s): 12)
+  login: called 1x (line(s): 14)
+  toCharArray: called 1x (line(s): 14)
+  Subject.doAs: called 1x (line(s): 16)
+  GSSManager.getInstance: called 1x (line(s): 20)
+  gssManager.createName: called 1x (line(s): 21)
+  DefaultServer.getDefaultServerAddress: called 1x (line(s): 21)
+  getHostString: called 1x (line(s): 21)
+  gssManager.createContext: called 1x (line(s): 23)
+  context.isEstablished: called 1x (line(s): 63)

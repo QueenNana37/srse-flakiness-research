@@ -1,16 +1,57 @@
 Test: tachyon.MasterFaultToleranceTest#faultTest
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 21 method call(s), 10 unique method(s) called
 
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 17: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 24: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 5: for ---
+for (int k = 1; k < clients; k ++) {
+      TachyonFS tfs = mLocalTachyonClusterMultiMaster.getClient();
+      tfs.createFile("/" + k, 1024);
+    }
+  Calls inside this branch:
+    mLocalTachyonClusterMultiMaster.getClient: called 1x (line(s): 6)
+    tfs.createFile: called 1x (line(s): 7)
+
+--- Line 12: for ---
+for (int k = 0; k < clients; k ++) {
+      Assert.assertEquals("/" + k, files.get(k + 1));
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 1x (line(s): 13)
+    files.get: called 1x (line(s): 13)
+
+--- Line 16: for ---
+for (int kills = 1; kills <= 3; kills ++) {
+      Assert.assertTrue(mLocalTachyonClusterMultiMaster.killLeader());
+      CommonUtils.sleepMs(null, 1500);
+      mTfs = mLocalTachyonClusterMultiMaster.getClient();
+      files = mTfs.ls("/", true);
+      Assert.assertEquals(clients + 1, files.size());
+      Assert.assertEquals("/", files.get(0));
+      for (int k = 0; k < clients; k ++) {
+        Assert.assertEquals("/" + k, files.get(k + 1));
+      }
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 21, 22)
+    Assert.assertTrue: called 1x (line(s): 17)
+    mLocalTachyonClusterMultiMaster.killLeader: called 1x (line(s): 17)
+    CommonUtils.sleepMs: called 1x (line(s): 18)
+    mLocalTachyonClusterMultiMaster.getClient: called 1x (line(s): 19)
+    mTfs.ls: called 1x (line(s): 20)
+    files.size: called 1x (line(s): 21)
+    files.get: called 1x (line(s): 22)
+
+--- Line 23: for ---
+for (int k = 0; k < clients; k ++) {
+        Assert.assertEquals("/" + k, files.get(k + 1));
+      }
+  Calls inside this branch:
+    Assert.assertEquals: called 1x (line(s): 24)
+    files.get: called 1x (line(s): 24)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 2x (line(s): 10, 11)
+  mTfs.createFile: called 1x (line(s): 4)
+  mTfs.ls: called 1x (line(s): 9)
+  files.size: called 1x (line(s): 10)
+  files.get: called 1x (line(s): 11)

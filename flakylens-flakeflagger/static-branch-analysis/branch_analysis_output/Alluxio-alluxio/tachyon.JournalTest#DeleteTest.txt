@@ -1,16 +1,50 @@
 Test: tachyon.JournalTest#DeleteTest
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 10 method call(s), 8 unique method(s) called
 
-Line 8: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 12: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int i = 0; i < 10; i ++) {
+      mTfs.mkdir("/i" + i);
+      for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+        if (j >= 5) {
+          mTfs.delete("/i" + i + "/j" + j, false);
+        }
+      }
+      if (i >= 5) {
+        mTfs.delete("/i" + i, true);
+      }
+    }
+  Calls inside this branch:
+    mTfs.mkdir: called 1x (line(s): 4)
+
+--- Line 5: for ---
+for (int j = 0; j < 10; j ++) {
+        mTfs.createFile("/i" + i + "/j" + j, (i + j + 1) * 64);
+        if (j >= 5) {
+          mTfs.delete("/i" + i + "/j" + j, false);
+        }
+      }
+  Calls inside this branch:
+    mTfs.createFile: called 1x (line(s): 6)
+
+--- Line 7: if ---
+if (j >= 5) {
+          mTfs.delete("/i" + i + "/j" + j, false);
+        }
+  Calls inside this branch:
+    mTfs.delete: called 1x (line(s): 8)
+
+--- Line 11: if ---
+if (i >= 5) {
+        mTfs.delete("/i" + i, true);
+      }
+  Calls inside this branch:
+    mTfs.delete: called 1x (line(s): 12)
+
+Calls NOT inside any branch (always run):
+  DeleteTestUtil: called 2x (line(s): 16, 19)
+  mLocalTachyonCluster.stop: called 1x (line(s): 15)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 17)
+  UnderFileSystem.get: called 1x (line(s): 18)
+  delete: called 1x (line(s): 18)

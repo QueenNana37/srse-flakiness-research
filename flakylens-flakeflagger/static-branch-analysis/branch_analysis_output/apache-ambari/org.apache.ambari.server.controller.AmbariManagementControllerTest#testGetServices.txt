@@ -1,5 +1,35 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServices
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 36 method call(s), 28 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 6x (line(s): 19, 20, 22, 23, 24, 26)
+  StackId: called 2x (line(s): 5, 9)
+  s1.getDesiredStackVersion: called 2x (line(s): 23, 24)
+  getStackId: called 2x (line(s): 23, 24)
+  clusters.addCluster: called 1x (line(s): 3)
+  clusters.getCluster: called 1x (line(s): 4)
+  c1.setDesiredStackVersion: called 1x (line(s): 5)
+  serviceFactory.createNew: called 1x (line(s): 6)
+  c1.addService: called 1x (line(s): 8)
+  s1.setDesiredStackVersion: called 1x (line(s): 9)
+  s1.setDesiredState: called 1x (line(s): 10)
+  s1.persist: called 1x (line(s): 12)
+  ServiceRequest: called 1x (line(s): 14)
+  controller.getServices: called 1x (line(s): 15)
+  Collections.singleton: called 1x (line(s): 15)
+  resp.iterator: called 1x (line(s): 17)
+  next: called 1x (line(s): 17)
+  s1.getClusterId: called 1x (line(s): 19)
+  resp1.getClusterId: called 1x (line(s): 19)
+  longValue: called 1x (line(s): 19)
+  s1.getCluster: called 1x (line(s): 20)
+  getClusterName: called 1x (line(s): 20)
+  resp1.getClusterName: called 1x (line(s): 21)
+  s1.getName: called 1x (line(s): 22)
+  resp1.getServiceName: called 1x (line(s): 22)
+  resp1.getDesiredStackVersion: called 1x (line(s): 25)
+  State.INSTALLED.toString: called 1x (line(s): 26)
+  resp1.getDesiredState: called 1x (line(s): 26)

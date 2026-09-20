@@ -1,16 +1,56 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannerResource#testSimpleScannerBinary
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 28 method call(s), 17 unique method(s) called
 
-Line 22: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 24: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 26: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 21: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 20: for ---
+for (Header header: response.getHeaders()) {
+      if (header.getName().equals("X-Row")) {
+        foundRowHeader = true;
+      } else if (header.getName().equals("X-Column")) {
+        foundColumnHeader = true;
+      } else if (header.getName().equals("X-Timestamp")) {
+        foundTimestampHeader = true;
+      }
+    }
+  Calls inside this branch:
+    response.getHeaders: called 1x (line(s): 20)
+
+--- Line 21: if ---
+if (header.getName().equals("X-Row")) {
+        foundRowHeader = true;
+      }
+  Calls inside this branch:
+    header.getName: called 1x (line(s): 21)
+    equals: called 1x (line(s): 21)
+
+--- Line 23: if ---
+else if (header.getName().equals("X-Column")) {
+        foundColumnHeader = true;
+      }
+  Calls inside this branch:
+    header.getName: called 1x (line(s): 23)
+    equals: called 1x (line(s): 23)
+
+--- Line 25: if ---
+else if (header.getName().equals("X-Timestamp")) {
+        foundTimestampHeader = true;
+      }
+  Calls inside this branch:
+    header.getName: called 1x (line(s): 25)
+    equals: called 1x (line(s): 25)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 4x (line(s): 16, 29, 30, 31)
+  assertEquals: called 3x (line(s): 8, 14, 35)
+  response.getCode: called 3x (line(s): 8, 14, 35)
+  ScannerModel: called 1x (line(s): 3)
+  model.setBatch: called 1x (line(s): 4)
+  model.addColumn: called 1x (line(s): 5)
+  Bytes.toBytes: called 1x (line(s): 5)
+  client.put: called 1x (line(s): 6)
+  model.createProtobufOutput: called 1x (line(s): 7)
+  response.getLocation: called 1x (line(s): 9)
+  assertNotNull: called 1x (line(s): 10)
+  client.get: called 1x (line(s): 13)
+  response.getBody: called 1x (line(s): 16)
+  client.delete: called 1x (line(s): 34)

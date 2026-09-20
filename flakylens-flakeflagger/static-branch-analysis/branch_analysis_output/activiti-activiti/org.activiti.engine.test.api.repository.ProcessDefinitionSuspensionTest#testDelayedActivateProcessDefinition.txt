@@ -1,7 +1,35 @@
 Test: org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testDelayedActivateProcessDefinition
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 45 method call(s), 19 unique method(s) called
 
-Line 12: try statement
-    -> try-block completes normally
-    -> catch triggered: ActivitiException
+--- Line 11: try ---
+try {
+      runtimeService.startProcessInstanceById(processDefinition.getId());
+      fail();
+    } catch (ActivitiException e) {
+      assertTextPresentIgnoreCase("suspended", e.getMessage());
+    }
+  Calls inside this branch:
+    runtimeService.startProcessInstanceById: called 1x (line(s): 12)
+    processDefinition.getId: called 1x (line(s): 12)
+    fail: called 1x (line(s): 13)
+    assertTextPresentIgnoreCase: called 1x (line(s): 15)
+    e.getMessage: called 1x (line(s): 15)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 6x (line(s): 17, 18, 19, 32, 33, 34)
+  count: called 6x (line(s): 17, 18, 19, 32, 33, 34)
+  repositoryService.createProcessDefinitionQuery: called 5x (line(s): 7, 18, 19, 33, 34)
+  Date: called 3x (line(s): 4, 23, 27)
+  processDefinition.getId: called 3x (line(s): 8, 23, 31)
+  processEngineConfiguration.getClock: called 2x (line(s): 5, 27)
+  setCurrentTime: called 2x (line(s): 5, 27)
+  runtimeService.createProcessInstanceQuery: called 2x (line(s): 17, 32)
+  active: called 2x (line(s): 18, 33)
+  suspended: called 2x (line(s): 19, 34)
+  startTime.getTime: called 2x (line(s): 22, 26)
+  singleResult: called 1x (line(s): 7)
+  repositoryService.suspendProcessDefinitionById: called 1x (line(s): 8)
+  repositoryService.activateProcessDefinitionById: called 1x (line(s): 23)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 28)
+  runtimeService.startProcessInstanceById: called 1x (line(s): 31)

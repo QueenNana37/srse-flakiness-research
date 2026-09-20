@@ -1,17 +1,50 @@
 Test: org.apache.hadoop.hbase.regionserver.TestCompaction#testMajorCompactingToNoOutput
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 17 method call(s), 12 unique method(s) called
 
-Line 13: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 24: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 9: do-while statement
-    -> loop body runs at least once (always)
-Line 21: do-while statement
-    -> loop body runs at least once (always)
+--- Line 3: for ---
+for (int i = 0; i < COMPACTION_THRESHOLD; i++) {
+      createStoreFile(r);
+    }
+  Calls inside this branch:
+    createStoreFile: called 1x (line(s): 4)
+
+--- Line 8: do-while ---
+do {
+      List<KeyValue> results = new ArrayList<KeyValue>();
+      boolean result = s.next(results);
+      r.delete(new Delete(results.get(0).getRow()), null, false);
+      if (!result) break;
+    } while(true);
+  Calls inside this branch:
+    ArrayList<KeyValue>: called 1x (line(s): 9)
+    s.next: called 1x (line(s): 10)
+    r.delete: called 1x (line(s): 11)
+    Delete: called 1x (line(s): 11)
+    results.get: called 1x (line(s): 11)
+    getRow: called 1x (line(s): 11)
+
+--- Line 12: if ---
+if (!result) break;
+
+--- Line 20: do-while ---
+do {
+      List<KeyValue> results = new ArrayList<KeyValue>();
+      boolean result = s.next(results);
+      if (!result) break;
+      counter++;
+    } while(true);
+  Calls inside this branch:
+    ArrayList<KeyValue>: called 1x (line(s): 21)
+    s.next: called 1x (line(s): 22)
+
+--- Line 23: if ---
+if (!result) break;
+
+Calls NOT inside any branch (always run):
+  r.getScanner: called 2x (line(s): 7, 18)
+  Scan: called 2x (line(s): 7, 18)
+  createStoreFile: called 1x (line(s): 2)
+  r.flushcache: called 1x (line(s): 15)
+  r.compactStores: called 1x (line(s): 17)
+  assertEquals: called 1x (line(s): 26)

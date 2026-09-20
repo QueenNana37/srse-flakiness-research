@@ -1,5 +1,22 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testFilterList
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 30 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  filters.add: called 6x (line(s): 7, 8, 9, 22, 23, 24)
+  RegexStringComparator: called 4x (line(s): 7, 8, 22, 23)
+  RowFilter: called 2x (line(s): 7, 22)
+  QualifierFilter: called 2x (line(s): 8, 23)
+  ValueFilter: called 2x (line(s): 9, 24)
+  SubstringComparator: called 2x (line(s): 9, 24)
+  FilterList: called 2x (line(s): 10, 25)
+  Scan: called 2x (line(s): 11, 26)
+  s.setFilter: called 2x (line(s): 13, 27)
+  ArrayList<Filter>: called 1x (line(s): 6)
+  s.addFamily: called 1x (line(s): 12)
+  KeyValue: called 1x (line(s): 15)
+  verifyScanFull: called 1x (line(s): 17)
+  filters.clear: called 1x (line(s): 21)
+  verifyScanNoEarlyOut: called 1x (line(s): 28)

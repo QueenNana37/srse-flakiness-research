@@ -1,5 +1,34 @@
 Test: org.apache.http.pool.TestConnPool#testCloseExpired
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 41 method call(s), 27 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 4x (line(s): 35, 36, 38, 39)
+  Mockito.mock: called 3x (line(s): 3, 5, 7)
+  Mockito.when: called 3x (line(s): 6, 8, 10)
+  thenReturn: called 3x (line(s): 6, 8, 10)
+  pool.lease: called 2x (line(s): 14, 17)
+  Assert.assertNotNull: called 2x (line(s): 16, 19)
+  pool.release: called 2x (line(s): 22, 27)
+  Mockito.verify: called 2x (line(s): 31, 32)
+  close: called 2x (line(s): 31, 32)
+  conn1.isOpen: called 1x (line(s): 6)
+  conn2.isOpen: called 1x (line(s): 8)
+  connFactory.create: called 1x (line(s): 10)
+  Mockito.eq: called 1x (line(s): 10)
+  LocalConnPool: called 1x (line(s): 12)
+  future1.get: called 1x (line(s): 15)
+  future2.get: called 1x (line(s): 18)
+  entry1.updateExpiry: called 1x (line(s): 21)
+  Thread.sleep: called 1x (line(s): 24)
+  entry2.updateExpiry: called 1x (line(s): 26)
+  pool.closeExpired: called 1x (line(s): 29)
+  Mockito.never: called 1x (line(s): 32)
+  pool.getTotalStats: called 1x (line(s): 34)
+  totals.getAvailable: called 1x (line(s): 35)
+  totals.getLeased: called 1x (line(s): 36)
+  pool.getStats: called 1x (line(s): 37)
+  stats.getAvailable: called 1x (line(s): 38)
+  stats.getLeased: called 1x (line(s): 39)

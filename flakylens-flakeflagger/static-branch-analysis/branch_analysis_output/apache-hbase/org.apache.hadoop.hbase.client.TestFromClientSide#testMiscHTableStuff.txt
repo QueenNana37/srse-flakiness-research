@@ -1,19 +1,86 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testMiscHTableStuff
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 49 method call(s), 32 unique method(s) called
 
-Line 24: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 54: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 71: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 23: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 22: try ---
+try {
+      for (Result r : s) {
+        put = new Put(r.getRow());
+        for (KeyValue kv : r.sorted()) {
+          put.add(kv);
+        }
+        b.put(put);
+      }
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    s.close: called 1x (line(s): 31)
+
+--- Line 23: for ---
+for (Result r : s) {
+        put = new Put(r.getRow());
+        for (KeyValue kv : r.sorted()) {
+          put.add(kv);
+        }
+        b.put(put);
+      }
+  Calls inside this branch:
+    Put: called 1x (line(s): 24)
+    r.getRow: called 1x (line(s): 24)
+    b.put: called 1x (line(s): 28)
+
+--- Line 25: for ---
+for (KeyValue kv : r.sorted()) {
+          put.add(kv);
+        }
+  Calls inside this branch:
+    r.sorted: called 1x (line(s): 25)
+    put.add: called 1x (line(s): 26)
+
+--- Line 53: for ---
+for (HColumnDescriptor c : desc.getFamilies())
+      c.setValue(attrName, attrValue);
+  Calls inside this branch:
+    desc.getFamilies: called 1x (line(s): 53)
+    c.setValue: called 1x (line(s): 54)
+
+--- Line 70: for ---
+for (HColumnDescriptor c : desc.getFamilies()) {
+      value = c.getValue(attrName);
+      assertFalse("missing HCD attribute value", value == null);
+      assertFalse("HCD attribute value is incorrect",
+        Bytes.compareTo(value, attrValue) != 0);
+    }
+  Calls inside this branch:
+    assertFalse: called 2x (line(s): 72, 73)
+    desc.getFamilies: called 1x (line(s): 70)
+    c.getValue: called 1x (line(s): 71)
+    Bytes.compareTo: called 1x (line(s): 74)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 5x (line(s): 3, 4, 5, 6, 7)
+  TEST_UTIL.getConfiguration: called 3x (line(s): 16, 35, 45)
+  TEST_UTIL.createTable: called 2x (line(s): 9, 10)
+  HTable: called 2x (line(s): 16, 35)
+  a.getTableDescriptor: called 2x (line(s): 47, 61)
+  Bytes.compareTo: called 2x (line(s): 63, 68)
+  assertFalse: called 2x (line(s): 66, 67)
+  Put: called 1x (line(s): 11)
+  put.add: called 1x (line(s): 12)
+  a.put: called 1x (line(s): 13)
+  Scan: called 1x (line(s): 19)
+  scan.addFamily: called 1x (line(s): 20)
+  newA.getScanner: called 1x (line(s): 21)
+  Get: called 1x (line(s): 36)
+  get.addFamily: called 1x (line(s): 37)
+  anotherA.get: called 1x (line(s): 38)
+  HBaseAdmin: called 1x (line(s): 45)
+  HTableDescriptor: called 1x (line(s): 47)
+  admin.disableTable: called 1x (line(s): 49)
+  desc.setValue: called 1x (line(s): 51)
+  admin.modifyTable: called 1x (line(s): 56)
+  admin.enableTable: called 1x (line(s): 58)
+  assertTrue: called 1x (line(s): 62)
+  desc.getName: called 1x (line(s): 63)
+  desc.getValue: called 1x (line(s): 65)

@@ -1,5 +1,19 @@
 Test: com.squareup.okhttp.internal.http.HttpResponseCacheTest#responseSourceHeaderConditionalCacheNotFetched
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 8, 10, 13)
+  server.enqueue: called 2x (line(s): 2, 5)
+  MockResponse: called 2x (line(s): 2, 5)
+  addHeader: called 2x (line(s): 3, 4)
+  readAscii: called 2x (line(s): 8, 10)
+  openConnection: called 2x (line(s): 8, 9)
+  server.getUrl: called 2x (line(s): 8, 9)
+  setBody: called 1x (line(s): 2)
+  formatDate: called 1x (line(s): 4)
+  setResponseCode: called 1x (line(s): 5)
+  server.play: called 1x (line(s): 6)
+  connection.getHeaderField: called 1x (line(s): 12)

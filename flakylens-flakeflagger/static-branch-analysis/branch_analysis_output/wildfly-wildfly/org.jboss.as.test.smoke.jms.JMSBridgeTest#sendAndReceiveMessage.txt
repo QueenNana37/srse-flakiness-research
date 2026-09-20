@@ -1,14 +1,74 @@
 Test: org.jboss.as.test.smoke.jms.JMSBridgeTest#sendAndReceiveMessage
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 24 method call(s), 19 unique method(s) called
 
-Line 36: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 39: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 8: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-    -> finally-block always runs
+--- Line 7: try ---
+try {
+            // SEND A MESSAGE on the source queue
+            connection = factory.createConnection();
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            MessageProducer producer = session.createProducer(sourceQueue);
+            String text = MESSAGE_TEXT + " " + UUID.randomUUID().toString();
+            Message message = session.createTextMessage(text);
+            message.setJMSDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            producer.send(message);
+            connection.start();
+            connection.close();
+
+            // RECEIVE THE MESSAGE from the target queue
+            connection = factory.createConnection();
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            MessageConsumer consumer = session.createConsumer(targetQueue);
+            connection.start();
+            receivedMessage = consumer.receive(5000);
+
+            // ASSERTIONS
+            assertNotNull("did not receive expected message", receivedMessage);
+            assertTrue(receivedMessage instanceof TextMessage);
+            assertEquals(text, ((TextMessage) receivedMessage).getText());
+            assertNotNull("did not get header set by the JMS bridge", receivedMessage.getStringProperty(ActiveMQJMSConstants.AMQ_MESSAGING_BRIDGE_MESSAGE_ID_LIST));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // CLEANUP
+            if (session != null) {
+                session.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+  Calls inside this branch:
+    factory.createConnection: called 2x (line(s): 9, 20)
+    connection.createSession: called 2x (line(s): 10, 21)
+    connection.start: called 2x (line(s): 16, 23)
+    assertNotNull: called 2x (line(s): 27, 30)
+    session.createProducer: called 1x (line(s): 11)
+    UUID.randomUUID: called 1x (line(s): 12)
+    toString: called 1x (line(s): 12)
+    session.createTextMessage: called 1x (line(s): 13)
+    message.setJMSDeliveryMode: called 1x (line(s): 14)
+    producer.send: called 1x (line(s): 15)
+    connection.close: called 1x (line(s): 17)
+    session.createConsumer: called 1x (line(s): 22)
+    consumer.receive: called 1x (line(s): 24)
+    assertTrue: called 1x (line(s): 28)
+    assertEquals: called 1x (line(s): 29)
+    getText: called 1x (line(s): 29)
+    receivedMessage.getStringProperty: called 1x (line(s): 30)
+    e.printStackTrace: called 1x (line(s): 32)
+
+--- Line 35: if ---
+if (session != null) {
+                session.close();
+            }
+  Calls inside this branch:
+    session.close: called 1x (line(s): 36)
+
+--- Line 38: if ---
+if (connection != null) {
+                connection.close();
+            }
+  Calls inside this branch:
+    connection.close: called 1x (line(s): 39)
+

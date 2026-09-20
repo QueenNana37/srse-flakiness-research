@@ -1,5 +1,14 @@
 Test: org.apache.dubbo.registry.multicast.MulticastRegistryTest#testGetCustomPort
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 7 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  NetUtils.getAvailablePort: called 1x (line(s): 3)
+  URL.valueOf: called 1x (line(s): 4)
+  MulticastRegistry: called 1x (line(s): 5)
+  assertThat: called 1x (line(s): 6)
+  multicastRegistry.getUrl: called 1x (line(s): 6)
+  getPort: called 1x (line(s): 6)
+  is: called 1x (line(s): 6)

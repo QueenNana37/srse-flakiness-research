@@ -1,16 +1,55 @@
 Test: tachyon.client.TachyonFileTest#isInMemoryTest2
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 19 method call(s), 6 unique method(s) called
 
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 29: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 4: for ---
+for (int k = 0; k < MAX_FILES; k ++) {
+      int fileId = TestUtils.createByteFile(
+          mTfs, "/file" + k, WriteType.MUST_CACHE, USER_QUOTA_UNIT_BYTES);
+      TachyonFile file = mTfs.getFile(fileId);
+      Assert.assertTrue(file.isInMemory());
+    }
+  Calls inside this branch:
+    TestUtils.createByteFile: called 1x (line(s): 5)
+    mTfs.getFile: called 1x (line(s): 7)
+    Assert.assertTrue: called 1x (line(s): 8)
+    file.isInMemory: called 1x (line(s): 8)
+
+--- Line 12: for ---
+for (int k = 0; k < MAX_FILES; k ++) {
+      TachyonFile file = mTfs.getFile("/file" + k);
+      Assert.assertTrue(file.isInMemory());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 13)
+    Assert.assertTrue: called 1x (line(s): 14)
+    file.isInMemory: called 1x (line(s): 14)
+
+--- Line 17: for ---
+for (int k = MAX_FILES; k < MAX_FILES + 1; k ++) {
+      int fileId = TestUtils.createByteFile(
+          mTfs, "/file" + k, WriteType.MUST_CACHE, USER_QUOTA_UNIT_BYTES);
+      TachyonFile file = mTfs.getFile(fileId);
+      Assert.assertTrue(file.isInMemory());
+    }
+  Calls inside this branch:
+    TestUtils.createByteFile: called 1x (line(s): 18)
+    mTfs.getFile: called 1x (line(s): 20)
+    Assert.assertTrue: called 1x (line(s): 21)
+    file.isInMemory: called 1x (line(s): 21)
+
+--- Line 28: for ---
+for (int k = 1; k < MAX_FILES + 1; k ++) {
+      file = mTfs.getFile("/file" + k);
+      Assert.assertTrue(file.isInMemory());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 29)
+    Assert.assertTrue: called 1x (line(s): 30)
+    file.isInMemory: called 1x (line(s): 30)
+
+Calls NOT inside any branch (always run):
+  CommonUtils.sleepMs: called 2x (line(s): 11, 24)
+  mTfs.getFile: called 1x (line(s): 25)
+  Assert.assertFalse: called 1x (line(s): 26)
+  file.isInMemory: called 1x (line(s): 26)

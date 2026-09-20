@@ -1,16 +1,96 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testDeletes
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 230 method call(s), 34 unique method(s) called
 
-Line 265: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 271: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 279: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 286: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 264: for ---
+for (int i = 0; i < 10; i++) {
+      byte [] bytes = Bytes.toBytes(i);
+      put = new Put(bytes);
+      put.add(FAMILIES[0], QUALIFIER, bytes);
+      ht.put(put);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 265)
+    Put: called 1x (line(s): 266)
+    put.add: called 1x (line(s): 267)
+    ht.put: called 1x (line(s): 268)
+
+--- Line 270: for ---
+for (int i = 0; i < 10; i++) {
+      byte [] bytes = Bytes.toBytes(i);
+      get = new Get(bytes);
+      get.addFamily(FAMILIES[0]);
+      result = ht.get(get);
+      assertTrue(result.size() == 1);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 271)
+    Get: called 1x (line(s): 272)
+    get.addFamily: called 1x (line(s): 273)
+    ht.get: called 1x (line(s): 274)
+    assertTrue: called 1x (line(s): 275)
+    result.size: called 1x (line(s): 275)
+
+--- Line 278: for ---
+for (int i = 0; i < 10; i++) {
+      byte [] bytes = Bytes.toBytes(i);
+      delete = new Delete(bytes);
+      delete.deleteFamily(FAMILIES[0]);
+      deletes.add(delete);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 279)
+    Delete: called 1x (line(s): 280)
+    delete.deleteFamily: called 1x (line(s): 281)
+    deletes.add: called 1x (line(s): 282)
+
+--- Line 285: for ---
+for (int i = 0; i < 10; i++) {
+      byte [] bytes = Bytes.toBytes(i);
+      get = new Get(bytes);
+      get.addFamily(FAMILIES[0]);
+      result = ht.get(get);
+      assertTrue(result.size() == 0);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 286)
+    Get: called 1x (line(s): 287)
+    get.addFamily: called 1x (line(s): 288)
+    ht.get: called 1x (line(s): 289)
+    assertTrue: called 1x (line(s): 290)
+    result.size: called 1x (line(s): 290)
+
+Calls NOT inside any branch (always run):
+  put.add: called 25x (line(s): 13, 14, 41, 42, 43, 44, 45, 46, 85, 86, 115, 116, 117, 118, 122, 123, 124, 125, 129, 130, 131, 132, 220, 224, 225)
+  result.size: called 20x (line(s): 154, 155, 166, 167, 178, 179, 186, 187, 194, 195, 206, 207, 233, 234, 241, 242, 250, 251, 255, 256)
+  assertTrue: called 16x (line(s): 154, 166, 178, 186, 194, 206, 233, 241, 250, 252, 253, 255, 257, 258, 259, 260)
+  get.addFamily: called 12x (line(s): 22, 93, 150, 151, 174, 175, 190, 191, 229, 230, 237, 238)
+  assertNResult: called 10x (line(s): 25, 34, 57, 66, 96, 107, 156, 168, 196, 208)
+  scan.addFamily: called 10x (line(s): 31, 104, 162, 163, 182, 183, 202, 203, 245, 246)
+  ht.delete: called 9x (line(s): 19, 51, 74, 79, 137, 141, 147, 217, 284)
+  Put: called 8x (line(s): 12, 40, 84, 114, 121, 128, 219, 223)
+  ht.put: called 8x (line(s): 15, 47, 87, 119, 126, 133, 221, 226)
+  Delete: called 8x (line(s): 17, 49, 72, 77, 135, 139, 143, 215)
+  Get: called 8x (line(s): 21, 53, 92, 149, 173, 189, 228, 236)
+  get.setMaxVersions: called 8x (line(s): 23, 55, 94, 152, 176, 192, 231, 239)
+  ht.get: called 8x (line(s): 24, 56, 95, 153, 177, 193, 232, 240)
+  Scan: called 7x (line(s): 30, 62, 103, 161, 181, 201, 244)
+  scan.setMaxVersions: called 7x (line(s): 32, 64, 105, 164, 184, 204, 247)
+  getSingleScanResult: called 6x (line(s): 33, 65, 106, 165, 185, 205)
+  Bytes.equals: called 6x (line(s): 252, 253, 257, 258, 259, 260)
+  result.sorted: called 6x (line(s): 252, 253, 257, 258, 259, 260)
+  delete.deleteColumn: called 5x (line(s): 50, 73, 144, 145, 146)
+  delete.deleteFamily: called 3x (line(s): 18, 136, 216)
+  getRow: called 3x (line(s): 252, 257, 258)
+  getValue: called 3x (line(s): 253, 259, 260)
+  makeNAscii: called 2x (line(s): 5, 6)
+  delete.deleteColumns: called 2x (line(s): 78, 140)
+  scanner.next: called 2x (line(s): 249, 254)
+  Bytes.toBytes: called 1x (line(s): 3)
+  makeN: called 1x (line(s): 7)
+  TEST_UTIL.createTable: called 1x (line(s): 10)
+  get.addColumn: called 1x (line(s): 54)
+  scan.addColumn: called 1x (line(s): 63)
+  ht.getScanner: called 1x (line(s): 248)
+  scanner.close: called 1x (line(s): 261)
+  ArrayList<Delete>: called 1x (line(s): 277)

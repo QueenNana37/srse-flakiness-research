@@ -1,46 +1,138 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testHBase737
 STATUS: parsed successfully
-Branch points found: 14
+Summary: 14 branch point(s), 41 method call(s), 15 unique method(s) called
 
-Line 45: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 52: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 53: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 62: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 79: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 86: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 87: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 44: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 78: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 13: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-Line 23: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-Line 41: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 66: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-Line 75: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 12: try ---
+try {
+      Thread.sleep(1000);
+    } catch (InterruptedException i) {
+      //ignore
+    }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 13)
+
+--- Line 22: try ---
+try {
+      Thread.sleep(1000);
+    } catch (InterruptedException i) {
+      //ignore
+    }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 23)
+
+--- Line 40: try ---
+try {
+      int index = 0;
+      Result r = null;
+      while ((r = s.next()) != null) {
+        for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+      }
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    s.close: called 1x (line(s): 49)
+
+--- Line 43: while ---
+while ((r = s.next()) != null) {
+        for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 43)
+
+--- Line 44: for ---
+for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+  Calls inside this branch:
+    r.sorted: called 1x (line(s): 44)
+    key.getTimestamp: called 1x (line(s): 45)
+
+--- Line 51: for ---
+for (int i = 0; i < times.length - 1; i++) {
+      for (int j = i + 1; j < times.length; j++) {
+        assertTrue(times[j] > times[i]);
+      }
+    }
+
+--- Line 52: for ---
+for (int j = i + 1; j < times.length; j++) {
+        assertTrue(times[j] > times[i]);
+      }
+  Calls inside this branch:
+    assertTrue: called 1x (line(s): 53)
+
+--- Line 61: for ---
+for(int i=0;i<times.length;i++) {
+      times[i] = 0;
+    }
+
+--- Line 65: try ---
+try {
+      Thread.sleep(1000);
+    } catch (InterruptedException i) {
+      //ignore
+    }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 66)
+
+--- Line 74: try ---
+try {
+      int index = 0;
+      Result r = null;
+      while ((r = s.next()) != null) {
+        for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+      }
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    s.close: called 1x (line(s): 83)
+
+--- Line 77: while ---
+while ((r = s.next()) != null) {
+        for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 77)
+
+--- Line 78: for ---
+for(KeyValue key : r.sorted()) {
+          times[index++] = key.getTimestamp();
+        }
+  Calls inside this branch:
+    r.sorted: called 1x (line(s): 78)
+    key.getTimestamp: called 1x (line(s): 79)
+
+--- Line 85: for ---
+for (int i = 0; i < times.length - 1; i++) {
+      for (int j = i + 1; j < times.length; j++) {
+        assertTrue(times[j] > times[i]);
+      }
+    }
+
+--- Line 86: for ---
+for (int j = i + 1; j < times.length; j++) {
+        assertTrue(times[j] > times[i]);
+      }
+  Calls inside this branch:
+    assertTrue: called 1x (line(s): 87)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 9x (line(s): 3, 4, 6, 10, 10, 19, 19, 29, 29)
+  scan.addFamily: called 4x (line(s): 37, 38, 71, 72)
+  Put: called 3x (line(s): 9, 18, 28)
+  put.add: called 3x (line(s): 10, 19, 29)
+  table.put: called 3x (line(s): 11, 20, 30)
+  Scan: called 2x (line(s): 36, 70)
+  table.getScanner: called 2x (line(s): 39, 73)
+  TEST_UTIL.createTable: called 1x (line(s): 6)
+  TEST_UTIL.flush: called 1x (line(s): 58)

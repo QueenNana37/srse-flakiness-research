@@ -1,7 +1,42 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testGetSuperSlice
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 28 method call(s), 19 unique method(s) called
 
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 4: for ---
+for (int i = 0; i < 100; i++) {
+      ColumnPath cp = new ColumnPath("Super1");
+
+      cp.setSuper_column(bytes("SuperColumn_1"));
+      cp.setColumn(bytes("testGetSuperSlice_"+ i));
+
+      ColumnPath cp2 = new ColumnPath("Super1");
+
+      cp2.setSuper_column(bytes("SuperColumn_2"));
+      cp2.setColumn(bytes("testGetSuperSlice_" + i));
+
+      keyspace.insert("testGetSuperSlice", cp, StringSerializer.get().toByteBuffer("testGetSuperSlice_Value_" + i));
+      keyspace.insert("testGetSuperSlice", cp2, StringSerializer.get().toByteBuffer("testGetSuperSlice_Value_" + i));
+    }
+  Calls inside this branch:
+    bytes: called 4x (line(s): 7, 8, 12, 13)
+    ColumnPath: called 2x (line(s): 5, 10)
+    keyspace.insert: called 2x (line(s): 15, 16)
+    StringSerializer.get: called 2x (line(s): 15, 16)
+    toByteBuffer: called 2x (line(s): 15, 16)
+    cp.setSuper_column: called 1x (line(s): 7)
+    cp.setColumn: called 1x (line(s): 8)
+    cp2.setSuper_column: called 1x (line(s): 12)
+    cp2.setColumn: called 1x (line(s): 13)
+
+Calls NOT inside any branch (always run):
+  ByteBuffer.wrap: called 2x (line(s): 21, 21)
+  ColumnParent: called 1x (line(s): 20)
+  SliceRange: called 1x (line(s): 21)
+  SlicePredicate: called 1x (line(s): 22)
+  sp.setSlice_range: called 1x (line(s): 23)
+  keyspace.getSuperSlice: called 1x (line(s): 24)
+  assertNotNull: called 1x (line(s): 26)
+  assertEquals: called 1x (line(s): 27)
+  cols.size: called 1x (line(s): 27)
+  ColumnPath: called 1x (line(s): 29)
+  keyspace.remove: called 1x (line(s): 30)

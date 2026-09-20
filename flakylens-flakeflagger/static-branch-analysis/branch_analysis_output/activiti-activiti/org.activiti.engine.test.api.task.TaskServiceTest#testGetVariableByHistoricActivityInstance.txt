@@ -1,7 +1,61 @@
 Test: org.activiti.engine.test.api.task.TaskServiceTest#testGetVariableByHistoricActivityInstance
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 37 method call(s), 24 unique method(s) called
 
-Line 4: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
+--- Line 3: if ---
+if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.FULL)) {
+            ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
+            assertNotNull(processInstance);
+            Task task = taskService.createTaskQuery().singleResult();
+
+            taskService.setVariable(task.getId(),
+                                    "variable1",
+                                    "value1");
+            taskService.setVariable(task.getId(),
+                                    "variable1",
+                                    "value2");
+
+            HistoricActivityInstance historicActivitiInstance = historyService.createHistoricActivityInstanceQuery().processInstanceId(processInstance.getId())
+                    .activityId("theTask").singleResult();
+            assertNotNull(historicActivitiInstance);
+
+            List<HistoricDetail> resultSet = historyService.createHistoricDetailQuery().variableUpdates().activityInstanceId(historicActivitiInstance.getId())
+                    .orderByTime().asc().list();
+
+            assertEquals(2,
+                         resultSet.size());
+            assertEquals("variable1",
+                         ((HistoricVariableUpdate) resultSet.get(0)).getVariableName());
+            assertEquals("value1",
+                         ((HistoricVariableUpdate) resultSet.get(0)).getValue());
+            assertEquals("variable1",
+                         ((HistoricVariableUpdate) resultSet.get(1)).getVariableName());
+            assertEquals("value2",
+                         ((HistoricVariableUpdate) resultSet.get(1)).getValue());
+        }
+  Calls inside this branch:
+    assertEquals: called 5x (line(s): 22, 24, 26, 28, 30)
+    resultSet.get: called 4x (line(s): 25, 27, 29, 31)
+    assertNotNull: called 2x (line(s): 5, 17)
+    singleResult: called 2x (line(s): 6, 16)
+    taskService.setVariable: called 2x (line(s): 8, 11)
+    task.getId: called 2x (line(s): 8, 11)
+    getVariableName: called 2x (line(s): 25, 29)
+    getValue: called 2x (line(s): 27, 31)
+    processEngineConfiguration.getHistoryLevel: called 1x (line(s): 3)
+    isAtLeast: called 1x (line(s): 3)
+    runtimeService.startProcessInstanceByKey: called 1x (line(s): 4)
+    taskService.createTaskQuery: called 1x (line(s): 6)
+    historyService.createHistoricActivityInstanceQuery: called 1x (line(s): 15)
+    processInstanceId: called 1x (line(s): 15)
+    processInstance.getId: called 1x (line(s): 15)
+    activityId: called 1x (line(s): 16)
+    historyService.createHistoricDetailQuery: called 1x (line(s): 19)
+    variableUpdates: called 1x (line(s): 19)
+    activityInstanceId: called 1x (line(s): 19)
+    historicActivitiInstance.getId: called 1x (line(s): 19)
+    orderByTime: called 1x (line(s): 20)
+    asc: called 1x (line(s): 20)
+    list: called 1x (line(s): 20)
+    resultSet.size: called 1x (line(s): 23)
+

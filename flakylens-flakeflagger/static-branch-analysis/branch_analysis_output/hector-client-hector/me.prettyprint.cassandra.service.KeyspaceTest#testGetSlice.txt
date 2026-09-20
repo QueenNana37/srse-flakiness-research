@@ -1,10 +1,44 @@
 Test: me.prettyprint.cassandra.service.KeyspaceTest#testGetSlice
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 28 method call(s), 23 unique method(s) called
 
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 5: for ---
+for (int i = 0; i < 100; i++) {
+      ColumnPath cp = new ColumnPath("Standard2");
+      cp.setColumn(bytes("testGetSlice_" + i));
+      keyspace.insert("testGetSlice", cp, StringSerializer.get().toByteBuffer("testGetSlice_Value_" + i));
+      columnnames.add("testGetSlice_" + i);
+    }
+  Calls inside this branch:
+    ColumnPath: called 1x (line(s): 6)
+    cp.setColumn: called 1x (line(s): 7)
+    bytes: called 1x (line(s): 7)
+    keyspace.insert: called 1x (line(s): 8)
+    StringSerializer.get: called 1x (line(s): 8)
+    toByteBuffer: called 1x (line(s): 8)
+    columnnames.add: called 1x (line(s): 9)
+
+--- Line 24: for ---
+for (int i = 0; i < 100; i++) {
+      gotlist.add(string(cols.get(i).getName()));
+    }
+  Calls inside this branch:
+    gotlist.add: called 1x (line(s): 25)
+    string: called 1x (line(s): 25)
+    cols.get: called 1x (line(s): 25)
+    getName: called 1x (line(s): 25)
+
+Calls NOT inside any branch (always run):
+  ArrayList<String>: called 2x (line(s): 4, 23)
+  ByteBuffer.wrap: called 2x (line(s): 14, 14)
+  assertEquals: called 2x (line(s): 20, 27)
+  keyspace.remove: called 2x (line(s): 30, 31)
+  ColumnParent: called 1x (line(s): 13)
+  SliceRange: called 1x (line(s): 14)
+  SlicePredicate: called 1x (line(s): 15)
+  sp.setSlice_range: called 1x (line(s): 16)
+  keyspace.getSlice: called 1x (line(s): 17)
+  assertNotNull: called 1x (line(s): 19)
+  cols.size: called 1x (line(s): 20)
+  Collections.sort: called 1x (line(s): 22)
+  ColumnPath: called 1x (line(s): 29)

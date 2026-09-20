@@ -1,16 +1,91 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateInvalidRequest
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 44 method call(s), 15 unique method(s) called
 
-Line 16: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 32: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 46: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 63: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 15: try ---
+try {
+      createService(clusterName2, serviceName3, null);
+      fail("Expected fail for invalid service for stack 0.1");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createService: called 1x (line(s): 16)
+    fail: called 1x (line(s): 17)
+
+--- Line 31: try ---
+try {
+      reqs.clear();
+      req1 = new ServiceRequest(clusterName1, serviceName1, null,
+          State.INSTALLED.toString());
+      req2 = new ServiceRequest(clusterName2, serviceName2, null,
+          State.INSTALLED.toString());
+      reqs.add(req1);
+      reqs.add(req2);
+      controller.updateServices(reqs);
+      fail("Expected failure for multi cluster update");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 33, 35)
+    State.INSTALLED.toString: called 2x (line(s): 34, 36)
+    reqs.add: called 2x (line(s): 37, 38)
+    reqs.clear: called 1x (line(s): 32)
+    controller.updateServices: called 1x (line(s): 39)
+    fail: called 1x (line(s): 40)
+
+--- Line 45: try ---
+try {
+      reqs.clear();
+      req1 = new ServiceRequest(clusterName1, serviceName1, null,
+          State.INSTALLED.toString());
+      req2 = new ServiceRequest(clusterName1, serviceName1, null,
+          State.INSTALLED.toString());
+      reqs.add(req1);
+      reqs.add(req2);
+      controller.updateServices(reqs);
+      fail("Expected failure for dups services");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 47, 49)
+    State.INSTALLED.toString: called 2x (line(s): 48, 50)
+    reqs.add: called 2x (line(s): 51, 52)
+    reqs.clear: called 1x (line(s): 46)
+    controller.updateServices: called 1x (line(s): 53)
+    fail: called 1x (line(s): 54)
+
+--- Line 62: try ---
+try {
+      reqs.clear();
+      req1 = new ServiceRequest(clusterName1, serviceName1, null,
+          State.INSTALLED.toString());
+      req2 = new ServiceRequest(clusterName1, serviceName2, null,
+          State.STARTED.toString());
+      reqs.add(req1);
+      reqs.add(req2);
+      controller.updateServices(reqs);
+      fail("Expected failure for different states");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 64, 66)
+    reqs.add: called 2x (line(s): 68, 69)
+    reqs.clear: called 1x (line(s): 63)
+    State.INSTALLED.toString: called 1x (line(s): 65)
+    State.STARTED.toString: called 1x (line(s): 67)
+    controller.updateServices: called 1x (line(s): 70)
+    fail: called 1x (line(s): 71)
+
+Calls NOT inside any branch (always run):
+  createService: called 3x (line(s): 12, 26, 27)
+  clusters.getCluster: called 3x (line(s): 22, 24, 59)
+  createCluster: called 2x (line(s): 8, 10)
+  setDesiredStackVersion: called 2x (line(s): 22, 24)
+  StackId: called 2x (line(s): 23, 25)
+  HashSet<ServiceRequest>: called 1x (line(s): 29)
+  getService: called 1x (line(s): 59)
+  setDesiredState: called 1x (line(s): 60)

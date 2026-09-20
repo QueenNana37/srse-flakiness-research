@@ -1,7 +1,76 @@
 Test: io.undertow.server.security.DigestAuthenticationAuthTestCase#testDigestSuccess
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 61 method call(s), 29 unique method(s) called
 
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 25: for ---
+for (int i = 0; i < 5; i++) {
+            client = new TestHttpClient();
+            get = new HttpGet(DefaultServer.getDefaultServerURL());
+
+            int thisNonceCount = nonceCount++;
+            String authorization = createAuthorizationLine("userOne", "passwordOne", "GET", "/", nonce, thisNonceCount,
+                    clientNonce, opaque);
+
+            get.addHeader(AUTHORIZATION.toString(), authorization);
+            result = client.execute(get);
+            assertEquals(200, result.getStatusLine().getStatusCode());
+
+            values = result.getHeaders("ProcessedBy");
+            assertEquals(1, values.length);
+            assertEquals("ResponseHandler", values[0].getValue());
+            assertSingleNotificationType(EventType.AUTHENTICATED);
+
+            values = result.getHeaders("Authentication-Info");
+            assertEquals(1, values.length);
+            Map<AuthenticationInfoToken, String> parsedAuthInfo = AuthenticationInfoToken.parseHeader(values[0].getValue());
+
+            assertEquals("Didn't expect a new nonce.", nonce, parsedAuthInfo.get(AuthenticationInfoToken.NEXT_NONCE));
+            assertEquals(DigestQop.AUTH.getToken(), parsedAuthInfo.get(AuthenticationInfoToken.MESSAGE_QOP));
+            String nonceCountString = toHex(thisNonceCount);
+            assertEquals(createRspAuth("userOne", REALM_NAME, "passwordOne", "/", nonce, nonceCountString, clientNonce),
+                    parsedAuthInfo.get(AuthenticationInfoToken.RESPONSE_AUTH));
+            assertEquals(clientNonce, parsedAuthInfo.get(AuthenticationInfoToken.CNONCE));
+            assertEquals(nonceCountString, parsedAuthInfo.get(AuthenticationInfoToken.NONCE_COUNT));
+        }
+  Calls inside this branch:
+    assertEquals: called 9x (line(s): 35, 38, 39, 43, 46, 47, 49, 51, 52)
+    parsedAuthInfo.get: called 5x (line(s): 46, 47, 50, 51, 52)
+    result.getHeaders: called 2x (line(s): 37, 42)
+    getValue: called 2x (line(s): 39, 44)
+    TestHttpClient: called 1x (line(s): 26)
+    HttpGet: called 1x (line(s): 27)
+    DefaultServer.getDefaultServerURL: called 1x (line(s): 27)
+    createAuthorizationLine: called 1x (line(s): 30)
+    get.addHeader: called 1x (line(s): 33)
+    AUTHORIZATION.toString: called 1x (line(s): 33)
+    client.execute: called 1x (line(s): 34)
+    result.getStatusLine: called 1x (line(s): 35)
+    getStatusCode: called 1x (line(s): 35)
+    assertSingleNotificationType: called 1x (line(s): 40)
+    AuthenticationInfoToken.parseHeader: called 1x (line(s): 44)
+    DigestQop.AUTH.getToken: called 1x (line(s): 47)
+    toHex: called 1x (line(s): 48)
+    createRspAuth: called 1x (line(s): 49)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 5x (line(s): 8, 10, 15, 16, 17)
+  parsedHeader.get: called 5x (line(s): 15, 16, 17, 21, 22)
+  setAuthenticationChain: called 1x (line(s): 3)
+  TestHttpClient: called 1x (line(s): 5)
+  HttpGet: called 1x (line(s): 6)
+  DefaultServer.getDefaultServerURL: called 1x (line(s): 6)
+  client.execute: called 1x (line(s): 7)
+  result.getStatusLine: called 1x (line(s): 8)
+  getStatusCode: called 1x (line(s): 8)
+  result.getHeaders: called 1x (line(s): 9)
+  WWW_AUTHENTICATE.toString: called 1x (line(s): 9)
+  getValue: called 1x (line(s): 11)
+  assertTrue: called 1x (line(s): 13)
+  value.startsWith: called 1x (line(s): 13)
+  DIGEST.toString: called 1x (line(s): 13)
+  DigestWWWAuthenticateToken.parseHeader: called 1x (line(s): 14)
+  value.substring: called 1x (line(s): 14)
+  DigestAlgorithm.MD5.getToken: called 1x (line(s): 16)
+  DigestQop.AUTH.getToken: called 1x (line(s): 17)
+  createNonce: called 1x (line(s): 19)
+  assertNotNull: called 1x (line(s): 23)

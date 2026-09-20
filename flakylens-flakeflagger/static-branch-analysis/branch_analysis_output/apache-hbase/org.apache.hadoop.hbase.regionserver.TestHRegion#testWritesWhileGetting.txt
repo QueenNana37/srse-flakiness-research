@@ -1,28 +1,122 @@
 Test: org.apache.hadoop.hbase.regionserver.TestHRegion#testWritesWhileGetting
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 30 method call(s), 25 unique method(s) called
 
-Line 35: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 39: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 46: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 52: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 16: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 33: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 51: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 11: for ---
+for (int i = 0; i < numFamilies; i++) {
+      families[i] = Bytes.toBytes("family" + i);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 12)
+
+--- Line 15: for ---
+for (int i = 0; i < numQualifiers; i++) {
+      qualifiers[i] = Bytes.toBytes("qual" + i);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 16)
+
+--- Line 32: for ---
+for (int i = 0; i < testCount; i++) {
+
+      if (i != 0 && i % compactInterval == 0) {
+        region.compactStores(true);
+      }
+
+      if (i != 0 && i % flushInterval == 0) {
+        //System.out.println("iteration = " + i);
+        flushThread.flush();
+      }
+
+      boolean previousEmpty = result == null || result.isEmpty();
+      result = region.get(get, null);
+      if (!result.isEmpty() || !previousEmpty || i > compactInterval) {
+        Assert.assertEquals("i=" + i, expectedCount, result.size());
+        // TODO this was removed, now what dangit?!
+        // search looking for the qualifier in question?
+        long timestamp = 0;
+        for (KeyValue kv : result.sorted()) {
+          if (Bytes.equals(kv.getFamily(), families[0])
+            && Bytes.equals(kv.getQualifier(), qualifiers[0])) {
+            timestamp = kv.getTimestamp();
+          }
+        }
+        Assert.assertTrue(timestamp >= prevTimestamp);
+        prevTimestamp = timestamp;
+      }
+    }
+  Calls inside this branch:
+    result.isEmpty: called 1x (line(s): 43)
+    region.get: called 1x (line(s): 44)
+
+--- Line 34: if ---
+if (i != 0 && i % compactInterval == 0) {
+        region.compactStores(true);
+      }
+  Calls inside this branch:
+    region.compactStores: called 1x (line(s): 35)
+
+--- Line 38: if ---
+if (i != 0 && i % flushInterval == 0) {
+        //System.out.println("iteration = " + i);
+        flushThread.flush();
+      }
+  Calls inside this branch:
+    flushThread.flush: called 1x (line(s): 40)
+
+--- Line 45: if ---
+if (!result.isEmpty() || !previousEmpty || i > compactInterval) {
+        Assert.assertEquals("i=" + i, expectedCount, result.size());
+        // TODO this was removed, now what dangit?!
+        // search looking for the qualifier in question?
+        long timestamp = 0;
+        for (KeyValue kv : result.sorted()) {
+          if (Bytes.equals(kv.getFamily(), families[0])
+            && Bytes.equals(kv.getQualifier(), qualifiers[0])) {
+            timestamp = kv.getTimestamp();
+          }
+        }
+        Assert.assertTrue(timestamp >= prevTimestamp);
+        prevTimestamp = timestamp;
+      }
+  Calls inside this branch:
+    result.isEmpty: called 1x (line(s): 45)
+    Assert.assertEquals: called 1x (line(s): 46)
+    result.size: called 1x (line(s): 46)
+    Assert.assertTrue: called 1x (line(s): 56)
+
+--- Line 50: for ---
+for (KeyValue kv : result.sorted()) {
+          if (Bytes.equals(kv.getFamily(), families[0])
+            && Bytes.equals(kv.getQualifier(), qualifiers[0])) {
+            timestamp = kv.getTimestamp();
+          }
+        }
+  Calls inside this branch:
+    result.sorted: called 1x (line(s): 50)
+
+--- Line 51: if ---
+if (Bytes.equals(kv.getFamily(), families[0])
+            && Bytes.equals(kv.getQualifier(), qualifiers[0])) {
+            timestamp = kv.getTimestamp();
+          }
+  Calls inside this branch:
+    Bytes.equals: called 2x (line(s): 51, 52)
+    kv.getFamily: called 1x (line(s): 51)
+    kv.getQualifier: called 1x (line(s): 52)
+    kv.getTimestamp: called 1x (line(s): 53)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 2x (line(s): 3, 26)
+  initHRegion: called 1x (line(s): 20)
+  PutThread: called 1x (line(s): 21)
+  putThread.start: called 1x (line(s): 22)
+  FlushThread: called 1x (line(s): 23)
+  flushThread.start: called 1x (line(s): 24)
+  Get: called 1x (line(s): 26)
+  putThread.done: called 1x (line(s): 61)
+  putThread.join: called 1x (line(s): 62)
+  putThread.checkNoError: called 1x (line(s): 63)
+  flushThread.done: called 1x (line(s): 65)
+  flushThread.join: called 1x (line(s): 66)
+  flushThread.checkNoError: called 1x (line(s): 67)

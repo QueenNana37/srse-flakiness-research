@@ -1,5 +1,13 @@
 Test: org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfigurationTests#disabled
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 12 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertContent: called 4x (line(s): 6, 7, 8, 9)
+  ports.get: called 4x (line(s): 6, 7, 8, 9)
+  this.applicationContext.register: called 1x (line(s): 3)
+  this.applicationContext.refresh: called 1x (line(s): 5)
+  this.applicationContext.close: called 1x (line(s): 10)
+  assertAllClosed: called 1x (line(s): 11)

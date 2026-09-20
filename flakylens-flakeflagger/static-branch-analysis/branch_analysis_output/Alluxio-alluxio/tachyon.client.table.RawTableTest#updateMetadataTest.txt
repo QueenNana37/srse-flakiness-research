@@ -1,7 +1,28 @@
 Test: tachyon.client.table.RawTableTest#updateMetadataTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 23 method call(s), 6 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int k = 1; k < Constants.MAX_COLUMNS; k += Constants.MAX_COLUMNS / 5) {
+      int fileId = mTfs.createRawTable("/x/table" + k, 1);
+      RawTable table = mTfs.getRawTable(fileId);
+      table.updateMetadata(TestUtils.getIncreasingByteBuffer(k % 17));
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(k % 17), table.getMetadata());
+      table = mTfs.getRawTable("/x/table" + k);
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(k % 17), table.getMetadata());
+
+      fileId = mTfs.createRawTable("/y/tab" + k, 1, TestUtils.getIncreasingByteBuffer(k % 7));
+      table = mTfs.getRawTable(fileId);
+      table.updateMetadata(TestUtils.getIncreasingByteBuffer(k % 16));
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(k % 16), table.getMetadata());
+      table = mTfs.getRawTable("/y/tab" + k);
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(k % 16), table.getMetadata());
+    }
+  Calls inside this branch:
+    TestUtils.getIncreasingByteBuffer: called 7x (line(s): 6, 7, 9, 11, 13, 14, 16)
+    mTfs.getRawTable: called 4x (line(s): 5, 8, 12, 15)
+    Assert.assertEquals: called 4x (line(s): 7, 9, 14, 16)
+    table.getMetadata: called 4x (line(s): 7, 9, 14, 16)
+    mTfs.createRawTable: called 2x (line(s): 4, 11)
+    table.updateMetadata: called 2x (line(s): 6, 13)
+

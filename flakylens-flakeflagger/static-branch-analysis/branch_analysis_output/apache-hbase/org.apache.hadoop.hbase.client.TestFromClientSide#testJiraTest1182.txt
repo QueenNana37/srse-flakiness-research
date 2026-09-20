@@ -1,5 +1,17 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testJiraTest1182
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 25 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  put.add: called 6x (line(s): 13, 14, 15, 16, 17, 18)
+  getVersionRangeAndVerifyGreaterThan: called 6x (line(s): 21, 22, 23, 32, 33, 34)
+  scanVersionRangeAndVerifyGreaterThan: called 6x (line(s): 25, 26, 27, 36, 37, 38)
+  Bytes.toBytes: called 1x (line(s): 4)
+  makeNAscii: called 1x (line(s): 5)
+  makeStamps: called 1x (line(s): 6)
+  TEST_UTIL.createTable: called 1x (line(s): 8)
+  Put: called 1x (line(s): 12)
+  ht.put: called 1x (line(s): 19)
+  TEST_UTIL.flush: called 1x (line(s): 30)

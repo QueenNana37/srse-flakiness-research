@@ -1,10 +1,19 @@
 Test: tachyon.MasterInfoTest#createFilePerfTest
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 2 method call(s), 2 unique method(s) called
 
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 6: for ---
+for (int k = 0; k < 200; k ++) {
+      mMasterInfo.mkdir("/testFile" + Constants.PATH_SEPARATOR + MasterInfo.COL + k + "/" + 0);
+    }
+  Calls inside this branch:
+    mMasterInfo.mkdir: called 1x (line(s): 7)
+
+--- Line 11: for ---
+for (int k = 0; k < 200; k ++) {
+      mMasterInfo.getClientFileInfo("/testFile" + Constants.PATH_SEPARATOR + 
+          MasterInfo.COL + k + "/" + 0);
+    }
+  Calls inside this branch:
+    mMasterInfo.getClientFileInfo: called 1x (line(s): 12)
+

@@ -1,5 +1,20 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testGet_NonExistentRow
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 19 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 2x (line(s): 3, 15)
+  LOG.info: called 2x (line(s): 7, 20)
+  Get: called 2x (line(s): 9, 16)
+  get.addFamily: called 2x (line(s): 10, 17)
+  table.get: called 2x (line(s): 11, 18)
+  r.isEmpty: called 2x (line(s): 12, 19)
+  TEST_UTIL.createTable: called 1x (line(s): 3)
+  Put: called 1x (line(s): 4)
+  put.add: called 1x (line(s): 5)
+  table.put: called 1x (line(s): 6)
+  assertFalse: called 1x (line(s): 12)
+  System.out.println: called 1x (line(s): 13)
+  assertTrue: called 1x (line(s): 19)

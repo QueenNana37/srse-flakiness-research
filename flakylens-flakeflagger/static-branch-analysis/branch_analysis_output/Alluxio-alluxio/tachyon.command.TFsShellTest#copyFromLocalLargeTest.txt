@@ -1,5 +1,26 @@
 Test: tachyon.command.TFsShellTest#copyFromLocalLargeTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  testFile.getAbsolutePath: called 2x (line(s): 9, 11)
+  Assert.assertEquals: called 2x (line(s): 10, 14)
+  File: called 1x (line(s): 3)
+  mLocalTachyonCluster.getTachyonHome: called 1x (line(s): 3)
+  testFile.createNewFile: called 1x (line(s): 4)
+  FileOutputStream: called 1x (line(s): 5)
+  TestUtils.getIncreasingByteArray: called 1x (line(s): 6)
+  fos.write: called 1x (line(s): 7)
+  fos.close: called 1x (line(s): 8)
+  mFsShell.copyFromLocal: called 1x (line(s): 9)
+  getCommandOutput: called 1x (line(s): 10)
+  mOutput.toString: called 1x (line(s): 11)
+  mTfs.getFile: called 1x (line(s): 12)
+  Assert.assertNotNull: called 1x (line(s): 13)
+  tFile.length: called 1x (line(s): 14)
+  tFile.getInStream: called 1x (line(s): 15)
+  tfis.read: called 1x (line(s): 17)
+  Assert.assertTrue: called 1x (line(s): 18)
+  TestUtils.equalIncreasingByteArray: called 1x (line(s): 18)

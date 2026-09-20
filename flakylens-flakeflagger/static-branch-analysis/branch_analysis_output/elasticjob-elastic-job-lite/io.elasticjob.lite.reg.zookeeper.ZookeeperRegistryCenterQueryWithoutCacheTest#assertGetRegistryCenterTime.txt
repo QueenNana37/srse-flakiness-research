@@ -1,5 +1,11 @@
 Test: io.elasticjob.lite.reg.zookeeper.ZookeeperRegistryCenterQueryWithoutCacheTest#assertGetRegistryCenterTime
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 4 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  zkRegCenter.getRegistryCenterTime: called 2x (line(s): 3, 5)
+  assertTrue: called 2x (line(s): 4, 7)
+  System.currentTimeMillis: called 1x (line(s): 4)
+  System.out.println: called 1x (line(s): 6)

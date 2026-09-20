@@ -1,5 +1,30 @@
 Test: org.apache.hadoop.hbase.client.TestGetRowVersions#testGetRowMultipleVersions
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 42 method call(s), 23 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 9x (line(s): 22, 24, 25, 30, 32, 33, 39, 40, 41)
+  Bytes.equals: called 4x (line(s): 25, 33, 40, 41)
+  Put: called 2x (line(s): 2, 13)
+  put.add: called 2x (line(s): 3, 14)
+  this.table.put: called 2x (line(s): 4, 15)
+  Get: called 2x (line(s): 17, 27)
+  table.get: called 2x (line(s): 19, 29)
+  r.size: called 2x (line(s): 22, 30)
+  r.getValue: called 2x (line(s): 23, 31)
+  versionMap.get: called 2x (line(s): 40, 41)
+  this.cluster.shutdown: called 1x (line(s): 6)
+  this.zooKeeperCluster.shutdown: called 1x (line(s): 7)
+  LOG.debug: called 1x (line(s): 8)
+  this.hBaseClusterSetup: called 1x (line(s): 9)
+  HTable: called 1x (line(s): 11)
+  assertNotNull: called 1x (line(s): 20)
+  assertFalse: called 1x (line(s): 21)
+  r.isEmpty: called 1x (line(s): 21)
+  get.setMaxVersions: called 1x (line(s): 28)
+  r.getMap: called 1x (line(s): 35)
+  map.get: called 1x (line(s): 37)
+  familyMap.get: called 1x (line(s): 38)
+  versionMap.size: called 1x (line(s): 39)

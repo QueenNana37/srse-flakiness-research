@@ -1,13 +1,60 @@
 Test: tachyon.client.table.RawTableTest#rawtablePerfTest
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 31 method call(s), 15 unique method(s) called
 
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 29: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 39: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 17: for ---
+for (int k = 0; k < col; k ++) {
+      RawColumn rawCol = table.getRawColumn(k);
+      rawCol.createPartition(0);
+      TachyonFile file = rawCol.getPartition(0);
+      OutStream outStream = file.getOutStream(WriteType.MUST_CACHE);
+      outStream.write(TestUtils.getIncreasingByteArray(10));
+      outStream.close();
+    }
+  Calls inside this branch:
+    table.getRawColumn: called 1x (line(s): 18)
+    rawCol.createPartition: called 1x (line(s): 19)
+    rawCol.getPartition: called 1x (line(s): 20)
+    file.getOutStream: called 1x (line(s): 21)
+    outStream.write: called 1x (line(s): 22)
+    TestUtils.getIncreasingByteArray: called 1x (line(s): 22)
+    outStream.close: called 1x (line(s): 23)
+
+--- Line 28: for ---
+for (int k = 0; k < col; k ++) {
+      RawColumn rawCol = table.getRawColumn(k);
+      TachyonFile file = rawCol.getPartition(0, true);
+      TachyonByteBuffer buf = file.readByteBuffer();
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(10), buf.DATA);
+      buf.close();
+    }
+  Calls inside this branch:
+    table.getRawColumn: called 1x (line(s): 29)
+    rawCol.getPartition: called 1x (line(s): 30)
+    file.readByteBuffer: called 1x (line(s): 31)
+    Assert.assertEquals: called 1x (line(s): 32)
+    TestUtils.getIncreasingByteBuffer: called 1x (line(s): 32)
+    buf.close: called 1x (line(s): 33)
+
+--- Line 38: for ---
+for (int k = 0; k < col; k ++) {
+      RawColumn rawCol = table.getRawColumn(k);
+      TachyonFile file = rawCol.getPartition(0, true);
+      TachyonByteBuffer buf = file.readByteBuffer();
+      Assert.assertEquals(TestUtils.getIncreasingByteBuffer(10), buf.DATA);
+      buf.close();
+    }
+  Calls inside this branch:
+    table.getRawColumn: called 1x (line(s): 39)
+    rawCol.getPartition: called 1x (line(s): 40)
+    file.readByteBuffer: called 1x (line(s): 41)
+    Assert.assertEquals: called 1x (line(s): 42)
+    TestUtils.getIncreasingByteBuffer: called 1x (line(s): 42)
+    buf.close: called 1x (line(s): 43)
+
+Calls NOT inside any branch (always run):
+  System.currentTimeMillis: called 5x (line(s): 5, 9, 16, 27, 37)
+  mTfs.getRawTable: called 2x (line(s): 10, 12)
+  Assert.assertEquals: called 2x (line(s): 11, 13)
+  table.getColumns: called 2x (line(s): 11, 13)
+  mTfs.createRawTable: called 1x (line(s): 6)

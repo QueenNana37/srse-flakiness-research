@@ -1,5 +1,18 @@
 Test: com.squareup.okhttp.internal.http.URLConnectionTest#connectionCloseInRequest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 8, 11, 13, 14)
+  server.enqueue: called 2x (line(s): 2, 3)
+  MockResponse: called 2x (line(s): 2, 3)
+  client.open: called 2x (line(s): 6, 10)
+  server.getUrl: called 2x (line(s): 6, 10)
+  server.takeRequest: called 2x (line(s): 13, 15)
+  getSequenceNumber: called 2x (line(s): 13, 15)
+  server.play: called 1x (line(s): 4)
+  a.setRequestProperty: called 1x (line(s): 7)
+  a.getResponseCode: called 1x (line(s): 8)
+  b.getResponseCode: called 1x (line(s): 11)

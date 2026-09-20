@@ -1,7 +1,15 @@
 Test: com.squareup.okhttp.internal.http.URLConnectionTest#setProtocolsWithoutHttp11
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 3 method call(s), 3 unique method(s) called
 
-Line 3: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
+--- Line 2: try ---
+try {
+      client.setProtocols(Arrays.asList(Protocol.SPDY_3));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  Calls inside this branch:
+    client.setProtocols: called 1x (line(s): 3)
+    Arrays.asList: called 1x (line(s): 3)
+    fail: called 1x (line(s): 4)
+

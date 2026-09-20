@@ -1,5 +1,18 @@
 Test: info.archinnov.achilles.test.integration.tests.ClusteredEntityIT#should_update_with_ttl
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 13 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertThat: called 2x (line(s): 7, 11)
+  manager.find: called 2x (line(s): 7, 11)
+  ClusteredKey: called 1x (line(s): 3)
+  RandomUtils.nextLong: called 1x (line(s): 3)
+  RandomUtils.nextInt: called 1x (line(s): 3)
+  ClusteredEntity: called 1x (line(s): 4)
+  manager.persist: called 1x (line(s): 5)
+  OptionsBuilder.withTtl: called 1x (line(s): 5)
+  isNotNull: called 1x (line(s): 7)
+  Thread.sleep: called 1x (line(s): 9)
+  isNull: called 1x (line(s): 11)

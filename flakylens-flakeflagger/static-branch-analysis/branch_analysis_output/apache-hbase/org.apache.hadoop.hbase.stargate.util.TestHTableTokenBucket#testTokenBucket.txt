@@ -1,7 +1,21 @@
 Test: org.apache.hadoop.hbase.stargate.util.TestHTableTokenBucket#testTokenBucket
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 8 method call(s), 5 unique method(s) called
 
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 5: for ---
+for (int i = 0; i <= 5 && last < 10; i++) {
+      int avail = tb.available();
+      assertTrue("bucket did not increment", avail > last);
+      assertTrue("bucket updated too quickly", avail - last < 3);
+      last = avail;
+      Thread.sleep(2000);
+    }
+  Calls inside this branch:
+    assertTrue: called 2x (line(s): 7, 8)
+    tb.available: called 1x (line(s): 6)
+    Thread.sleep: called 1x (line(s): 10)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 2x (line(s): 12, 13)
+  HTableTokenBucket: called 1x (line(s): 2)
+  Bytes.toBytes: called 1x (line(s): 3)

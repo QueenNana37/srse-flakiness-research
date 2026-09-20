@@ -1,5 +1,21 @@
 Test: org.apache.hadoop.hbase.stargate.TestSchemaResource#testTableCreateAndDeletePB
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 19 method call(s), 14 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertFalse: called 2x (line(s): 6, 29)
+  admin.tableExists: called 2x (line(s): 6, 29)
+  TestTableSchemaModel.checkModel: called 2x (line(s): 10, 23)
+  assertEquals: called 2x (line(s): 13, 20)
+  response.getCode: called 2x (line(s): 13, 20)
+  TestTableSchemaModel.buildTestModel: called 1x (line(s): 9)
+  client.put: called 1x (line(s): 11)
+  model.createProtobufOutput: called 1x (line(s): 12)
+  admin.enableTable: called 1x (line(s): 16)
+  client.get: called 1x (line(s): 19)
+  TableSchemaModel: called 1x (line(s): 21)
+  model.getObjectFromMessage: called 1x (line(s): 22)
+  response.getBody: called 1x (line(s): 22)
+  client.delete: called 1x (line(s): 26)

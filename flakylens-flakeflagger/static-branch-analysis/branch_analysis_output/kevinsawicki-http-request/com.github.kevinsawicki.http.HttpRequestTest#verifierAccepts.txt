@@ -1,5 +1,15 @@
 Test: com.github.kevinsawicki.http.HttpRequestTest#verifierAccepts
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  connection.getHostnameVerifier: called 2x (line(s): 7, 8)
+  get: called 1x (line(s): 3)
+  request
+        .getConnection: called 1x (line(s): 4)
+  request.trustAllHosts: called 1x (line(s): 6)
+  assertNotNull: called 1x (line(s): 7)
+  assertTrue: called 1x (line(s): 8)
+  verify: called 1x (line(s): 8)

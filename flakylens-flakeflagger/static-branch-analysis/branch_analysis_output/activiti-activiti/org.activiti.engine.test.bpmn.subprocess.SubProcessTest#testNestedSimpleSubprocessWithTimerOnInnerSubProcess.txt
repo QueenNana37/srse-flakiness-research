@@ -1,5 +1,23 @@
 Test: org.activiti.engine.test.bpmn.subprocess.SubProcessTest#testNestedSimpleSubprocessWithTimerOnInnerSubProcess
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 27 method call(s), 16 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  taskService.createTaskQuery: called 3x (line(s): 7, 16, 22)
+  processInstanceId: called 3x (line(s): 7, 16, 22)
+  pi.getId: called 3x (line(s): 7, 16, 22)
+  singleResult: called 3x (line(s): 7, 16, 22)
+  assertEquals: called 3x (line(s): 8, 17, 23)
+  Date: called 2x (line(s): 3, 12)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 6)
+  subProcessTask.getName: called 1x (line(s): 8)
+  processEngineConfiguration.getClock: called 1x (line(s): 12)
+  setCurrentTime: called 1x (line(s): 12)
+  startTime.getTime: called 1x (line(s): 12)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 13)
+  escalationTask.getName: called 1x (line(s): 17)
+  taskService.complete: called 1x (line(s): 21)
+  escalationTask.getId: called 1x (line(s): 21)
+  taskAfterSubProcess.getName: called 1x (line(s): 23)

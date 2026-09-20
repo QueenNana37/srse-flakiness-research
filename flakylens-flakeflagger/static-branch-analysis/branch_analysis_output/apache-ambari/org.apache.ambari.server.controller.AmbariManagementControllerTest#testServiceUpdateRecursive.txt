@@ -1,25 +1,152 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testServiceUpdateRecursive
 STATUS: parsed successfully
-Branch points found: 7
+Summary: 7 branch point(s), 208 method call(s), 83 unique method(s) called
 
-Line 198: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 199: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 200: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 184: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 197: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 99: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 126: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 98: try ---
+try {
+      reqs.clear();
+      req1 = new ServiceRequest(clusterName, serviceName1, null,
+          State.STARTED.toString());
+      reqs.add(req1);
+      controller.updateServices(reqs);
+      fail("Expected failure for invalid state update");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    reqs.clear: called 1x (line(s): 99)
+    ServiceRequest: called 1x (line(s): 100)
+    State.STARTED.toString: called 1x (line(s): 101)
+    reqs.add: called 1x (line(s): 102)
+    controller.updateServices: called 1x (line(s): 103)
+    fail: called 1x (line(s): 104)
+
+--- Line 125: try ---
+try {
+      reqs.clear();
+      req1 = new ServiceRequest(clusterName, serviceName1, null,
+          State.STARTED.toString());
+      reqs.add(req1);
+      controller.updateServices(reqs);
+      fail("Expected failure for invalid state update");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    reqs.clear: called 1x (line(s): 126)
+    ServiceRequest: called 1x (line(s): 127)
+    State.STARTED.toString: called 1x (line(s): 128)
+    reqs.add: called 1x (line(s): 129)
+    controller.updateServices: called 1x (line(s): 130)
+    fail: called 1x (line(s): 131)
+
+--- Line 183: for ---
+for (Stage stage : stages) {
+      LOG.debug("Stage dump: " + stage.toString());
+    }
+  Calls inside this branch:
+    LOG.debug: called 1x (line(s): 184)
+    stage.toString: called 1x (line(s): 184)
+
+--- Line 196: for ---
+for (Stage s : stages) {
+      if (s.getStageId() == 1) { stage1 = s; }
+      if (s.getStageId() == 2) { stage2 = s; }
+      if (s.getStageId() == 3) { stage3 = s; }
+    }
+
+--- Line 197: if ---
+if (s.getStageId() == 1) { stage1 = s; }
+  Calls inside this branch:
+    s.getStageId: called 1x (line(s): 197)
+
+--- Line 198: if ---
+if (s.getStageId() == 2) { stage2 = s; }
+  Calls inside this branch:
+    s.getStageId: called 1x (line(s): 198)
+
+--- Line 199: if ---
+if (s.getStageId() == 3) { stage3 = s; }
+  Calls inside this branch:
+    s.getStageId: called 1x (line(s): 199)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 22x (line(s): 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 188, 202, 203, 204)
+  ServiceComponentHostRequest: called 6x (line(s): 37, 40, 43, 46, 49, 52)
+  State.INIT.toString: called 6x (line(s): 38, 41, 44, 47, 50, 53)
+  set1.add: called 6x (line(s): 55, 56, 57, 58, 59, 60)
+  Assert.assertNotNull: called 6x (line(s): 206, 207, 208, 209, 211, 212)
+  createServiceComponent: called 4x (line(s): 15, 17, 19, 21)
+  clusters.getHost: called 4x (line(s): 25, 26, 29, 30)
+  sch1.setState: called 4x (line(s): 89, 119, 146, 215)
+  sch2.setState: called 4x (line(s): 90, 120, 147, 216)
+  sch3.setState: called 4x (line(s): 91, 121, 148, 217)
+  sch4.setState: called 4x (line(s): 92, 122, 149, 218)
+  sch5.setState: called 4x (line(s): 93, 123, 150, 219)
+  ServiceRequest: called 4x (line(s): 153, 155, 223, 225)
+  State.STARTED.toString: called 4x (line(s): 154, 156, 224, 226)
+  reqs.add: called 4x (line(s): 157, 158, 227, 228)
+  stage1.getExecutionCommandWrapper: called 4x (line(s): 206, 207, 208, 210)
+  s1.getServiceComponent: called 3x (line(s): 66, 67, 69)
+  s1.setDesiredState: called 3x (line(s): 77, 109, 136)
+  s2.setDesiredState: called 3x (line(s): 78, 110, 137)
+  sc1.setDesiredState: called 3x (line(s): 79, 111, 138)
+  sc2.setDesiredState: called 3x (line(s): 80, 112, 139)
+  sc3.setDesiredState: called 3x (line(s): 81, 113, 140)
+  sch1.setDesiredState: called 3x (line(s): 83, 114, 141)
+  sch2.setDesiredState: called 3x (line(s): 84, 115, 142)
+  sch3.setDesiredState: called 3x (line(s): 85, 116, 143)
+  sch4.setDesiredState: called 3x (line(s): 86, 117, 144)
+  sch5.setDesiredState: called 3x (line(s): 87, 118, 145)
+  size: called 3x (line(s): 202, 203, 204)
+  clusters.getCluster: called 2x (line(s): 5, 63)
+  createService: called 2x (line(s): 8, 10)
+  clusters.addHost: called 2x (line(s): 24, 28)
+  setOsType: called 2x (line(s): 25, 29)
+  persist: called 2x (line(s): 26, 30)
+  clusters.mapHostToCluster: called 2x (line(s): 31, 32)
+  c1.getService: called 2x (line(s): 64, 65)
+  sc1.getServiceComponentHost: called 2x (line(s): 70, 72)
+  sc2.getServiceComponentHost: called 2x (line(s): 71, 73)
+  reqs.clear: called 2x (line(s): 152, 222)
+  controller.updateServices: called 2x (line(s): 159, 229)
+  stage1.getExecutionCommands: called 2x (line(s): 202, 203)
+  stage2.getExecutionCommandWrapper: called 2x (line(s): 209, 212)
+  Assert.assertNull: called 2x (line(s): 210, 230)
+  createCluster: called 1x (line(s): 4)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 6)
+  HashSet<ServiceComponentHostRequest>: called 1x (line(s): 35)
+  controller.createHostComponents: called 1x (line(s): 61)
+  s2.getServiceComponent: called 1x (line(s): 68)
+  sc3.getServiceComponentHost: called 1x (line(s): 74)
+  sc4.getServiceComponentHost: called 1x (line(s): 75)
+  sc4.setDesiredState: called 1x (line(s): 82)
+  sch6.setDesiredState: called 1x (line(s): 88)
+  sch6.setState: called 1x (line(s): 94)
+  HashSet<ServiceRequest>: called 1x (line(s): 96)
+  s1.getDesiredState: called 1x (line(s): 161)
+  s2.getDesiredState: called 1x (line(s): 162)
+  sc1.getDesiredState: called 1x (line(s): 163)
+  sc2.getDesiredState: called 1x (line(s): 164)
+  sc3.getDesiredState: called 1x (line(s): 165)
+  sc4.getDesiredState: called 1x (line(s): 166)
+  sch1.getDesiredState: called 1x (line(s): 167)
+  sch2.getDesiredState: called 1x (line(s): 168)
+  sch3.getDesiredState: called 1x (line(s): 169)
+  sch4.getDesiredState: called 1x (line(s): 170)
+  sch5.getDesiredState: called 1x (line(s): 171)
+  sch6.getDesiredState: called 1x (line(s): 172)
+  sch1.getState: called 1x (line(s): 173)
+  sch2.getState: called 1x (line(s): 174)
+  sch3.getState: called 1x (line(s): 175)
+  sch4.getState: called 1x (line(s): 176)
+  sch5.getState: called 1x (line(s): 177)
+  sch6.getState: called 1x (line(s): 178)
+  trackAction.getRequestId: called 1x (line(s): 180)
+  actionDB.getAllStages: called 1x (line(s): 181)
+  Assert.assertTrue: called 1x (line(s): 187)
+  stages.isEmpty: called 1x (line(s): 187)
+  stages.size: called 1x (line(s): 188)
+  stage2.getExecutionCommands: called 1x (line(s): 204)
+  stage3.getExecutionCommandWrapper: called 1x (line(s): 211)

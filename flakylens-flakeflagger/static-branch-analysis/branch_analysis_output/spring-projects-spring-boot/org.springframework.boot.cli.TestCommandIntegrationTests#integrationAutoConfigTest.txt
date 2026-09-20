@@ -1,5 +1,10 @@
 Test: org.springframework.boot.cli.TestCommandIntegrationTests#integrationAutoConfigTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 3 method call(s), 3 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  this.cli.test: called 1x (line(s): 3)
+  assertThat: called 1x (line(s): 4)
+  containsString: called 1x (line(s): 4)

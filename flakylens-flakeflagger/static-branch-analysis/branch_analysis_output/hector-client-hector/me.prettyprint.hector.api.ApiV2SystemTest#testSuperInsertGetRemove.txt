@@ -1,5 +1,29 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testSuperInsertGetRemove
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 31 method call(s), 22 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 5x (line(s): 21, 24, 26, 29, 30)
+  createMutator: called 2x (line(s): 5, 33)
+  createColumn: called 2x (line(s): 9, 10)
+  assertNotNull: called 2x (line(s): 18, 20)
+  r.get: called 2x (line(s): 19, 38)
+  sc.get: called 2x (line(s): 22, 28)
+  Arrays.asList: called 1x (line(s): 9)
+  m.insert: called 1x (line(s): 11)
+  createSuperColumn: called 1x (line(s): 12)
+  createSuperColumnQuery: called 1x (line(s): 15)
+  q.setSuperName: called 1x (line(s): 16)
+  setColumnFamily: called 1x (line(s): 16)
+  q.setKey: called 1x (line(s): 17)
+  execute: called 1x (line(s): 17)
+  sc.getSize: called 1x (line(s): 21)
+  c.getValue: called 1x (line(s): 23)
+  c.getName: called 1x (line(s): 25)
+  c2.getName: called 1x (line(s): 29)
+  c2.getValue: called 1x (line(s): 30)
+  m.subDelete: called 1x (line(s): 34)
+  q.execute: called 1x (line(s): 37)
+  assertNull: called 1x (line(s): 39)

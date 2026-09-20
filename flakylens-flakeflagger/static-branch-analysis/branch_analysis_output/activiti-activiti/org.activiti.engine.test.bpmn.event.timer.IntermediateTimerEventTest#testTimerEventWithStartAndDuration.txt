@@ -1,5 +1,32 @@
 Test: org.activiti.engine.test.bpmn.event.timer.IntermediateTimerEventTest#testTimerEventWithStartAndDuration
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 65 method call(s), 25 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 9x (line(s): 10, 12, 15, 22, 27, 29, 35, 38, 40)
+  pi.getId: called 6x (line(s): 14, 18, 21, 26, 28, 34)
+  managementService.createTimerJobQuery: called 5x (line(s): 14, 21, 26, 28, 34)
+  processInstanceId: called 5x (line(s): 14, 21, 26, 28, 34)
+  jobQuery.count: called 5x (line(s): 15, 22, 27, 29, 35)
+  processEngineConfiguration.getClock: called 4x (line(s): 6, 24, 31, 45)
+  setCurrentTime: called 3x (line(s): 6, 24, 31)
+  Date: called 3x (line(s): 17, 24, 31)
+  taskService.createTaskQuery: called 2x (line(s): 9, 37)
+  list: called 2x (line(s): 9, 37)
+  tasks.size: called 2x (line(s): 10, 38)
+  tasks.get: called 2x (line(s): 11, 39)
+  task.getName: called 2x (line(s): 12, 40)
+  taskService.complete: called 2x (line(s): 19, 41)
+  task.getId: called 2x (line(s): 19, 41)
+  startDate.getTime: called 2x (line(s): 24, 31)
+  GregorianCalendar: called 1x (line(s): 4)
+  testStartCal.getTime: called 1x (line(s): 5)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 8)
+  runtimeService.setVariable: called 1x (line(s): 18)
+  executable: called 1x (line(s): 28)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 32)
+  assertProcessEnded: called 1x (line(s): 43)
+  pi.getProcessInstanceId: called 1x (line(s): 43)
+  reset: called 1x (line(s): 45)

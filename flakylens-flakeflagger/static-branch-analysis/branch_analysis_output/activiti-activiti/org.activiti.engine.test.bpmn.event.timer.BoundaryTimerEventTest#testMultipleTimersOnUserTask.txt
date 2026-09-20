@@ -1,5 +1,23 @@
 Test: org.activiti.engine.test.bpmn.event.timer.BoundaryTimerEventTest#testMultipleTimersOnUserTask
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 19 method call(s), 16 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 11, 17, 21)
+  Date: called 2x (line(s): 5, 15)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 8)
+  managementService.createTimerJobQuery: called 1x (line(s): 9)
+  processInstanceId: called 1x (line(s): 9)
+  pi.getId: called 1x (line(s): 9)
+  jobQuery.list: called 1x (line(s): 10)
+  jobs.size: called 1x (line(s): 11)
+  processEngineConfiguration.getClock: called 1x (line(s): 15)
+  setCurrentTime: called 1x (line(s): 15)
+  startTime.getTime: called 1x (line(s): 15)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 16)
+  jobQuery.count: called 1x (line(s): 17)
+  taskService.createTaskQuery: called 1x (line(s): 20)
+  singleResult: called 1x (line(s): 20)
+  task.getName: called 1x (line(s): 21)

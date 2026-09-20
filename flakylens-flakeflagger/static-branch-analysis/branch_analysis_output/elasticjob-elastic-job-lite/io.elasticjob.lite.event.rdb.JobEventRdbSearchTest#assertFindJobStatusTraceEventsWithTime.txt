@@ -1,5 +1,16 @@
 Test: io.elasticjob.lite.event.rdb.JobEventRdbSearchTest#assertFindJobStatusTraceEventsWithTime
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 48 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertThat: called 10x (line(s): 6, 7, 9, 10, 12, 13, 15, 16, 18, 19)
+  is: called 10x (line(s): 6, 7, 9, 10, 12, 13, 15, 16, 18, 19)
+  repository.findJobStatusTraceEvents: called 5x (line(s): 5, 8, 11, 14, 17)
+  JobEventRdbSearch.Condition: called 5x (line(s): 5, 8, 11, 14, 17)
+  result.getTotal: called 5x (line(s): 6, 9, 12, 15, 18)
+  result.getRows: called 5x (line(s): 7, 10, 13, 16, 19)
+  size: called 5x (line(s): 7, 10, 13, 16, 19)
+  Date: called 2x (line(s): 3, 4)
+  now.getTime: called 1x (line(s): 4)

@@ -1,53 +1,250 @@
 Test: org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testInputThrottling
 STATUS: parsed successfully
-Branch points found: 16
+Summary: 16 branch point(s), 90 method call(s), 77 unique method(s) called
 
-Line 14: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 21: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 39: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 47: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 62: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 77: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 150: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 161: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 86: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 90: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 140: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 158: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 56: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 147: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: try statement
-    -> try-block completes normally
-    -> catch triggered: UnsupportedEncodingException
-Line 48: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-    -> catch triggered: IOException
+--- Line 13: if ---
+if (queue == null) {
+                    throw new IllegalStateException("Queue is null");
+                }
+  Calls inside this branch:
+    IllegalStateException: called 1x (line(s): 14)
+
+--- Line 20: if ---
+if (testjob != null) {
+                    String s = testjob.getPattern() + "x" + testjob.getCount();
+                    HttpEntityEnclosingRequest r = new BasicHttpEntityEnclosingRequest("POST", s);
+                    StringEntity entity = null;
+                    try {
+                        entity = new StringEntity(testjob.getExpected(), "US-ASCII");
+                        entity.setChunked(testjob.getCount() % 2 == 0);
+                    } catch (UnsupportedEncodingException ignore) {
+                    }
+                    r.setEntity(entity);
+                    return r;
+                }
+  Calls inside this branch:
+    testjob.getPattern: called 1x (line(s): 21)
+    testjob.getCount: called 1x (line(s): 21)
+    BasicHttpEntityEnclosingRequest: called 1x (line(s): 22)
+    r.setEntity: called 1x (line(s): 29)
+
+--- Line 24: try ---
+try {
+                        entity = new StringEntity(testjob.getExpected(), "US-ASCII");
+                        entity.setChunked(testjob.getCount() % 2 == 0);
+                    } catch (UnsupportedEncodingException ignore) {
+                    }
+  Calls inside this branch:
+    StringEntity: called 1x (line(s): 25)
+    testjob.getExpected: called 1x (line(s): 25)
+    entity.setChunked: called 1x (line(s): 26)
+    testjob.getCount: called 1x (line(s): 26)
+
+--- Line 38: if ---
+if (testjob == null) {
+                    throw new IllegalStateException("TestJob is null");
+                }
+  Calls inside this branch:
+    IllegalStateException: called 1x (line(s): 39)
+
+--- Line 46: if ---
+if (entity != null) {
+                    try {
+                        // Simulate slow response handling in order to cause the
+                        // internal content buffer to fill up, forcing the
+                        // protocol handler to throttle input rate
+                        ByteArrayOutputStream outstream = new ByteArrayOutputStream();
+                        InputStream instream = entity.getContent();
+                        byte[] tmp = new byte[2048];
+                        int l;
+                        while((l = instream.read(tmp)) != -1) {
+                            Thread.sleep(1);
+                            outstream.write(tmp, 0, l);
+                        }
+                        ContentType contentType = ContentType.getOrDefault(entity);
+                        String charset = contentType.getCharset();
+                        if (charset == null) {
+                            charset = HTTP.DEFAULT_CONTENT_CHARSET;
+                        }
+                        content = new String(outstream.toByteArray(), charset);
+                    } catch (InterruptedException ex) {
+                        content = "Interrupted: " + ex.getMessage();
+                    } catch (IOException ex) {
+                        content = "I/O exception: " + ex.getMessage();
+                    }
+                }
+
+--- Line 47: try ---
+try {
+                        // Simulate slow response handling in order to cause the
+                        // internal content buffer to fill up, forcing the
+                        // protocol handler to throttle input rate
+                        ByteArrayOutputStream outstream = new ByteArrayOutputStream();
+                        InputStream instream = entity.getContent();
+                        byte[] tmp = new byte[2048];
+                        int l;
+                        while((l = instream.read(tmp)) != -1) {
+                            Thread.sleep(1);
+                            outstream.write(tmp, 0, l);
+                        }
+                        ContentType contentType = ContentType.getOrDefault(entity);
+                        String charset = contentType.getCharset();
+                        if (charset == null) {
+                            charset = HTTP.DEFAULT_CONTENT_CHARSET;
+                        }
+                        content = new String(outstream.toByteArray(), charset);
+                    } catch (InterruptedException ex) {
+                        content = "Interrupted: " + ex.getMessage();
+                    } catch (IOException ex) {
+                        content = "I/O exception: " + ex.getMessage();
+                    }
+  Calls inside this branch:
+    ex.getMessage: called 2x (line(s): 66, 68)
+    ByteArrayOutputStream: called 1x (line(s): 51)
+    entity.getContent: called 1x (line(s): 52)
+    ContentType.getOrDefault: called 1x (line(s): 59)
+    contentType.getCharset: called 1x (line(s): 60)
+    String: called 1x (line(s): 64)
+    outstream.toByteArray: called 1x (line(s): 64)
+
+--- Line 55: while ---
+while((l = instream.read(tmp)) != -1) {
+                            Thread.sleep(1);
+                            outstream.write(tmp, 0, l);
+                        }
+  Calls inside this branch:
+    instream.read: called 1x (line(s): 55)
+    Thread.sleep: called 1x (line(s): 56)
+    outstream.write: called 1x (line(s): 57)
+
+--- Line 61: if ---
+if (charset == null) {
+                            charset = HTTP.DEFAULT_CONTENT_CHARSET;
+                        }
+
+--- Line 76: if ---
+if (testjob != null) {
+                    testjob.fail("Request failed");
+                }
+  Calls inside this branch:
+    testjob.fail: called 1x (line(s): 77)
+
+--- Line 85: for ---
+for (int i = 0; i < jobs.length; i++) {
+            jobs[i] = new Job(10000);
+        }
+  Calls inside this branch:
+    Job: called 1x (line(s): 86)
+
+--- Line 89: for ---
+for (int i = 0; i < jobs.length; i++) {
+            queue.add(jobs[i]);
+        }
+  Calls inside this branch:
+    queue.add: called 1x (line(s): 90)
+
+--- Line 139: for ---
+for (int i = 0; i < connNo; i++) {
+            SessionRequest sessionRequest = this.client.openConnection(
+                    new InetSocketAddress("localhost", serverAddress.getPort()),
+                    queue);
+            connRequests.add(sessionRequest);
+        }
+  Calls inside this branch:
+    this.client.openConnection: called 1x (line(s): 140)
+    InetSocketAddress: called 1x (line(s): 141)
+    serverAddress.getPort: called 1x (line(s): 141)
+    connRequests.add: called 1x (line(s): 143)
+
+--- Line 146: while ---
+while (!connRequests.isEmpty()) {
+            SessionRequest sessionRequest = connRequests.remove();
+            sessionRequest.waitFor();
+            if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+            Assert.assertNotNull(sessionRequest.getSession());
+        }
+  Calls inside this branch:
+    connRequests.isEmpty: called 1x (line(s): 146)
+    connRequests.remove: called 1x (line(s): 147)
+    sessionRequest.waitFor: called 1x (line(s): 148)
+    Assert.assertNotNull: called 1x (line(s): 152)
+    sessionRequest.getSession: called 1x (line(s): 152)
+
+--- Line 149: if ---
+if (sessionRequest.getException() != null) {
+                throw sessionRequest.getException();
+            }
+  Calls inside this branch:
+    sessionRequest.getException: called 2x (line(s): 149, 150)
+
+--- Line 157: for ---
+for (int i = 0; i < jobs.length; i++) {
+            Job testjob = jobs[i];
+            testjob.waitFor();
+            if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_OK, testjob.getStatusCode());
+                Assert.assertEquals(testjob.getExpected(), testjob.getResult());
+            } else {
+                Assert.fail(testjob.getFailureMessage());
+            }
+        }
+  Calls inside this branch:
+    testjob.waitFor: called 1x (line(s): 159)
+    Assert.fail: called 1x (line(s): 164)
+    testjob.getFailureMessage: called 1x (line(s): 164)
+
+--- Line 160: if ---
+if (testjob.isSuccessful()) {
+                Assert.assertEquals(HttpStatus.SC_OK, testjob.getStatusCode());
+                Assert.assertEquals(testjob.getExpected(), testjob.getResult());
+            }
+  Calls inside this branch:
+    Assert.assertEquals: called 2x (line(s): 161, 162)
+    testjob.isSuccessful: called 1x (line(s): 160)
+    testjob.getStatusCode: called 1x (line(s): 161)
+    testjob.getExpected: called 1x (line(s): 162)
+    testjob.getResult: called 1x (line(s): 162)
+
+Calls NOT inside any branch (always run):
+  context.setAttribute: called 2x (line(s): 6, 18)
+  context.removeAttribute: called 2x (line(s): 37, 75)
+  ImmutableHttpProcessor: called 2x (line(s): 93, 112)
+  DefaultConnectionReuseStrategy: called 2x (line(s): 103, 122)
+  SimpleEventListener: called 2x (line(s): 110, 127)
+  Assert.assertEquals: called 2x (line(s): 136, 155)
+  context.getAttribute: called 1x (line(s): 12)
+  queue.poll: called 1x (line(s): 17)
+  response.getStatusLine: called 1x (line(s): 42)
+  getStatusCode: called 1x (line(s): 42)
+  response.getEntity: called 1x (line(s): 45)
+  testjob.setResult: called 1x (line(s): 71)
+  ConcurrentLinkedQueue<Job>: called 1x (line(s): 88)
+  ResponseDate: called 1x (line(s): 94)
+  ResponseServer: called 1x (line(s): 95)
+  ResponseContent: called 1x (line(s): 96)
+  ResponseConnControl: called 1x (line(s): 97)
+  ThrottlingHttpServiceHandler: called 1x (line(s): 100)
+  DefaultHttpResponseFactory: called 1x (line(s): 102)
+  this.server.getParams: called 1x (line(s): 105)
+  serviceHandler.setHandlerResolver: called 1x (line(s): 107)
+  SimpleHttpRequestHandlerResolver: called 1x (line(s): 108)
+  RequestHandler: called 1x (line(s): 108)
+  serviceHandler.setEventListener: called 1x (line(s): 109)
+  RequestContent: called 1x (line(s): 113)
+  RequestTargetHost: called 1x (line(s): 114)
+  RequestConnControl: called 1x (line(s): 115)
+  RequestUserAgent: called 1x (line(s): 116)
+  RequestExpectContinue: called 1x (line(s): 117)
+  ThrottlingHttpClientHandler: called 1x (line(s): 119)
+  this.client.getParams: called 1x (line(s): 124)
+  clientHandler.setEventListener: called 1x (line(s): 126)
+  this.server.start: called 1x (line(s): 129)
+  this.client.start: called 1x (line(s): 130)
+  this.server.getListenerEndpoint: called 1x (line(s): 132)
+  endpoint.waitFor: called 1x (line(s): 133)
+  endpoint.getAddress: called 1x (line(s): 134)
+  this.server.getStatus: called 1x (line(s): 136)
+  LinkedList<SessionRequest>: called 1x (line(s): 138)
+  this.client.getStatus: called 1x (line(s): 155)

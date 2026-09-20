@@ -1,5 +1,19 @@
 Test: ch.qos.logback.core.recovery.ResilientOutputStreamTest#verifyRecuperationAfterFailure
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 18 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  spy.write: called 3x (line(s): 9, 13, 16)
+  getBytes: called 3x (line(s): 9, 13, 16)
+  spy.flush: called 3x (line(s): 10, 14, 17)
+  File: called 1x (line(s): 3)
+  ResilientFileOutputStream: called 1x (line(s): 4)
+  rfos.setContext: called 1x (line(s): 5)
+  spy: called 1x (line(s): 7)
+  spy.getChannel: called 1x (line(s): 12)
+  close: called 1x (line(s): 12)
+  Thread.sleep: called 1x (line(s): 15)
+  verify: called 1x (line(s): 18)
+  openNewOutputStream: called 1x (line(s): 18)

@@ -1,16 +1,80 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentHostSimple
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 71 method call(s), 23 unique method(s) called
 
-Line 32: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 44: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 53: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 73: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 31: try ---
+try {
+      createServiceComponentHost(clusterName, serviceName, componentName1,
+          host1, State.INIT);
+      fail("ServiceComponentHost creation should fail for invalid host"
+          + " as host not mapped to cluster");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createServiceComponentHost: called 1x (line(s): 32)
+    fail: called 1x (line(s): 34)
+
+--- Line 43: try ---
+try {
+      createServiceComponentHost(clusterName, serviceName, componentName1,
+          host1, State.INSTALLING);
+      fail("ServiceComponentHost creation should fail for invalid state");
+    } catch (Exception e) {
+      // Expected
+      e.printStackTrace();
+    }
+  Calls inside this branch:
+    createServiceComponentHost: called 1x (line(s): 44)
+    fail: called 1x (line(s): 46)
+    e.printStackTrace: called 1x (line(s): 49)
+
+--- Line 52: try ---
+try {
+      clusters.getCluster(clusterName).getService(serviceName)
+          .getServiceComponent(componentName1).getServiceComponentHost(host1);
+      fail("ServiceComponentHost creation should have failed earlier");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 53)
+    getService: called 1x (line(s): 53)
+    getServiceComponent: called 1x (line(s): 54)
+    getServiceComponentHost: called 1x (line(s): 54)
+    fail: called 1x (line(s): 55)
+
+--- Line 72: try ---
+try {
+      createServiceComponentHost(clusterName, serviceName, componentName1,
+          host1, null);
+      fail("ServiceComponentHost creation should fail as duplicate");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    createServiceComponentHost: called 1x (line(s): 73)
+    fail: called 1x (line(s): 75)
+
+Calls NOT inside any branch (always run):
+  clusters.getCluster: called 6x (line(s): 5, 80, 84, 88, 92, 96)
+  clusters.getHost: called 6x (line(s): 21, 22, 25, 26, 28, 29)
+  createServiceComponentHost: called 5x (line(s): 61, 63, 65, 67, 69)
+  Assert.assertNotNull: called 5x (line(s): 80, 84, 88, 92, 96)
+  getService: called 5x (line(s): 81, 85, 89, 93, 97)
+  getServiceComponent: called 5x (line(s): 82, 86, 90, 94, 98)
+  getServiceComponentHost: called 5x (line(s): 83, 87, 91, 95, 99)
+  setOsType: called 4x (line(s): 21, 25, 28, 29)
+  createServiceComponent: called 3x (line(s): 12, 14, 16)
+  clusters.addHost: called 2x (line(s): 20, 24)
+  persist: called 2x (line(s): 22, 26)
+  clusters.mapHostToCluster: called 2x (line(s): 40, 41)
+  createCluster: called 1x (line(s): 4)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 6)
+  createService: called 1x (line(s): 8)
+  ServiceComponentHostRequest: called 1x (line(s): 102)
+  controller.getHostComponents: called 1x (line(s): 106)
+  Collections.singleton: called 1x (line(s): 106)
+  Assert.assertEquals: called 1x (line(s): 107)
+  response.size: called 1x (line(s): 107)

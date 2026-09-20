@@ -1,29 +1,111 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testCreateBadTables
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 32 method call(s), 24 unique method(s) called
 
-Line 32: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 47: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 50: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 51: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 5: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 14: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalArgumentException
-Line 36: try statement
-    -> try-block completes normally
-    -> catch triggered: TableExistsException
-    -> catch triggered: IOException
-Line 52: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
+--- Line 4: try ---
+try {
+      this.admin.createTable(HTableDescriptor.ROOT_TABLEDESC);
+    } catch (IllegalArgumentException e) {
+      msg = e.toString();
+    }
+  Calls inside this branch:
+    this.admin.createTable: called 1x (line(s): 5)
+    e.toString: called 1x (line(s): 7)
+
+--- Line 13: try ---
+try {
+      this.admin.createTable(HTableDescriptor.META_TABLEDESC);
+    } catch(IllegalArgumentException e) {
+      msg = e.toString();
+    }
+  Calls inside this branch:
+    this.admin.createTable: called 1x (line(s): 14)
+    e.toString: called 1x (line(s): 16)
+
+--- Line 31: for ---
+for (int i = 0; i < count; i++) {
+      threads[i] = new Thread(Integer.toString(i)) {
+        @Override
+        public void run() {
+          try {
+            localAdmin.createTable(threadDesc);
+            successes.incrementAndGet();
+          } catch (TableExistsException e) {
+            failures.incrementAndGet();
+          } catch (IOException e) {
+            throw new RuntimeException("Failed threaded create" + getName(), e);
+          }
+        }
+      };
+    }
+  Calls inside this branch:
+    Integer.toString: called 1x (line(s): 32)
+
+--- Line 35: try ---
+try {
+            localAdmin.createTable(threadDesc);
+            successes.incrementAndGet();
+          } catch (TableExistsException e) {
+            failures.incrementAndGet();
+          } catch (IOException e) {
+            throw new RuntimeException("Failed threaded create" + getName(), e);
+          }
+  Calls inside this branch:
+    localAdmin.createTable: called 1x (line(s): 36)
+    successes.incrementAndGet: called 1x (line(s): 37)
+    failures.incrementAndGet: called 1x (line(s): 39)
+    RuntimeException: called 1x (line(s): 41)
+    getName: called 1x (line(s): 41)
+
+--- Line 46: for ---
+for (int i = 0; i < count; i++) {
+      threads[i].start();
+    }
+  Calls inside this branch:
+    start: called 1x (line(s): 47)
+
+--- Line 49: for ---
+for (int i = 0; i < count; i++) {
+      while(threads[i].isAlive()) {
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          // continue
+        }
+      }
+    }
+
+--- Line 50: while ---
+while(threads[i].isAlive()) {
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          // continue
+        }
+      }
+  Calls inside this branch:
+    isAlive: called 1x (line(s): 50)
+
+--- Line 51: try ---
+try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          // continue
+        }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 52)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 2x (line(s): 9, 18)
+  msg.startsWith: called 2x (line(s): 10, 19)
+  IllegalArgumentException.class.getName: called 2x (line(s): 10, 19)
+  msg.contains: called 2x (line(s): 11, 20)
+  AtomicInteger: called 2x (line(s): 28, 29)
+  assertEquals: called 2x (line(s): 60, 61)
+  HTableDescriptor.ROOT_TABLEDESC.getNameAsString: called 1x (line(s): 11)
+  HTableDescriptor.META_TABLEDESC.getNameAsString: called 1x (line(s): 20)
+  HTableDescriptor: called 1x (line(s): 24)
+  threadDesc.addFamily: called 1x (line(s): 25)
+  HColumnDescriptor: called 1x (line(s): 25)
+  successes.get: called 1x (line(s): 60)
+  failures.get: called 1x (line(s): 61)

@@ -1,5 +1,38 @@
 Test: io.undertow.server.security.DigestAuthentication2069TestCase#testNonceReUse
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 134 method call(s), 31 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  append: called 26x (line(s): 25, 25, 25, 26, 26, 26, 27, 27, 27, 28, 29, 29, 29, 62, 62, 62, 63, 63, 63, 64, 64, 64, 65, 66, 66, 66)
+  assertEquals: called 15x (line(s): 8, 10, 14, 15, 33, 35, 36, 44, 47, 51, 52, 53, 71, 74, 75)
+  sb.append: called 12x (line(s): 24, 25, 26, 27, 28, 29, 61, 62, 63, 64, 65, 66)
+  parsedHeader.get: called 7x (line(s): 14, 15, 17, 51, 52, 53, 55)
+  TestHttpClient: called 4x (line(s): 5, 21, 39, 58)
+  HttpGet: called 4x (line(s): 6, 22, 40, 59)
+  DefaultServer.getDefaultServerURL: called 4x (line(s): 6, 22, 40, 59)
+  client.execute: called 4x (line(s): 7, 32, 43, 69)
+  result.getStatusLine: called 4x (line(s): 8, 33, 44, 71)
+  getStatusCode: called 4x (line(s): 8, 33, 44, 71)
+  result.getHeaders: called 4x (line(s): 9, 34, 46, 73)
+  getValue: called 4x (line(s): 11, 36, 48, 75)
+  DIGEST.toString: called 4x (line(s): 12, 23, 49, 60)
+  get.addHeader: called 3x (line(s): 31, 42, 68)
+  AUTHORIZATION.toString: called 3x (line(s): 31, 42, 68)
+  sb.toString: called 3x (line(s): 31, 42, 68)
+  WWW_AUTHENTICATE.toString: called 2x (line(s): 9, 46)
+  assertTrue: called 2x (line(s): 12, 49)
+  value.startsWith: called 2x (line(s): 12, 49)
+  DigestWWWAuthenticateToken.parseHeader: called 2x (line(s): 13, 50)
+  value.substring: called 2x (line(s): 13, 50)
+  DigestAlgorithm.MD5.getToken: called 2x (line(s): 15, 52)
+  createResponse: called 2x (line(s): 19, 56)
+  StringBuilder: called 2x (line(s): 23, 60)
+  DigestAuthorizationToken.USERNAME.getName: called 2x (line(s): 25, 62)
+  DigestAuthorizationToken.REALM.getName: called 2x (line(s): 26, 63)
+  DigestAuthorizationToken.NONCE.getName: called 2x (line(s): 27, 64)
+  DigestAuthorizationToken.DIGEST_URI.getName: called 2x (line(s): 28, 65)
+  DigestAuthorizationToken.RESPONSE.getName: called 2x (line(s): 29, 66)
+  assertSingleNotificationType: called 2x (line(s): 37, 77)
+  setAuthenticationChain: called 1x (line(s): 3)

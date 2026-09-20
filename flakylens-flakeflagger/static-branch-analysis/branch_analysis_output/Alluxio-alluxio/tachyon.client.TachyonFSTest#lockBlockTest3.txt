@@ -1,19 +1,64 @@
 Test: tachyon.client.TachyonFSTest#lockBlockTest3
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 18 method call(s), 11 unique method(s) called
 
-Line 15: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 24: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 22: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      fileIds.add(TestUtils.createByteFile(
+          mTfs, "/file_" + k, WriteType.CACHE_THROUGH, fileSize));
+    }
+  Calls inside this branch:
+    fileIds.add: called 1x (line(s): 8)
+    TestUtils.createByteFile: called 1x (line(s): 8)
+
+--- Line 11: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+      if (k < numOfFiles - 1) {
+        Assert.assertNotNull(tFile.readByteBuffer());
+      }
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 12)
+    fileIds.get: called 1x (line(s): 12)
+    Assert.assertTrue: called 1x (line(s): 13)
+    tFile.isInMemory: called 1x (line(s): 13)
+
+--- Line 14: if ---
+if (k < numOfFiles - 1) {
+        Assert.assertNotNull(tFile.readByteBuffer());
+      }
+  Calls inside this branch:
+    Assert.assertNotNull: called 1x (line(s): 15)
+    tFile.readByteBuffer: called 1x (line(s): 15)
+
+--- Line 21: for ---
+for (int k = 0; k <= numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      if (k != numOfFiles - 1) {
+        Assert.assertTrue(tFile.isInMemory());
+      } else {
+        CommonUtils.sleepMs(null, SLEEP_MS);
+        Assert.assertFalse(tFile.isInMemory());
+      }
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 22)
+    fileIds.get: called 1x (line(s): 22)
+    CommonUtils.sleepMs: called 1x (line(s): 26)
+    Assert.assertFalse: called 1x (line(s): 27)
+    tFile.isInMemory: called 1x (line(s): 27)
+
+--- Line 23: if ---
+if (k != numOfFiles - 1) {
+        Assert.assertTrue(tFile.isInMemory());
+      }
+  Calls inside this branch:
+    Assert.assertTrue: called 1x (line(s): 24)
+    tFile.isInMemory: called 1x (line(s): 24)
+
+Calls NOT inside any branch (always run):
+  ArrayList<Integer>: called 1x (line(s): 6)
+  fileIds.add: called 1x (line(s): 18)
+  TestUtils.createByteFile: called 1x (line(s): 18)

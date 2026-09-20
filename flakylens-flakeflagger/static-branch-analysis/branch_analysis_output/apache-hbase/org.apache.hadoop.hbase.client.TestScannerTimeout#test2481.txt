@@ -1,16 +1,59 @@
 Test: org.apache.hadoop.hbase.client.TestScannerTimeout#test2481
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 14 method call(s), 12 unique method(s) called
 
-Line 18: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 16: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: try statement
-    -> try-block completes normally
-    -> catch triggered: ScannerTimeoutException
+--- Line 5: for ---
+for (int i = 0; i < initialCount; i++) {
+      Put put = new Put(Bytes.toBytes(i));
+      put.add(someBytes, someBytes, someBytes);
+      t.put(put);
+    }
+  Calls inside this branch:
+    Put: called 1x (line(s): 6)
+    Bytes.toBytes: called 1x (line(s): 6)
+    put.add: called 1x (line(s): 7)
+    t.put: called 1x (line(s): 8)
+
+--- Line 13: try ---
+try {
+      Result res = r.next();
+      while (res != null) {
+        count++;
+        if (count == 5) {
+          Thread.sleep(1500);
+        }
+        res = r.next();
+      }
+    } catch (ScannerTimeoutException e) {
+      LOG.info("Got the timeout " + e.getMessage(), e);
+      return;
+    }
+  Calls inside this branch:
+    r.next: called 1x (line(s): 14)
+    LOG.info: called 1x (line(s): 23)
+    e.getMessage: called 1x (line(s): 23)
+
+--- Line 15: while ---
+while (res != null) {
+        count++;
+        if (count == 5) {
+          Thread.sleep(1500);
+        }
+        res = r.next();
+      }
+  Calls inside this branch:
+    r.next: called 1x (line(s): 20)
+
+--- Line 17: if ---
+if (count == 5) {
+          Thread.sleep(1500);
+        }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 18)
+
+Calls NOT inside any branch (always run):
+  TEST_UTIL.createTable: called 1x (line(s): 4)
+  Bytes.toBytes: called 1x (line(s): 4)
+  Scan: called 1x (line(s): 10)
+  t.getScanner: called 1x (line(s): 11)
+  fail: called 1x (line(s): 26)

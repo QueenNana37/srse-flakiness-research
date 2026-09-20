@@ -1,16 +1,59 @@
 Test: com.ea.orbit.actors.test.DeactivationTest#statelessWorkerDeactivationTest
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 35 method call(s), 20 unique method(s) called
 
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 42: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 47: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 12: for ---
+for (int i = 0; i < 100; i++)
+            {
+                // this will force the creation of concurrent activations in each node
+                futures.add(actor5.getUniqueActivationId(5000));
+            }
+  Calls inside this branch:
+    futures.add: called 1x (line(s): 15)
+    actor5.getUniqueActivationId: called 1x (line(s): 15)
+
+--- Line 17: for ---
+for (Future<UUID> f : futures)
+            {
+                set1.add(f.get(10, TimeUnit.SECONDS));
+            }
+  Calls inside this branch:
+    set1.add: called 1x (line(s): 19)
+    f.get: called 1x (line(s): 19)
+
+--- Line 41: for ---
+for (int i = 0; i < 25; i++)
+            {
+                // this will force the creation of concurrent activations in each node
+                futures.add(actor5.getUniqueActivationId(1000));
+            }
+  Calls inside this branch:
+    futures.add: called 1x (line(s): 44)
+    actor5.getUniqueActivationId: called 1x (line(s): 44)
+
+--- Line 46: for ---
+for (Future<UUID> f : futures)
+            {
+                set2.add(f.get(10, TimeUnit.SECONDS));
+            }
+  Calls inside this branch:
+    set2.add: called 1x (line(s): 48)
+    f.get: called 1x (line(s): 48)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 5x (line(s): 23, 24, 53, 54, 57)
+  set2.size: called 3x (line(s): 53, 54, 61)
+  HashSet<>: called 2x (line(s): 9, 38)
+  ArrayList<>: called 2x (line(s): 11, 40)
+  set1.size: called 2x (line(s): 23, 24)
+  clock.incrementTimeMillis: called 2x (line(s): 27, 30)
+  TimeUnit.MINUTES.toMillis: called 2x (line(s): 27, 30)
+  createStage: called 1x (line(s): 4)
+  createClient: called 1x (line(s): 5)
+  client.getReference: called 1x (line(s): 7)
+  actor5.getUniqueActivationId: called 1x (line(s): 29)
+  get: called 1x (line(s): 29)
+  stage1.cleanup: called 1x (line(s): 35)
+  set2.contains: called 1x (line(s): 57)
+  set2.retainAll: called 1x (line(s): 60)
+  assertEquals: called 1x (line(s): 61)

@@ -1,13 +1,71 @@
 Test: com.ea.orbit.actors.test.StatelessActorTest#statelessTest
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 47 method call(s), 24 unique method(s) called
 
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 33: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 43: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 17: for ---
+for (int i = 0; i < 25; i++)
+        {
+            // there will be no concurrent executions here
+            // each node will have at most one activation of the stateless worker
+            set.add(actor1.getUniqueActivationId().join());
+            set.add(actor2.getUniqueActivationId().join());
+            set.add(actor3.getUniqueActivationId().join());
+            set.add(actor4.getUniqueActivationId().join());
+            set.add(actor5.getUniqueActivationId().join());
+        }
+  Calls inside this branch:
+    set.add: called 5x (line(s): 21, 22, 23, 24, 25)
+    join: called 5x (line(s): 21, 22, 23, 24, 25)
+    actor1.getUniqueActivationId: called 1x (line(s): 21)
+    actor2.getUniqueActivationId: called 1x (line(s): 22)
+    actor3.getUniqueActivationId: called 1x (line(s): 23)
+    actor4.getUniqueActivationId: called 1x (line(s): 24)
+    actor5.getUniqueActivationId: called 1x (line(s): 25)
+
+--- Line 32: for ---
+for (int i = 0; i < 50; i++)
+        {
+            // this will force the creation of concurrent activations in each node
+            futures.add(actor1.getUniqueActivationId(5000));
+            futures.add(actor2.getUniqueActivationId(5000));
+            futures.add(actor3.getUniqueActivationId(5000));
+            futures.add(actor4.getUniqueActivationId(5000));
+            futures.add(actor5.getUniqueActivationId(5000));
+        }
+  Calls inside this branch:
+    futures.add: called 5x (line(s): 35, 36, 37, 38, 39)
+    actor1.getUniqueActivationId: called 1x (line(s): 35)
+    actor2.getUniqueActivationId: called 1x (line(s): 36)
+    actor3.getUniqueActivationId: called 1x (line(s): 37)
+    actor4.getUniqueActivationId: called 1x (line(s): 38)
+    actor5.getUniqueActivationId: called 1x (line(s): 39)
+
+--- Line 42: try ---
+try
+            {
+                set.add(f.get(10, TimeUnit.SECONDS));
+            }
+            catch (Exception e)
+            {
+                throw new UncheckedException(e);
+            }
+  Calls inside this branch:
+    set.add: called 1x (line(s): 44)
+    f.get: called 1x (line(s): 44)
+    UncheckedException: called 1x (line(s): 48)
+
+Calls NOT inside any branch (always run):
+  createStage: called 4x (line(s): 4, 5, 6, 7)
+  set.size: called 2x (line(s): 28, 52)
+  assertTrue: called 2x (line(s): 53, 55)
+  createClient: called 1x (line(s): 8)
+  stage1.getReference: called 1x (line(s): 10)
+  stage2.getReference: called 1x (line(s): 11)
+  stage3.getReference: called 1x (line(s): 12)
+  stage4.getReference: called 1x (line(s): 13)
+  client.getReference: called 1x (line(s): 14)
+  HashSet<>: called 1x (line(s): 16)
+  assertEquals: called 1x (line(s): 28)
+  set.clear: called 1x (line(s): 30)
+  ArrayList<>: called 1x (line(s): 31)
+  futures.forEach: called 1x (line(s): 41)

@@ -1,5 +1,31 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testInsertGetRemove
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 35 method call(s), 24 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 3x (line(s): 11, 28, 33)
+  assertNotNull: called 3x (line(s): 19, 22, 39)
+  assertEquals: called 3x (line(s): 24, 26, 27)
+  createMutator: called 2x (line(s): 5, 31)
+  mr.getExecutionTimeMicro: called 2x (line(s): 11, 13)
+  createColumnQuery: called 2x (line(s): 16, 36)
+  setColumnFamily: called 2x (line(s): 17, 37)
+  execute: called 2x (line(s): 18, 38)
+  m.insert: called 1x (line(s): 6)
+  createColumn: called 1x (line(s): 7)
+  log.debug: called 1x (line(s): 13)
+  q.setName: called 1x (line(s): 17)
+  q.setKey: called 1x (line(s): 18)
+  r.get: called 1x (line(s): 21)
+  c.getValue: called 1x (line(s): 23)
+  c.getName: called 1x (line(s): 25)
+  r.getQuery: called 1x (line(s): 27)
+  r.getExecutionTimeMicro: called 1x (line(s): 28)
+  m.delete: called 1x (line(s): 32)
+  mr2.getExecutionTimeMicro: called 1x (line(s): 33)
+  q2.setName: called 1x (line(s): 37)
+  q2.setKey: called 1x (line(s): 38)
+  assertNull: called 1x (line(s): 40)
+  r2.get: called 1x (line(s): 40)

@@ -1,10 +1,31 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testRowsPut
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 15 method call(s), 11 unique method(s) called
 
-Line 11: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 22: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 10: for ---
+for (int i = 0; i < NB_BATCH_ROWS; i++) {
+      byte[] row = Bytes.toBytes("row" + i);
+      Put put = new Put(row);
+      put.add(CONTENTS_FAMILY, null, value);
+      rowsUpdate.add(put);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 1x (line(s): 11)
+    Put: called 1x (line(s): 12)
+    put.add: called 1x (line(s): 13)
+    rowsUpdate.add: called 1x (line(s): 14)
+
+--- Line 21: for ---
+for (@SuppressWarnings("unused")
+    Result row : scanner)
+      nbRows++;
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 4x (line(s): 3, 4, 6, 7)
+  TEST_UTIL.createTable: called 1x (line(s): 7)
+  ArrayList<Put>: called 1x (line(s): 9)
+  table.put: called 1x (line(s): 16)
+  Scan: called 1x (line(s): 17)
+  scan.addFamily: called 1x (line(s): 18)
+  table.getScanner: called 1x (line(s): 19)
+  assertEquals: called 1x (line(s): 24)

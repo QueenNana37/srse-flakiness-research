@@ -1,7 +1,38 @@
 Test: org.apache.ambari.server.bootstrap.BootStrapTest#testRun
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 35 method call(s), 22 unique method(s) called
 
-Line 26: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 25: while ---
+while ((status.getStatus() != BSStat.SUCCESS) && (num < 10000)) {
+        status = impl.getStatus(response.getRequestId());
+        Thread.sleep(100);
+        num++;
+    }
+  Calls inside this branch:
+    status.getStatus: called 1x (line(s): 25)
+    impl.getStatus: called 1x (line(s): 26)
+    response.getRequestId: called 1x (line(s): 26)
+    Thread.sleep: called 1x (line(s): 27)
+
+Calls NOT inside any branch (always run):
+  LOG.info: called 4x (line(s): 5, 20, 23, 30)
+  properties.setProperty: called 3x (line(s): 6, 8, 9)
+  status.getStatus: called 3x (line(s): 23, 30, 34)
+  hosts.add: called 2x (line(s): 16, 17)
+  response.getRequestId: called 2x (line(s): 20, 22)
+  status.getLog: called 2x (line(s): 30, 33)
+  Properties: called 1x (line(s): 3)
+  temp.newFolder: called 1x (line(s): 4)
+  toString: called 1x (line(s): 4)
+  Configuration: called 1x (line(s): 10)
+  BootStrapImpl: called 1x (line(s): 11)
+  impl.init: called 1x (line(s): 12)
+  SshHostInfo: called 1x (line(s): 13)
+  info.setSshKey: called 1x (line(s): 14)
+  ArrayList<String>: called 1x (line(s): 15)
+  info.setHosts: called 1x (line(s): 18)
+  impl.runBootStrap: called 1x (line(s): 19)
+  impl.getStatus: called 1x (line(s): 22)
+  Assert.assertTrue: called 1x (line(s): 33)
+  contains: called 1x (line(s): 33)
+  Assert.assertEquals: called 1x (line(s): 34)

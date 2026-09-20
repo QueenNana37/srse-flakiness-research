@@ -1,10 +1,34 @@
 Test: org.apache.hadoop.hbase.stargate.TestRowResource#testSingleCellGetPutBinary
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 18 method call(s), 13 unique method(s) called
 
-Line 14: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 12: for ---
+for (Header header: response.getHeaders()) {
+      if (header.getName().equals("X-Timestamp")) {
+        foundTimestampHeader = true;
+        break;
+      }
+    }
+  Calls inside this branch:
+    response.getHeaders: called 1x (line(s): 12)
+
+--- Line 13: if ---
+if (header.getName().equals("X-Timestamp")) {
+        foundTimestampHeader = true;
+        break;
+      }
+  Calls inside this branch:
+    header.getName: called 1x (line(s): 13)
+    equals: called 1x (line(s): 13)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 5, 9, 21)
+  response.getCode: called 3x (line(s): 5, 9, 21)
+  assertTrue: called 2x (line(s): 10, 18)
+  Bytes.toBytes: called 1x (line(s): 3)
+  client.put: called 1x (line(s): 4)
+  Thread.yield: called 1x (line(s): 6)
+  client.get: called 1x (line(s): 8)
+  Bytes.equals: called 1x (line(s): 10)
+  response.getBody: called 1x (line(s): 10)
+  deleteRow: called 1x (line(s): 20)

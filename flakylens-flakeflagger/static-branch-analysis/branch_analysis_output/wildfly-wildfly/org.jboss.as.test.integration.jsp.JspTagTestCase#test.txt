@@ -1,5 +1,11 @@
 Test: org.jboss.as.test.integration.jsp.JspTagTestCase#test
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 4 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 2x (line(s): 4, 5)
+  RESULT.replace: called 2x (line(s): 4, 5)
+  HttpRequest.get: called 2x (line(s): 4, 5)
+  replace: called 2x (line(s): 4, 5)

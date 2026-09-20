@@ -1,5 +1,18 @@
 Test: org.springframework.boot.cli.GrabCommandIntegrationTests#customMetadata
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 13 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  File: called 3x (line(s): 5, 8, 15)
+  System.setProperty: called 1x (line(s): 3)
+  testArtifactDir.mkdirs: called 1x (line(s): 6)
+  testArtifact.createNewFile: called 1x (line(s): 9)
+  PrintWriter: called 1x (line(s): 10)
+  FileWriter: called 1x (line(s): 10)
+  writer.println: called 1x (line(s): 11)
+  writer.close: called 1x (line(s): 12)
+  this.cli.grab: called 1x (line(s): 14)
+  assertTrue: called 1x (line(s): 15)
+  isDirectory: called 1x (line(s): 15)

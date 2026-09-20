@@ -1,5 +1,17 @@
 Test: org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testDefaultSpringLiquibase
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertNull: called 2x (line(s): 10, 11)
+  this.context.register: called 1x (line(s): 3)
+  this.context.refresh: called 1x (line(s): 6)
+  this.context.getBean: called 1x (line(s): 7)
+  assertEquals: called 1x (line(s): 8)
+  liquibase.getChangeLog: called 1x (line(s): 9)
+  liquibase.getContexts: called 1x (line(s): 10)
+  liquibase.getDefaultSchema: called 1x (line(s): 11)
+  assertFalse: called 1x (line(s): 12)
+  liquibase.isDropFirst: called 1x (line(s): 12)

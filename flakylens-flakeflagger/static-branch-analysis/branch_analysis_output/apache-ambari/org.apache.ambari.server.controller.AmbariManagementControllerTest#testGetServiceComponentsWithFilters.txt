@@ -1,7 +1,71 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentsWithFilters
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 134 method call(s), 55 unique method(s) called
 
-Line 74: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 73: try ---
+try {
+      controller.getComponents(Collections.singleton(r));
+      fail("Expected failure for invalid cluster");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.getComponents: called 1x (line(s): 74)
+    Collections.singleton: called 1x (line(s): 74)
+    fail: called 1x (line(s): 75)
+
+Calls NOT inside any branch (always run):
+  ServiceComponentRequest: called 10x (line(s): 70, 81, 87, 93, 99, 107, 115, 125, 127, 129)
+  Assert.assertEquals: called 10x (line(s): 84, 90, 96, 102, 103, 110, 111, 118, 119, 133)
+  serviceComponentFactory.createNew: called 8x (line(s): 32, 33, 34, 36, 37, 38, 40, 42)
+  controller.getComponents: called 7x (line(s): 83, 89, 95, 101, 109, 117, 132)
+  resps.size: called 7x (line(s): 84, 90, 96, 102, 110, 118, 133)
+  Collections.singleton: called 6x (line(s): 83, 89, 95, 101, 109, 117)
+  c2.getClusterName: called 6x (line(s): 87, 93, 99, 107, 115, 125)
+  serviceFactory.createNew: called 5x (line(s): 10, 11, 12, 13, 14)
+  State.INIT.toString: called 4x (line(s): 100, 108, 116, 130)
+  sc5.getName: called 4x (line(s): 108, 111, 116, 119)
+  c1.addService: called 3x (line(s): 16, 17, 18)
+  s4.addServiceComponent: called 3x (line(s): 48, 49, 50)
+  c1.getClusterName: called 3x (line(s): 81, 127, 129)
+  resps.iterator: called 3x (line(s): 104, 112, 120)
+  next: called 3x (line(s): 104, 112, 120)
+  getComponentName: called 3x (line(s): 104, 112, 120)
+  clusters.addCluster: called 2x (line(s): 3, 4)
+  clusters.getCluster: called 2x (line(s): 5, 6)
+  StackId: called 2x (line(s): 7, 8)
+  c2.addService: called 2x (line(s): 19, 20)
+  s1.addServiceComponent: called 2x (line(s): 45, 46)
+  s5.addServiceComponent: called 2x (line(s): 51, 52)
+  State.UNINSTALLED.toString: called 2x (line(s): 88, 126)
+  s4.getName: called 2x (line(s): 100, 116)
+  c1.setDesiredStackVersion: called 1x (line(s): 7)
+  c2.setDesiredStackVersion: called 1x (line(s): 8)
+  s1.setDesiredState: called 1x (line(s): 22)
+  s2.setDesiredState: called 1x (line(s): 23)
+  s4.setDesiredState: called 1x (line(s): 24)
+  s1.persist: called 1x (line(s): 26)
+  s2.persist: called 1x (line(s): 27)
+  s3.persist: called 1x (line(s): 28)
+  s4.persist: called 1x (line(s): 29)
+  s5.persist: called 1x (line(s): 30)
+  s3.addServiceComponent: called 1x (line(s): 47)
+  sc1.setDesiredState: called 1x (line(s): 54)
+  sc3.setDesiredState: called 1x (line(s): 55)
+  sc5.setDesiredState: called 1x (line(s): 56)
+  sc6.setDesiredState: called 1x (line(s): 57)
+  sc7.setDesiredState: called 1x (line(s): 58)
+  sc8.setDesiredState: called 1x (line(s): 59)
+  sc1.persist: called 1x (line(s): 61)
+  sc2.persist: called 1x (line(s): 62)
+  sc3.persist: called 1x (line(s): 63)
+  sc4.persist: called 1x (line(s): 64)
+  sc5.persist: called 1x (line(s): 65)
+  sc6.persist: called 1x (line(s): 66)
+  sc7.persist: called 1x (line(s): 67)
+  sc8.persist: called 1x (line(s): 68)
+  s5.getName: called 1x (line(s): 94)
+  sc4.getName: called 1x (line(s): 103)
+  HashSet<ServiceComponentRequest>: called 1x (line(s): 124)
+  reqs.addAll: called 1x (line(s): 131)
+  Arrays.asList: called 1x (line(s): 131)

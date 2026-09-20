@@ -1,7 +1,63 @@
 Test: org.activiti.engine.test.jobexecutor.AsyncExecutorTest#testAsyncExecutorDisabledOnOneEngine
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 47 method call(s), 17 unique method(s) called
 
-Line 8: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 7: try ---
+try {
+
+      // Deploy on one engine, where the async executor is disabled
+      firstProcessEngine = createProcessEngine(false);
+      Date now = setClockToCurrentTime(firstProcessEngine);
+      deploy(firstProcessEngine, "AsyncExecutorTest.testRegularAsyncExecution.bpmn20.xml");
+
+      // Start process instance on first engine
+      firstProcessEngine.getRuntimeService().startProcessInstanceByKey("asyncExecutor");
+
+      // Move clock 5 minutes and 1 second. Triggers the timer normally,
+      // but not now since async execution is disabled
+      addSecondsToCurrentTime(firstProcessEngine, 301); // 301 = 5m01s
+      Assert.assertEquals(1, firstProcessEngine.getTaskService().createTaskQuery().taskName("The Task").count());
+      Assert.assertEquals(0, firstProcessEngine.getTaskService().createTaskQuery().taskName("Task after timer").count());
+      Assert.assertEquals(1, firstProcessEngine.getManagementService().createTimerJobQuery().count());
+
+      // Create second engine, with async executor enabled. Same time as
+      // the first engine to start, then add 301 seconds
+      secondProcessEngine = createProcessEngine(true, now);
+      addSecondsToCurrentTime(secondProcessEngine, 361);
+      waitForAllJobsBeingExecuted(secondProcessEngine);
+
+      // Verify if all is as expected
+      Assert.assertEquals(0, firstProcessEngine.getTaskService().createTaskQuery().taskName("The Task").count());
+      Assert.assertEquals(1, firstProcessEngine.getTaskService().createTaskQuery().taskName("Task after timer").count());
+      Assert.assertEquals(0, firstProcessEngine.getManagementService().createTimerJobQuery().count());
+      Assert.assertEquals(0, firstProcessEngine.getManagementService().createJobQuery().count());
+
+      Assert.assertEquals(0, getAsyncExecutorJobCount(firstProcessEngine));
+      Assert.assertEquals(1, getAsyncExecutorJobCount(secondProcessEngine));
+
+    } finally {
+
+      // Clean up
+      cleanup(firstProcessEngine);
+      cleanup(secondProcessEngine);
+
+    }
+  Calls inside this branch:
+    Assert.assertEquals: called 9x (line(s): 20, 21, 22, 31, 32, 33, 34, 36, 37)
+    count: called 7x (line(s): 20, 21, 22, 31, 32, 33, 34)
+    firstProcessEngine.getTaskService: called 4x (line(s): 20, 21, 31, 32)
+    createTaskQuery: called 4x (line(s): 20, 21, 31, 32)
+    taskName: called 4x (line(s): 20, 21, 31, 32)
+    firstProcessEngine.getManagementService: called 3x (line(s): 22, 33, 34)
+    createProcessEngine: called 2x (line(s): 10, 26)
+    addSecondsToCurrentTime: called 2x (line(s): 19, 27)
+    createTimerJobQuery: called 2x (line(s): 22, 33)
+    getAsyncExecutorJobCount: called 2x (line(s): 36, 37)
+    cleanup: called 2x (line(s): 42, 43)
+    setClockToCurrentTime: called 1x (line(s): 11)
+    deploy: called 1x (line(s): 12)
+    firstProcessEngine.getRuntimeService: called 1x (line(s): 15)
+    startProcessInstanceByKey: called 1x (line(s): 15)
+    waitForAllJobsBeingExecuted: called 1x (line(s): 28)
+    createJobQuery: called 1x (line(s): 34)
+

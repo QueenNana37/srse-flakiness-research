@@ -1,5 +1,12 @@
 Test: org.apache.http.impl.pool.TestBasicConnPool#testHttpCreateConnection
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 6, 7)
+  HttpHost: called 1x (line(s): 3)
+  pool.createConnection: called 1x (line(s): 4)
+  conn.isOpen: called 1x (line(s): 6)
+  conn.getSocketTimeout: called 1x (line(s): 7)

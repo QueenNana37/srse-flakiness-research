@@ -1,13 +1,56 @@
 Test: org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testGet
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 96 method call(s), 17 unique method(s) called
 
-Line 92: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 96: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 91: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 90: for ---
+for (KeyValue kv: result.list()) {
+      if (Bytes.equals(COLUMN_1, kv.getFamily()) && TS_1 == kv.getTimestamp()) {
+        assertTrue(Bytes.equals(VALUE_1, kv.getValue())); // @TS_1
+        count++;
+      }
+      if (Bytes.equals(COLUMN_1, kv.getFamily()) && TS_2 == kv.getTimestamp()) {
+        assertTrue(Bytes.equals(VALUE_2, kv.getValue())); // @TS_2
+        count++;
+      }
+    }
+  Calls inside this branch:
+    result.list: called 1x (line(s): 90)
+
+--- Line 91: if ---
+if (Bytes.equals(COLUMN_1, kv.getFamily()) && TS_1 == kv.getTimestamp()) {
+        assertTrue(Bytes.equals(VALUE_1, kv.getValue())); // @TS_1
+        count++;
+      }
+  Calls inside this branch:
+    Bytes.equals: called 2x (line(s): 91, 92)
+    kv.getFamily: called 1x (line(s): 91)
+    kv.getTimestamp: called 1x (line(s): 91)
+    assertTrue: called 1x (line(s): 92)
+    kv.getValue: called 1x (line(s): 92)
+
+--- Line 95: if ---
+if (Bytes.equals(COLUMN_1, kv.getFamily()) && TS_2 == kv.getTimestamp()) {
+        assertTrue(Bytes.equals(VALUE_2, kv.getValue())); // @TS_2
+        count++;
+      }
+  Calls inside this branch:
+    Bytes.equals: called 2x (line(s): 95, 96)
+    kv.getFamily: called 1x (line(s): 95)
+    kv.getTimestamp: called 1x (line(s): 95)
+    assertTrue: called 1x (line(s): 96)
+    kv.getValue: called 1x (line(s): 96)
+
+Calls NOT inside any branch (always run):
+  result.getValue: called 16x (line(s): 4, 5, 13, 14, 22, 23, 30, 31, 40, 41, 50, 51, 64, 65, 77, 78)
+  Get: called 9x (line(s): 2, 10, 18, 28, 37, 46, 59, 72, 85)
+  remoteTable.get: called 9x (line(s): 3, 12, 21, 29, 39, 49, 63, 76, 88)
+  assertNotNull: called 9x (line(s): 6, 24, 32, 34, 42, 52, 54, 66, 79)
+  assertTrue: called 9x (line(s): 7, 25, 33, 35, 43, 53, 55, 67, 80)
+  Bytes.equals: called 9x (line(s): 7, 25, 33, 35, 43, 53, 55, 67, 80)
+  assertNull: called 7x (line(s): 8, 15, 16, 26, 44, 68, 81)
+  get.addFamily: called 7x (line(s): 11, 38, 60, 61, 73, 74, 86)
+  get.addColumn: called 4x (line(s): 19, 20, 47, 48)
+  get.setTimeStamp: called 1x (line(s): 62)
+  get.setTimeRange: called 1x (line(s): 75)
+  get.setMaxVersions: called 1x (line(s): 87)
+  assertEquals: called 1x (line(s): 100)

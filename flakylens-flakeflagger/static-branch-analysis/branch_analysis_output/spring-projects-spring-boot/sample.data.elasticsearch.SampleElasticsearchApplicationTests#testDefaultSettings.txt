@@ -1,10 +1,27 @@
 Test: sample.data.elasticsearch.SampleElasticsearchApplicationTests#testDefaultSettings
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 5 method call(s), 5 unique method(s) called
 
-Line 8: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 4: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalStateException
+--- Line 3: try ---
+
+			SampleElasticsearchApplication.main(new String[0]);
+		}
+		catch (IllegalStateException ex) {
+			if (serverNotRunning(ex)) {
+				return;
+			}
+		}
+  Calls inside this branch:
+    SampleElasticsearchApplication.main: called 1x (line(s): 4)
+
+--- Line 7: if ---
+ex)) {
+				return;
+			}
+  Calls inside this branch:
+    serverNotRunning: called 1x (line(s): 7)
+
+Calls NOT inside any branch (always run):
+  this.outputCapture.toString: called 1x (line(s): 11)
+  assertTrue: called 1x (line(s): 12)
+  output.contains: called 1x (line(s): 13)

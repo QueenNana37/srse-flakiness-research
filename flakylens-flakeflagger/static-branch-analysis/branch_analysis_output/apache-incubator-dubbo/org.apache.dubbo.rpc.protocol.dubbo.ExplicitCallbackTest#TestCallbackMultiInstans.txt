@@ -1,5 +1,16 @@
 Test: org.apache.dubbo.rpc.protocol.dubbo.ExplicitCallbackTest#TestCallbackMultiInstans
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 37 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 9x (line(s): 20, 23, 27, 30, 34, 36, 40, 43, 46)
+  demoProxy.getCallbackCount: called 9x (line(s): 20, 23, 27, 30, 34, 36, 40, 43, 46)
+  demoProxy.xxx2: called 6x (line(s): 19, 26, 32, 39, 42, 45)
+  System.out.println: called 4x (line(s): 7, 14, 24, 31)
+  Thread.sleep: called 3x (line(s): 21, 28, 33)
+  demoProxy.unxxx2: called 3x (line(s): 22, 29, 35)
+  initOrResetUrl: called 1x (line(s): 3)
+  initOrResetService: called 1x (line(s): 4)
+  destroyService: called 1x (line(s): 48)

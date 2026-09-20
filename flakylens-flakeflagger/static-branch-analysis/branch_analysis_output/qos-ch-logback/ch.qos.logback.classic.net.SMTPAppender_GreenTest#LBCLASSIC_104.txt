@@ -1,5 +1,28 @@
 Test: ch.qos.logback.classic.net.SMTPAppender_GreenTest#LBCLASSIC_104
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 23 method call(s), 21 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 3x (line(s): 16, 18, 19)
+  buildSMTPAppender: called 1x (line(s): 4)
+  smtpAppender.setAsynchronousSending: called 1x (line(s): 5)
+  smtpAppender.setLayout: called 1x (line(s): 6)
+  buildPatternLayout: called 1x (line(s): 6)
+  smtpAppender.start: called 1x (line(s): 7)
+  logger.addAppender: called 1x (line(s): 8)
+  MDC.put: called 1x (line(s): 9)
+  logger.debug: called 1x (line(s): 10)
+  MDC.clear: called 1x (line(s): 11)
+  logger.error: called 1x (line(s): 12)
+  Exception: called 1x (line(s): 12)
+  verifyAndExtractMimeMultipart: called 1x (line(s): 14)
+  GreenMailUtil.getBody: called 1x (line(s): 15)
+  mp.getBodyPart: called 1x (line(s): 15)
+  body.startsWith: called 1x (line(s): 16)
+  HEADER.trim: called 1x (line(s): 16)
+  System.out.println: called 1x (line(s): 17)
+  body.contains: called 1x (line(s): 18)
+  body.endsWith: called 1x (line(s): 19)
+  FOOTER.trim: called 1x (line(s): 19)

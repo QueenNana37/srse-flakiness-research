@@ -1,5 +1,28 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostMultiple
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 62 method call(s), 21 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  clusters.getHost: called 10x (line(s): 10, 11, 12, 13, 14, 15, 40, 41, 43, 45)
+  Assert.assertEquals: called 7x (line(s): 36, 37, 38, 40, 41, 42, 44)
+  size: called 5x (line(s): 36, 37, 38, 40, 41)
+  getHostAttributes: called 4x (line(s): 40, 41, 43, 45)
+  clusters.addHost: called 3x (line(s): 3, 4, 5)
+  setOsType: called 3x (line(s): 10, 11, 12)
+  persist: called 3x (line(s): 13, 14, 15)
+  HostRequest: called 3x (line(s): 26, 27, 28)
+  set1.add: called 3x (line(s): 31, 32, 33)
+  clusters.getClustersForHost: called 3x (line(s): 36, 37, 38)
+  clusters.addCluster: called 2x (line(s): 6, 7)
+  clusters.getCluster: called 2x (line(s): 8, 9)
+  setDesiredStackVersion: called 2x (line(s): 8, 9)
+  StackId: called 2x (line(s): 8, 9)
+  hostAttrs.put: called 2x (line(s): 19, 20)
+  clusterNames.add: called 2x (line(s): 23, 24)
+  get: called 2x (line(s): 43, 45)
+  HashMap<String, String>: called 1x (line(s): 18)
+  ArrayList<String>: called 1x (line(s): 22)
+  HashSet<HostRequest>: called 1x (line(s): 30)
+  controller.createHosts: called 1x (line(s): 34)

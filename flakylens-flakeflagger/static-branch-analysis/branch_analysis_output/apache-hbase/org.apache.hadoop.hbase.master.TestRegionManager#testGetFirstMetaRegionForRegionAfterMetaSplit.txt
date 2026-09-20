@@ -1,5 +1,26 @@
 Test: org.apache.hadoop.hbase.master.TestRegionManager#testGetFirstMetaRegionForRegionAfterMetaSplit
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 45 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 9x (line(s): 6, 9, 10, 14, 17, 18, 26, 29, 30)
+  HRegionInfo: called 6x (line(s): 11, 14, 19, 21, 26, 31)
+  master.getRegionManager: called 6x (line(s): 34, 35, 36, 37, 44, 46)
+  MetaRegion: called 3x (line(s): 15, 22, 27)
+  putMetaRegionOnline: called 3x (line(s): 35, 36, 37)
+  regionInfo0.getRegionName: called 2x (line(s): 14, 21)
+  regionInfo1.getRegionName: called 2x (line(s): 21, 26)
+  assertEquals: called 2x (line(s): 43, 45)
+  getFirstMetaRegionForRegion: called 2x (line(s): 44, 46)
+  HTable: called 1x (line(s): 3)
+  this.cluster.getMaster: called 1x (line(s): 4)
+  master.getMasterAddress: called 1x (line(s): 5)
+  HTableDescriptor: called 1x (line(s): 6)
+  meta.getTableDescriptor: called 1x (line(s): 7)
+  offlineMetaRegionWithStartKey: called 1x (line(s): 34)
+  metaRegionInfo1.getStartKey: called 1x (line(s): 43)
+  getStartKey: called 1x (line(s): 44)
+  metaRegionInfo1.getRegionName: called 1x (line(s): 45)
+  getRegionName: called 1x (line(s): 46)

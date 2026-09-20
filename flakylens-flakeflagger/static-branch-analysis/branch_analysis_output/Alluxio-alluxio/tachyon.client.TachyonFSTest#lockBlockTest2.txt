@@ -1,13 +1,47 @@
 Test: tachyon.client.TachyonFSTest#lockBlockTest2
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 20 method call(s), 11 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 20: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      fileIds.add(TestUtils.createByteFile(
+          mTfs, "/file_" + k, WriteType.CACHE_THROUGH, fileSize));
+    }
+  Calls inside this branch:
+    fileIds.add: called 1x (line(s): 8)
+    TestUtils.createByteFile: called 1x (line(s): 8)
+
+--- Line 11: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+      Assert.assertNotNull(tFile.readByteBuffer());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 12)
+    fileIds.get: called 1x (line(s): 12)
+    Assert.assertTrue: called 1x (line(s): 13)
+    tFile.isInMemory: called 1x (line(s): 13)
+    Assert.assertNotNull: called 1x (line(s): 14)
+    tFile.readByteBuffer: called 1x (line(s): 14)
+
+--- Line 19: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 20)
+    fileIds.get: called 1x (line(s): 20)
+    Assert.assertTrue: called 1x (line(s): 21)
+    tFile.isInMemory: called 1x (line(s): 21)
+
+Calls NOT inside any branch (always run):
+  ArrayList<Integer>: called 1x (line(s): 6)
+  fileIds.add: called 1x (line(s): 16)
+  TestUtils.createByteFile: called 1x (line(s): 16)
+  CommonUtils.sleepMs: called 1x (line(s): 23)
+  mTfs.getFile: called 1x (line(s): 24)
+  fileIds.get: called 1x (line(s): 24)
+  Assert.assertFalse: called 1x (line(s): 25)
+  tFile.isInMemory: called 1x (line(s): 25)

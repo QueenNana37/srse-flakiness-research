@@ -1,10 +1,41 @@
 Test: tachyon.client.RemoteBlockInStreamTest#readTest4
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 11 method call(s), 8 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int k = MIN_LEN + DELTA; k <= MAX_LEN; k += DELTA) {
+      WriteType op = WriteType.MUST_CACHE;
+      int fileId = TestUtils.createByteFile(mTfs, "/root/testFile_" + k + "_" + op, op, k);
+
+      TachyonFile file = mTfs.getFile(fileId);
+      RemoteBlockInStream is = new RemoteBlockInStream(file, ReadType.NO_CACHE, 0);
+      Assert.assertTrue(is instanceof RemoteBlockInStream);
+      byte[] ret = new byte[k];
+      int value = is.read();
+      int cnt = 0;
+      while (value != -1) {
+        ret[cnt ++] = (byte) value;
+        value = is.read();
+      }
+      Assert.assertTrue(TestUtils.equalIncreasingByteArray(k, ret));
+      is.close();
+      Assert.assertTrue(file.isInMemory());
+    }
+  Calls inside this branch:
+    Assert.assertTrue: called 3x (line(s): 9, 17, 19)
+    TestUtils.createByteFile: called 1x (line(s): 5)
+    mTfs.getFile: called 1x (line(s): 7)
+    RemoteBlockInStream: called 1x (line(s): 8)
+    is.read: called 1x (line(s): 11)
+    TestUtils.equalIncreasingByteArray: called 1x (line(s): 17)
+    is.close: called 1x (line(s): 18)
+    file.isInMemory: called 1x (line(s): 19)
+
+--- Line 13: while ---
+while (value != -1) {
+        ret[cnt ++] = (byte) value;
+        value = is.read();
+      }
+  Calls inside this branch:
+    is.read: called 1x (line(s): 15)
+

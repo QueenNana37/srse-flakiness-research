@@ -1,5 +1,17 @@
 Test: org.apache.hadoop.hbase.stargate.TestVersionResource#testGetStorageClusterVersionXML
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 2x (line(s): 9, 10)
+  client.get: called 1x (line(s): 3)
+  assertTrue: called 1x (line(s): 4)
+  response.getCode: called 1x (line(s): 4)
+  context.createUnmarshaller: called 1x (line(s): 7)
+  unmarshal: called 1x (line(s): 7)
+  ByteArrayInputStream: called 1x (line(s): 8)
+  response.getBody: called 1x (line(s): 8)
+  clusterVersionModel.getVersion: called 1x (line(s): 10)
+  LOG.info: called 1x (line(s): 11)

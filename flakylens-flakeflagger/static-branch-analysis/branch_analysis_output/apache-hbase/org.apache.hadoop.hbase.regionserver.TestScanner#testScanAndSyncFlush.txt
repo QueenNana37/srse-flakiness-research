@@ -1,8 +1,34 @@
 Test: org.apache.hadoop.hbase.regionserver.TestScanner#testScanAndSyncFlush
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 15 method call(s), 13 unique method(s) called
 
-Line 5: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-    -> finally-block always runs
+--- Line 4: try ---
+try {
+        LOG.info("Added: " + addContent(hri, Bytes.toString(HConstants.CATALOG_FAMILY),
+            Bytes.toString(HConstants.REGIONINFO_QUALIFIER)));
+      int count = count(hri, -1, false);
+      assertEquals(count, count(hri, 100, false)); // do a sync flush.
+    } catch (Exception e) {
+      LOG.error("Failed", e);
+      throw e;
+    } finally {
+      this.r.close();
+      this.r.getLog().closeAndDelete();
+      shutdownDfs(cluster);
+    }
+  Calls inside this branch:
+    Bytes.toString: called 2x (line(s): 5, 6)
+    count: called 2x (line(s): 7, 8)
+    LOG.info: called 1x (line(s): 5)
+    addContent: called 1x (line(s): 5)
+    assertEquals: called 1x (line(s): 8)
+    LOG.error: called 1x (line(s): 10)
+    this.r.close: called 1x (line(s): 13)
+    this.r.getLog: called 1x (line(s): 14)
+    closeAndDelete: called 1x (line(s): 14)
+    shutdownDfs: called 1x (line(s): 15)
+
+Calls NOT inside any branch (always run):
+  createNewHRegion: called 1x (line(s): 2)
+  REGION_INFO.getTableDesc: called 1x (line(s): 2)
+  HRegionIncommon: called 1x (line(s): 3)

@@ -1,5 +1,22 @@
 Test: com.squareup.okhttp.internal.spdy.SpdyConnectionTest#replyWithNoData
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 4x (line(s): 20, 22, 23, 24)
+  headerEntries: called 3x (line(s): 3, 11, 22)
+  peer.sendFrame: called 1x (line(s): 3)
+  synStream: called 1x (line(s): 3)
+  peer.acceptFrame: called 1x (line(s): 4)
+  peer.play: called 1x (line(s): 5)
+  AtomicInteger: called 1x (line(s): 8)
+  stream.reply: called 1x (line(s): 11)
+  receiveCount.incrementAndGet: called 1x (line(s): 12)
+  connectionBuilder: called 1x (line(s): 16)
+  handler: called 1x (line(s): 16)
+  build: called 1x (line(s): 16)
+  peer.takeFrame: called 1x (line(s): 19)
+  assertTrue: called 1x (line(s): 21)
+  receiveCount.get: called 1x (line(s): 23)

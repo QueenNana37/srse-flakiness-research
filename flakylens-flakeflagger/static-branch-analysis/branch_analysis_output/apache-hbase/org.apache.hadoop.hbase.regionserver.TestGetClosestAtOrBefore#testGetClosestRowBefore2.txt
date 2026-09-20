@@ -1,13 +1,90 @@
 Test: org.apache.hadoop.hbase.regionserver.TestGetClosestAtOrBefore#testGetClosestRowBefore2
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 37 method call(s), 15 unique method(s) called
 
-Line 45: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 5: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 46: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 4: try ---
+try {
+      HTableDescriptor htd = createTableDescriptor(getName());
+      region = createNewHRegion(htd, null, null);
+
+      Put p = new Put(T10);
+      p.add(c0, c0, T10);
+      region.put(p);
+
+      p = new Put(T30);
+      p.add(c0, c0, T30);
+      region.put(p);
+
+      p = new Put(T40);
+      p.add(c0, c0, T40);
+      region.put(p);
+
+      // try finding "035"
+      Result r = region.getClosestRowBefore(T35, c0);
+      assertTrue(Bytes.equals(T30, r.getRow()));
+
+      region.flushcache();
+
+      // try finding "035"
+      r = region.getClosestRowBefore(T35, c0);
+      assertTrue(Bytes.equals(T30, r.getRow()));
+
+      p = new Put(T20);
+      p.add(c0, c0, T20);
+      region.put(p);
+
+      // try finding "035"
+      r = region.getClosestRowBefore(T35, c0);
+      assertTrue(Bytes.equals(T30, r.getRow()));
+
+      region.flushcache();
+
+      // try finding "035"
+      r = region.getClosestRowBefore(T35, c0);
+      assertTrue(Bytes.equals(T30, r.getRow()));
+    } finally {
+      if (region != null) {
+        try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        region.getLog().closeAndDelete();
+      }
+    }
+  Calls inside this branch:
+    Put: called 4x (line(s): 8, 12, 16, 30)
+    p.add: called 4x (line(s): 9, 13, 17, 31)
+    region.put: called 4x (line(s): 10, 14, 18, 32)
+    region.getClosestRowBefore: called 4x (line(s): 21, 27, 35, 41)
+    assertTrue: called 4x (line(s): 22, 28, 36, 42)
+    Bytes.equals: called 4x (line(s): 22, 28, 36, 42)
+    r.getRow: called 4x (line(s): 22, 28, 36, 42)
+    region.flushcache: called 2x (line(s): 24, 38)
+    createTableDescriptor: called 1x (line(s): 5)
+    getName: called 1x (line(s): 5)
+    createNewHRegion: called 1x (line(s): 6)
+
+--- Line 44: if ---
+if (region != null) {
+        try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        region.getLog().closeAndDelete();
+      }
+  Calls inside this branch:
+    region.getLog: called 1x (line(s): 50)
+    closeAndDelete: called 1x (line(s): 50)
+
+--- Line 45: try ---
+try {
+          region.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+  Calls inside this branch:
+    region.close: called 1x (line(s): 46)
+    e.printStackTrace: called 1x (line(s): 48)
+

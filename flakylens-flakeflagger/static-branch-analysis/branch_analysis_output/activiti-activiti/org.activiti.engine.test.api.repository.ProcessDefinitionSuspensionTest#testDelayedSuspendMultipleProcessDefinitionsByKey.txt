@@ -1,13 +1,52 @@
 Test: org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testDelayedSuspendMultipleProcessDefinitionsByKey
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 108 method call(s), 24 unique method(s) called
 
-Line 10: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 29: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 57: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 9: for ---
+for (int i = 0; i < nrOfProcessDefinitions; i++) {
+      repositoryService.createDeployment().addClasspathResource("org/activiti/engine/test/api/runtime/oneTaskProcess.bpmn20.xml").deploy();
+    }
+  Calls inside this branch:
+    repositoryService.createDeployment: called 1x (line(s): 10)
+    addClasspathResource: called 1x (line(s): 10)
+    deploy: called 1x (line(s): 10)
+
+--- Line 28: for ---
+for (ProcessDefinition processDefinition : repositoryService.createProcessDefinitionQuery().list()) {
+      assertEquals(1, managementService.createTimerJobQuery().processDefinitionId(processDefinition.getId()).count());
+    }
+  Calls inside this branch:
+    repositoryService.createProcessDefinitionQuery: called 1x (line(s): 28)
+    list: called 1x (line(s): 28)
+    assertEquals: called 1x (line(s): 29)
+    managementService.createTimerJobQuery: called 1x (line(s): 29)
+    processDefinitionId: called 1x (line(s): 29)
+    processDefinition.getId: called 1x (line(s): 29)
+    count: called 1x (line(s): 29)
+
+--- Line 56: for ---
+for (org.activiti.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+      repositoryService.deleteDeployment(deployment.getId(), true);
+    }
+  Calls inside this branch:
+    repositoryService.createDeploymentQuery: called 1x (line(s): 56)
+    list: called 1x (line(s): 56)
+    repositoryService.deleteDeployment: called 1x (line(s): 57)
+    deployment.getId: called 1x (line(s): 57)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 20x (line(s): 12, 13, 14, 21, 22, 23, 24, 27, 35, 36, 37, 38, 42, 43, 44, 45, 50, 51, 52, 53)
+  count: called 20x (line(s): 12, 13, 14, 21, 22, 23, 24, 27, 35, 36, 37, 38, 42, 43, 44, 45, 50, 51, 52, 53)
+  repositoryService.createProcessDefinitionQuery: called 15x (line(s): 12, 13, 14, 21, 22, 23, 35, 36, 37, 42, 43, 44, 50, 51, 52)
+  active: called 7x (line(s): 13, 22, 24, 36, 43, 51, 53)
+  suspended: called 7x (line(s): 14, 23, 37, 38, 44, 45, 52)
+  Date: called 5x (line(s): 3, 20, 33, 41, 48)
+  startTime.getTime: called 4x (line(s): 20, 33, 41, 48)
+  runtimeService.createProcessInstanceQuery: called 4x (line(s): 24, 38, 45, 53)
+  processEngineConfiguration.getClock: called 3x (line(s): 4, 33, 48)
+  setCurrentTime: called 3x (line(s): 4, 33, 48)
+  waitForJobExecutorToProcessAllJobsAndExecutableTimerJobs: called 2x (line(s): 34, 49)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 17)
+  repositoryService.suspendProcessDefinitionByKey: called 1x (line(s): 20)
+  managementService.createTimerJobQuery: called 1x (line(s): 27)
+  repositoryService.activateProcessDefinitionByKey: called 1x (line(s): 41)

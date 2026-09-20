@@ -1,5 +1,14 @@
 Test: org.springframework.boot.cli.command.CommandRunnerIntegrationTests#debugAddsAutoconfigReport
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 7 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  CommandRunner: called 1x (line(s): 3)
+  runner.addCommand: called 1x (line(s): 4)
+  RunCommand: called 1x (line(s): 4)
+  runner.runAndHandleErrors: called 1x (line(s): 7)
+  assertTrue: called 1x (line(s): 8)
+  this.output.toString: called 1x (line(s): 8)
+  contains: called 1x (line(s): 8)

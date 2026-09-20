@@ -1,5 +1,12 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testPrefixFilter
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 5 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Scan: called 1x (line(s): 5)
+  s.setFilter: called 1x (line(s): 6)
+  PrefixFilter: called 1x (line(s): 6)
+  Bytes.toBytes: called 1x (line(s): 6)
+  verifyScan: called 1x (line(s): 7)

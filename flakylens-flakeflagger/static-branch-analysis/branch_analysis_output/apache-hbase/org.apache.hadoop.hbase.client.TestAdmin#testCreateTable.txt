@@ -1,5 +1,12 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testCreateTable
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 5 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  admin.listTables: called 1x (line(s): 3)
+  TEST_UTIL.createTable: called 1x (line(s): 5)
+  Bytes.toBytes: called 1x (line(s): 5)
+  this.admin.listTables: called 1x (line(s): 7)
+  assertEquals: called 1x (line(s): 8)

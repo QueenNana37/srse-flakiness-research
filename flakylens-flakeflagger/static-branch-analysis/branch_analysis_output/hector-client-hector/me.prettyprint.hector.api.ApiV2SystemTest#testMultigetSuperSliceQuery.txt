@@ -1,5 +1,26 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSuperSliceQuery
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 25 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 4x (line(s): 16, 18, 21, 24)
+  assertEquals: called 3x (line(s): 19, 22, 26)
+  slice.getColumnByName: called 2x (line(s): 26, 28)
+  insertSuperColumns: called 1x (line(s): 5)
+  createMultigetSuperSliceQuery: called 1x (line(s): 9)
+  q.setColumnFamily: called 1x (line(s): 11)
+  q.setKeys: called 1x (line(s): 12)
+  q.setColumnNames: called 1x (line(s): 14)
+  q.execute: called 1x (line(s): 15)
+  r.get: called 1x (line(s): 17)
+  rows.getCount: called 1x (line(s): 19)
+  rows.getByKey: called 1x (line(s): 20)
+  row.getKey: called 1x (line(s): 22)
+  row.getSuperSlice: called 1x (line(s): 23)
+  getColumns: called 1x (line(s): 26)
+  get: called 1x (line(s): 26)
+  getValue: called 1x (line(s): 27)
+  assertNull: called 1x (line(s): 28)
+  deleteColumns: called 1x (line(s): 30)

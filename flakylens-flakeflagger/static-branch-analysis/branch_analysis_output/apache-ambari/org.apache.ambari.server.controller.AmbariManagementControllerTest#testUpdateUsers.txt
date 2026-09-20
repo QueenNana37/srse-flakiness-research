@@ -1,5 +1,14 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testUpdateUsers
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  add: called 2x (line(s): 9, 10)
+  createUser: called 1x (line(s): 4)
+  users.createDefaultRoles: called 1x (line(s): 5)
+  UserRequest: called 1x (line(s): 7)
+  request.setRoles: called 1x (line(s): 8)
+  controller.updateUsers: called 1x (line(s): 13)
+  Collections.singleton: called 1x (line(s): 13)

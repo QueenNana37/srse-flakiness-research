@@ -1,7 +1,17 @@
 Test: tachyon.JournalTest#ManyFileTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 7 method call(s), 6 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int i = 0; i < 10; i ++) {
+      mTfs.createFile("/a" + i, (i + 1) * 64);
+    }
+  Calls inside this branch:
+    mTfs.createFile: called 1x (line(s): 4)
+
+Calls NOT inside any branch (always run):
+  ManyFileTestUtil: called 2x (line(s): 7, 10)
+  mLocalTachyonCluster.stop: called 1x (line(s): 6)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 8)
+  UnderFileSystem.get: called 1x (line(s): 9)
+  delete: called 1x (line(s): 9)

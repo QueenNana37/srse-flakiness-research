@@ -1,13 +1,53 @@
 Test: tachyon.client.TachyonFSTest#lockBlockTest4
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 20 method call(s), 13 unique method(s) called
 
-Line 16: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int k = 0; k <= numOfFiles; k ++) {
+      fileIds.add(TestUtils.createByteFile(
+          mTfs, "/file_" + k, WriteType.CACHE_THROUGH, fileSize));
+    }
+  Calls inside this branch:
+    fileIds.add: called 1x (line(s): 8)
+    TestUtils.createByteFile: called 1x (line(s): 8)
+
+--- Line 11: for ---
+for (int k = 0; k <= numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      CommonUtils.sleepMs(null, SLEEP_MS);
+      Assert.assertFalse(tFile.isInMemory());
+      if (k < numOfFiles) {
+        Assert.assertNull(tFile.readByteBuffer());
+        Assert.assertTrue(tFile.recache());
+        Assert.assertNotNull(tFile.readByteBuffer());
+      } else {
+        Assert.assertNull(tFile.readByteBuffer());
+        Assert.assertFalse(tFile.recache());
+        Assert.assertNull(tFile.readByteBuffer());
+      }
+    }
+  Calls inside this branch:
+    Assert.assertFalse: called 2x (line(s): 14, 21)
+    Assert.assertNull: called 2x (line(s): 20, 22)
+    tFile.readByteBuffer: called 2x (line(s): 20, 22)
+    mTfs.getFile: called 1x (line(s): 12)
+    fileIds.get: called 1x (line(s): 12)
+    CommonUtils.sleepMs: called 1x (line(s): 13)
+    tFile.isInMemory: called 1x (line(s): 14)
+    tFile.recache: called 1x (line(s): 21)
+
+--- Line 15: if ---
+if (k < numOfFiles) {
+        Assert.assertNull(tFile.readByteBuffer());
+        Assert.assertTrue(tFile.recache());
+        Assert.assertNotNull(tFile.readByteBuffer());
+      }
+  Calls inside this branch:
+    tFile.readByteBuffer: called 2x (line(s): 16, 18)
+    Assert.assertNull: called 1x (line(s): 16)
+    Assert.assertTrue: called 1x (line(s): 17)
+    tFile.recache: called 1x (line(s): 17)
+    Assert.assertNotNull: called 1x (line(s): 18)
+
+Calls NOT inside any branch (always run):
+  ArrayList<Integer>: called 1x (line(s): 6)

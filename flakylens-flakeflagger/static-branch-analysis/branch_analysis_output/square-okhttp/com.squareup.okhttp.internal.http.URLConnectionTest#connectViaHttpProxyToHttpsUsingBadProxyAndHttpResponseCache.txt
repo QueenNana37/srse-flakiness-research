@@ -1,10 +1,45 @@
 Test: com.squareup.okhttp.internal.http.URLConnectionTest#connectViaHttpProxyToHttpsUsingBadProxyAndHttpResponseCache
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 24 method call(s), 22 unique method(s) called
 
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 24: try statement
-    -> try-block completes normally
-    -> catch triggered: IOException
+--- Line 12: for ---
+for (InetAddress inetAddress : InetAddress.getAllByName(server.getHostName())) {
+      server.enqueue(response); // For the first TLS tolerant connection
+      server.enqueue(response); // For the backwards-compatible SSLv3 retry
+    }
+  Calls inside this branch:
+    server.enqueue: called 2x (line(s): 13, 14)
+    InetAddress.getAllByName: called 1x (line(s): 12)
+    server.getHostName: called 1x (line(s): 12)
+
+--- Line 23: try ---
+try {
+      connection.getResponseCode();
+      fail();
+    } catch (IOException expected) {
+      // Thrown when the connect causes SSLSocket.startHandshake() to throw
+      // when it sees the "bogus proxy connect response content"
+      // instead of a ServerHello handshake message.
+    }
+  Calls inside this branch:
+    connection.getResponseCode: called 1x (line(s): 24)
+    fail: called 1x (line(s): 25)
+
+Calls NOT inside any branch (always run):
+  sslContext.getSocketFactory: called 2x (line(s): 4, 20)
+  initResponseCache: called 1x (line(s): 2)
+  server.useHttps: called 1x (line(s): 4)
+  MockResponse: called 1x (line(s): 5)
+  setSocketPolicy: called 1x (line(s): 6)
+  setBody: called 1x (line(s): 7)
+  server.play: called 1x (line(s): 16)
+  client.setProxy: called 1x (line(s): 17)
+  server.toProxyAddress: called 1x (line(s): 17)
+  URL: called 1x (line(s): 19)
+  client.setSslSocketFactory: called 1x (line(s): 20)
+  client.open: called 1x (line(s): 21)
+  server.takeRequest: called 1x (line(s): 32)
+  assertEquals: called 1x (line(s): 33)
+  connect.getRequestLine: called 1x (line(s): 34)
+  assertContains: called 1x (line(s): 35)
+  connect.getHeaders: called 1x (line(s): 35)

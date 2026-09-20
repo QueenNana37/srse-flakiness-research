@@ -1,7 +1,20 @@
 Test: org.apache.dubbo.rpc.protocol.dubbo.DubboProtocolTest#testPerm
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 13 method call(s), 10 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < 1000; i++)
+            service.getSize(new String[]{"", "", ""});
+  Calls inside this branch:
+    service.getSize: called 1x (line(s): 8)
+
+Calls NOT inside any branch (always run):
+  URL.valueOf: called 2x (line(s): 4, 5)
+  DemoService.class.getName: called 2x (line(s): 4, 5)
+  System.currentTimeMillis: called 2x (line(s): 6, 9)
+  DemoServiceImpl: called 1x (line(s): 3)
+  protocol.export: called 1x (line(s): 4)
+  proxy.getInvoker: called 1x (line(s): 4)
+  proxy.getProxy: called 1x (line(s): 5)
+  protocol.refer: called 1x (line(s): 5)
+  System.out.println: called 1x (line(s): 9)

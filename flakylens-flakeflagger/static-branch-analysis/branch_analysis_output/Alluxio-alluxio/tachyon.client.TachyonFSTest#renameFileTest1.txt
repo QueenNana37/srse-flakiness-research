@@ -1,7 +1,21 @@
 Test: tachyon.client.TachyonFSTest#renameFileTest1
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 9 method call(s), 7 unique method(s) called
 
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 4: for ---
+for (int k = 1; k < 10; k ++) {
+      Assert.assertTrue(mTfs.exist("/root/testFile" + k));
+      Assert.assertTrue(mTfs.rename("/root/testFile" + k, "/root/testFile" + (k + 1)));
+      Assert.assertEquals(fileId, mTfs.getFileId("/root/testFile" + (k + 1)));
+      Assert.assertFalse(mTfs.exist("/root/testFile" + k));
+    }
+  Calls inside this branch:
+    Assert.assertTrue: called 2x (line(s): 5, 6)
+    mTfs.exist: called 2x (line(s): 5, 8)
+    mTfs.rename: called 1x (line(s): 6)
+    Assert.assertEquals: called 1x (line(s): 7)
+    mTfs.getFileId: called 1x (line(s): 7)
+    Assert.assertFalse: called 1x (line(s): 8)
+
+Calls NOT inside any branch (always run):
+  mTfs.createFile: called 1x (line(s): 3)

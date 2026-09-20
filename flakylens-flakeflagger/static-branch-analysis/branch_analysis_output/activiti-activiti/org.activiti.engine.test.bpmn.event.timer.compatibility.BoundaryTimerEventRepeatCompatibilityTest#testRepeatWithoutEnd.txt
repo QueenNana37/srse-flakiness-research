@@ -1,13 +1,76 @@
 Test: org.activiti.engine.test.bpmn.event.timer.compatibility.BoundaryTimerEventRepeatCompatibilityTest#testRepeatWithoutEnd
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 77 method call(s), 31 unique method(s) called
 
-Line 49: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 62: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 74: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 48: for ---
+for (int i = 0; i < 9; i++) {
+      nextTimeCal.add(Calendar.SECOND, 2);
+      processEngineConfiguration.getClock().setCurrentTime(nextTimeCal.getTime());
+      waitForJobExecutorToProcessAllJobs(2000, 100);
+      // a new job must be prepared because there are 10 repeats 2 seconds interval
+      
+      jobs = managementService.createTimerJobQuery().list();
+      assertEquals(1, jobs.size());
+    }
+  Calls inside this branch:
+    nextTimeCal.add: called 1x (line(s): 49)
+    processEngineConfiguration.getClock: called 1x (line(s): 50)
+    setCurrentTime: called 1x (line(s): 50)
+    nextTimeCal.getTime: called 1x (line(s): 50)
+    waitForJobExecutorToProcessAllJobs: called 1x (line(s): 51)
+    managementService.createTimerJobQuery: called 1x (line(s): 54)
+    list: called 1x (line(s): 54)
+    assertEquals: called 1x (line(s): 55)
+    jobs.size: called 1x (line(s): 55)
+
+--- Line 61: try ---
+try {
+      waitForJobExecutorToProcessAllJobs(2000, 100);
+    } catch (Exception ex) {
+      fail("Should not have any other jobs because the endDate is reached");
+    }
+  Calls inside this branch:
+    waitForJobExecutorToProcessAllJobs: called 1x (line(s): 62)
+    fail: called 1x (line(s): 64)
+
+--- Line 73: try ---
+try {
+      waitForJobExecutorToProcessAllJobs(2000, 500);
+    } catch (Exception e) {
+      fail("No jobs should be active here.");
+    }
+  Calls inside this branch:
+    waitForJobExecutorToProcessAllJobs: called 1x (line(s): 74)
+    fail: called 1x (line(s): 76)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 10x (line(s): 23, 26, 33, 46, 69, 70, 81, 85, 87, 91)
+  list: called 8x (line(s): 22, 32, 45, 67, 80, 84, 86, 90)
+  jobs.size: called 4x (line(s): 33, 46, 85, 87)
+  taskService.createTaskQuery: called 3x (line(s): 22, 67, 90)
+  tasks.size: called 3x (line(s): 23, 70, 91)
+  managementService.createTimerJobQuery: called 3x (line(s): 32, 45, 86)
+  Calendar.getInstance: called 2x (line(s): 4, 14)
+  calendar.getTime: called 2x (line(s): 5, 10)
+  processEngineConfiguration.getClock: called 2x (line(s): 16, 59)
+  setCurrentTime: called 2x (line(s): 16, 59)
+  nextTimeCal.getTime: called 2x (line(s): 16, 59)
+  tasks.get: called 2x (line(s): 25, 68)
+  task.getName: called 2x (line(s): 26, 69)
+  taskService.complete: called 2x (line(s): 30, 71)
+  task.getId: called 2x (line(s): 30, 71)
+  calendar.add: called 1x (line(s): 7)
+  ISODateTimeFormat.dateTime: called 1x (line(s): 9)
+  DateTime: called 1x (line(s): 10)
+  fmt.print: called 1x (line(s): 11)
+  nextTimeCal.setTime: called 1x (line(s): 15)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 18)
+  runtimeService.setVariable: called 1x (line(s): 20)
+  processInstance.getId: called 1x (line(s): 20)
+  jobs.get: called 1x (line(s): 37)
+  changeConfigurationToPlainText: called 1x (line(s): 38)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 42)
+  nextTimeCal.add: called 1x (line(s): 58)
+  runtimeService.createProcessInstanceQuery: called 1x (line(s): 80)
+  processInstances.size: called 1x (line(s): 81)
+  managementService.createJobQuery: called 1x (line(s): 84)

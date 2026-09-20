@@ -1,10 +1,46 @@
 Test: org.apache.hadoop.hbase.regionserver.TestStoreFile#testReference
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 29 method call(s), 19 unique method(s) called
 
-Line 28: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 25: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 24: for ---
+for(boolean first = true; (!s.isSeeked() && s.seekTo()) || s.next();) {
+      ByteBuffer bb = s.getKey();
+      kv = KeyValue.createKeyValueFromKey(bb);
+      if (first) {
+        assertTrue(Bytes.equals(kv.getRow(), midRow));
+        first = false;
+      }
+    }
+  Calls inside this branch:
+    s.isSeeked: called 1x (line(s): 24)
+    s.seekTo: called 1x (line(s): 24)
+    s.next: called 1x (line(s): 24)
+    s.getKey: called 1x (line(s): 25)
+    KeyValue.createKeyValueFromKey: called 1x (line(s): 26)
+
+--- Line 27: if ---
+if (first) {
+        assertTrue(Bytes.equals(kv.getRow(), midRow));
+        first = false;
+      }
+  Calls inside this branch:
+    assertTrue: called 1x (line(s): 28)
+    Bytes.equals: called 1x (line(s): 28)
+    kv.getRow: called 1x (line(s): 28)
+
+Calls NOT inside any branch (always run):
+  Path: called 3x (line(s): 3, 3, 4)
+  kv.getRow: called 3x (line(s): 15, 17, 32)
+  StoreFile: called 2x (line(s): 9, 20)
+  KeyValue.createKeyValueFromKey: called 2x (line(s): 14, 16)
+  StoreFile.getWriter: called 1x (line(s): 6)
+  writeStoreFile: called 1x (line(s): 8)
+  writer.getPath: called 1x (line(s): 9)
+  hsf.getReader: called 1x (line(s): 10)
+  reader.midkey: called 1x (line(s): 14)
+  reader.getLastKey: called 1x (line(s): 16)
+  StoreFile.split: called 1x (line(s): 19)
+  refHsf.getReader: called 1x (line(s): 23)
+  getScanner: called 1x (line(s): 23)
+  assertTrue: called 1x (line(s): 32)
+  Bytes.equals: called 1x (line(s): 32)

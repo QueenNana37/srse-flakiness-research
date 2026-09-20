@@ -1,10 +1,37 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateClusterWithHostMapping
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 21 method call(s), 11 unique method(s) called
 
-Line 9: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 16: try statement
-    -> try-block completes normally
-    -> catch triggered: ClusterNotFoundException
+--- Line 8: try ---
+try {
+      controller.createCluster(r);
+      fail("Expected create cluster to fail for invalid hosts");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createCluster: called 1x (line(s): 9)
+    fail: called 1x (line(s): 10)
+
+--- Line 15: try ---
+try {
+      clusters.getCluster("c1");
+      fail("Expected to fail for non created cluster");
+    } catch (ClusterNotFoundException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    clusters.getCluster: called 1x (line(s): 16)
+    fail: called 1x (line(s): 17)
+
+Calls NOT inside any branch (always run):
+  clusters.getHost: called 4x (line(s): 24, 25, 26, 27)
+  hostNames.add: called 2x (line(s): 4, 5)
+  clusters.addHost: called 2x (line(s): 22, 23)
+  setOsType: called 2x (line(s): 24, 25)
+  persist: called 2x (line(s): 26, 27)
+  HashSet<String>: called 1x (line(s): 3)
+  ClusterRequest: called 1x (line(s): 6)
+  controller.createCluster: called 1x (line(s): 29)
+  Assert.assertNotNull: called 1x (line(s): 30)
+  clusters.getCluster: called 1x (line(s): 30)

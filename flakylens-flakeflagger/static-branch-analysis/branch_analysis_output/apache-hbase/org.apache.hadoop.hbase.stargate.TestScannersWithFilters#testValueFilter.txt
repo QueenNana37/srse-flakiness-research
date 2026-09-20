@@ -1,5 +1,16 @@
 Test: org.apache.hadoop.hbase.stargate.TestScannersWithFilters#testValueFilter
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 77 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  KeyValue: called 18x (line(s): 100, 101, 102, 103, 104, 105, 107, 108, 109, 110, 111, 112, 114, 115, 116, 117, 118, 119)
+  ValueFilter: called 10x (line(s): 6, 15, 24, 34, 44, 54, 64, 74, 84, 93)
+  Scan: called 10x (line(s): 8, 17, 26, 36, 46, 56, 66, 76, 86, 95)
+  s.setFilter: called 10x (line(s): 9, 18, 27, 37, 47, 57, 67, 77, 87, 96)
+  BinaryComparator: called 9x (line(s): 7, 16, 35, 45, 55, 65, 75, 85, 94)
+  Bytes.toBytes: called 9x (line(s): 7, 16, 35, 45, 55, 65, 75, 85, 94)
+  verifyScanNoEarlyOut: called 9x (line(s): 10, 19, 28, 38, 48, 58, 68, 78, 88)
+  RegexStringComparator: called 1x (line(s): 25)
+  verifyScanFull: called 1x (line(s): 121)

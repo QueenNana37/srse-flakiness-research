@@ -1,10 +1,37 @@
 Test: tachyon.client.table.RawColumnTest#basicTest
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 10 method call(s), 9 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 11: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 8: for ---
+for (int col = 0; col < Constants.MAX_COLUMNS / 10; col ++) {
+      RawColumn column = table.getRawColumn(col);
+      for (int pid = 0; pid < 5; pid ++) {
+        Assert.assertTrue(column.createPartition(pid));
+        TachyonFile file = column.getPartition(pid);
+        Assert.assertEquals("/table" + Constants.PATH_SEPARATOR + MasterInfo.COL + col + 
+            Constants.PATH_SEPARATOR + pid, file.getPath());
+      }
+      Assert.assertEquals(5, column.partitions());
+    }
+  Calls inside this branch:
+    table.getRawColumn: called 1x (line(s): 9)
+    Assert.assertEquals: called 1x (line(s): 16)
+    column.partitions: called 1x (line(s): 16)
+
+--- Line 10: for ---
+for (int pid = 0; pid < 5; pid ++) {
+        Assert.assertTrue(column.createPartition(pid));
+        TachyonFile file = column.getPartition(pid);
+        Assert.assertEquals("/table" + Constants.PATH_SEPARATOR + MasterInfo.COL + col + 
+            Constants.PATH_SEPARATOR + pid, file.getPath());
+      }
+  Calls inside this branch:
+    Assert.assertTrue: called 1x (line(s): 11)
+    column.createPartition: called 1x (line(s): 11)
+    column.getPartition: called 1x (line(s): 12)
+    Assert.assertEquals: called 1x (line(s): 13)
+    file.getPath: called 1x (line(s): 14)
+
+Calls NOT inside any branch (always run):
+  mTfs.createRawTable: called 1x (line(s): 5)
+  mTfs.getRawTable: called 1x (line(s): 6)

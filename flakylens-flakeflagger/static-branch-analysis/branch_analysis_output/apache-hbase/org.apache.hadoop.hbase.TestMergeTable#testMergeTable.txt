@@ -1,5 +1,11 @@
 Test: org.apache.hadoop.hbase.TestMergeTable#testMergeTable
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 4 method call(s), 4 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 1x (line(s): 2)
+  HMerge.merge: called 1x (line(s): 3)
+  dfsCluster.getFileSystem: called 1x (line(s): 3)
+  desc.getName: called 1x (line(s): 3)

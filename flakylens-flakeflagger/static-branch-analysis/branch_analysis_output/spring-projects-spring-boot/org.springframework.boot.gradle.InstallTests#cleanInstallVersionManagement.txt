@@ -1,5 +1,13 @@
 Test: org.springframework.boot.gradle.InstallTests#cleanInstallVersionManagement
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  ProjectCreator: called 1x (line(s): 3)
+  createProject: called 1x (line(s): 3)
+  project.newBuild: called 1x (line(s): 4)
+  forTasks: called 1x (line(s): 4)
+  withArguments: called 1x (line(s): 5)
+  run: called 1x (line(s): 5)

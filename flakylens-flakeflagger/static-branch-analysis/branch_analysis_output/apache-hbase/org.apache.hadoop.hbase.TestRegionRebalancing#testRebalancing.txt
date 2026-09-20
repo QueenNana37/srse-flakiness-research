@@ -1,7 +1,22 @@
 Test: org.apache.hadoop.hbase.TestRegionRebalancing#testRebalancing
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 22 method call(s), 8 unique method(s) called
 
-Line 33: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 32: for ---
+for (int i = 0; i < 6; i++){
+      LOG.debug("Adding " + (i + 5) + "th region server");
+      cluster.startRegionServer();
+    }
+  Calls inside this branch:
+    LOG.debug: called 1x (line(s): 33)
+    cluster.startRegionServer: called 1x (line(s): 34)
+
+Calls NOT inside any branch (always run):
+  assertRegionsAreBalanced: called 6x (line(s): 7, 12, 17, 23, 30, 36)
+  LOG.debug: called 5x (line(s): 9, 15, 20, 26, 28)
+  cluster.startRegionServer: called 4x (line(s): 11, 16, 27, 29)
+  HTable: called 1x (line(s): 2)
+  assertEquals: called 1x (line(s): 3)
+  table.getStartKeys: called 1x (line(s): 4)
+  cluster.stopRegionServer: called 1x (line(s): 21)
+  cluster.waitOnRegionServer: called 1x (line(s): 22)

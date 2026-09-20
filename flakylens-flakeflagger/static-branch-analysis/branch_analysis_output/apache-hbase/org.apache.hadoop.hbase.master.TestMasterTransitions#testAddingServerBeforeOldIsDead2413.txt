@@ -1,22 +1,114 @@
 Test: org.apache.hadoop.hbase.master.TestMasterTransitions#testAddingServerBeforeOldIsDead2413
 STATUS: parsed successfully
-Branch points found: 6
+Summary: 6 branch point(s), 34 method call(s), 23 unique method(s) called
 
-Line 25: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 27: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 20: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 36: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 13: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 21: try statement
-    -> try-block completes normally
-    -> catch triggered: IOException
+--- Line 12: try ---
+try {
+      LOG.info("KILLED=" + metaHRS);
+      metaHRS.kill();
+      c.set(HConstants.REGIONSERVER_PORT, Integer.toString(port));
+      // Try and start new regionserver.  It might clash with the old
+      // regionserver port so keep trying to get past the BindException.
+      HRegionServer hrs = null;
+      while (true) {
+        try {
+          hrs = cluster.startRegionServer().getRegionServer();
+          break;
+        } catch (IOException e) {
+          if (e.getCause() != null && e.getCause() instanceof InvocationTargetException) {
+            InvocationTargetException ee = (InvocationTargetException)e.getCause();
+            if (ee.getCause() != null && ee.getCause() instanceof BindException) {
+              LOG.info("BindException; retrying: " + e.toString());
+            }
+          }
+        }
+      }
+      LOG.info("STARTED=" + hrs);
+      // Wait until he's been given at least 3 regions before we go on to try
+      // and count rows in table.
+      while (hrs.getOnlineRegions().size() < 3) Threads.sleep(100);
+      LOG.info(hrs.toString() + " has " + hrs.getOnlineRegions().size() +
+        " regions");
+      assertEquals(count, count());
+    } finally {
+      c.set(HConstants.REGIONSERVER_PORT, oldPort);
+    }
+  Calls inside this branch:
+    LOG.info: called 3x (line(s): 13, 32, 36)
+    c.set: called 2x (line(s): 15, 40)
+    metaHRS.kill: called 1x (line(s): 14)
+    Integer.toString: called 1x (line(s): 15)
+    hrs.toString: called 1x (line(s): 36)
+    hrs.getOnlineRegions: called 1x (line(s): 36)
+    size: called 1x (line(s): 36)
+    assertEquals: called 1x (line(s): 38)
+    count: called 1x (line(s): 38)
+
+--- Line 19: while ---
+while (true) {
+        try {
+          hrs = cluster.startRegionServer().getRegionServer();
+          break;
+        } catch (IOException e) {
+          if (e.getCause() != null && e.getCause() instanceof InvocationTargetException) {
+            InvocationTargetException ee = (InvocationTargetException)e.getCause();
+            if (ee.getCause() != null && ee.getCause() instanceof BindException) {
+              LOG.info("BindException; retrying: " + e.toString());
+            }
+          }
+        }
+      }
+
+--- Line 20: try ---
+try {
+          hrs = cluster.startRegionServer().getRegionServer();
+          break;
+        } catch (IOException e) {
+          if (e.getCause() != null && e.getCause() instanceof InvocationTargetException) {
+            InvocationTargetException ee = (InvocationTargetException)e.getCause();
+            if (ee.getCause() != null && ee.getCause() instanceof BindException) {
+              LOG.info("BindException; retrying: " + e.toString());
+            }
+          }
+        }
+  Calls inside this branch:
+    cluster.startRegionServer: called 1x (line(s): 21)
+    getRegionServer: called 1x (line(s): 21)
+
+--- Line 24: if ---
+if (e.getCause() != null && e.getCause() instanceof InvocationTargetException) {
+            InvocationTargetException ee = (InvocationTargetException)e.getCause();
+            if (ee.getCause() != null && ee.getCause() instanceof BindException) {
+              LOG.info("BindException; retrying: " + e.toString());
+            }
+          }
+  Calls inside this branch:
+    e.getCause: called 3x (line(s): 24, 24, 25)
+
+--- Line 26: if ---
+if (ee.getCause() != null && ee.getCause() instanceof BindException) {
+              LOG.info("BindException; retrying: " + e.toString());
+            }
+  Calls inside this branch:
+    ee.getCause: called 2x (line(s): 26, 26)
+    LOG.info: called 1x (line(s): 27)
+    e.toString: called 1x (line(s): 27)
+
+--- Line 35: while ---
+while (hrs.getOnlineRegions().size() < 3) Threads.sleep(100);
+  Calls inside this branch:
+    hrs.getOnlineRegions: called 1x (line(s): 35)
+    size: called 1x (line(s): 35)
+    Threads.sleep: called 1x (line(s): 35)
+
+Calls NOT inside any branch (always run):
+  LOG.info: called 1x (line(s): 3)
+  TEST_UTIL.getHBaseCluster: called 1x (line(s): 4)
+  count: called 1x (line(s): 5)
+  cluster.getServerWithMeta: called 1x (line(s): 6)
+  cluster.getRegionServer: called 1x (line(s): 8)
+  metaHRS.getServerInfo: called 1x (line(s): 9)
+  getServerAddress: called 1x (line(s): 9)
+  getPort: called 1x (line(s): 9)
+  TEST_UTIL.getConfiguration: called 1x (line(s): 10)
+  c.get: called 1x (line(s): 11)

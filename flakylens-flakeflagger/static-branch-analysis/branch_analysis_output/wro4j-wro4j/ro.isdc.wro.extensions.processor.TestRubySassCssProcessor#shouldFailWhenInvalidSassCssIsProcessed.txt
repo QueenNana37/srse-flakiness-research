@@ -1,7 +1,21 @@
 Test: ro.isdc.wro.extensions.processor.TestRubySassCssProcessor#shouldFailWhenInvalidSassCssIsProcessed
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 7 method call(s), 7 unique method(s) called
 
-Line 10: try statement
-    -> try-block completes normally
-    -> catch triggered: WroRuntimeException
+--- Line 9: try ---
+try {
+          processor.process(null, new FileReader(input), new StringWriter());
+          fail("Shouldn't have failed");
+        } catch (final WroRuntimeException e) {
+          // expected to throw exception, continue
+        }
+  Calls inside this branch:
+    processor.process: called 1x (line(s): 10)
+    FileReader: called 1x (line(s): 10)
+    StringWriter: called 1x (line(s): 10)
+    fail: called 1x (line(s): 11)
+
+Calls NOT inside any branch (always run):
+  File: called 1x (line(s): 4)
+  url.getFile: called 1x (line(s): 4)
+  WroTestUtils.forEachFileInFolder: called 1x (line(s): 5)

@@ -1,15 +1,114 @@
 Test: org.apache.hadoop.hbase.regionserver.TestWideScanner#testWideScanBatching
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 28 method call(s), 22 unique method(s) called
 
-Line 24: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 27: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: do-while statement
-    -> loop body runs at least once (always)
-Line 3: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 2: try ---
+try {
+      this.r = createNewHRegion(REGION_INFO.getTableDesc(), null, null);
+      int inserted = addWideContent(this.r, HConstants.CATALOG_FAMILY);
+      List<KeyValue> results = new ArrayList<KeyValue>();
+      Scan scan = new Scan();
+      scan.addFamily(HConstants.CATALOG_FAMILY);
+      scan.setBatch(BATCH);
+      InternalScanner s = r.getScanner(scan);
+      int total = 0;
+      int i = 0;
+      boolean more;
+      do {
+        more = s.next(results);
+        i++;
+        LOG.info("iteration #" + i + ", results.size=" + results.size());
+
+        // assert that the result set is no larger than BATCH
+        assertTrue(results.size() <= BATCH);
+
+        total += results.size();
+
+        if (results.size() > 0) {
+          // assert that all results are from the same row
+          byte[] row = results.get(0).getRow();
+          for (KeyValue kv: results) {
+            assertTrue(Bytes.equals(row, kv.getRow()));
+          }
+        }
+
+        results.clear();
+      } while (more);
+
+      // assert that the scanner returned all values
+      LOG.info("inserted " + inserted + ", scanned " + total);
+      assertTrue(total == inserted);
+
+      s.close();
+    } finally {
+      this.r.close();
+      this.r.getLog().closeAndDelete();
+      shutdownDfs(this.cluster);
+    }
+  Calls inside this branch:
+    createNewHRegion: called 1x (line(s): 3)
+    REGION_INFO.getTableDesc: called 1x (line(s): 3)
+    addWideContent: called 1x (line(s): 4)
+    ArrayList<KeyValue>: called 1x (line(s): 5)
+    Scan: called 1x (line(s): 6)
+    scan.addFamily: called 1x (line(s): 7)
+    scan.setBatch: called 1x (line(s): 8)
+    r.getScanner: called 1x (line(s): 9)
+    LOG.info: called 1x (line(s): 35)
+    assertTrue: called 1x (line(s): 36)
+    s.close: called 1x (line(s): 38)
+    this.r.close: called 1x (line(s): 40)
+    this.r.getLog: called 1x (line(s): 41)
+    closeAndDelete: called 1x (line(s): 41)
+    shutdownDfs: called 1x (line(s): 42)
+
+--- Line 13: do-while ---
+do {
+        more = s.next(results);
+        i++;
+        LOG.info("iteration #" + i + ", results.size=" + results.size());
+
+        // assert that the result set is no larger than BATCH
+        assertTrue(results.size() <= BATCH);
+
+        total += results.size();
+
+        if (results.size() > 0) {
+          // assert that all results are from the same row
+          byte[] row = results.get(0).getRow();
+          for (KeyValue kv: results) {
+            assertTrue(Bytes.equals(row, kv.getRow()));
+          }
+        }
+
+        results.clear();
+      } while (more);
+  Calls inside this branch:
+    results.size: called 3x (line(s): 16, 19, 21)
+    s.next: called 1x (line(s): 14)
+    LOG.info: called 1x (line(s): 16)
+    assertTrue: called 1x (line(s): 19)
+    results.clear: called 1x (line(s): 31)
+
+--- Line 23: if ---
+if (results.size() > 0) {
+          // assert that all results are from the same row
+          byte[] row = results.get(0).getRow();
+          for (KeyValue kv: results) {
+            assertTrue(Bytes.equals(row, kv.getRow()));
+          }
+        }
+  Calls inside this branch:
+    results.size: called 1x (line(s): 23)
+    results.get: called 1x (line(s): 25)
+    getRow: called 1x (line(s): 25)
+
+--- Line 26: for ---
+for (KeyValue kv: results) {
+            assertTrue(Bytes.equals(row, kv.getRow()));
+          }
+  Calls inside this branch:
+    assertTrue: called 1x (line(s): 27)
+    Bytes.equals: called 1x (line(s): 27)
+    kv.getRow: called 1x (line(s): 27)
+

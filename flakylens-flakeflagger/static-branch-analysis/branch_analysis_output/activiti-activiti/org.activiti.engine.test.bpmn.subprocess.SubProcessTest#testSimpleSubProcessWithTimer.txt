@@ -1,7 +1,40 @@
 Test: org.activiti.engine.test.bpmn.subprocess.SubProcessTest#testSimpleSubProcessWithTimer
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 34 method call(s), 24 unique method(s) called
 
-Line 22: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
+--- Line 21: if ---
+if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.ACTIVITY)) {
+      HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery().taskName("Task in subprocess").singleResult();
+      assertNotNull(historicTaskInstance.getEndTime());
+      
+      HistoricActivityInstance historicActivityInstance = historyService.createHistoricActivityInstanceQuery().activityId("subProcessTask").singleResult();
+      assertNotNull(historicActivityInstance.getEndTime());
+    }
+  Calls inside this branch:
+    singleResult: called 2x (line(s): 22, 25)
+    assertNotNull: called 2x (line(s): 23, 26)
+    processEngineConfiguration.getHistoryLevel: called 1x (line(s): 21)
+    isAtLeast: called 1x (line(s): 21)
+    historyService.createHistoricTaskInstanceQuery: called 1x (line(s): 22)
+    taskName: called 1x (line(s): 22)
+    historicTaskInstance.getEndTime: called 1x (line(s): 23)
+    historyService.createHistoricActivityInstanceQuery: called 1x (line(s): 25)
+    activityId: called 1x (line(s): 25)
+    historicActivityInstance.getEndTime: called 1x (line(s): 26)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 9, 13, 18)
+  Date: called 2x (line(s): 4, 12)
+  taskService.createTaskQuery: called 2x (line(s): 8, 17)
+  processInstanceId: called 2x (line(s): 8, 17)
+  pi.getId: called 2x (line(s): 8, 17)
+  singleResult: called 2x (line(s): 8, 17)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 7)
+  subProcessTask.getName: called 1x (line(s): 9)
+  processEngineConfiguration.getClock: called 1x (line(s): 12)
+  setCurrentTime: called 1x (line(s): 12)
+  startTime.getTime: called 1x (line(s): 12)
+  managementService.createTimerJobQuery: called 1x (line(s): 13)
+  count: called 1x (line(s): 13)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 14)
+  escalationTask.getName: called 1x (line(s): 18)

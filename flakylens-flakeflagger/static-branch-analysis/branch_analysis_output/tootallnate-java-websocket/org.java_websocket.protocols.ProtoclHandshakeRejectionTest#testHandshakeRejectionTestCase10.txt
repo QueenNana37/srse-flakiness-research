@@ -1,5 +1,12 @@
 Test: org.java_websocket.protocols.ProtoclHandshakeRejectionTest#testHandshakeRejectionTestCase10
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 5 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  testProtocolRejection: called 1x (line(s): 3)
+  Draft_6455: called 1x (line(s): 3)
+  emptyList: called 1x (line(s): 3)
+  singletonList: called 1x (line(s): 3)
+  Protocol: called 1x (line(s): 3)

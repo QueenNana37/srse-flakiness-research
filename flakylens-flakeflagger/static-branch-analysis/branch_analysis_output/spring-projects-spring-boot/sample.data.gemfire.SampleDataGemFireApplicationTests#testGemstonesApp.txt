@@ -1,10 +1,36 @@
 Test: sample.data.gemfire.SampleDataGemFireApplicationTests#testGemstonesApp
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 52 method call(s), 11 unique method(s) called
 
-Line 14: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalGemstoneException
-Line 31: try statement
-    -> try-block completes normally
-    -> catch triggered: IllegalGemstoneException
+--- Line 13: try ---
+
+			this.gemstoneService.save(createGemstone("Coal"));
+		}
+		catch (IllegalGemstoneException expected) {
+		}
+  Calls inside this branch:
+    this.gemstoneService.save: called 1x (line(s): 14)
+    createGemstone: called 1x (line(s): 14)
+
+--- Line 30: try ---
+
+			this.gemstoneService.save(createGemstone("Quartz"));
+		}
+		catch (IllegalGemstoneException expected) {
+		}
+  Calls inside this branch:
+    this.gemstoneService.save: called 1x (line(s): 31)
+    createGemstone: called 1x (line(s): 31)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 7x (line(s): 3, 9, 19, 26, 36, 39, 40)
+  createGemstone: called 6x (line(s): 6, 7, 23, 24, 39, 40)
+  this.gemstoneService.count: called 5x (line(s): 3, 9, 19, 26, 36)
+  assertTrue: called 5x (line(s): 4, 10, 20, 27, 37)
+  asList: called 5x (line(s): 4, 10, 20, 27, 37)
+  this.gemstoneService.list: called 5x (line(s): 4, 10, 20, 27, 37)
+  this.gemstoneService.save: called 4x (line(s): 6, 7, 23, 24)
+  containsAll: called 4x (line(s): 10, 20, 27, 37)
+  getGemstones: called 4x (line(s): 11, 21, 28, 38)
+  this.gemstoneService.get: called 2x (line(s): 39, 40)
+  isEmpty: called 1x (line(s): 4)

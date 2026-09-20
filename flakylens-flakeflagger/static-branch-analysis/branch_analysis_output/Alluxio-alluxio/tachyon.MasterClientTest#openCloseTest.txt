@@ -1,5 +1,16 @@
 Test: tachyon.MasterClientTest#openCloseTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 18 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  masterClient.isConnected: called 4x (line(s): 5, 7, 11, 13)
+  Assert.assertTrue: called 4x (line(s): 7, 9, 13, 14)
+  Assert.assertFalse: called 2x (line(s): 5, 11)
+  masterClient.connect: called 2x (line(s): 6, 12)
+  masterClient.user_getFileId: called 2x (line(s): 9, 14)
+  MasterClient: called 1x (line(s): 4)
+  mMasterInfo.getMasterAddress: called 1x (line(s): 4)
+  masterClient.user_createFile: called 1x (line(s): 8)
+  masterClient.cleanConnect: called 1x (line(s): 10)

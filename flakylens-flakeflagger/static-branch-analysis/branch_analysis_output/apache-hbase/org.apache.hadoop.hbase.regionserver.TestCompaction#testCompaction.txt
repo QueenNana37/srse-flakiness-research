@@ -1,18 +1,98 @@
 Test: org.apache.hadoop.hbase.regionserver.TestCompaction#testCompaction
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 81 method call(s), 38 unique method(s) called
 
-Line 86: if statement
-    -> then-branch executes
-    -> else-branch executes
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 80: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 100: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 84: do-while statement
-    -> loop body runs at least once (always)
+--- Line 3: for ---
+for (int i = 0; i < COMPACTION_THRESHOLD; i++) {
+      createStoreFile(r);
+    }
+  Calls inside this branch:
+    createStoreFile: called 1x (line(s): 4)
+
+--- Line 79: for ---
+for (StoreFile f: this.r.stores.get(COLUMN_FAMILY_TEXT).getStorefiles().
+        values()) {
+      HFileScanner scanner = f.getReader().getScanner(false, false);
+      scanner.seekTo();
+      do {
+        byte [] row = scanner.getKeyValue().getRow();
+        if (Bytes.equals(row, STARTROW)) {
+          containsStartRow = true;
+          count++;
+        } else {
+          // After major compaction, should be none of these rows in compacted
+          // file.
+          assertFalse(Bytes.equals(row, secondRowBytes));
+        }
+      } while(scanner.next());
+    }
+  Calls inside this branch:
+    this.r.stores.get: called 1x (line(s): 79)
+    getStorefiles: called 1x (line(s): 79)
+    values: called 1x (line(s): 80)
+    f.getReader: called 1x (line(s): 81)
+    getScanner: called 1x (line(s): 81)
+    scanner.seekTo: called 1x (line(s): 82)
+
+--- Line 83: do-while ---
+do {
+        byte [] row = scanner.getKeyValue().getRow();
+        if (Bytes.equals(row, STARTROW)) {
+          containsStartRow = true;
+          count++;
+        } else {
+          // After major compaction, should be none of these rows in compacted
+          // file.
+          assertFalse(Bytes.equals(row, secondRowBytes));
+        }
+      } while(scanner.next());
+  Calls inside this branch:
+    scanner.getKeyValue: called 1x (line(s): 84)
+    getRow: called 1x (line(s): 84)
+    assertFalse: called 1x (line(s): 91)
+    Bytes.equals: called 1x (line(s): 91)
+    scanner.next: called 1x (line(s): 93)
+
+--- Line 85: if ---
+if (Bytes.equals(row, STARTROW)) {
+          containsStartRow = true;
+          count++;
+        }
+  Calls inside this branch:
+    Bytes.equals: called 1x (line(s): 85)
+
+--- Line 99: for ---
+for (Store store: this.r.stores.values()) {
+      store.ttl = ttlInSeconds * 1000;
+    }
+  Calls inside this branch:
+    this.r.stores.values: called 1x (line(s): 99)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 9x (line(s): 23, 25, 53, 58, 65, 72, 95, 96, 105)
+  r.get: called 6x (line(s): 15, 31, 52, 57, 64, 71)
+  Get: called 6x (line(s): 15, 31, 52, 57, 64, 71)
+  addFamily: called 6x (line(s): 15, 31, 52, 57, 64, 71)
+  setMaxVersions: called 6x (line(s): 15, 31, 52, 57, 64, 71)
+  result.isEmpty: called 4x (line(s): 53, 58, 65, 72)
+  assertEquals: called 3x (line(s): 18, 34, 69)
+  r.flushcache: called 3x (line(s): 20, 56, 62)
+  r.compactStores: called 3x (line(s): 21, 68, 103)
+  result.size: called 2x (line(s): 18, 34)
+  this.cluster.getFileSystem: called 2x (line(s): 23, 25)
+  exists: called 2x (line(s): 23, 25)
+  createStoreFile: called 1x (line(s): 2)
+  addContent: called 1x (line(s): 9)
+  HRegionIncommon: called 1x (line(s): 9)
+  Bytes.toString: called 1x (line(s): 9)
+  START_KEY.getBytes: called 1x (line(s): 27)
+  Delete: called 1x (line(s): 45)
+  System.currentTimeMillis: called 1x (line(s): 45)
+  delete.deleteFamily: called 1x (line(s): 47)
+  r.delete: called 1x (line(s): 48)
+  createSmallerStoreFile: called 1x (line(s): 61)
+  r.getStore: called 1x (line(s): 69)
+  getStorefiles: called 1x (line(s): 69)
+  size: called 1x (line(s): 69)
+  Thread.sleep: called 1x (line(s): 102)
+  count: called 1x (line(s): 104)

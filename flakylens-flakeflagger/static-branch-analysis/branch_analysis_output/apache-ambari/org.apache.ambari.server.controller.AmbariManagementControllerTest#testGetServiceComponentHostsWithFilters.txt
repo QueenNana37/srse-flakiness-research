@@ -1,7 +1,70 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testGetServiceComponentHostsWithFilters
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 164 method call(s), 54 unique method(s) called
 
-Line 87: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 86: try ---
+try {
+      controller.getHostComponents(Collections.singleton(r));
+      fail("Expected failure for invalid cluster");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.getHostComponents: called 1x (line(s): 87)
+    Collections.singleton: called 1x (line(s): 87)
+    fail: called 1x (line(s): 88)
+
+Calls NOT inside any branch (always run):
+  ServiceComponentHostRequest: called 15x (line(s): 84, 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 162, 164)
+  c1.getClusterName: called 14x (line(s): 94, 100, 106, 112, 118, 124, 130, 136, 142, 148, 154, 160, 162, 164)
+  controller.getHostComponents: called 12x (line(s): 96, 102, 108, 114, 120, 126, 132, 138, 144, 150, 156, 169)
+  Assert.assertEquals: called 12x (line(s): 97, 103, 109, 115, 121, 127, 133, 139, 145, 151, 157, 170)
+  resps.size: called 12x (line(s): 97, 103, 109, 115, 121, 127, 133, 139, 145, 151, 157, 170)
+  Collections.singleton: called 11x (line(s): 96, 102, 108, 114, 120, 126, 132, 138, 144, 150, 156)
+  clusters.getHost: called 6x (line(s): 10, 11, 12, 13, 14, 15)
+  serviceComponentHostFactory.createNew: called 6x (line(s): 51, 53, 55, 57, 59, 61)
+  sc3.getName: called 5x (line(s): 107, 131, 149, 155, 163)
+  s3.getName: called 4x (line(s): 142, 148, 154, 162)
+  clusters.addHost: called 3x (line(s): 7, 8, 9)
+  setOsType: called 3x (line(s): 10, 11, 12)
+  persist: called 3x (line(s): 13, 14, 15)
+  clusters.mapHostToCluster: called 3x (line(s): 16, 17, 18)
+  serviceFactory.createNew: called 3x (line(s): 20, 21, 22)
+  c1.addService: called 3x (line(s): 24, 25, 26)
+  serviceComponentFactory.createNew: called 3x (line(s): 35, 36, 37)
+  sc1.addServiceComponentHost: called 3x (line(s): 64, 65, 66)
+  s1.addServiceComponent: called 2x (line(s): 40, 41)
+  sc2.addServiceComponentHost: called 2x (line(s): 67, 68)
+  s1.getName: called 2x (line(s): 100, 124)
+  State.INIT.toString: called 2x (line(s): 125, 137)
+  State.INSTALLED.toString: called 2x (line(s): 131, 149)
+  clusters.addCluster: called 1x (line(s): 3)
+  clusters.getCluster: called 1x (line(s): 4)
+  c1.setDesiredStackVersion: called 1x (line(s): 5)
+  StackId: called 1x (line(s): 5)
+  s1.setDesiredState: called 1x (line(s): 28)
+  s2.setDesiredState: called 1x (line(s): 29)
+  s1.persist: called 1x (line(s): 31)
+  s2.persist: called 1x (line(s): 32)
+  s3.persist: called 1x (line(s): 33)
+  s3.addServiceComponent: called 1x (line(s): 42)
+  sc1.setDesiredState: called 1x (line(s): 44)
+  sc3.setDesiredState: called 1x (line(s): 45)
+  sc1.persist: called 1x (line(s): 47)
+  sc2.persist: called 1x (line(s): 48)
+  sc3.persist: called 1x (line(s): 49)
+  sc3.addServiceComponentHost: called 1x (line(s): 69)
+  sch1.setDesiredState: called 1x (line(s): 71)
+  sch2.setDesiredState: called 1x (line(s): 72)
+  sch4.setDesiredState: called 1x (line(s): 73)
+  sch5.setDesiredState: called 1x (line(s): 74)
+  sch1.persist: called 1x (line(s): 76)
+  sch2.persist: called 1x (line(s): 77)
+  sch3.persist: called 1x (line(s): 78)
+  sch4.persist: called 1x (line(s): 79)
+  sch5.persist: called 1x (line(s): 80)
+  sch6.persist: called 1x (line(s): 81)
+  State.UNINSTALLED.toString: called 1x (line(s): 119)
+  HashSet<ServiceComponentHostRequest>: called 1x (line(s): 167)
+  reqs.addAll: called 1x (line(s): 168)
+  Arrays.asList: called 1x (line(s): 168)

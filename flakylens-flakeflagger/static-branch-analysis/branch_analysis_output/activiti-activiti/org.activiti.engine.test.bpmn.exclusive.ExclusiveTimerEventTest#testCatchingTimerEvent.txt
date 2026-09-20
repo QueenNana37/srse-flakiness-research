@@ -1,5 +1,20 @@
 Test: org.activiti.engine.test.bpmn.exclusive.ExclusiveTimerEventTest#testCatchingTimerEvent
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 16 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Date: called 2x (line(s): 5, 13)
+  assertEquals: called 2x (line(s): 10, 16)
+  jobQuery.count: called 2x (line(s): 10, 16)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 8)
+  managementService.createTimerJobQuery: called 1x (line(s): 9)
+  processInstanceId: called 1x (line(s): 9)
+  pi.getId: called 1x (line(s): 9)
+  processEngineConfiguration.getClock: called 1x (line(s): 13)
+  setCurrentTime: called 1x (line(s): 13)
+  startTime.getTime: called 1x (line(s): 13)
+  waitForJobExecutorToProcessAllJobsAndExecutableTimerJobs: called 1x (line(s): 14)
+  assertProcessEnded: called 1x (line(s): 17)
+  pi.getProcessInstanceId: called 1x (line(s): 17)

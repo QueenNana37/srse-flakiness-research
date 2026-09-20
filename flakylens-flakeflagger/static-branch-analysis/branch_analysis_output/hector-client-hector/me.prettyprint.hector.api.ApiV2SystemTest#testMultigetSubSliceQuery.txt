@@ -1,13 +1,62 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testMultigetSubSliceQuery
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 52 method call(s), 25 unique method(s) called
 
-Line 52: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 46: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 51: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 45: for ---
+for (Row<String, String, String> row2 : rows) {
+      assertNotNull(row2);
+      slice = row2.getColumnSlice();
+      assertNotNull(slice);
+      assertEquals(2, slice.getColumns().size());
+      for (HColumn<String, String> column : slice.getColumns()) {
+        if (!column.getName().equals("c000") && !column.getName().equals("c110")) {
+          fail("A columns with unexpected column name returned: " + column.getName());
+        }
+      }
+    }
+  Calls inside this branch:
+    assertNotNull: called 2x (line(s): 46, 48)
+    row2.getColumnSlice: called 1x (line(s): 47)
+    assertEquals: called 1x (line(s): 49)
+    slice.getColumns: called 1x (line(s): 49)
+    size: called 1x (line(s): 49)
+
+--- Line 50: for ---
+for (HColumn<String, String> column : slice.getColumns()) {
+        if (!column.getName().equals("c000") && !column.getName().equals("c110")) {
+          fail("A columns with unexpected column name returned: " + column.getName());
+        }
+      }
+  Calls inside this branch:
+    slice.getColumns: called 1x (line(s): 50)
+
+--- Line 51: if ---
+if (!column.getName().equals("c000") && !column.getName().equals("c110")) {
+          fail("A columns with unexpected column name returned: " + column.getName());
+        }
+  Calls inside this branch:
+    column.getName: called 3x (line(s): 51, 51, 52)
+    equals: called 2x (line(s): 51, 51)
+    fail: called 1x (line(s): 52)
+
+Calls NOT inside any branch (always run):
+  assertNotNull: called 6x (line(s): 17, 19, 22, 25, 31, 42)
+  assertEquals: called 6x (line(s): 20, 23, 27, 28, 32, 44)
+  createMultigetSubSliceQuery: called 2x (line(s): 10, 35)
+  q.setColumnFamily: called 2x (line(s): 11, 36)
+  q.setSuperColumn: called 2x (line(s): 12, 38)
+  q.setKeys: called 2x (line(s): 13, 37)
+  q.execute: called 2x (line(s): 16, 41)
+  r.get: called 2x (line(s): 18, 43)
+  rows.getCount: called 2x (line(s): 20, 44)
+  slice.getColumnByName: called 2x (line(s): 27, 28)
+  getValue: called 2x (line(s): 27, 28)
+  insertSuperColumns: called 1x (line(s): 6)
+  q.setColumnNames: called 1x (line(s): 15)
+  rows.getByKey: called 1x (line(s): 21)
+  row.getKey: called 1x (line(s): 23)
+  row.getColumnSlice: called 1x (line(s): 24)
+  slice.getColumns: called 1x (line(s): 30)
+  columns.size: called 1x (line(s): 32)
+  q.setRange: called 1x (line(s): 40)
+  deleteColumns: called 1x (line(s): 58)

@@ -1,43 +1,156 @@
 Test: org.apache.hadoop.hbase.TestScanMultipleVersions#testScanMultipleVersions
 STATUS: parsed successfully
-Branch points found: 13
+Summary: 13 branch point(s), 43 method call(s), 17 unique method(s) called
 
-Line 6: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 13: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 45: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 63: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 81: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 99: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 44: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 62: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 80: try statement
-    -> try-block completes normally
-    -> finally-block always runs
-Line 98: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 5: for ---
+for (int i = 0; i < ROWS.length; i++) {
+      for (int j = 0; j < TIMESTAMPS.length; j++) {
+        Get get = new Get(ROWS[i]);
+        get.addFamily(HConstants.CATALOG_FAMILY);
+        get.setTimeStamp(TIMESTAMPS[j]);
+        Result result = t.get(get);
+        int cellCount = 0;
+        for(@SuppressWarnings("unused")KeyValue kv : result.sorted()) {
+          cellCount++;
+        }
+        assertTrue(cellCount == 1);
+      }
+    }
+
+--- Line 6: for ---
+for (int j = 0; j < TIMESTAMPS.length; j++) {
+        Get get = new Get(ROWS[i]);
+        get.addFamily(HConstants.CATALOG_FAMILY);
+        get.setTimeStamp(TIMESTAMPS[j]);
+        Result result = t.get(get);
+        int cellCount = 0;
+        for(@SuppressWarnings("unused")KeyValue kv : result.sorted()) {
+          cellCount++;
+        }
+        assertTrue(cellCount == 1);
+      }
+  Calls inside this branch:
+    Get: called 1x (line(s): 7)
+    get.addFamily: called 1x (line(s): 8)
+    get.setTimeStamp: called 1x (line(s): 9)
+    t.get: called 1x (line(s): 10)
+    assertTrue: called 1x (line(s): 15)
+
+--- Line 12: for ---
+for(@SuppressWarnings("unused")KeyValue kv : result.sorted()) {
+          cellCount++;
+        }
+  Calls inside this branch:
+    result.sorted: called 1x (line(s): 12)
+
+--- Line 24: try ---
+try {
+      for (Result rr = null; (rr = s.next()) != null;) {
+        System.out.println(rr.toString());
+        count += 1;
+      }
+      assertEquals("Number of rows should be 2", 2, count);
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    assertEquals: called 1x (line(s): 29)
+    s.close: called 1x (line(s): 31)
+
+--- Line 25: for ---
+for (Result rr = null; (rr = s.next()) != null;) {
+        System.out.println(rr.toString());
+        count += 1;
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 25)
+    System.out.println: called 1x (line(s): 26)
+    rr.toString: called 1x (line(s): 26)
+
+--- Line 43: try ---
+try {
+      while (s.next() != null) {
+        count += 1;
+      }
+      assertEquals("Number of rows should be 2", 2, count);
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    assertEquals: called 1x (line(s): 47)
+    s.close: called 1x (line(s): 49)
+
+--- Line 44: while ---
+while (s.next() != null) {
+        count += 1;
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 44)
+
+--- Line 61: try ---
+try {
+      while (s.next() != null) {
+        count += 1;
+      }
+      assertEquals("Number of rows should be 2", 2, count);
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    assertEquals: called 1x (line(s): 65)
+    s.close: called 1x (line(s): 67)
+
+--- Line 62: while ---
+while (s.next() != null) {
+        count += 1;
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 62)
+
+--- Line 79: try ---
+try {
+      while (s.next() != null) {
+        count += 1;
+      }
+      assertEquals("Number of rows should be 2", 2, count);
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    assertEquals: called 1x (line(s): 83)
+    s.close: called 1x (line(s): 85)
+
+--- Line 80: while ---
+while (s.next() != null) {
+        count += 1;
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 80)
+
+--- Line 97: try ---
+try {
+      while (s.next() != null) {
+        count += 1;
+      }
+      assertEquals("Number of rows should be 2", 2, count);
+    } finally {
+      s.close();
+    }
+  Calls inside this branch:
+    assertEquals: called 1x (line(s): 101)
+    s.close: called 1x (line(s): 103)
+
+--- Line 98: while ---
+while (s.next() != null) {
+        count += 1;
+      }
+  Calls inside this branch:
+    s.next: called 1x (line(s): 98)
+
+Calls NOT inside any branch (always run):
+  Scan: called 5x (line(s): 21, 38, 56, 74, 92)
+  scan.addFamily: called 5x (line(s): 22, 40, 58, 76, 94)
+  t.getScanner: called 5x (line(s): 23, 42, 60, 78, 96)
+  scan.setTimeRange: called 2x (line(s): 39, 75)
+  scan.setTimeStamp: called 2x (line(s): 57, 93)
+  HTable: called 1x (line(s): 4)

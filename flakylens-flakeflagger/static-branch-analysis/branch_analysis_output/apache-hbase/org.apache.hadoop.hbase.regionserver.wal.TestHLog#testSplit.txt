@@ -1,22 +1,119 @@
 Test: org.apache.hadoop.hbase.regionserver.wal.TestHLog#testSplit
 STATUS: parsed successfully
-Branch points found: 6
+Summary: 6 branch point(s), 24 method call(s), 17 unique method(s) called
 
-Line 38: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 15: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 16: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 8: for ---
+for(int i = 0; i < howmany; i++) {
+      infos[i] = new HRegionInfo(new HTableDescriptor(tableName),
+                Bytes.toBytes("" + i), Bytes.toBytes("" + (i+1)), false);
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 2x (line(s): 10, 10)
+    HRegionInfo: called 1x (line(s): 9)
+    HTableDescriptor: called 1x (line(s): 9)
+
+--- Line 13: try ---
+try {
+      for (int ii = 0; ii < howmany; ii++) {
+        for (int i = 0; i < howmany; i++) {
+
+          for (int j = 0; j < howmany; j++) {
+            WALEdit edit = new WALEdit();
+            byte [] family = Bytes.toBytes("column");
+            byte [] qualifier = Bytes.toBytes(Integer.toString(j));
+            byte [] column = Bytes.toBytes("column:" + Integer.toString(j));
+            edit.add(new KeyValue(rowName, family, qualifier,
+                System.currentTimeMillis(), column));
+            System.out.println("Region " + i + ": " + edit);
+            log.append(infos[i], tableName, edit,
+              System.currentTimeMillis());
+          }
+        }
+        log.hflush();
+        log.rollWriter();
+      }
+      List<Path> splits =
+        HLog.splitLog(this.testDir, this.dir, this.oldLogDir, this.fs, this.conf);
+      verifySplits(splits, howmany);
+      log = null;
+    } finally {
+      if (log != null) {
+        log.closeAndDelete();
+      }
+    }
+  Calls inside this branch:
+    HLog.splitLog: called 1x (line(s): 33)
+    verifySplits: called 1x (line(s): 34)
+
+--- Line 14: for ---
+for (int ii = 0; ii < howmany; ii++) {
+        for (int i = 0; i < howmany; i++) {
+
+          for (int j = 0; j < howmany; j++) {
+            WALEdit edit = new WALEdit();
+            byte [] family = Bytes.toBytes("column");
+            byte [] qualifier = Bytes.toBytes(Integer.toString(j));
+            byte [] column = Bytes.toBytes("column:" + Integer.toString(j));
+            edit.add(new KeyValue(rowName, family, qualifier,
+                System.currentTimeMillis(), column));
+            System.out.println("Region " + i + ": " + edit);
+            log.append(infos[i], tableName, edit,
+              System.currentTimeMillis());
+          }
+        }
+        log.hflush();
+        log.rollWriter();
+      }
+  Calls inside this branch:
+    log.hflush: called 1x (line(s): 29)
+    log.rollWriter: called 1x (line(s): 30)
+
+--- Line 15: for ---
+for (int i = 0; i < howmany; i++) {
+
+          for (int j = 0; j < howmany; j++) {
+            WALEdit edit = new WALEdit();
+            byte [] family = Bytes.toBytes("column");
+            byte [] qualifier = Bytes.toBytes(Integer.toString(j));
+            byte [] column = Bytes.toBytes("column:" + Integer.toString(j));
+            edit.add(new KeyValue(rowName, family, qualifier,
+                System.currentTimeMillis(), column));
+            System.out.println("Region " + i + ": " + edit);
+            log.append(infos[i], tableName, edit,
+              System.currentTimeMillis());
+          }
+        }
+
+--- Line 17: for ---
+for (int j = 0; j < howmany; j++) {
+            WALEdit edit = new WALEdit();
+            byte [] family = Bytes.toBytes("column");
+            byte [] qualifier = Bytes.toBytes(Integer.toString(j));
+            byte [] column = Bytes.toBytes("column:" + Integer.toString(j));
+            edit.add(new KeyValue(rowName, family, qualifier,
+                System.currentTimeMillis(), column));
+            System.out.println("Region " + i + ": " + edit);
+            log.append(infos[i], tableName, edit,
+              System.currentTimeMillis());
+          }
+  Calls inside this branch:
+    Bytes.toBytes: called 3x (line(s): 19, 20, 21)
+    Integer.toString: called 2x (line(s): 20, 21)
+    System.currentTimeMillis: called 2x (line(s): 23, 26)
+    WALEdit: called 1x (line(s): 18)
+    edit.add: called 1x (line(s): 22)
+    KeyValue: called 1x (line(s): 22)
+    System.out.println: called 1x (line(s): 24)
+    log.append: called 1x (line(s): 25)
+
+--- Line 37: if ---
+if (log != null) {
+        log.closeAndDelete();
+      }
+  Calls inside this branch:
+    log.closeAndDelete: called 1x (line(s): 38)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 1x (line(s): 3)
+  getName: called 1x (line(s): 3)
+  HLog: called 1x (line(s): 5)

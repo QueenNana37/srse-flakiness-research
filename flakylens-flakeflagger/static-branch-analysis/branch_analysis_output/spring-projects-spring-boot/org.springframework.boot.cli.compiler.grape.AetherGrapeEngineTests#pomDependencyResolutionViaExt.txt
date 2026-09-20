@@ -1,5 +1,16 @@
 Test: org.springframework.boot.cli.compiler.grape.AetherGrapeEngineTests#pomDependencyResolutionViaExt
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  HashMap<String, Object>: called 1x (line(s): 3)
+  createDependency: called 1x (line(s): 4)
+  dependency.put: called 1x (line(s): 6)
+  this.grapeEngine.grab: called 1x (line(s): 7)
+  this.groovyClassLoader.getURLs: called 1x (line(s): 8)
+  assertEquals: called 1x (line(s): 9)
+  assertTrue: called 1x (line(s): 10)
+  toExternalForm: called 1x (line(s): 10)
+  endsWith: called 1x (line(s): 10)

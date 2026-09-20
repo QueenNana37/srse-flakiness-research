@@ -1,13 +1,59 @@
 Test: org.apache.hadoop.hbase.TestMultiParallelPut#testMultiPut
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 24 method call(s), 22 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 17: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 33: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for ( byte [] k : keys ) {
+      Put put = new Put(k);
+      put.add(BYTES_FAMILY, QUALIFIER, VALUE);
+
+      table.put(put);
+    }
+  Calls inside this branch:
+    Put: called 1x (line(s): 8)
+    put.add: called 1x (line(s): 9)
+    table.put: called 1x (line(s): 11)
+
+--- Line 16: for ---
+for (byte [] k : keys ) {
+      Get get = new Get(k);
+      get.addColumn(BYTES_FAMILY, QUALIFIER);
+
+      Result r = table.get(get);
+
+      assertTrue(r.containsColumn(BYTES_FAMILY, QUALIFIER));
+      assertEquals(0,
+          Bytes.compareTo(VALUE,
+              r.getValue(BYTES_FAMILY, QUALIFIER)));
+    }
+  Calls inside this branch:
+    Get: called 1x (line(s): 17)
+    get.addColumn: called 1x (line(s): 18)
+    table.get: called 1x (line(s): 20)
+    assertTrue: called 1x (line(s): 22)
+    r.containsColumn: called 1x (line(s): 22)
+    assertEquals: called 1x (line(s): 23)
+    Bytes.compareTo: called 1x (line(s): 24)
+    r.getValue: called 1x (line(s): 25)
+
+--- Line 32: for ---
+for ( HServerInfo info : cs.getServerInfo()) {
+      System.out.println(info);
+      assertTrue( info.getLoad().getNumberOfRegions() > 10);
+    }
+  Calls inside this branch:
+    cs.getServerInfo: called 1x (line(s): 32)
+    System.out.println: called 1x (line(s): 33)
+    assertTrue: called 1x (line(s): 34)
+    info.getLoad: called 1x (line(s): 34)
+    getNumberOfRegions: called 1x (line(s): 34)
+
+Calls NOT inside any branch (always run):
+  HTable: called 1x (line(s): 3)
+  table.setAutoFlush: called 1x (line(s): 4)
+  table.setWriteBufferSize: called 1x (line(s): 5)
+  table.flushCommits: called 1x (line(s): 14)
+  HBaseAdmin: called 1x (line(s): 28)
+  admin.getClusterStatus: called 1x (line(s): 29)
+  assertEquals: called 1x (line(s): 31)
+  cs.getServers: called 1x (line(s): 31)

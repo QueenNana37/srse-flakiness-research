@@ -1,10 +1,47 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostSimple
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 43 method call(s), 21 unique method(s) called
 
-Line 12: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 35: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 11: try ---
+try {
+      controller.createHosts(requests);
+      fail("Create host should fail for non-bootstrapped host");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createHosts: called 1x (line(s): 12)
+    fail: called 1x (line(s): 13)
+
+--- Line 34: try ---
+try {
+      controller.createHosts(requests);
+      fail("Create host should fail for invalid clusters");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    controller.createHosts: called 1x (line(s): 35)
+    fail: called 1x (line(s): 36)
+
+Calls NOT inside any branch (always run):
+  clusters.getHost: called 6x (line(s): 20, 21, 22, 23, 48, 49)
+  HostRequest: called 2x (line(s): 6, 30)
+  requests.add: called 2x (line(s): 10, 32)
+  clusters.addHost: called 2x (line(s): 18, 19)
+  setOsType: called 2x (line(s): 20, 21)
+  persist: called 2x (line(s): 22, 23)
+  clusterNames.add: called 2x (line(s): 26, 27)
+  clusters.addCluster: called 2x (line(s): 41, 42)
+  clusters.getCluster: called 2x (line(s): 43, 44)
+  setDesiredStackVersion: called 2x (line(s): 43, 44)
+  StackId: called 2x (line(s): 43, 44)
+  Assert.assertNotNull: called 2x (line(s): 48, 49)
+  Assert.assertEquals: called 2x (line(s): 51, 52)
+  clusters.getClustersForHost: called 2x (line(s): 51, 52)
+  size: called 2x (line(s): 51, 52)
+  r1.toString: called 1x (line(s): 7)
+  HashSet<HostRequest>: called 1x (line(s): 9)
+  ArrayList<String>: called 1x (line(s): 25)
+  HashMap<String, String>: called 1x (line(s): 29)
+  controller.createHosts: called 1x (line(s): 46)

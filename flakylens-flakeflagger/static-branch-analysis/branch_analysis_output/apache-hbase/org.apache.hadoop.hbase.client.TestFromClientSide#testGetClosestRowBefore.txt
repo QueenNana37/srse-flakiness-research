@@ -1,5 +1,19 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testGetClosestRowBefore
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 40 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 9x (line(s): 28, 32, 33, 37, 38, 42, 43, 47, 48)
+  Bytes.toBytes: called 6x (line(s): 3, 4, 7, 8, 9, 12)
+  table.getRowOrBefore: called 5x (line(s): 27, 31, 36, 41, 46)
+  result.containsColumn: called 4x (line(s): 32, 37, 42, 47)
+  Bytes.equals: called 4x (line(s): 33, 38, 43, 48)
+  result.getValue: called 4x (line(s): 33, 38, 43, 48)
+  Put: called 2x (line(s): 13, 14)
+  table.put: called 2x (line(s): 21, 22)
+  TEST_UTIL.createTable: called 1x (line(s): 11)
+  put.add: called 1x (line(s): 18)
+  put2.add: called 1x (line(s): 19)
+  Bytes.add: called 1x (line(s): 46)

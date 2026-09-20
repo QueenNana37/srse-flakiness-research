@@ -1,37 +1,138 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testForceSplit
 STATUS: parsed successfully
-Branch points found: 11
+Summary: 11 branch point(s), 33 method call(s), 25 unique method(s) called
 
-Line 60: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 62: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 76: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 10: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 11: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 32: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 47: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 74: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 48: try statement
-    -> try-block completes normally
-    -> catch triggered: InterruptedException
-Line 55: try statement
-    -> try-block completes normally
-    -> catch triggered: IOException
+--- Line 8: for ---
+for (byte b1 = 'a'; b1 < 'z'; b1++) {
+      for (byte b2 = 'a'; b2 < 'z'; b2++) {
+        for (byte b3 = 'a'; b3 < 'z'; b3++) {
+          k[0] = b1;
+          k[1] = b2;
+          k[2] = b3;
+          Put put = new Put(k);
+          put.add(familyName, new byte[0], k);
+          table.put(put);
+          rowCount++;
+        }
+      }
+    }
+
+--- Line 9: for ---
+for (byte b2 = 'a'; b2 < 'z'; b2++) {
+        for (byte b3 = 'a'; b3 < 'z'; b3++) {
+          k[0] = b1;
+          k[1] = b2;
+          k[2] = b3;
+          Put put = new Put(k);
+          put.add(familyName, new byte[0], k);
+          table.put(put);
+          rowCount++;
+        }
+      }
+
+--- Line 10: for ---
+for (byte b3 = 'a'; b3 < 'z'; b3++) {
+          k[0] = b1;
+          k[1] = b2;
+          k[2] = b3;
+          Put put = new Put(k);
+          put.add(familyName, new byte[0], k);
+          table.put(put);
+          rowCount++;
+        }
+  Calls inside this branch:
+    Put: called 1x (line(s): 14)
+    put.add: called 1x (line(s): 15)
+    table.put: called 1x (line(s): 16)
+
+--- Line 31: for ---
+for(@SuppressWarnings("unused") Result result : scanner) {
+      rows++;
+    }
+
+--- Line 46: for ---
+for (int i = 0; i < 20; i++) {
+          try {
+            sleep(1000);
+          } catch (InterruptedException e) {
+            continue;
+          }
+          // check again    table = new HTable(conf, tableName);
+          Map<HRegionInfo, HServerAddress> regions = null;
+          try {
+            regions = table.getRegionsInfo();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+          if (regions == null) continue;
+          count.set(regions.size());
+          if (count.get() >= 2) break;
+          LOG.debug("Cycle waiting on split");
+        }
+  Calls inside this branch:
+    count.set: called 1x (line(s): 60)
+    regions.size: called 1x (line(s): 60)
+    LOG.debug: called 1x (line(s): 62)
+
+--- Line 47: try ---
+try {
+            sleep(1000);
+          } catch (InterruptedException e) {
+            continue;
+          }
+  Calls inside this branch:
+    sleep: called 1x (line(s): 48)
+
+--- Line 54: try ---
+try {
+            regions = table.getRegionsInfo();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+  Calls inside this branch:
+    table.getRegionsInfo: called 1x (line(s): 55)
+    e.printStackTrace: called 1x (line(s): 57)
+
+--- Line 59: if ---
+if (regions == null) continue;
+
+--- Line 61: if ---
+if (count.get() >= 2) break;
+  Calls inside this branch:
+    count.get: called 1x (line(s): 61)
+
+--- Line 73: for ---
+for (@SuppressWarnings("unused") Result result : scanner) {
+      rows++;
+      if (rows > rowCount) {
+        scanner.close();
+        assertTrue("Scanned more than expected (" + rowCount + ")", false);
+      }
+    }
+
+--- Line 75: if ---
+if (rows > rowCount) {
+        scanner.close();
+        assertTrue("Scanned more than expected (" + rowCount + ")", false);
+      }
+  Calls inside this branch:
+    scanner.close: called 1x (line(s): 76)
+    assertTrue: called 1x (line(s): 77)
+
+Calls NOT inside any branch (always run):
+  m.size: called 2x (line(s): 24, 25)
+  Scan: called 2x (line(s): 28, 38)
+  table.getScanner: called 2x (line(s): 29, 39)
+  scanner.close: called 2x (line(s): 34, 80)
+  assertEquals: called 2x (line(s): 35, 81)
+  Bytes.toBytes: called 1x (line(s): 4)
+  TEST_UTIL.createTable: called 1x (line(s): 5)
+  table.getRegionsInfo: called 1x (line(s): 23)
+  System.out.println: called 1x (line(s): 24)
+  assertTrue: called 1x (line(s): 25)
+  scanner.next: called 1x (line(s): 41)
+  AtomicInteger: called 1x (line(s): 43)
+  t.start: called 1x (line(s): 66)
+  admin.split: called 1x (line(s): 68)
+  Bytes.toString: called 1x (line(s): 68)
+  t.join: called 1x (line(s): 69)

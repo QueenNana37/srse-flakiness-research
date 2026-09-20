@@ -1,5 +1,14 @@
 Test: com.ea.orbit.actors.test.ObserverTest#observerGarbageCollection
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  ref1.receiveMessage: called 2x (line(s): 9, 14)
+  join: called 2x (line(s): 9, 14)
+  createStage: called 1x (line(s): 4)
+  SomeChatObserver: called 1x (line(s): 6)
+  stage1.getObserverReference: called 1x (line(s): 7)
+  System.gc: called 1x (line(s): 11)
+  expectException: called 1x (line(s): 14)

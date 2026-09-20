@@ -1,10 +1,53 @@
 Test: org.apache.hadoop.hbase.regionserver.wal.TestLogRolling#testLogRollOnDatanodeDeath
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 51 method call(s), 30 unique method(s) called
 
-Line 44: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 43: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 42: for ---
+for (Method m : stm.getClass().getDeclaredMethods()) {
+      if(m.getName().endsWith("getPipeline")) {
+        getPipeline = m;
+        getPipeline.setAccessible(true);
+        break;
+      }
+    }
+  Calls inside this branch:
+    stm.getClass: called 1x (line(s): 42)
+    getDeclaredMethods: called 1x (line(s): 42)
+
+--- Line 43: if ---
+if(m.getName().endsWith("getPipeline")) {
+        getPipeline = m;
+        getPipeline.setAccessible(true);
+        break;
+      }
+  Calls inside this branch:
+    m.getName: called 1x (line(s): 43)
+    endsWith: called 1x (line(s): 43)
+    getPipeline.setAccessible: called 1x (line(s): 45)
+
+Calls NOT inside any branch (always run):
+  assertTrue: called 12x (line(s): 2, 10, 12, 17, 31, 36, 49, 53, 55, 60, 65, 67)
+  fs.getDefaultReplication: called 4x (line(s): 3, 18, 53, 68)
+  log.getFilenum: called 4x (line(s): 30, 37, 59, 66)
+  writeData: called 3x (line(s): 35, 58, 64)
+  HTable: called 2x (line(s): 6, 26)
+  getName: called 2x (line(s): 21, 54)
+  cluster.getRegionServer: called 1x (line(s): 7)
+  server.getLog: called 1x (line(s): 8)
+  log.canGetCurReplicas: called 1x (line(s): 10)
+  HLog.isAppend: called 1x (line(s): 12)
+  dfsCluster.startDataNodes: called 1x (line(s): 15)
+  dfsCluster.waitActive: called 1x (line(s): 16)
+  dfsCluster.getDataNodes: called 1x (line(s): 17)
+  size: called 1x (line(s): 17)
+  HTableDescriptor: called 1x (line(s): 22)
+  desc.addFamily: called 1x (line(s): 23)
+  HColumnDescriptor: called 1x (line(s): 23)
+  HBaseAdmin: called 1x (line(s): 24)
+  admin.createTable: called 1x (line(s): 25)
+  table.setAutoFlush: called 1x (line(s): 27)
+  System.currentTimeMillis: called 1x (line(s): 29)
+  log.getOutputStream: called 1x (line(s): 40)
+  getPipeline.invoke: called 1x (line(s): 51)
+  dfsCluster.stopDataNode: called 1x (line(s): 54)
+  log.getLogReplication: called 1x (line(s): 68)

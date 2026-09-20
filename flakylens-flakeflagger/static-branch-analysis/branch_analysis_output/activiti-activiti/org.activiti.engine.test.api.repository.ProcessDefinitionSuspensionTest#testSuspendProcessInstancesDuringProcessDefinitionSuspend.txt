@@ -1,19 +1,68 @@
 Test: org.activiti.engine.test.api.repository.ProcessDefinitionSuspensionTest#testSuspendProcessInstancesDuringProcessDefinitionSuspend
 STATUS: parsed successfully
-Branch points found: 5
+Summary: 5 branch point(s), 54 method call(s), 19 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 20: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 25: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 41: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: try statement
-    -> try-block completes normally
-    -> catch triggered: ActivitiException
+--- Line 8: for ---
+for (int i = 0; i < nrOfProcessInstances; i++) {
+      runtimeService.startProcessInstanceByKey(processDefinition.getKey());
+    }
+  Calls inside this branch:
+    runtimeService.startProcessInstanceByKey: called 1x (line(s): 9)
+    processDefinition.getKey: called 1x (line(s): 9)
+
+--- Line 19: for ---
+for (ProcessInstance processInstance : runtimeService.createProcessInstanceQuery().list()) {
+      assertTrue(processInstance.isSuspended());
+    }
+  Calls inside this branch:
+    runtimeService.createProcessInstanceQuery: called 1x (line(s): 19)
+    list: called 1x (line(s): 19)
+    assertTrue: called 1x (line(s): 20)
+    processInstance.isSuspended: called 1x (line(s): 20)
+
+--- Line 24: for ---
+for (Task task : taskService.createTaskQuery().list()) {
+      try {
+        taskService.complete(task.getId());
+        fail("A suspended task shouldn't be able to be continued");
+      } catch (ActivitiException e) {
+        // This is good
+      }
+    }
+  Calls inside this branch:
+    taskService.createTaskQuery: called 1x (line(s): 24)
+    list: called 1x (line(s): 24)
+
+--- Line 25: try ---
+try {
+        taskService.complete(task.getId());
+        fail("A suspended task shouldn't be able to be continued");
+      } catch (ActivitiException e) {
+        // This is good
+      }
+  Calls inside this branch:
+    taskService.complete: called 1x (line(s): 26)
+    task.getId: called 1x (line(s): 26)
+    fail: called 1x (line(s): 27)
+
+--- Line 40: for ---
+for (Task task : taskService.createTaskQuery().list()) {
+      taskService.complete(task.getId());
+    }
+  Calls inside this branch:
+    taskService.createTaskQuery: called 1x (line(s): 40)
+    list: called 1x (line(s): 40)
+    taskService.complete: called 1x (line(s): 41)
+    task.getId: called 1x (line(s): 41)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 9x (line(s): 11, 12, 13, 32, 33, 34, 43, 44, 45)
+  runtimeService.createProcessInstanceQuery: called 9x (line(s): 11, 12, 13, 32, 33, 34, 43, 44, 45)
+  count: called 9x (line(s): 11, 12, 13, 32, 33, 34, 43, 44, 45)
+  suspended: called 3x (line(s): 12, 33, 44)
+  active: called 3x (line(s): 13, 34, 45)
+  processDefinition.getId: called 2x (line(s): 16, 37)
+  repositoryService.createProcessDefinitionQuery: called 1x (line(s): 7)
+  singleResult: called 1x (line(s): 7)
+  repositoryService.suspendProcessDefinitionById: called 1x (line(s): 16)
+  repositoryService.activateProcessDefinitionById: called 1x (line(s): 37)

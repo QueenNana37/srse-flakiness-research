@@ -1,5 +1,14 @@
 Test: ch.qos.logback.classic.pattern.ConverterTest#testRelativeTime
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 10 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  StringBuilder: called 2x (line(s): 4, 5)
+  makeLoggingEvent: called 2x (line(s): 6, 7)
+  converter.write: called 2x (line(s): 8, 9)
+  RelativeTimeConverter: called 1x (line(s): 3)
+  assertEquals: called 1x (line(s): 10)
+  buf0.toString: called 1x (line(s): 10)
+  buf1.toString: called 1x (line(s): 10)

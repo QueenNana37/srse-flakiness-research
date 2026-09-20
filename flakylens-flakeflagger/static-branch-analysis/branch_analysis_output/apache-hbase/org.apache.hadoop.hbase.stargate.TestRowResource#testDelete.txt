@@ -1,5 +1,14 @@
 Test: org.apache.hadoop.hbase.stargate.TestRowResource#testDelete
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 24 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 7x (line(s): 5, 7, 12, 14, 18, 20, 22)
+  response.getCode: called 7x (line(s): 5, 7, 12, 14, 18, 20, 22)
+  checkValueXML: called 3x (line(s): 8, 9, 15)
+  getValueXML: called 3x (line(s): 13, 19, 21)
+  putValueXML: called 2x (line(s): 4, 6)
+  deleteValue: called 1x (line(s): 11)
+  deleteRow: called 1x (line(s): 17)

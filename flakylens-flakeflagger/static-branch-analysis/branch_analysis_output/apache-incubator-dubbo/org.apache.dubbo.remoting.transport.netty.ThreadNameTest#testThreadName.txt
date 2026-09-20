@@ -1,7 +1,16 @@
 Test: org.apache.dubbo.remoting.transport.netty.ThreadNameTest#testThreadName
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 5 method call(s), 5 unique method(s) called
 
-Line 6: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
+--- Line 5: if ---
+if (!serverHandler.isSuccess() || !clientHandler.isSuccess()) {
+            Assert.fail();
+        }
+  Calls inside this branch:
+    serverHandler.isSuccess: called 1x (line(s): 5)
+    clientHandler.isSuccess: called 1x (line(s): 5)
+    Assert.fail: called 1x (line(s): 6)
+
+Calls NOT inside any branch (always run):
+  client.send: called 1x (line(s): 3)
+  Thread.sleep: called 1x (line(s): 4)

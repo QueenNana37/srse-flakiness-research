@@ -1,5 +1,16 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateAndGetUsers
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 10 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Assert.assertEquals: called 2x (line(s): 8, 10)
+  createUser: called 1x (line(s): 3)
+  controller.getUsers: called 1x (line(s): 6)
+  Collections.singleton: called 1x (line(s): 6)
+  UserRequest: called 1x (line(s): 6)
+  r.size: called 1x (line(s): 8)
+  r.iterator: called 1x (line(s): 9)
+  next: called 1x (line(s): 9)
+  resp.getUsername: called 1x (line(s): 10)

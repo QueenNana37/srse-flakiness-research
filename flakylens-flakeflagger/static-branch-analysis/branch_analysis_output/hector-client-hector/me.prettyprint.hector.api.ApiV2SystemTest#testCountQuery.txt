@@ -1,5 +1,18 @@
 Test: me.prettyprint.hector.api.ApiV2SystemTest#testCountQuery
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 11 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  createCountQuery: called 2x (line(s): 7, 18)
+  cq.setColumnFamily: called 2x (line(s): 8, 19)
+  setKey: called 2x (line(s): 8, 19)
+  cq.setRange: called 2x (line(s): 9, 20)
+  cq.execute: called 2x (line(s): 10, 21)
+  assertNotNull: called 2x (line(s): 11, 22)
+  assertEquals: called 2x (line(s): 12, 23)
+  Integer.valueOf: called 2x (line(s): 12, 23)
+  r.get: called 2x (line(s): 12, 23)
+  insertColumns: called 1x (line(s): 5)
+  deleteColumns: called 1x (line(s): 15)

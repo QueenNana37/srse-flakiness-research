@@ -1,5 +1,14 @@
 Test: org.activiti.spring.test.servicetask.ServiceTaskSpringDelegationTest#testAsyncMethodExpressionOnSpringBean
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 7 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 3)
+  assertTrue: called 1x (line(s): 4)
+  JobTestHelper.areJobsAvailable: called 1x (line(s): 4)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 5)
+  assertEquals: called 1x (line(s): 6)
+  runtimeService.getVariable: called 1x (line(s): 6)
+  procInst.getId: called 1x (line(s): 6)

@@ -1,13 +1,52 @@
 Test: tachyon.client.TachyonFSTest#unlockBlockTest2
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 23 method call(s), 12 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 24: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      fileIds.add(TestUtils.createByteFile(
+          mTfs, "/file_" + k, WriteType.CACHE_THROUGH, fileSize));
+    }
+  Calls inside this branch:
+    fileIds.add: called 1x (line(s): 8)
+    TestUtils.createByteFile: called 1x (line(s): 8)
+
+--- Line 11: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+      TachyonByteBuffer tBuf = tFile.readByteBuffer();
+      Assert.assertNotNull(tBuf);
+      tBuf = tFile.readByteBuffer();
+      Assert.assertNotNull(tBuf);
+      tBuf.close();
+    }
+  Calls inside this branch:
+    tFile.readByteBuffer: called 2x (line(s): 14, 16)
+    Assert.assertNotNull: called 2x (line(s): 15, 17)
+    mTfs.getFile: called 1x (line(s): 12)
+    fileIds.get: called 1x (line(s): 12)
+    Assert.assertTrue: called 1x (line(s): 13)
+    tFile.isInMemory: called 1x (line(s): 13)
+    tBuf.close: called 1x (line(s): 18)
+
+--- Line 23: for ---
+for (int k = 0; k < numOfFiles; k ++) {
+      tFile = mTfs.getFile(fileIds.get(k));
+      Assert.assertTrue(tFile.isInMemory());
+    }
+  Calls inside this branch:
+    mTfs.getFile: called 1x (line(s): 24)
+    fileIds.get: called 1x (line(s): 24)
+    Assert.assertTrue: called 1x (line(s): 25)
+    tFile.isInMemory: called 1x (line(s): 25)
+
+Calls NOT inside any branch (always run):
+  ArrayList<Integer>: called 1x (line(s): 6)
+  fileIds.add: called 1x (line(s): 20)
+  TestUtils.createByteFile: called 1x (line(s): 20)
+  CommonUtils.sleepMs: called 1x (line(s): 27)
+  mTfs.getFile: called 1x (line(s): 28)
+  fileIds.get: called 1x (line(s): 28)
+  Assert.assertFalse: called 1x (line(s): 29)
+  tFile.isInMemory: called 1x (line(s): 29)

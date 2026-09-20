@@ -1,13 +1,67 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateHostWithInvalidRequests
 STATUS: parsed successfully
-Branch points found: 3
+Summary: 3 branch point(s), 22 method call(s), 10 unique method(s) called
 
-Line 10: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 26: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 39: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 9: try ---
+try {
+      set1.clear();
+      HostRequest rInvalid =
+          new HostRequest("h1", null, null);
+      set1.add(rInvalid);
+      controller.createHosts(set1);
+      fail("Expected failure for invalid host");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 10)
+    HostRequest: called 1x (line(s): 12)
+    set1.add: called 1x (line(s): 13)
+    controller.createHosts: called 1x (line(s): 14)
+    fail: called 1x (line(s): 15)
+
+--- Line 25: try ---
+try {
+      set1.clear();
+      HostRequest rInvalid =
+          new HostRequest("h1", clusterNames, null);
+      set1.add(rInvalid);
+      controller.createHosts(set1);
+      fail("Expected failure for invalid cluster");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 26)
+    HostRequest: called 1x (line(s): 28)
+    set1.add: called 1x (line(s): 29)
+    controller.createHosts: called 1x (line(s): 30)
+    fail: called 1x (line(s): 31)
+
+--- Line 38: try ---
+try {
+      set1.clear();
+      HostRequest rInvalid1 =
+          new HostRequest("h1", clusterNames, null);
+      HostRequest rInvalid2 =
+          new HostRequest("h1", clusterNames, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createHosts(set1);
+      fail("Expected failure for dup requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    HostRequest: called 2x (line(s): 41, 43)
+    set1.add: called 2x (line(s): 44, 45)
+    set1.clear: called 1x (line(s): 39)
+    controller.createHosts: called 1x (line(s): 46)
+    fail: called 1x (line(s): 47)
+
+Calls NOT inside any branch (always run):
+  HashSet<HostRequest>: called 1x (line(s): 7)
+  clusters.addHost: called 1x (line(s): 20)
+  ArrayList<String>: called 1x (line(s): 22)
+  clusterNames.add: called 1x (line(s): 23)
+  clusters.addCluster: called 1x (line(s): 36)

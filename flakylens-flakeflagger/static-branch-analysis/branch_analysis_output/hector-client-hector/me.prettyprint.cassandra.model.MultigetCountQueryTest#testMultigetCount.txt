@@ -1,7 +1,28 @@
 Test: me.prettyprint.cassandra.model.MultigetCountQueryTest#testMultigetCount
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 15 method call(s), 15 unique method(s) called
 
-Line 8: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 7: for ---
+for (int i = 0; i < 5; i++) {
+      String key = "k"+i;
+      m.addInsertion(key, cf, createColumn("name", "value" + i, se, se));
+      keys.add(key);
+    }
+  Calls inside this branch:
+    m.addInsertion: called 1x (line(s): 9)
+    createColumn: called 1x (line(s): 9)
+    keys.add: called 1x (line(s): 10)
+
+Calls NOT inside any branch (always run):
+  createMutator: called 1x (line(s): 5)
+  ArrayList<String>: called 1x (line(s): 6)
+  m.execute: called 1x (line(s): 12)
+  MultigetCountQuery<String, String>: called 1x (line(s): 14)
+  mcq.setColumnFamily: called 1x (line(s): 15)
+  mcq.setColumnNames: called 1x (line(s): 16)
+  mcq.setKeys: called 1x (line(s): 17)
+  keys.toArray: called 1x (line(s): 17)
+  mcq.execute: called 1x (line(s): 18)
+  assertEquals: called 1x (line(s): 19)
+  result.get: called 1x (line(s): 19)
+  size: called 1x (line(s): 19)

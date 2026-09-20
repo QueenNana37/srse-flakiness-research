@@ -1,7 +1,57 @@
 Test: org.apache.hadoop.hbase.regionserver.TestStoreReconstruction#runReconstructionLog
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 53 method call(s), 34 unique method(s) called
 
-Line 25: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 24: for ---
+for (int j = 0; j < TOTAL_EDITS; j++) {
+      byte[] qualifier = Bytes.toBytes(Integer.toString(j));
+      byte[] column = Bytes.toBytes("column:" + Integer.toString(j));
+      WALEdit edit = new WALEdit();
+      edit.add(new KeyValue(rowName, family, qualifier,
+          System.currentTimeMillis(), column));
+      log.append(info, tableName, edit,
+          System.currentTimeMillis());
+    }
+  Calls inside this branch:
+    Bytes.toBytes: called 2x (line(s): 25, 26)
+    Integer.toString: called 2x (line(s): 25, 26)
+    System.currentTimeMillis: called 2x (line(s): 29, 31)
+    WALEdit: called 1x (line(s): 27)
+    edit.add: called 1x (line(s): 28)
+    KeyValue: called 1x (line(s): 28)
+    log.append: called 1x (line(s): 30)
+
+Calls NOT inside any branch (always run):
+  cluster.getFileSystem: called 5x (line(s): 10, 13, 50, 56, 59)
+  Bytes.toBytes: called 3x (line(s): 4, 19, 39)
+  Path: called 2x (line(s): 9, 49)
+  System.currentTimeMillis: called 2x (line(s): 40, 42)
+  assertEquals: called 2x (line(s): 53, 65)
+  splits.get: called 2x (line(s): 56, 60)
+  HColumnDescriptor: called 1x (line(s): 5)
+  HTableDescriptor: called 1x (line(s): 6)
+  htd.addFamily: called 1x (line(s): 7)
+  HRegionInfo: called 1x (line(s): 8)
+  HLog: called 1x (line(s): 10)
+  HRegion: called 1x (line(s): 12)
+  ArrayList<KeyValue>: called 1x (line(s): 14)
+  ConcurrentSkipListSet<byte[]>: called 1x (line(s): 17)
+  info.getRegionName: called 1x (line(s): 21)
+  log.startCacheFlush: called 1x (line(s): 34)
+  log.completeCacheFlush: called 1x (line(s): 35)
+  info.isMetaRegion: called 1x (line(s): 35)
+  WALEdit: called 1x (line(s): 38)
+  edit.add: called 1x (line(s): 39)
+  KeyValue: called 1x (line(s): 39)
+  log.append: called 1x (line(s): 41)
+  log.sync: called 1x (line(s): 43)
+  log.close: called 1x (line(s): 46)
+  HLog.splitLog: called 1x (line(s): 49)
+  conf.get: called 1x (line(s): 49)
+  splits.size: called 1x (line(s): 53)
+  assertTrue: called 1x (line(s): 56)
+  exists: called 1x (line(s): 56)
+  Store: called 1x (line(s): 59)
+  Get: called 1x (line(s): 62)
+  store.get: called 1x (line(s): 63)
+  result.size: called 1x (line(s): 65)

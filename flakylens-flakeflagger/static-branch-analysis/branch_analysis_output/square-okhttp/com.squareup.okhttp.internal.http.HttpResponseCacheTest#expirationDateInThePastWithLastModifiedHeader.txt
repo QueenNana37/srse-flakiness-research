@@ -1,5 +1,14 @@
 Test: com.squareup.okhttp.internal.http.HttpResponseCacheTest#expirationDateInThePastWithLastModifiedHeader
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 7 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  formatDate: called 2x (line(s): 2, 5)
+  addHeader: called 2x (line(s): 4, 5)
+  assertConditionallyCached: called 1x (line(s): 3)
+  MockResponse: called 1x (line(s): 4)
+  conditionalRequest.getHeaders: called 1x (line(s): 6)
+  assertTrue: called 1x (line(s): 7)
+  headers.contains: called 1x (line(s): 7)

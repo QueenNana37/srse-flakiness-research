@@ -1,25 +1,143 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServicesWithInvalidRequest
 STATUS: parsed successfully
-Branch points found: 7
+Summary: 7 branch point(s), 64 method call(s), 14 unique method(s) called
 
-Line 10: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 20: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 30: try statement
-    -> try-block completes normally
-    -> catch triggered: ClusterNotFoundException
-Line 45: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 57: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 68: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 88: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 9: try ---
+try {
+      set1.clear();
+      ServiceRequest rInvalid = new ServiceRequest(null, null, null, null);
+      set1.add(rInvalid);
+      controller.createServices(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 10)
+    ServiceRequest: called 1x (line(s): 11)
+    set1.add: called 1x (line(s): 12)
+    controller.createServices: called 1x (line(s): 13)
+    fail: called 1x (line(s): 14)
+
+--- Line 19: try ---
+try {
+      set1.clear();
+      ServiceRequest rInvalid = new ServiceRequest("foo", null, null, null);
+      set1.add(rInvalid);
+      controller.createServices(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 20)
+    ServiceRequest: called 1x (line(s): 21)
+    set1.add: called 1x (line(s): 22)
+    controller.createServices: called 1x (line(s): 23)
+    fail: called 1x (line(s): 24)
+
+--- Line 29: try ---
+try {
+      set1.clear();
+      ServiceRequest rInvalid = new ServiceRequest("foo", "bar", null, null);
+      set1.add(rInvalid);
+      controller.createServices(set1);
+      fail("Expected failure for invalid cluster");
+    } catch (ClusterNotFoundException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 30)
+    ServiceRequest: called 1x (line(s): 31)
+    set1.add: called 1x (line(s): 32)
+    controller.createServices: called 1x (line(s): 33)
+    fail: called 1x (line(s): 34)
+
+--- Line 44: try ---
+try {
+      set1.clear();
+      ServiceRequest valid1 = new ServiceRequest("foo", "HDFS", null, null);
+      ServiceRequest valid2 = new ServiceRequest("foo", "HDFS", null, null);
+      set1.add(valid1);
+      set1.add(valid2);
+      controller.createServices(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 46, 47)
+    set1.add: called 2x (line(s): 48, 49)
+    set1.clear: called 1x (line(s): 45)
+    controller.createServices: called 1x (line(s): 50)
+    fail: called 1x (line(s): 51)
+
+--- Line 56: try ---
+try {
+      set1.clear();
+      ServiceRequest valid1 = new ServiceRequest("foo", "bar", null, null);
+      set1.add(valid1);
+      controller.createServices(set1);
+      fail("Expected failure for invalid service");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 57)
+    ServiceRequest: called 1x (line(s): 58)
+    set1.add: called 1x (line(s): 59)
+    controller.createServices: called 1x (line(s): 60)
+    fail: called 1x (line(s): 61)
+
+--- Line 67: try ---
+try {
+      set1.clear();
+      ServiceRequest valid1 = new ServiceRequest("foo", "HDFS", null, null);
+      ServiceRequest valid2 = new ServiceRequest("bar", "HDFS", null, null);
+      set1.add(valid1);
+      set1.add(valid2);
+      controller.createServices(set1);
+      fail("Expected failure for multiple clusters");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 69, 70)
+    set1.add: called 2x (line(s): 71, 72)
+    set1.clear: called 1x (line(s): 68)
+    controller.createServices: called 1x (line(s): 73)
+    fail: called 1x (line(s): 74)
+
+--- Line 87: try ---
+try {
+      set1.clear();
+      ServiceRequest valid1 = new ServiceRequest("foo", "HDFS", null, null);
+      ServiceRequest valid2 = new ServiceRequest("foo", "HDFS", null, null);
+      set1.add(valid1);
+      set1.add(valid2);
+      controller.createServices(set1);
+      fail("Expected failure for existing service");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceRequest: called 2x (line(s): 89, 90)
+    set1.add: called 2x (line(s): 91, 92)
+    set1.clear: called 1x (line(s): 88)
+    controller.createServices: called 1x (line(s): 93)
+    fail: called 1x (line(s): 94)
+
+Calls NOT inside any branch (always run):
+  clusters.getCluster: called 5x (line(s): 41, 42, 79, 80, 99)
+  clusters.addCluster: called 2x (line(s): 39, 40)
+  setDesiredStackVersion: called 2x (line(s): 41, 42)
+  StackId: called 2x (line(s): 41, 42)
+  Assert.assertEquals: called 2x (line(s): 80, 99)
+  getServices: called 2x (line(s): 80, 99)
+  size: called 2x (line(s): 80, 99)
+  HashSet<ServiceRequest>: called 1x (line(s): 7)
+  Assert.assertNotNull: called 1x (line(s): 79)
+  set1.clear: called 1x (line(s): 82)
+  ServiceRequest: called 1x (line(s): 83)
+  set1.add: called 1x (line(s): 84)
+  controller.createServices: called 1x (line(s): 85)

@@ -1,7 +1,19 @@
 Test: com.google.zxing.pdf417.decoder.ec.ErrorCorrectionTestCase#testTooManyErrors
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 5 method call(s), 5 unique method(s) called
 
-Line 7: try statement
-    -> try-block completes normally
-    -> catch triggered: ChecksumException
+--- Line 6: try ---
+try {
+      checkDecode(received);
+      fail("Should not have decoded");
+    } catch (ChecksumException ce) {
+      // good
+    }
+  Calls inside this branch:
+    checkDecode: called 1x (line(s): 7)
+    fail: called 1x (line(s): 8)
+
+Calls NOT inside any branch (always run):
+  PDF417_TEST_WITH_EC.clone: called 1x (line(s): 3)
+  getRandom: called 1x (line(s): 4)
+  corrupt: called 1x (line(s): 5)

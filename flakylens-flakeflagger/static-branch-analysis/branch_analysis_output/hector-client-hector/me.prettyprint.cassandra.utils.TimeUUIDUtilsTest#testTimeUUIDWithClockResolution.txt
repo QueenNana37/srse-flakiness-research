@@ -1,5 +1,19 @@
 Test: me.prettyprint.cassandra.utils.TimeUUIDUtilsTest#testTimeUUIDWithClockResolution
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 14 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  TimeUUIDUtils.getTimeUUID: called 3x (line(s): 8, 15, 16)
+  MicrosecondsClockResolution: called 1x (line(s): 3)
+  clock.createClock: called 1x (line(s): 4)
+  assertEquals: called 1x (line(s): 8)
+  java.util.UUID.fromString: called 1x (line(s): 9)
+  com.eaio.uuid.UUID: called 1x (line(s): 10)
+  UUIDGen.createTime: called 1x (line(s): 10)
+  UUIDGen.getClockSeqAndNode: called 1x (line(s): 10)
+  toString: called 1x (line(s): 10)
+  MicrosecondsSyncClockResolution: called 1x (line(s): 12)
+  assertTrue: called 1x (line(s): 17)
+  second.compareTo: called 1x (line(s): 17)

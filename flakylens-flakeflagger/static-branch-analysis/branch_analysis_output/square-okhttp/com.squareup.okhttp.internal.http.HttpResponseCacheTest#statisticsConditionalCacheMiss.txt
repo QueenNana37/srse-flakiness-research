@@ -1,5 +1,20 @@
 Test: com.squareup.okhttp.internal.http.HttpResponseCacheTest#statisticsConditionalCacheMiss
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 37 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 9x (line(s): 9, 10, 11, 12, 13, 14, 15, 16, 17)
+  server.enqueue: called 3x (line(s): 2, 5, 6)
+  MockResponse: called 3x (line(s): 2, 5, 6)
+  setBody: called 3x (line(s): 4, 5, 6)
+  readAscii: called 3x (line(s): 9, 13, 14)
+  openConnection: called 3x (line(s): 9, 13, 14)
+  server.getUrl: called 3x (line(s): 9, 13, 14)
+  addHeader: called 2x (line(s): 2, 3)
+  cache.getRequestCount: called 2x (line(s): 10, 15)
+  cache.getNetworkCount: called 2x (line(s): 11, 16)
+  cache.getHitCount: called 2x (line(s): 12, 17)
+  formatDate: called 1x (line(s): 2)
+  server.play: called 1x (line(s): 7)

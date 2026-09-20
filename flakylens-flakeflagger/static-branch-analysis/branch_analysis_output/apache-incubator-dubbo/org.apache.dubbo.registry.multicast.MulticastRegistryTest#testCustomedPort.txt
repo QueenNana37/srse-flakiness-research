@@ -1,7 +1,21 @@
 Test: org.apache.dubbo.registry.multicast.MulticastRegistryTest#testCustomedPort
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 7 method call(s), 7 unique method(s) called
 
-Line 6: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 5: try ---
+try {
+            MulticastSocket multicastSocket = multicastRegistry.getMulticastSocket();
+            assertEquals(port, multicastSocket.getLocalPort());
+        } finally {
+            multicastRegistry.destroy();
+        }
+  Calls inside this branch:
+    multicastRegistry.getMulticastSocket: called 1x (line(s): 6)
+    assertEquals: called 1x (line(s): 7)
+    multicastSocket.getLocalPort: called 1x (line(s): 7)
+    multicastRegistry.destroy: called 1x (line(s): 9)
+
+Calls NOT inside any branch (always run):
+  NetUtils.getAvailablePort: called 1x (line(s): 3)
+  MulticastRegistry: called 1x (line(s): 4)
+  URL.valueOf: called 1x (line(s): 4)

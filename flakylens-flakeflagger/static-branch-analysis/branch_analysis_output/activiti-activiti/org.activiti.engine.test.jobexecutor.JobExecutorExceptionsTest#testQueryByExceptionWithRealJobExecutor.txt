@@ -1,5 +1,20 @@
 Test: org.activiti.engine.test.jobexecutor.JobExecutorExceptionsTest#testQueryByExceptionWithRealJobExecutor
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 20 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  managementService.createTimerJobQuery: called 3x (line(s): 4, 16, 20)
+  withException: called 3x (line(s): 4, 16, 20)
+  Assert.assertEquals: called 2x (line(s): 5, 21)
+  query.count: called 2x (line(s): 5, 21)
+  Date: called 2x (line(s): 10, 10)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 7)
+  processEngineConfiguration.getClock: called 1x (line(s): 10)
+  setCurrentTime: called 1x (line(s): 10)
+  getTime: called 1x (line(s): 10)
+  JobTestHelper.waitForJobExecutorOnCondition: called 1x (line(s): 14)
+  count: called 1x (line(s): 16)
+  processInstanceId: called 1x (line(s): 20)
+  processInstance.getId: called 1x (line(s): 20)

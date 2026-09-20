@@ -1,28 +1,175 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testCreateServiceComponentWithInvalidRequest
 STATUS: parsed successfully
-Branch points found: 8
+Summary: 8 branch point(s), 76 method call(s), 21 unique method(s) called
 
-Line 14: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 25: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 36: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 47: try statement
-    -> try-block completes normally
-    -> catch triggered: ClusterNotFoundException
-Line 62: try statement
-    -> try-block completes normally
-    -> catch triggered: ServiceNotFoundException
-Line 95: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 109: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
-Line 123: try statement
-    -> try-block completes normally
-    -> catch triggered: Exception
+--- Line 13: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest(null, null, null, null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 14)
+    ServiceComponentRequest: called 1x (line(s): 16)
+    set1.add: called 1x (line(s): 17)
+    controller.createComponents: called 1x (line(s): 18)
+    fail: called 1x (line(s): 19)
+
+--- Line 24: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest("c1", null, null, null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 25)
+    ServiceComponentRequest: called 1x (line(s): 27)
+    set1.add: called 1x (line(s): 28)
+    controller.createComponents: called 1x (line(s): 29)
+    fail: called 1x (line(s): 30)
+
+--- Line 35: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest("c1", "s1", null, null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for invalid requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 36)
+    ServiceComponentRequest: called 1x (line(s): 38)
+    set1.add: called 1x (line(s): 39)
+    controller.createComponents: called 1x (line(s): 40)
+    fail: called 1x (line(s): 41)
+
+--- Line 46: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest("c1", "s1", "sc1", null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for invalid cluster");
+    } catch (ClusterNotFoundException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 47)
+    ServiceComponentRequest: called 1x (line(s): 49)
+    set1.add: called 1x (line(s): 50)
+    controller.createComponents: called 1x (line(s): 51)
+    fail: called 1x (line(s): 52)
+
+--- Line 61: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest("c1", "HDFS", "NAMENODE", null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for invalid service");
+    } catch (ServiceNotFoundException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 62)
+    ServiceComponentRequest: called 1x (line(s): 64)
+    set1.add: called 1x (line(s): 65)
+    controller.createComponents: called 1x (line(s): 66)
+    fail: called 1x (line(s): 67)
+
+--- Line 94: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid1 =
+          new ServiceComponentRequest("c1", "HDFS", "HDFS_CLIENT", null, null);
+      ServiceComponentRequest rInvalid2 =
+          new ServiceComponentRequest("c1", "HDFS", "HDFS_CLIENT", null, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createComponents(set1);
+      fail("Expected failure for dups in requests");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceComponentRequest: called 2x (line(s): 97, 99)
+    set1.add: called 2x (line(s): 100, 101)
+    set1.clear: called 1x (line(s): 95)
+    controller.createComponents: called 1x (line(s): 102)
+    fail: called 1x (line(s): 103)
+
+--- Line 108: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid1 =
+          new ServiceComponentRequest("c1", "HDFS", "HDFS_CLIENT", null, null);
+      ServiceComponentRequest rInvalid2 =
+          new ServiceComponentRequest("c2", "HDFS", "HDFS_CLIENT", null, null);
+      set1.add(rInvalid1);
+      set1.add(rInvalid2);
+      controller.createComponents(set1);
+      fail("Expected failure for multiple clusters");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    ServiceComponentRequest: called 2x (line(s): 111, 113)
+    set1.add: called 2x (line(s): 114, 115)
+    set1.clear: called 1x (line(s): 109)
+    controller.createComponents: called 1x (line(s): 116)
+    fail: called 1x (line(s): 117)
+
+--- Line 122: try ---
+try {
+      set1.clear();
+      ServiceComponentRequest rInvalid =
+          new ServiceComponentRequest("c1", "HDFS", "NAMENODE", null, null);
+      set1.add(rInvalid);
+      controller.createComponents(set1);
+      fail("Expected failure for already existing component");
+    } catch (Exception e) {
+      // Expected
+    }
+  Calls inside this branch:
+    set1.clear: called 1x (line(s): 123)
+    ServiceComponentRequest: called 1x (line(s): 125)
+    set1.add: called 1x (line(s): 126)
+    controller.createComponents: called 1x (line(s): 127)
+    fail: called 1x (line(s): 128)
+
+Calls NOT inside any branch (always run):
+  ServiceComponentRequest: called 3x (line(s): 83, 85, 87)
+  set1.add: called 3x (line(s): 89, 90, 91)
+  Assert.assertNotNull: called 3x (line(s): 135, 137, 138)
+  clusters.addCluster: called 2x (line(s): 57, 58)
+  serviceFactory.createNew: called 2x (line(s): 74, 75)
+  c1.addService: called 2x (line(s): 76, 77)
+  Assert.assertEquals: called 2x (line(s): 134, 136)
+  size: called 2x (line(s): 134, 136)
+  s2.getServiceComponent: called 2x (line(s): 137, 138)
+  HashSet<ServiceComponentRequest>: called 1x (line(s): 11)
+  clusters.getCluster: called 1x (line(s): 72)
+  c1.setDesiredStackVersion: called 1x (line(s): 73)
+  StackId: called 1x (line(s): 73)
+  s1.persist: called 1x (line(s): 78)
+  s2.persist: called 1x (line(s): 79)
+  set1.clear: called 1x (line(s): 81)
+  controller.createComponents: called 1x (line(s): 92)
+  s1.getServiceComponents: called 1x (line(s): 134)
+  s1.getServiceComponent: called 1x (line(s): 135)
+  s2.getServiceComponents: called 1x (line(s): 136)

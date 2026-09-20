@@ -1,5 +1,24 @@
 Test: org.apache.hadoop.hbase.client.TestFromClientSide#testSimpleMissing
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 71 method call(s), 17 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Scan: called 10x (line(s): 22, 27, 31, 35, 40, 69, 73, 95, 99, 103)
+  getSingleScanResult: called 10x (line(s): 23, 28, 32, 37, 42, 70, 74, 96, 100, 104)
+  Get: called 9x (line(s): 8, 12, 17, 53, 57, 62, 79, 83, 88)
+  ht.get: called 9x (line(s): 9, 14, 19, 54, 59, 64, 80, 85, 90)
+  assertNullResult: called 7x (line(s): 24, 29, 33, 38, 43, 71, 75)
+  assertEmptyResult: called 6x (line(s): 10, 15, 20, 55, 60, 65)
+  assertSingleResult: called 6x (line(s): 81, 86, 91, 97, 101, 105)
+  get.addFamily: called 3x (line(s): 13, 58, 84)
+  get.addColumn: called 3x (line(s): 18, 63, 89)
+  Bytes.toBytes: called 1x (line(s): 3)
+  TEST_UTIL.createTable: called 1x (line(s): 4)
+  makeN: called 1x (line(s): 5)
+  scan.addFamily: called 1x (line(s): 36)
+  scan.addColumn: called 1x (line(s): 41)
+  Put: called 1x (line(s): 47)
+  put.add: called 1x (line(s): 48)
+  ht.put: called 1x (line(s): 49)

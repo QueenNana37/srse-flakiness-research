@@ -1,5 +1,29 @@
 Test: org.activiti.engine.test.bpmn.event.end.TerminateEndEventTest#testTerminateInSubProcessWithBoundary
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 54 method call(s), 22 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  pi.getId: called 7x (line(s): 9, 18, 28, 34, 38, 44, 47)
+  assertEquals: called 6x (line(s): 9, 16, 28, 31, 38, 41)
+  count: called 6x (line(s): 9, 16, 28, 31, 38, 41)
+  taskService.createTaskQuery: called 5x (line(s): 9, 28, 34, 38, 44)
+  processInstanceId: called 5x (line(s): 9, 28, 34, 38, 44)
+  Date: called 2x (line(s): 3, 12)
+  runtimeService.startProcessInstanceByKey: called 2x (line(s): 7, 26)
+  assertProcessEnded: called 2x (line(s): 18, 47)
+  managementService.createTimerJobQuery: called 2x (line(s): 31, 41)
+  taskDefinitionKey: called 2x (line(s): 34, 44)
+  singleResult: called 2x (line(s): 34, 44)
+  taskService.complete: called 2x (line(s): 35, 45)
+  task.getId: called 2x (line(s): 35, 45)
+  processEngineConfiguration.getClock: called 1x (line(s): 12)
+  setCurrentTime: called 1x (line(s): 12)
+  startTime.getTime: called 1x (line(s): 12)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 13)
+  managementService.createJobQuery: called 1x (line(s): 16)
+  assertHistoricProcessInstanceDeleteReason: called 1x (line(s): 20)
+  assertHistoricTasksDeleteReason: called 1x (line(s): 21)
+  assertHistoricActivitiesDeleteReason: called 1x (line(s): 22)
+  assertHistoricProcessInstanceDetails: called 1x (line(s): 48)

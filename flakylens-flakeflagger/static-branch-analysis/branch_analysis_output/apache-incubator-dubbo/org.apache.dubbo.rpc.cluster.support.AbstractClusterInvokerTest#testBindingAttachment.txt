@@ -1,5 +1,15 @@
 Test: org.apache.dubbo.rpc.cluster.support.AbstractClusterInvokerTest#testBindingAttachment
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 10 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  RpcContext.getContext: called 2x (line(s): 7, 8)
+  Assert.assertTrue: called 2x (line(s): 9, 17)
+  setAttachment: called 1x (line(s): 7)
+  getAttachments: called 1x (line(s): 8)
+  attachments.size: called 1x (line(s): 9)
+  invocation.getAttachment: called 1x (line(s): 16)
+  value.equals: called 1x (line(s): 17)
+  cluster.invoke: called 1x (line(s): 23)

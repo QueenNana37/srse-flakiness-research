@@ -1,16 +1,64 @@
 Test: tachyon.client.FileInStreamTest#skipTest
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 19 method call(s), 9 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 5: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
-Line None: ternary statement
-    -> true-expression used
-    -> false-expression used
+--- Line 3: for ---
+for (int k = MIN_LEN; k <= MAX_LEN; k += DELTA) {
+      for (WriteType op : WriteType.values()) {
+        int fileId = TestUtils.createByteFile(mTfs, "/root/testFile_" + k + "_" + op, op, k);
+
+        TachyonFile file = mTfs.getFile(fileId);
+        InStream is = (k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        Assert.assertEquals(k / 2, is.skip(k / 2));
+        Assert.assertEquals(k / 2, is.read());
+        is.close();
+
+        is = (k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        Assert.assertEquals(k / 3, is.skip(k / 3));
+        Assert.assertEquals(k / 3, is.read());
+        is.close();
+      }
+    }
+
+--- Line 4: for ---
+for (WriteType op : WriteType.values()) {
+        int fileId = TestUtils.createByteFile(mTfs, "/root/testFile_" + k + "_" + op, op, k);
+
+        TachyonFile file = mTfs.getFile(fileId);
+        InStream is = (k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        Assert.assertEquals(k / 2, is.skip(k / 2));
+        Assert.assertEquals(k / 2, is.read());
+        is.close();
+
+        is = (k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE));
+        Assert.assertTrue(is instanceof FileInStream);
+        Assert.assertEquals(k / 3, is.skip(k / 3));
+        Assert.assertEquals(k / 3, is.read());
+        is.close();
+      }
+  Calls inside this branch:
+    Assert.assertEquals: called 4x (line(s): 11, 12, 17, 18)
+    Assert.assertTrue: called 2x (line(s): 10, 16)
+    is.skip: called 2x (line(s): 11, 17)
+    is.read: called 2x (line(s): 12, 18)
+    is.close: called 2x (line(s): 13, 19)
+    WriteType.values: called 1x (line(s): 4)
+    TestUtils.createByteFile: called 1x (line(s): 5)
+    mTfs.getFile: called 1x (line(s): 7)
+
+--- Line 8: ternary ---
+k < MEAN ?
+            file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE)
+  Calls inside this branch:
+    file.getInStream: called 2x (line(s): 9, 9)
+
+--- Line 15: ternary ---
+k < MEAN ? file.getInStream(ReadType.CACHE) : file.getInStream(ReadType.NO_CACHE)
+  Calls inside this branch:
+    file.getInStream: called 2x (line(s): 15, 15)
+

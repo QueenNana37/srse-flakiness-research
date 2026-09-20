@@ -1,5 +1,19 @@
 Test: org.apache.hadoop.hbase.stargate.client.TestRemoteTable#testPut
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 38 method call(s), 12 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  Put: called 4x (line(s): 2, 16, 19, 22)
+  put.add: called 4x (line(s): 3, 17, 20, 23)
+  result.getValue: called 4x (line(s): 9, 30, 35, 38)
+  assertNotNull: called 4x (line(s): 10, 31, 36, 39)
+  assertTrue: called 4x (line(s): 11, 32, 37, 40)
+  Bytes.equals: called 4x (line(s): 11, 32, 37, 40)
+  Get: called 3x (line(s): 6, 27, 33)
+  remoteTable.get: called 3x (line(s): 8, 29, 34)
+  puts.add: called 3x (line(s): 18, 21, 24)
+  remoteTable.put: called 2x (line(s): 4, 25)
+  get.addFamily: called 2x (line(s): 7, 28)
+  ArrayList<Put>: called 1x (line(s): 15)

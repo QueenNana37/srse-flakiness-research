@@ -1,7 +1,25 @@
 Test: tachyon.client.table.RawTableTest#getNameTest
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 15 method call(s), 5 unique method(s) called
 
-Line 4: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 3: for ---
+for (int k = 1; k < Constants.MAX_COLUMNS; k += Constants.MAX_COLUMNS / 5) {
+      int fileId = mTfs.createRawTable("/x/table" + k, 1);
+      RawTable table = mTfs.getRawTable(fileId);
+      Assert.assertEquals("table" + k, table.getName());
+      table = mTfs.getRawTable("/x/table" + k);
+      Assert.assertEquals("table" + k, table.getName());
+
+      fileId = mTfs.createRawTable("/y/tab" + k, 1, TestUtils.getIncreasingByteBuffer(k % 10));
+      table = mTfs.getRawTable(fileId);
+      Assert.assertEquals("tab" + k, table.getName());
+      table = mTfs.getRawTable("/y/tab" + k);
+      Assert.assertEquals("tab" + k, table.getName());
+    }
+  Calls inside this branch:
+    mTfs.getRawTable: called 4x (line(s): 5, 7, 11, 13)
+    Assert.assertEquals: called 4x (line(s): 6, 8, 12, 14)
+    table.getName: called 4x (line(s): 6, 8, 12, 14)
+    mTfs.createRawTable: called 2x (line(s): 4, 10)
+    TestUtils.getIncreasingByteBuffer: called 1x (line(s): 10)
+

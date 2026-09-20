@@ -1,10 +1,33 @@
 Test: org.apache.hadoop.hbase.client.TestAdmin#testEnableDisableAddColumnDeleteColumn
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 14 method call(s), 10 unique method(s) called
 
-Line 7: try statement
-    -> try-block completes normally
-    -> catch triggered: org.apache.hadoop.hbase.client.RegionOfflineException
-Line 14: try statement
-    -> try-block completes normally
-    -> catch triggered: TableNotDisabledException
+--- Line 6: try ---
+try {
+      new HTable(TEST_UTIL.getConfiguration(), tableName);
+    } catch (org.apache.hadoop.hbase.client.RegionOfflineException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    HTable: called 1x (line(s): 7)
+    TEST_UTIL.getConfiguration: called 1x (line(s): 7)
+
+--- Line 13: try ---
+try {
+      this.admin.deleteColumn(tableName, Bytes.toBytes("col2"));
+    } catch(TableNotDisabledException e) {
+      // Expected
+    }
+  Calls inside this branch:
+    this.admin.deleteColumn: called 1x (line(s): 14)
+    Bytes.toBytes: called 1x (line(s): 14)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 2x (line(s): 3, 19)
+  this.admin.disableTable: called 2x (line(s): 5, 18)
+  TEST_UTIL.createTable: called 1x (line(s): 4)
+  this.admin.addColumn: called 1x (line(s): 11)
+  HColumnDescriptor: called 1x (line(s): 11)
+  this.admin.enableTable: called 1x (line(s): 12)
+  this.admin.deleteColumn: called 1x (line(s): 19)
+  this.admin.deleteTable: called 1x (line(s): 20)

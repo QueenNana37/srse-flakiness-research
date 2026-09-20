@@ -1,16 +1,42 @@
 Test: me.prettyprint.cassandra.model.MutatorTest#testBatchMutationManagement
 STATUS: parsed successfully
-Branch points found: 4
+Summary: 4 branch point(s), 22 method call(s), 11 unique method(s) called
 
-Line 7: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 14: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 22: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 31: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 6: for ---
+for (int i = 0; i < 5; i++) {
+      m.addInsertion("k" + i, cf, createColumn("name", "value" + i, se, se));
+    }
+  Calls inside this branch:
+    m.addInsertion: called 1x (line(s): 7)
+    createColumn: called 1x (line(s): 7)
+
+--- Line 13: for ---
+for (int i = 0; i < 5; i++) {
+      assertColumnExists("Keyspace1", "Standard1", "k"+i, "name");
+    }
+  Calls inside this branch:
+    assertColumnExists: called 1x (line(s): 14)
+
+--- Line 21: for ---
+for (int i = 0; i < 5; i++) {
+      m.addInsertion("k" + i, cf, createColumn("name", "value" + i, se, se));
+    }
+  Calls inside this branch:
+    m.addInsertion: called 1x (line(s): 22)
+    createColumn: called 1x (line(s): 22)
+
+--- Line 30: for ---
+for (int i = 0; i < 5; i++) {
+      m.addDeletion("k" + i, cf, "name", se);
+    }
+  Calls inside this branch:
+    m.addDeletion: called 1x (line(s): 31)
+
+Calls NOT inside any branch (always run):
+  m.execute: called 4x (line(s): 9, 17, 25, 33)
+  assertTrue: called 3x (line(s): 10, 11, 27)
+  r.getExecutionTimeMicro: called 3x (line(s): 10, 18, 26)
+  r.getHostUsed: called 2x (line(s): 11, 27)
+  assertEquals: called 2x (line(s): 18, 26)
+  createMutator: called 1x (line(s): 5)
+  m.discardPendingMutations: called 1x (line(s): 24)

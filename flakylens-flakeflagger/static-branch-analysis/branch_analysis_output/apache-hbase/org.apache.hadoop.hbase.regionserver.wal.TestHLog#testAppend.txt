@@ -1,22 +1,158 @@
 Test: org.apache.hadoop.hbase.regionserver.wal.TestHLog#testAppend
 STATUS: parsed successfully
-Branch points found: 6
+Summary: 6 branch point(s), 72 method call(s), 35 unique method(s) called
 
-Line 56: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 59: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 14: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 32: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 45: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 9: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 8: try ---
+try {
+      // Write columns named 1, 2, 3, etc. and then values of single byte
+      // 1, 2, 3...
+      long timestamp = System.currentTimeMillis();
+      WALEdit cols = new WALEdit();
+      for (int i = 0; i < COL_COUNT; i++) {
+        cols.add(new KeyValue(row, Bytes.toBytes("column"),
+          Bytes.toBytes(Integer.toString(i)),
+          timestamp, new byte[] { (byte)(i + '0') }));
+      }
+      HRegionInfo hri = new HRegionInfo(new HTableDescriptor(tableName),
+          HConstants.EMPTY_START_ROW, HConstants.EMPTY_END_ROW);
+      log.append(hri, tableName, cols, System.currentTimeMillis());
+      long logSeqId = log.startCacheFlush();
+      log.completeCacheFlush(hri.getRegionName(), tableName, logSeqId, false);
+      log.close();
+      Path filename = log.computeFilename(log.getFilenum());
+      log = null;
+      // Now open a reader on the log and assert append worked.
+      reader = HLog.getReader(fs, filename, conf);
+      HLog.Entry entry = reader.next();
+      assertEquals(COL_COUNT, entry.getEdit().size());
+      int idx = 0;
+      for (KeyValue val : entry.getEdit().getKeyValues()) {
+        assertTrue(Bytes.equals(hri.getRegionName(),
+          entry.getKey().getRegionName()));
+        assertTrue(Bytes.equals(tableName, entry.getKey().getTablename()));
+        assertTrue(Bytes.equals(row, val.getRow()));
+        assertEquals((byte)(idx + '0'), val.getValue()[0]);
+        System.out.println(entry.getKey() + " " + val);
+        idx++;
+      }
+
+      // Get next row... the meta flushed row.
+      entry = reader.next();
+      assertEquals(1, entry.getEdit().size());
+      for (KeyValue val : entry.getEdit().getKeyValues()) {
+        assertTrue(Bytes.equals(hri.getRegionName(),
+          entry.getKey().getRegionName()));
+        assertTrue(Bytes.equals(tableName, entry.getKey().getTablename()));
+        assertTrue(Bytes.equals(HLog.METAROW, val.getRow()));
+        assertTrue(Bytes.equals(HLog.METAFAMILY, val.getFamily()));
+        assertEquals(0, Bytes.compareTo(HLog.COMPLETE_CACHE_FLUSH,
+          val.getValue()));
+        System.out.println(entry.getKey() + " " + val);
+      }
+    } finally {
+      if (log != null) {
+        log.closeAndDelete();
+      }
+      if (reader != null) {
+        reader.close();
+      }
+    }
+  Calls inside this branch:
+    System.currentTimeMillis: called 2x (line(s): 11, 20)
+    reader.next: called 2x (line(s): 28, 42)
+    assertEquals: called 2x (line(s): 29, 43)
+    entry.getEdit: called 2x (line(s): 29, 43)
+    size: called 2x (line(s): 29, 43)
+    WALEdit: called 1x (line(s): 12)
+    HRegionInfo: called 1x (line(s): 18)
+    HTableDescriptor: called 1x (line(s): 18)
+    log.append: called 1x (line(s): 20)
+    log.startCacheFlush: called 1x (line(s): 21)
+    log.completeCacheFlush: called 1x (line(s): 22)
+    hri.getRegionName: called 1x (line(s): 22)
+    log.close: called 1x (line(s): 23)
+    log.computeFilename: called 1x (line(s): 24)
+    log.getFilenum: called 1x (line(s): 24)
+    HLog.getReader: called 1x (line(s): 27)
+
+--- Line 13: for ---
+for (int i = 0; i < COL_COUNT; i++) {
+        cols.add(new KeyValue(row, Bytes.toBytes("column"),
+          Bytes.toBytes(Integer.toString(i)),
+          timestamp, new byte[] { (byte)(i + '0') }));
+      }
+  Calls inside this branch:
+    Bytes.toBytes: called 2x (line(s): 14, 15)
+    cols.add: called 1x (line(s): 14)
+    KeyValue: called 1x (line(s): 14)
+    Integer.toString: called 1x (line(s): 15)
+
+--- Line 31: for ---
+for (KeyValue val : entry.getEdit().getKeyValues()) {
+        assertTrue(Bytes.equals(hri.getRegionName(),
+          entry.getKey().getRegionName()));
+        assertTrue(Bytes.equals(tableName, entry.getKey().getTablename()));
+        assertTrue(Bytes.equals(row, val.getRow()));
+        assertEquals((byte)(idx + '0'), val.getValue()[0]);
+        System.out.println(entry.getKey() + " " + val);
+        idx++;
+      }
+  Calls inside this branch:
+    assertTrue: called 3x (line(s): 32, 34, 35)
+    Bytes.equals: called 3x (line(s): 32, 34, 35)
+    entry.getKey: called 3x (line(s): 33, 34, 37)
+    entry.getEdit: called 1x (line(s): 31)
+    getKeyValues: called 1x (line(s): 31)
+    hri.getRegionName: called 1x (line(s): 32)
+    getRegionName: called 1x (line(s): 33)
+    getTablename: called 1x (line(s): 34)
+    val.getRow: called 1x (line(s): 35)
+    assertEquals: called 1x (line(s): 36)
+    val.getValue: called 1x (line(s): 36)
+    System.out.println: called 1x (line(s): 37)
+
+--- Line 44: for ---
+for (KeyValue val : entry.getEdit().getKeyValues()) {
+        assertTrue(Bytes.equals(hri.getRegionName(),
+          entry.getKey().getRegionName()));
+        assertTrue(Bytes.equals(tableName, entry.getKey().getTablename()));
+        assertTrue(Bytes.equals(HLog.METAROW, val.getRow()));
+        assertTrue(Bytes.equals(HLog.METAFAMILY, val.getFamily()));
+        assertEquals(0, Bytes.compareTo(HLog.COMPLETE_CACHE_FLUSH,
+          val.getValue()));
+        System.out.println(entry.getKey() + " " + val);
+      }
+  Calls inside this branch:
+    assertTrue: called 4x (line(s): 45, 47, 48, 49)
+    Bytes.equals: called 4x (line(s): 45, 47, 48, 49)
+    entry.getKey: called 3x (line(s): 46, 47, 52)
+    entry.getEdit: called 1x (line(s): 44)
+    getKeyValues: called 1x (line(s): 44)
+    hri.getRegionName: called 1x (line(s): 45)
+    getRegionName: called 1x (line(s): 46)
+    getTablename: called 1x (line(s): 47)
+    val.getRow: called 1x (line(s): 48)
+    val.getFamily: called 1x (line(s): 49)
+    assertEquals: called 1x (line(s): 50)
+    Bytes.compareTo: called 1x (line(s): 50)
+    val.getValue: called 1x (line(s): 51)
+    System.out.println: called 1x (line(s): 52)
+
+--- Line 55: if ---
+if (log != null) {
+        log.closeAndDelete();
+      }
+  Calls inside this branch:
+    log.closeAndDelete: called 1x (line(s): 56)
+
+--- Line 58: if ---
+if (reader != null) {
+        reader.close();
+      }
+  Calls inside this branch:
+    reader.close: called 1x (line(s): 59)
+
+Calls NOT inside any branch (always run):
+  Bytes.toBytes: called 2x (line(s): 3, 4)
+  this.conf.setBoolean: called 1x (line(s): 5)
+  HLog: called 1x (line(s): 7)

@@ -1,5 +1,16 @@
 Test: org.apache.dubbo.remoting.exchange.support.header.HeartbeatHandlerTest#testHeartbeat
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 11 method call(s), 9 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  System.err.println: called 2x (line(s): 11, 12)
+  Assert.assertTrue: called 2x (line(s): 13, 14)
+  URL.valueOf: called 1x (line(s): 3)
+  serverURL.addParameter: called 1x (line(s): 4)
+  TestHeartbeatHandler: called 1x (line(s): 5)
+  Exchangers.bind: called 1x (line(s): 6)
+  System.out.println: called 1x (line(s): 7)
+  Exchangers.connect: called 1x (line(s): 9)
+  Thread.sleep: called 1x (line(s): 10)

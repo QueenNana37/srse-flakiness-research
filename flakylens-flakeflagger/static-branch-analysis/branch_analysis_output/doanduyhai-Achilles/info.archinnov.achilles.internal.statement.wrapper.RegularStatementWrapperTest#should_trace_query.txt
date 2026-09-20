@@ -1,5 +1,22 @@
 Test: info.archinnov.achilles.internal.statement.wrapper.RegularStatementWrapperTest#should_trace_query
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 29 method call(s), 15 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  when: called 7x (line(s): 9, 10, 11, 12, 13, 14, 15)
+  thenReturn: called 7x (line(s): 9, 10, 11, 12, 13, 14, 15)
+  mock: called 2x (line(s): 6, 8)
+  Arrays.asList: called 2x (line(s): 9, 11)
+  RegularStatementWrapper: called 1x (line(s): 4)
+  resultSet.getAllExecutionInfo: called 1x (line(s): 9)
+  executionInfo.getAchievedConsistencyLevel: called 1x (line(s): 10)
+  executionInfo.getQueryTrace: called 1x (line(s): 11)
+  getEvents: called 1x (line(s): 11)
+  event.getDescription: called 1x (line(s): 12)
+  event.getSource: called 1x (line(s): 13)
+  InetAddress.getLocalHost: called 1x (line(s): 13)
+  event.getSourceElapsedMicros: called 1x (line(s): 14)
+  event.getThreadName: called 1x (line(s): 15)
+  wrapper.tracing: called 1x (line(s): 18)

@@ -1,5 +1,21 @@
 Test: org.apache.dubbo.rpc.protocol.dubbo.telnet.ListTelnetHandlerTest#testListService
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 21 method call(s), 14 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  given: called 4x (line(s): 5, 6, 7, 9)
+  willReturn: called 4x (line(s): 5, 6, 7, 9)
+  mock: called 2x (line(s): 4, 8)
+  mockInvoker.getInterface: called 1x (line(s): 5)
+  mockInvoker.getUrl: called 1x (line(s): 6)
+  URL.valueOf: called 1x (line(s): 6)
+  mockInvoker.invoke: called 1x (line(s): 7)
+  any: called 1x (line(s): 7)
+  RpcResult: called 1x (line(s): 7)
+  mockChannel.getAttribute: called 1x (line(s): 9)
+  DubboProtocol.getDubboProtocol: called 1x (line(s): 11)
+  export: called 1x (line(s): 11)
+  list.telnet: called 1x (line(s): 12)
+  assertEquals: called 1x (line(s): 13)

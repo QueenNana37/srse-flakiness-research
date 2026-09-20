@@ -1,5 +1,26 @@
 Test: com.squareup.okhttp.AsyncApiTest#redirect
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 40 method call(s), 19 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  addHeader: called 4x (line(s): 4, 5, 9, 10)
+  server.enqueue: called 3x (line(s): 2, 7, 12)
+  MockResponse: called 3x (line(s): 2, 7, 12)
+  setBody: called 3x (line(s): 6, 11, 12)
+  assertCode: called 3x (line(s): 19, 22, 25)
+  assertEquals: called 3x (line(s): 28, 29, 30)
+  server.takeRequest: called 3x (line(s): 28, 29, 30)
+  getSequenceNumber: called 3x (line(s): 28, 29, 30)
+  setResponseCode: called 2x (line(s): 3, 8)
+  server.getUrl: called 2x (line(s): 15, 18)
+  redirectedBy: called 2x (line(s): 21, 24)
+  assertContainsHeaders: called 2x (line(s): 23, 26)
+  server.play: called 1x (line(s): 13)
+  Request.Builder: called 1x (line(s): 15)
+  url: called 1x (line(s): 15)
+  build: called 1x (line(s): 15)
+  client.enqueue: called 1x (line(s): 16)
+  receiver.await: called 1x (line(s): 18)
+  assertBody: called 1x (line(s): 20)

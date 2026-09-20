@@ -1,5 +1,20 @@
 Test: com.github.kevinsawicki.http.HttpRequestTest#postWithVaragsQueryParams
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 18 method call(s), 13 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 3x (line(s): 17, 18, 19)
+  outputParams.put: called 2x (line(s): 10, 11)
+  request.getParameter: called 2x (line(s): 10, 11)
+  outputParams.get: called 2x (line(s): 18, 19)
+  HashMap<String, String>: called 1x (line(s): 3)
+  AtomicReference<String>: called 1x (line(s): 4)
+  method.set: called 1x (line(s): 9)
+  request.getMethod: called 1x (line(s): 9)
+  response.setStatus: called 1x (line(s): 12)
+  post: called 1x (line(s): 15)
+  assertTrue: called 1x (line(s): 16)
+  request.ok: called 1x (line(s): 16)
+  method.get: called 1x (line(s): 17)

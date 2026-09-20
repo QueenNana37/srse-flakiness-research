@@ -1,5 +1,12 @@
 Test: org.activiti.engine.test.bpmn.async.AsyncTaskTest#testAsyncTask
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 8 method call(s), 5 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertEquals: called 2x (line(s): 6, 11)
+  managementService.createJobQuery: called 2x (line(s): 6, 11)
+  count: called 2x (line(s): 6, 11)
+  runtimeService.startProcessInstanceByKey: called 1x (line(s): 4)
+  waitForJobExecutorToProcessAllJobs: called 1x (line(s): 8)

@@ -1,7 +1,141 @@
 Test: org.apache.hadoop.hbase.regionserver.TestScanner#testScanner
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 61 method call(s), 21 unique method(s) called
 
-Line 3: try statement
-    -> try-block completes normally
-    -> finally-block always runs
+--- Line 2: try ---
+try {
+      r = createNewHRegion(TESTTABLEDESC, null, null);
+      region = new HRegionIncommon(r);
+
+      // Write information to the meta table
+
+      Put put = new Put(ROW_KEY, System.currentTimeMillis(), null);
+
+      ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+      DataOutputStream s = new DataOutputStream(byteStream);
+      REGION_INFO.write(s);
+      put.add(HConstants.CATALOG_FAMILY, HConstants.REGIONINFO_QUALIFIER,
+          byteStream.toByteArray());
+      region.put(put);
+
+      // What we just committed is in the memstore. Verify that we can get
+      // it back both with scanning and get
+
+      scan(false, null);
+      getRegionInfo();
+
+      // Close and re-open
+
+      r.close();
+      r = openClosedRegion(r);
+      region = new HRegionIncommon(r);
+
+      // Verify we can get the data back now that it is on disk.
+
+      scan(false, null);
+      getRegionInfo();
+
+      // Store some new information
+
+      HServerAddress address = new HServerAddress("foo.bar.com:1234");
+
+      put = new Put(ROW_KEY, System.currentTimeMillis(), null);
+      put.add(HConstants.CATALOG_FAMILY, HConstants.SERVER_QUALIFIER,
+          Bytes.toBytes(address.toString()));
+
+//      put.add(HConstants.COL_STARTCODE, Bytes.toBytes(START_CODE));
+
+      region.put(put);
+
+      // Validate that we can still get the HRegionInfo, even though it is in
+      // an older row on disk and there is a newer row in the memstore
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // flush cache
+
+      region.flushcache();
+
+      // Validate again
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // Close and reopen
+
+      r.close();
+      r = openClosedRegion(r);
+      region = new HRegionIncommon(r);
+
+      // Validate again
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // Now update the information again
+
+      address = new HServerAddress("bar.foo.com:4321");
+
+      put = new Put(ROW_KEY, System.currentTimeMillis(), null);
+
+      put.add(HConstants.CATALOG_FAMILY, HConstants.SERVER_QUALIFIER,
+          Bytes.toBytes(address.toString()));
+      region.put(put);
+
+      // Validate again
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // flush cache
+
+      region.flushcache();
+
+      // Validate again
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // Close and reopen
+
+      r.close();
+      r = openClosedRegion(r);
+      region = new HRegionIncommon(r);
+
+      // Validate again
+
+      scan(true, address.toString());
+      getRegionInfo();
+
+      // clean up
+
+      r.close();
+      r.getLog().closeAndDelete();
+
+    } finally {
+      shutdownDfs(cluster);
+    }
+  Calls inside this branch:
+    scan: called 8x (line(s): 20, 31, 49, 58, 69, 84, 93, 104)
+    getRegionInfo: called 8x (line(s): 21, 32, 50, 59, 70, 85, 94, 105)
+    address.toString: called 8x (line(s): 40, 49, 58, 69, 79, 84, 93, 104)
+    HRegionIncommon: called 4x (line(s): 4, 27, 65, 100)
+    r.close: called 4x (line(s): 25, 63, 98, 109)
+    Put: called 3x (line(s): 8, 38, 76)
+    System.currentTimeMillis: called 3x (line(s): 8, 38, 76)
+    put.add: called 3x (line(s): 13, 39, 78)
+    region.put: called 3x (line(s): 15, 44, 80)
+    openClosedRegion: called 3x (line(s): 26, 64, 99)
+    HServerAddress: called 2x (line(s): 36, 74)
+    Bytes.toBytes: called 2x (line(s): 40, 79)
+    region.flushcache: called 2x (line(s): 54, 89)
+    createNewHRegion: called 1x (line(s): 3)
+    ByteArrayOutputStream: called 1x (line(s): 10)
+    DataOutputStream: called 1x (line(s): 11)
+    REGION_INFO.write: called 1x (line(s): 12)
+    byteStream.toByteArray: called 1x (line(s): 14)
+    r.getLog: called 1x (line(s): 110)
+    closeAndDelete: called 1x (line(s): 110)
+    shutdownDfs: called 1x (line(s): 113)
+

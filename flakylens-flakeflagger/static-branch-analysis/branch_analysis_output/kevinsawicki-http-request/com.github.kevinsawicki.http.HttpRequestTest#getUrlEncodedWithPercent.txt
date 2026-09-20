@@ -1,5 +1,17 @@
 Test: com.github.kevinsawicki.http.HttpRequestTest#getUrlEncodedWithPercent
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 10 method call(s), 10 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  AtomicReference<String>: called 1x (line(s): 4)
+  path.set: called 1x (line(s): 9)
+  request.getPathInfo: called 1x (line(s): 9)
+  response.setStatus: called 1x (line(s): 10)
+  get: called 1x (line(s): 13)
+  encode: called 1x (line(s): 13)
+  assertTrue: called 1x (line(s): 14)
+  request.ok: called 1x (line(s): 14)
+  assertEquals: called 1x (line(s): 15)
+  path.get: called 1x (line(s): 15)

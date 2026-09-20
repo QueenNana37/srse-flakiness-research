@@ -1,10 +1,61 @@
 Test: org.apache.ambari.server.controller.AmbariManagementControllerTest#testRcaOnJobtrackerHost
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 53 method call(s), 30 unique method(s) called
 
-Line 60: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 67: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 59: for ---
+for (ExecutionCommandWrapper cmd : stages.get(0)
+        .getExecutionCommands(host1)) {
+      assertEquals(
+          "true",
+          cmd.getExecutionCommand().getConfigurations().get("global")
+              .get("rca_enabled"));
+    }
+  Calls inside this branch:
+    get: called 2x (line(s): 63, 64)
+    stages.get: called 1x (line(s): 59)
+    getExecutionCommands: called 1x (line(s): 60)
+    assertEquals: called 1x (line(s): 61)
+    cmd.getExecutionCommand: called 1x (line(s): 63)
+    getConfigurations: called 1x (line(s): 63)
+
+--- Line 66: for ---
+for (ExecutionCommandWrapper cmd : stages.get(0)
+        .getExecutionCommands(host2)) {
+      assertEquals(
+          "false",
+          cmd.getExecutionCommand().getConfigurations().get("global")
+              .get("rca_enabled"));
+    }
+  Calls inside this branch:
+    get: called 2x (line(s): 70, 71)
+    stages.get: called 1x (line(s): 66)
+    getExecutionCommands: called 1x (line(s): 67)
+    assertEquals: called 1x (line(s): 68)
+    cmd.getExecutionCommand: called 1x (line(s): 70)
+    getConfigurations: called 1x (line(s): 70)
+
+Calls NOT inside any branch (always run):
+  createServiceComponentHost: called 5x (line(s): 32, 34, 36, 38, 40)
+  clusters.getHost: called 4x (line(s): 21, 22, 25, 26)
+  createServiceComponent: called 3x (line(s): 12, 14, 16)
+  clusters.addHost: called 2x (line(s): 20, 24)
+  setOsType: called 2x (line(s): 21, 25)
+  persist: called 2x (line(s): 22, 26)
+  clusters.mapHostToCluster: called 2x (line(s): 28, 29)
+  HashMap<String, String>: called 2x (line(s): 43, 52)
+  configs.put: called 2x (line(s): 44, 45)
+  createCluster: called 1x (line(s): 4)
+  clusters.getCluster: called 1x (line(s): 5)
+  setDesiredStackVersion: called 1x (line(s): 6)
+  StackId: called 1x (line(s): 6)
+  createService: called 1x (line(s): 8)
+  ConfigurationRequest: called 1x (line(s): 47)
+  controller.createConfiguration: called 1x (line(s): 49)
+  HashSet<ServiceRequest>: called 1x (line(s): 51)
+  configVersions.put: called 1x (line(s): 53)
+  sReqs.clear: called 1x (line(s): 54)
+  sReqs.add: called 1x (line(s): 55)
+  ServiceRequest: called 1x (line(s): 55)
+  controller.updateServices: called 1x (line(s): 57)
+  actionDB.getAllStages: called 1x (line(s): 58)
+  trackAction.getRequestId: called 1x (line(s): 58)

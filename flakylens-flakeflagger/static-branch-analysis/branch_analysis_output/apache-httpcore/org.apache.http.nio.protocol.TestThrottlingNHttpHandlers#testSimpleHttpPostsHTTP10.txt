@@ -1,7 +1,20 @@
 Test: org.apache.http.nio.protocol.TestThrottlingNHttpHandlers#testSimpleHttpPostsHTTP10
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 8 method call(s), 8 unique method(s) called
 
-Line 12: try statement
-    -> try-block completes normally
-    -> catch triggered: UnsupportedEncodingException
+--- Line 11: try ---
+try {
+                    entity = new NStringEntity(testjob.getExpected(), "US-ASCII");
+                } catch (UnsupportedEncodingException ignore) {
+                }
+  Calls inside this branch:
+    NStringEntity: called 1x (line(s): 12)
+    testjob.getExpected: called 1x (line(s): 12)
+
+Calls NOT inside any branch (always run):
+  testjob.getPattern: called 1x (line(s): 7)
+  testjob.getCount: called 1x (line(s): 7)
+  BasicHttpEntityEnclosingRequest: called 1x (line(s): 8)
+  r.setEntity: called 1x (line(s): 15)
+  executeStandardTest: called 1x (line(s): 20)
+  RequestHandler: called 1x (line(s): 20)

@@ -1,5 +1,15 @@
 Test: tachyon.JournalTest#FileTest
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 9 method call(s), 8 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  FileTestUtil: called 2x (line(s): 6, 9)
+  mTfs.createFile: called 1x (line(s): 3)
+  mLocalTachyonCluster.getMasterInfo: called 1x (line(s): 4)
+  getClientFileInfo: called 1x (line(s): 4)
+  mLocalTachyonCluster.stop: called 1x (line(s): 5)
+  mLocalTachyonCluster.getEditLogPath: called 1x (line(s): 7)
+  UnderFileSystem.get: called 1x (line(s): 8)
+  delete: called 1x (line(s): 8)

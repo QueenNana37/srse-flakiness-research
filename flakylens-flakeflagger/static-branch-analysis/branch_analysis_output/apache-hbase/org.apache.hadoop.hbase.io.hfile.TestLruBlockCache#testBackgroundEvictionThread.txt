@@ -1,10 +1,30 @@
 Test: org.apache.hadoop.hbase.io.hfile.TestLruBlockCache#testBackgroundEvictionThread
 STATUS: parsed successfully
-Branch points found: 2
+Summary: 2 branch point(s), 12 method call(s), 9 unique method(s) called
 
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 18: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 11: for ---
+for(Block block : blocks) {
+      cache.cacheBlock(block.blockName, block.buf);
+    }
+  Calls inside this branch:
+    cache.cacheBlock: called 1x (line(s): 12)
+
+--- Line 17: while ---
+while(cache.getEvictionCount() == 0) {
+      System.out.println("sleep");
+      Thread.sleep(1000);
+      assertTrue(n++ < 2);
+    }
+  Calls inside this branch:
+    cache.getEvictionCount: called 1x (line(s): 17)
+    System.out.println: called 1x (line(s): 18)
+    Thread.sleep: called 1x (line(s): 19)
+    assertTrue: called 1x (line(s): 20)
+
+Calls NOT inside any branch (always run):
+  cache.getEvictionCount: called 2x (line(s): 22, 25)
+  calculateBlockSizeDefault: called 1x (line(s): 4)
+  LruBlockCache: called 1x (line(s): 6)
+  generateFixedBlocks: called 1x (line(s): 8)
+  System.out.println: called 1x (line(s): 22)
+  assertEquals: called 1x (line(s): 25)

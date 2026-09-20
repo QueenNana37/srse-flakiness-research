@@ -1,34 +1,118 @@
 Test: org.apache.ambari.server.agent.TestActionQueue#testConcurrentOperations
 STATUS: parsed successfully
-Branch points found: 10
+Summary: 10 branch point(s), 24 method call(s), 11 unique method(s) called
 
-Line 47: if statement
-    -> then-branch executes
-    -> if-condition false, nothing in this if executes
-Line 12: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 19: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 26: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 37: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 46: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 55: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 60: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 63: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
-Line 43: while statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 11: for ---
+for (int i = 0; i < threadCount; i++) {
+      dequeOperators[i] = new ActionQueueOperation(aq, hosts,
+          ActionQueueOperation.OpType.DEQUEUE);
+      Thread t = new Thread(dequeOperators[i]);
+      t.start();
+    }
+  Calls inside this branch:
+    ActionQueueOperation: called 1x (line(s): 12)
+    Thread: called 1x (line(s): 14)
+    t.start: called 1x (line(s): 15)
+
+--- Line 18: for ---
+for (int i = 0; i < threadCount; i++) {
+      enqueOperators[i] = new ActionQueueOperation(aq, hosts,
+          ActionQueueOperation.OpType.ENQUEUE);
+      Thread t = new Thread(enqueOperators[i]);
+      t.start();
+    }
+  Calls inside this branch:
+    ActionQueueOperation: called 1x (line(s): 19)
+    Thread: called 1x (line(s): 21)
+    t.start: called 1x (line(s): 22)
+
+--- Line 25: for ---
+for (int i = 0; i < threadCount; i++) {
+      dequeAllOperators[i] = new ActionQueueOperation(aq, hosts,
+          ActionQueueOperation.OpType.DEQUEUEALL);
+      Thread t = new Thread(dequeAllOperators[i]);
+      t.start();
+    }
+  Calls inside this branch:
+    ActionQueueOperation: called 1x (line(s): 26)
+    Thread: called 1x (line(s): 28)
+    t.start: called 1x (line(s): 29)
+
+--- Line 36: for ---
+for (int i = 0; i < threadCount; i++) {
+      enqueOperators[i].stop();
+    }
+  Calls inside this branch:
+    stop: called 1x (line(s): 37)
+
+--- Line 42: while ---
+while (!allDequeued) {
+      Thread.sleep(10);
+      allDequeued = true;
+      for (String host: hosts) {
+        if (aq.size(host) > 0) {
+          allDequeued = false;
+          break;
+        }
+      }
+    }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 43)
+
+--- Line 45: for ---
+for (String host: hosts) {
+        if (aq.size(host) > 0) {
+          allDequeued = false;
+          break;
+        }
+      }
+
+--- Line 46: if ---
+if (aq.size(host) > 0) {
+          allDequeued = false;
+          break;
+        }
+  Calls inside this branch:
+    aq.size: called 1x (line(s): 46)
+
+--- Line 54: for ---
+for (int i = 0; i < threadCount; i++) {
+      dequeOperators[i].stop();
+      dequeAllOperators[i].stop();
+    }
+  Calls inside this branch:
+    stop: called 2x (line(s): 55, 56)
+
+--- Line 59: for ---
+for (int h = 0; h<hosts.length; h++) {
+      long opsEnqueued = 0;
+      long opsDequeued = 0;
+      for (int i = 0; i < threadCount; i++) {
+        opsEnqueued += enqueOperators[i].getOpCounts()[h];
+        opsDequeued += dequeOperators[i].getOpCounts()[h];
+        opsDequeued += dequeAllOperators[i].getOpCounts()[h];
+      }
+      assertTrue(opsEnqueued != 0); //Prevent degenerate case of all zeros.
+      assertEquals(0, aq.size(hosts[h])); //Everything should be dequeued
+      LOG.info("Host: " + hosts[h] + ", opsEnqueued: " + opsEnqueued
+          + ", opsDequeued: " + opsDequeued);
+      assertEquals(opsDequeued, opsEnqueued);
+    }
+  Calls inside this branch:
+    assertEquals: called 2x (line(s): 68, 71)
+    assertTrue: called 1x (line(s): 67)
+    aq.size: called 1x (line(s): 68)
+    LOG.info: called 1x (line(s): 69)
+
+--- Line 62: for ---
+for (int i = 0; i < threadCount; i++) {
+        opsEnqueued += enqueOperators[i].getOpCounts()[h];
+        opsDequeued += dequeOperators[i].getOpCounts()[h];
+        opsDequeued += dequeAllOperators[i].getOpCounts()[h];
+      }
+  Calls inside this branch:
+    getOpCounts: called 3x (line(s): 63, 64, 65)
+
+Calls NOT inside any branch (always run):
+  ActionQueue: called 1x (line(s): 3)
+  Thread.sleep: called 1x (line(s): 33)

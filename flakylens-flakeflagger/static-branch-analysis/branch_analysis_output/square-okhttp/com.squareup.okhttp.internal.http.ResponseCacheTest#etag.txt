@@ -1,5 +1,13 @@
 Test: com.squareup.okhttp.internal.http.ResponseCacheTest#etag
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  assertConditionallyCached: called 1x (line(s): 3)
+  MockResponse: called 1x (line(s): 3)
+  addHeader: called 1x (line(s): 3)
+  assertTrue: called 1x (line(s): 4)
+  conditionalRequest.getHeaders: called 1x (line(s): 4)
+  contains: called 1x (line(s): 4)

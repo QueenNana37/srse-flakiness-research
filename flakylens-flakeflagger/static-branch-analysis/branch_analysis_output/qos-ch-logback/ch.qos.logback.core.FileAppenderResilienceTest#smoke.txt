@@ -1,7 +1,22 @@
 Test: ch.qos.logback.core.FileAppenderResilienceTest#smoke
 STATUS: parsed successfully
-Branch points found: 1
+Summary: 1 branch point(s), 9 method call(s), 9 unique method(s) called
 
-Line 9: for statement
-    -> loop body runs 0 times
-    -> loop body runs 1+ times
+--- Line 8: for ---
+for (int i = 0; i < 5; i++) {
+      Thread.sleep((int)(RecoveryCoordinator.BACKOFF_COEFFICIENT_MIN * delayCoefficient));
+      closeLogFileOnPurpose();
+    }
+  Calls inside this branch:
+    Thread.sleep: called 1x (line(s): 9)
+    closeLogFileOnPurpose: called 1x (line(s): 10)
+
+Calls NOT inside any branch (always run):
+  Runner: called 1x (line(s): 3)
+  Thread: called 1x (line(s): 4)
+  t.start: called 1x (line(s): 5)
+  runner.setDone: called 1x (line(s): 12)
+  t.join: called 1x (line(s): 13)
+  ResilienceUtil
+              .verify: called 1x (line(s): 20)
+  runner.getCounter: called 1x (line(s): 21)

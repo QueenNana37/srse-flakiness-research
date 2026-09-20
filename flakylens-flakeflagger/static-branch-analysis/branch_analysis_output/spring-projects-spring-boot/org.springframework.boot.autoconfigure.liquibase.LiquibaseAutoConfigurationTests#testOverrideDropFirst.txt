@@ -1,5 +1,13 @@
 Test: org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurationTests#testOverrideDropFirst
 STATUS: parsed successfully
-Branch points found: 0
+Summary: 0 branch point(s), 6 method call(s), 6 unique method(s) called
 
-(no branches -- this test has a single straight-line execution path)
+(no branches -- single straight-line execution path)
+
+Calls NOT inside any branch (always run):
+  EnvironmentTestUtils.addEnvironment: called 1x (line(s): 3)
+  this.context.register: called 1x (line(s): 4)
+  this.context.refresh: called 1x (line(s): 7)
+  this.context.getBean: called 1x (line(s): 8)
+  assertTrue: called 1x (line(s): 9)
+  liquibase.isDropFirst: called 1x (line(s): 9)
