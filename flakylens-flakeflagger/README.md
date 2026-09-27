@@ -42,12 +42,12 @@ convention:
   `input_csv` needs at minimum a `full_code` column. `fold` selects which of
   the 4 pretrained checkpoints to use (`per_project_model_weights_on__dataset_project_group_{fold}.pt`).
 
-- `flakeflagger_reformatted.csv` — Suzzana's
+- `flakeflagger_reformatted.csv` - Suzzana's
   [chaosapi_method_body_extracted.csv](https://github.com/suzzy777/flakeprobe/blob/main/chaosapi_method_body_extracted.csv)
   (85 rows with `extraction_status == ok`) reformatted to `id, project,
   test_name, full_code`.
 
-- `flakeflagger_consolidated_predictions.csv` — final results. The script was
+- `flakeflagger_consolidated_predictions.csv` - final results. The script was
   run once per fold (1-4) as a robustness check, then predictions were
   combined here: per-fold prediction + confidence, a majority-vote
   `majority_category`, an `unanimous_across_folds` flag, and `avg_confidence`
@@ -58,7 +58,7 @@ convention:
 All 4 independently-trained fold models agreed on every one of the 85 tests
 (100% unanimous). 84/85 predicted **Not Flaky**; 1 predicted **Async Wait**
 (`apache-commons-exec` / `testExecuteAsyncWithProcessDestroyer`, which
-contains a `Thread.sleep()` waiting on a process destroyer — consistent with
+contains a `Thread.sleep()` waiting on a process destroyer, consistent with
 the predicted category).
 
 This is a low positive rate relative to intuition, but it lines up with
@@ -72,7 +72,7 @@ No ground-truth labels exist for this dataset (confirmed with Suzzana), so
 these are FlakyLens's raw predictions, not an accuracy/F1 evaluation.
 
 
-## Update: full FlakeFlagger run — corrected with Suzanna's official method bodies
+## Update: full FlakeFlagger run -> corrected with Suzanna's official method bodies
 
 **This section supersedes an earlier version of this analysis.** The first
 pass extracted test method source code ourselves (811 tests, 23 cloned
@@ -90,7 +90,7 @@ self-extracted 811-test files and script have been removed from this repo.
 ### Results: FlakyLens recall on FlakeFlagger's known-flaky tests (799 tests)
 
 Since every one of these 799 tests is confirmed flaky, any "Not Flaky"
-prediction is a miss — these are recall numbers:
+prediction is a miss - these are recall numbers:
 
 | Fold | Flaky-catch rate |
 |---|---|
@@ -104,7 +104,7 @@ Combined across all 4 folds:
 - Flagged flaky by **majority** (2+ of 4): 24.8% (198/799)
 - Flagged flaky by **all 4** (unanimous): 13.0% (104/799)
 
-Recall roughly doubled compared to the buggy extraction (which is expected —
+Recall roughly doubled compared to the buggy extraction (which is expected,
 truncated method bodies gave the model far less signal to work with). Even
 so, FlakyLens still misses roughly 3 in 4 known-flaky FlakeFlagger tests even
 counted generously (any single fold flagging it).
@@ -118,7 +118,7 @@ counted generously (any single fold flagging it).
   automatically transfer to another, even for the "same" task.
 - **Severe class imbalance in training data.** FlakeBench is ~97%
   non-flaky. FlakyLens's focal loss / class weighting was tuned to that
-  specific imbalance and feature distribution — that calibration doesn't
+  specific imbalance and feature distribution - that calibration doesn't
   necessarily carry over to a different distribution, so the decision
   boundary defaults toward "Not Flaky" unless the signal is very strong.
 - **Consistent with the paper's own interpretability finding.** The FlakyLens
@@ -126,6 +126,6 @@ counted generously (any single fold flagging it).
   `wait`, `Duration`, etc.) rather than deep code semantics. If
   FlakeFlagger's real-world flaky tests achieve flakiness through different
   code patterns than FlakeBench's labeled examples, those learned
-  token-level heuristics simply may not fire — which also explains why the 4
+  token-level heuristics simply may not fire - which also explains why the 4
   independently-trained folds disagree with each other on this new
   distribution.

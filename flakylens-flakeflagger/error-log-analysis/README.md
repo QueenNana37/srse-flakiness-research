@@ -21,7 +21,7 @@ failure for each of our specific tests.
 
 ## Why the script is built the way it is
 
-First version extracted every archive to disk before reading it. Broke on the big archives — some of these unpack into 700,000+ tiny XML files (square-okhttp has over 1 million), which either fills up your hard drive or, on Windows, hits the 260-character file path limit. Current version never touches disk -> but instead it reads straight out of the compressed .tgz stream, one file at a time, in the order it naturally appears, and only keeps the ones that match a test we actually care about. Took about 2 hours to run across all 21 projects (~2 million archive entries in Python)
+First version extracted every archive to disk before reading it. Broke on the big archives, some of these unpack into 700,000+ tiny XML files (square-okhttp has over 1 million), which either fills up your hard drive or, on Windows, it hits the 260-character file path limit. Current version never touches disk -> but instead it reads straight out of the compressed .tgz stream, one file at a time, in the order it naturally appears, and only keeps the ones that match a test we actually care about. Took about 2 hours to run across all 21 projects (~2 million archive entries in Python)
 
 ## Running it yourself
 
@@ -72,7 +72,7 @@ What's in this folder is something different: I took the real archived
 failure text and tried to guess which of FlakyLens's 5 category names it
 resembles, so we could compare "what FlakyLens guessed from code" against
 "what the real failure actually looks like." Nothing existing does that
-mapping, so the rules that decide this are ones I wrote myself with Claude,
+mapping, so the rules that decide this are ones I wrote myself + Claude,
 based on how the FlakyLens paper describes each category. This is not
 checked against any ground truth. Testing it on a real spring-boot failure
 already caught it giving a wrong answer: a Redis authentication failure got
