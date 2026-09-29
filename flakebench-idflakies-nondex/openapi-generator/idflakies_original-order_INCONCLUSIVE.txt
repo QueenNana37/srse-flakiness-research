@@ -1,0 +1,2 @@
+org.openapitools.codegen.ArchUnitRulesTest.testLoggersAreNotPublicFinalAndNotStatic
+org.openapitools.codegen.ArchUnitRulesTest.abstractClassesAreAbstract
