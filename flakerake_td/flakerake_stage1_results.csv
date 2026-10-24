@@ -1,0 +1,17 @@
+row,test,td,detail,minutes
+out_part1_row_012,com.epam.eco.schemacatalog.store.metadata.InheritingMetadataContainer_remove_4_0_Test#testRemoveWithInvalidKey,false,,28.1
+out_part1_row_012,com.epam.eco.schemacatalog.store.metadata.InheritingMetadataContainer_remove_4_0_Test#testRemoveWithNullKey,false,,1.1
+out_part1_row_012,com.epam.eco.schemacatalog.store.metadata.InheritingMetadataContainer_remove_4_0_Test#testRemoveWithValidKey,false,,31.8
+out_part1_row_040,io.elasticjob.lite.internal.schedule.JobRegistry_getCurrentShardingTotalCount_8_0_Test#testGetCurrentShardingTotalCountWhenJobDoesNotExist,false,,2.3
+out_part1_row_040,io.elasticjob.lite.internal.schedule.JobRegistry_getCurrentShardingTotalCount_8_0_Test#testGetCurrentShardingTotalCountWhenJobExists,false,,2.3
+out_part1_row_073,io.elasticjob.lite.reg.zookeeper.ZookeeperRegistryCenter_persistSequential_12_0_Test#testPersistSequentialSuccess,false,,39.0
+out_part1_row_141,org.apache.hadoop.yarn.service.client.ServiceClient_actionUpgradeExpress_6_2_Test#testActionUpgradeExpress,false,,45.6
+out_part2_row_045,net.sf.marineapi.ais.parser.AISMessageFactory_create_0_3_Test#testCreate_NoParserForMessageType,false,,31.3
+out_part2_row_047,net.sf.marineapi.ais.event.AbstractAISMessageListener_sentenceRead_0_0_Test#testSentenceRead_ClearQueueOnFirstFragment,false,,36.2
+out_part2_row_047,net.sf.marineapi.ais.event.AbstractAISMessageListener_sentenceRead_0_0_Test#testSentenceRead_FirstFragment,false,,35.4
+out_part2_row_057,io.elasticjob.lite.reg.zookeeper.ZookeeperRegistryCenter_persistEphemeralSequential_13_1_Test#testPersistEphemeralSequential,false,,55.5
+out_part2_row_119,org.apache.camel.component.reactor.engine.ReactorStreamsService_fromStream_4_0_Test#testFromStreamWithExchangeType,inconclusive,analysis time cap reached before a failure was found,119.1
+out_part2_row_119,org.apache.camel.component.reactor.engine.ReactorStreamsService_fromStream_4_0_Test#testFromStreamWithOtherType,inconclusive,analysis time cap reached before a failure was found,121.0
+out_part2_row_121,org.apache.camel.component.reactor.engine.ReactorStreamsService_from_11_0_Test#testFrom_ExceptionHandling,inconclusive,analysis time cap reached before a failure was found,121.0
+out_part2_row_121,org.apache.camel.component.reactor.engine.ReactorStreamsService_from_11_0_Test#testFrom_ExistingUri,inconclusive,analysis time cap reached before a failure was found,120.8
+out_part2_row_121,org.apache.camel.component.reactor.engine.ReactorStreamsService_from_11_0_Test#testFrom_NewUri,inconclusive,analysis time cap reached before a failure was found,120.8
