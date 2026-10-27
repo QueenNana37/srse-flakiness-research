@@ -38,9 +38,11 @@ Subcommands (run them one after another; each one is resumable and has its own -
   flakerake  TD (timing-dependent) check with FlakeRake (gmu-swe/flakerake, folder flakerake/, a patched copy,
              see flakerake/PATCHES.md). FlakeRake inserts sleeps into the test's threads and looks for
              a placement that makes the test fail. One test method at a time, one FlakeRake run per method,
-             each capped at --flakerake-max-hours (default 2). Works on JDK 8 rows, JUnit 4 (FlakeRake's own runner)
-             and JUnit 5 (our SleepyJUnit5Runner, see flakerake/PATCHES.md); JDK 11 rows get status
-             unsupported_jdk11 and are not run (FlakeRake needs JDK 8). Per method td is
+             each capped at --flakerake-max-hours (default 2). Works on JDK 8 and JDK 11 rows, JUnit 4 (FlakeRake's own
+             runner) and JUnit 5 (our SleepyJUnit5Runner, see flakerake/PATCHES.md). JDK 8 rows use the agent built from
+             flakerake/sleepy-parent (ASM 5.0.3) in --maven-repo; JDK 11 rows use an ASM 9 agent that flakerake/asm9/ builds
+             into its own Maven repository (--flakerake-asm9-repo), because ASM 5 cannot read JDK 11 class files. Other JDKs
+             get status unsupported_jdk<N> and are not run. Per method td is
                true          FlakeRake found a sleep placement that makes the test fail (a logged failure)
                false         no thread produced a failure
                timeout       a sleep made the test hang (FlakeRake's SleepyTimeOut(ProbableDeadlock)); not counted
@@ -99,6 +101,8 @@ FLAKERAKE_RETRY = {"build_failed", "build_timeout", "would_overwrite", "flakerak
 LOCK_FILE = HERE / ".flaky_check.lock"
 FLAKERAKE_JARS = [("sleepy-interceptor", "sleepy-interceptor-0.0.4-SNAPSHOT.jar"),
                   ("sleepy-runner", "sleepy-runner-0.0.4-SNAPSHOT.jar")]
+FLAKERAKE_JDKS = ("8", "11")  # JDKs the flakerake command runs on: 8 with the ASM 5 agent, 11 with the ASM 9 agent (v6)
+ASM9_BUILDER = Path("asm9") / "build_asm9_agent.py"  # relative to --flakerake-dir
 SUMMARY_FIELDS = ["project", "sha", "module", "generated_test", "focal_method", "rerun_runs", "rerun_passed", "rerun_failed",
                   "rerun_errors", "rerun_flaky", "nondex_flaky", "idflakies_type", "idflakies_polluter_of", "nio", "nio_method",
                   "flakerake_td", "flakerake_detail", "any_flaky", "focal_from_test", "focal_from_test_type"]
@@ -770,12 +774,19 @@ def flakerake_retry(status, g, m):
 
 
 def flakerake_unsupported(g, m):
-    """Why FlakeRake cannot run on this generation run, or "" if it can. FlakeRake's agent needs JDK 8
-    (-Xbootclasspath/p, ASM 5). JUnit 4 and JUnit 5 both work (JUnit 5 through SleepyJUnit5Runner)."""
+    """Why FlakeRake cannot run on this generation run, or "" if it can. JDK 8 (ASM 5 agent) and JDK 11 (ASM 9 agent,
+    flakerake/asm9/) are supported; JDK 17 and newer are not (not tried). JUnit 4 and JUnit 5 both work (JUnit 5 through
+    SleepyJUnit5Runner)."""
     java = str(m.get("java", "")).strip()
-    if java != "8":
+    if java not in FLAKERAKE_JDKS:
         return f"unsupported_jdk{java}"
     return ""
+
+
+def flakerake_agent_repo(args, java):
+    """The Maven repository that holds the agent and runner jars for a row on this JDK: --maven-repo (ASM 5 agent) for
+    JDK 8, --flakerake-asm9-repo (ASM 9 agent) for newer JDKs. Both have the same file names, hence two repositories."""
+    return args.repo if str(java).strip() == "8" else args.asm9_repo
 
 
 def classify_flakerake(report, code=0):
@@ -902,6 +913,27 @@ def ensure_flakerake(args):
         sys.exit(f"FlakeRake build failed (exit {code}), see {log}")
 
 
+def ensure_flakerake_asm9(args):
+    """Build the ASM 9 agent and runners (flakerake/asm9/build_asm9_agent.py) into --flakerake-asm9-repo unless they are
+    there and newer than every source. The ASM 5 agent for JDK 8 is not touched."""
+    builder = args.flakerake_dir / ASM9_BUILDER
+    if not builder.is_file():
+        sys.exit(f"ASM 9 builder not found: {builder} (flakerake/asm9/ from the package)")
+    jdk8 = B.find_jdk("8")
+    if not jdk8 or not (Path(jdk8) / "bin" / "javac").exists():
+        sys.exit("FlakeRake needs a JDK 8 with javac to build the agents (set JAVA_HOME_8)")
+    env = dict(args.env)
+    env["JAVA_HOME"] = jdk8
+    env["PATH"] = str(Path(jdk8) / "bin") + os.pathsep + env["PATH"]
+    log = args.out / "flakerake_asm9_build.log"
+    cmd = [sys.executable, str(builder), "--repo", str(args.asm9_repo), "--jdk", jdk8,
+           "--flakerake-dir", str(args.flakerake_dir)]
+    print("ASM 9 agent (JDK 11 rows): " + " ".join(cmd), flush=True)
+    code = run_group(cmd, args.flakerake_dir, env, log, 3600)
+    if code != 0:
+        sys.exit(f"ASM 9 agent build failed (exit {code}), see {log}")
+
+
 def write_flakerake_rows(path, rows):
     B.csv_write(path, rows, FLAKERAKE_FIELDS)
 
@@ -934,6 +966,24 @@ def flakerake_junit5_classpath(p, args):
     return junit_launcher(p, cp, args)
 
 
+_EXIT_STATUS = re.compile(r"returned non-zero exit status (\d+)")
+
+
+def java_command_failed(*logs):
+    """The first exit status other than 57 that FlakeRake's log reports for a command ("... returned non-zero exit
+    status N"), or "". 57 is what the OS shows for the runners' exit code 1337 = the test failed. Anything else
+    (2 = the shell could not parse the command, 3 = out of memory, 1 = a Maven step ...) is a setup problem, not a
+    test failure; FlakeRake itself reports it as "Unable to get test to pass without any slowing"."""
+    for f in logs:
+        try:
+            found = [x for x in _EXIT_STATUS.findall(Path(f).read_text(errors="replace")) if x != "57"]
+        except OSError:
+            continue
+        if found:
+            return found[0]
+    return ""
+
+
 def no_test_executed(*logs):
     """True if one of the logs holds the marker SleepyJUnit5Runner prints when the Launcher found no test to run."""
     for f in logs:
@@ -945,10 +995,70 @@ def no_test_executed(*logs):
     return False
 
 
+_AGENT_FRAME = "SleepyInterceptingAgent$1.transform"
+
+
+def agent_exceptions(log):
+    """What the FlakeRake agent printed when it could not rewrite a class. Its transformer catches every exception, prints
+    the stack trace and leaves the class as it was, so nothing fails: the class is simply not slowed. They end up in
+    <method>/sleepy-records/logs/sleepy-script.log. Returns (number of such stack traces, the first exception line,
+    True if one says that the ASM in the agent is too old for a class file: "... requires ASM7" for nestmates, or an
+    IllegalArgumentException from ClassReader.<init> for a class file version ASM does not know). (0, "", False) if the
+    log cannot be read or holds none."""
+    try:
+        lines = Path(log).read_text(errors="replace").splitlines()
+    except OSError:
+        return 0, "", False
+    traces, cur = [], None  # (header line, [stack frame lines])
+    for line in lines:
+        if line.startswith("\t"):
+            if cur is not None:
+                cur[1].append(line)
+        else:
+            if cur is not None:
+                traces.append(cur)
+            cur = (line, [])
+    if cur is not None:
+        traces.append(cur)
+    mine = [(h, fr) for h, fr in traces if any(_AGENT_FRAME in f for f in fr)]
+    old = any("requires ASM" in h or ("IllegalArgumentException" in h and any("ClassReader.<init>" in f for f in fr))
+              for h, fr in mine)
+    first = mine[0][0].replace("INFO:root:", "").strip()[:200] if mine else ""
+    return len(mine), first, old
+
+
+def sleep_evidence(prefix):
+    """What FlakeRake really did, for a td=false result, from its two report files <prefix>_init_api_interceptions.csv (the
+    interception points each thread reached in the runs without sleeping) and <prefix>_cause_to_interception_report.csv (the
+    naps that were really taken in the sleeping runs). A false after 0 naps says little: nothing was slowed. Returns a text for the
+    detail column, or "" if the files cannot be read (the result itself is not affected)."""
+    try:
+        threads, points = set(), set()
+        with open(str(prefix) + "_init_api_interceptions.csv", encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                if "NO_TARGET_HIT" not in r["sleepyline"]:
+                    threads.add(r["Thread"])
+                    points.add((r["Thread"], r["sleepyline"]))
+        best = {}  # the Java side rewrites its totals at every nap: keep the last (largest) per run and interception
+        with open(str(prefix) + "_cause_to_interception_report.csv", encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                key = (r["Thread"], r["SleepyRunId"], r["Cause"], r["Interception"])
+                naps, ms = int(r["HitSleepCount"]), int(r["CumulativeSleepTimeMS"])
+                if key not in best or ms > best[key][1]:
+                    best[key] = (naps, ms)
+    except (OSError, KeyError, ValueError, TypeError):
+        return ""
+    naps = sum(n for n, _ in best.values())
+    secs = sum(ms for _, ms in best.values()) / 1000
+    return (f"{len(points)} interception point(s) in {len(threads)} thread(s); in the sleeping runs {naps} nap(s), "
+            f"{secs:.0f} s of sleep inserted" + ("" if naps else " (NOTHING WAS SLOWED, so this false says little)"))
+
+
 def do_flakerake(p, rec, args):
-    jdk8 = p.env.get("JAVA_HOME")
-    if not jdk8 or not (Path(jdk8) / "bin" / "java").exists():
-        rec.update(status="flakerake_did_not_run", note="no JDK 8 found (set JAVA_HOME_8)")
+    java = str(p.m.get("java", "")).strip()
+    jdk = B.find_jdk(java)  # the row's own JDK (the same one p.env["JAVA_HOME"] was set to); never a JAVA_HOME of another version
+    if not jdk or not (Path(jdk) / "bin" / "java").exists():
+        rec.update(status="flakerake_did_not_run", note=f"no JDK {java} found (set JAVA_HOME_{java})")
         return
     sleepy = p.module_dir / "sleepy-records"
     input_csv = p.module_dir / "flakerake_input.csv"
@@ -962,8 +1072,8 @@ def do_flakerake(p, rec, args):
             print(f"  moved {leftover.name}, left in the module by an earlier interrupted run, to {stash}", flush=True)
     env = dict(p.env)
     env.update({
-        "FLAKY_HOME": str(args.flakerake_dir), "MAVEN_REPO": str(args.repo),
-        "JAVA_FLAKY_HOME": jdk8, "JAVA_HOME": jdk8,
+        "FLAKY_HOME": str(args.flakerake_dir), "MAVEN_REPO": str(flakerake_agent_repo(args, java)),
+        "JAVA_FLAKY_HOME": jdk, "JAVA_HOME": jdk,
         "FLAKERAKE_SKIP_INSTALL": "1",  # the module was already built by p.build()
         "FLAKERAKE_MVN_ARGS": "-Dmaven.repo.local=" + str(args.repo),
         "FLAKY_MVN_INSTALL_OPTS": " ".join(["-B", "-fn", "-DskipITs", *B.BUILD_SKIPS]),
@@ -1022,6 +1132,21 @@ def do_flakerake(p, rec, args):
             td, detail = "inconclusive", "FlakeRake did not finish within the wall-clock limit"
         else:
             td, detail = classify_flakerake(dest / "report" / (input_csv.name + "_minimal_sleep_report.csv"), code)
+        if td == "inconclusive" and detail.startswith("the test fails even without sleeping"):
+            bad = java_command_failed(mdir / "flakerake.log")
+            if bad:  # the "failure" was the command, not the test (an ormlite run broke like this on an empty argLine)
+                td, detail = "error", (f"the java command exited with status {bad} (a failing test gives 57), so this is a "
+                                       "setup problem, not a result; see flakerake.log")
+        if td == "false":
+            detail = sleep_evidence(dest / "report" / input_csv.name)
+        n_agent, first_agent, agent_too_old = agent_exceptions(dest / "logs" / "sleepy-script.log")
+        if agent_too_old:  # the agent could not read the JDK's or the tests' class files: a wrong agent, not a result
+            td, detail = "error", (f"the agent could not rewrite {n_agent} class(es) ({first_agent}): its ASM is too old for this "
+                                   "JDK's class files, so threads are not tracked. Setup problem, not a result; see "
+                                   "sleepy-records/logs/sleepy-script.log")
+        elif n_agent:  # other agent exceptions: the class was left alone; the result stays, but is marked
+            detail = (detail + "; " if detail else "") + (f"NOTE: the agent printed {n_agent} stack trace(s) while rewriting "
+                                                          f"classes (first: {first_agent}); see sleepy-script.log")
         res = {"td": td, "detail": detail, "minutes": round((time.time() - begin) / 60, 1)}
         done.write_text(json.dumps(res))
         results.append({"test": t, **res})
@@ -1105,6 +1230,9 @@ def main():
     a.add_argument("--rounds", type=int, default=10, help="idflakies: shuffled rounds (default 10)")
     a.add_argument("--flakerake-dir", type=Path, default=HERE / "flakerake",
                    help="flakerake: the patched FlakeRake folder (default flakerake/ next to this script)")
+    a.add_argument("--flakerake-asm9-repo", type=Path, default=Path.home() / ".m2" / "flakerake-asm9-repository",
+                   help="flakerake: Maven repository of its own for the ASM 9 agent used on JDK 11 rows (default "
+                        "~/.m2/flakerake-asm9-repository). Not --maven-repo: the jar names are the same as the ASM 5 agent's")
     a.add_argument("--flakerake-runs", type=int, default=5,
                    help="flakerake: tries to make a failure stable, FlakeRake's own default (5)")
     a.add_argument("--flakerake-max-hours", type=float, default=2.0,
@@ -1120,6 +1248,9 @@ def main():
     args.methods = {rid: g["methods"] for rid, _, g, _, _ in load_tests(args)}
     args.repo = args.repo.resolve()
     args.flakerake_dir = args.flakerake_dir.resolve()
+    args.asm9_repo = args.flakerake_asm9_repo.expanduser().resolve()
+    if args.asm9_repo == args.repo:
+        sys.exit("--flakerake-asm9-repo must not be the same as --maven-repo: the ASM 9 and ASM 5 agents have the same jar names")
     args.out = (args.out or HERE / "flaky_check_out" / ("" if args.command == "summary" else args.command)).resolve()
     if args.command == "summary":
         return summary(args)
@@ -1140,7 +1271,7 @@ def main():
         prev = {r["id"]: r for r in csv.DictReader(open(args.out / "rows.csv", encoding="utf-8"))}
     print(f"{len(rows)} generation runs, {sum(len(r[2]['methods']) for r in rows)} test methods "
           f"from {args.tests.name} ({args.command})")
-    flakerake_ready = False
+    flakerake_ready = set()  # which agents are built: "asm5" (JDK 8 rows) and/or "asm9" (JDK 11 rows)
     for i, (rid, root, g, m, fix) in enumerate(rows, 1):
         if args.command != "rerun" and rid in prev and prev[rid]["status"] and not args.redo:
             if args.command == "flakerake" and flakerake_retry(prev[rid]["status"], g, m):
@@ -1162,9 +1293,10 @@ def main():
                                                       f"archive {g['zip']} not found")
                 B.csv_write(args.out / "rows.csv", sorted(prev.values(), key=lambda x: x["id"]), ROW_FIELDS)
                 continue
-            if not flakerake_ready:
-                ensure_flakerake(args)
-                flakerake_ready = True
+            agent = "asm5" if str(m["java"]).strip() == "8" else "asm9"
+            if agent not in flakerake_ready:
+                (ensure_flakerake if agent == "asm5" else ensure_flakerake_asm9)(args)
+                flakerake_ready.add(agent)
         print(f"[{i}/{len(rows)}] {rid} {g['zip']} {g['selected_method']} (JDK {m['java']}"
               + (", mockito fix" if fix else "") + ")", flush=True)
         p = Prepared(rid, root, g, m, fix, args)

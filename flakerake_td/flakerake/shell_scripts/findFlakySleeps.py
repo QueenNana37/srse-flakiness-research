@@ -110,6 +110,23 @@ JAVA_EXEC = os.path.join(os.getenv('JAVA_FLAKY_HOME'), 'bin', 'java')
 clazz_path = None
 test_method = None
 
+_JAVA_MAJOR = None
+
+
+def boot_flag():
+    """PATCH 9 (JDK 9+ support, v6): -Xbootclasspath/p: was removed in JDK 9; -Xbootclasspath/a: still exists. Returns 'p' for
+    JDK 8 (as upstream) and 'a' for JDK 9 and newer, decided from `java -version` of JAVA_FLAKY_HOME."""
+    global _JAVA_MAJOR
+    if _JAVA_MAJOR is None:
+        out = subprocess.run([JAVA_EXEC, '-version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                             universal_newlines=True).stdout
+        m = re.search(r'version "(\d+)(?:\.(\d+))?', out)
+        if not m:
+            raise RuntimeError('cannot read the Java version from: ' + out[:200])
+        _JAVA_MAJOR = int(m.group(2)) if m.group(1) == '1' else int(m.group(1))
+    return 'p' if _JAVA_MAJOR < 9 else 'a'
+
+
 
 def is_stable_failure(tId, runs, file_with_target_lines_to_slow=""):
     """
@@ -175,10 +192,16 @@ def setup(project_git_url, test_method_arg):
     proc.check_returncode()
 
     # We need to customize the jvm argLine because we never implemented this as a mojo (unforunately).
-    argLine_regex_matches = re.findall(r'/*DEBUG.*argLine\s+=\s+(.+)', mvn_test_out)
+    # PATCH 8: upstream used r'/*DEBUG.*argLine\s+=\s+(.+)'. When the module's argLine is EMPTY (Maven prints "(f) argLine = "
+    # and nothing after it) the \s+ ran over the line break and (.+) captured the NEXT debug line, e.g.
+    # "[DEBUG]   (s) basedir = /path", which ended up in the java command line (sh: Syntax error: "(" unexpected), so every
+    # run "failed without sleeping". Now only blanks and tabs are skipped, and an empty value stays empty.
+    argLine_regex_matches = [m.strip() for m in re.findall(r'DEBUG.*argLine[ \t]+=[ \t]*(.*)', mvn_test_out)]
     if len(argLine_regex_matches) > 1:
         raise ValueError(argLine_regex_matches)
     project_argline = argLine_regex_matches[0] if len(argLine_regex_matches) > 0 else ''
+    if project_argline == 'null':  # (defensive, not seen so far) a literal null is not a JVM option
+        project_argline = ''
     logging.info(f'Found argLine:\'{project_argline}\'')
 
     # Setup classpath
@@ -282,7 +305,7 @@ def do_run(tId_to_slow, file_with_target_lines_to_slow=""):
     # Differentiate between timeout from likely deadlock or timeout from running out of time to analyze method.
     test_method_total_analysis_timeout = True if dynamic_timeout_ms != candidate_dynamic_timeout_ms else False
 
-    instr_arg = '-XX:+ExitOnOutOfMemoryError -Xbootclasspath/p:{} -javaagent:{}'.format(boot_clazz_path, interceptor_jar_path)
+    instr_arg = '-XX:+ExitOnOutOfMemoryError -Xbootclasspath/{}:{} -javaagent:{}'.format(boot_flag(), boot_clazz_path, interceptor_jar_path)  # PATCH 9
     run = "{} {} {} {} -cp '{}' '{}' {} '{}' '{}' {} {}" \
         .format(JAVA_EXEC, instr_arg, project_argline, debug_arg, clazz_path, TEST_RUNNER, test_method, tId_to_slow,
                 LOGGING_LEVEL,
@@ -733,6 +756,7 @@ if __name__ == '__main__':
     logging.basicConfig(filemode='w', filename=path.join(LOG_DIR, 'sleepy-script.log'), level=LEVELS.get(LOGGING_LEVEL))
 
     logging.info('Beginning Script')
+    logging.info('Java boot class path flag: -Xbootclasspath/' + boot_flag())  # PATCH 9: stops here (traceback, exit 1, no report) if the Java version cannot be read, instead of every run failing later and being reported as 'inconclusive'
     logging.info(f'On host \'{socket.gethostname()}\'')
 
     logging.info(f'Using options {args}')

@@ -1,0 +1,43 @@
+NIGHT REPORT, written 2026-10-27 15:08
+
+Controls (tiny tests with a known race; they show whether FlakeRake can find a failure on this machine):
+  junit4: AS EXPECTED
+  junit5: AS EXPECTED
+  junit4_jdk11: AS EXPECTED
+  junit5_jdk11: AS EXPECTED
+
+Main run: exit 0, rows out_part1_row_003, out_part1_row_006, out_part1_row_017, out_part1_row_032, out_part1_row_055, out_part1_row_059, out_part2_row_016, out_part2_row_043, log ~/flakecheck/flaky_check_package/night_out/flakerake_main_20261027_065224.log
+
+Rows (JDK 8 and JDK 11 are supported; JDK 11 rows use the ASM 9 agent; other JDKs are not run):
+  out_part1_row_003    JDK 11  JUnit 5  done            false=1
+  out_part1_row_006    JDK 11  JUnit 4  done            false=7
+  out_part1_row_012    JDK 8   JUnit 4  done            false=3
+  out_part1_row_017    JDK 11  JUnit 5  done            false=1
+  out_part1_row_032    JDK 11  JUnit 4  done            false=1
+  out_part1_row_040    JDK 8   JUnit 4  done            false=2
+  out_part1_row_046    JDK 8   JUnit 5  done            false=2
+  out_part1_row_049    JDK 8   JUnit 5  done            false=2
+  out_part1_row_053    JDK 8   JUnit 5  done            false=2
+  out_part1_row_055    JDK 11  JUnit 4  done            false=4
+  out_part1_row_059    JDK 11  JUnit 4  done            false=1
+  out_part1_row_070    JDK 8   JUnit 5  done            false=1
+  out_part1_row_071    JDK 8   JUnit 5  done            false=2
+  out_part1_row_072    JDK 8   JUnit 5  done            false=2
+  out_part1_row_073    JDK 8   JUnit 4  done            false=1
+  out_part1_row_141    JDK 8   JUnit 4  done            false=1
+  out_part2_row_016    JDK 11  JUnit 5  done            false=1
+  out_part2_row_043    JDK 11  JUnit 4  done            false=5
+  out_part2_row_045    JDK 8   JUnit 4  done            false=1
+  out_part2_row_047    JDK 8   JUnit 4  done            false=2
+  out_part2_row_057    JDK 8   JUnit 4  done            false=1
+  out_part2_row_119    JDK 8   JUnit 4  done            inconclusive=2
+  out_part2_row_121    JDK 8   JUnit 4  done            inconclusive=3
+
+td per JDK and JUnit version (supported rows):
+  JDK 8  JUnit 4: false=11, inconclusive=5
+  JDK 8  JUnit 5: false=11
+  JDK 11 JUnit 4: false=18
+  JDK 11 JUnit 5: false=3
+
+Still without a result: none (all supported rows done)
+All results in one file: ~/flakecheck/flaky_check_package/flaky_check_out/flakerake_results.csv

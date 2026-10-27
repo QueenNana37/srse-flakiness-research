@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
 """night_run.py: one command for an unattended FlakeRake (TD) run.
 
-    python3 night_run.py                  controls, then every FlakeRake row that has no result yet (JDK 8, JUnit 4 + 5)
+    python3 night_run.py                  controls, then every FlakeRake row that has no result yet (JDK 8 and JDK 11, JUnit 4 + 5)
     python3 night_run.py --report-only    only (re)write NIGHT_REPORT.txt and flaky_check_out/flakerake_results.csv
                                           (safe to run while the night run is going)
     python3 night_run.py --skip-controls  skip the controls   |   --redo-controls  run them again
+    python3 night_run.py --redo-junit5     once: move the earlier JDK 8 JUnit 5 results aside (not deleted), then run those rows
+                                          again. After an interruption start it again with or without the flag: it continues.
 
 What it does, in this order (every step is logged in night_out/, the end result is NIGHT_REPORT.txt):
   1. Takes the lock: only one check at a time (a second start is refused, nothing is touched).
-  2. Preflight: JDK 8 with javac, Maven, disk space, Maven Central reachable, protoc for Hadoop rows. Hard problems stop
-     the run before anything starts.
+  2. Preflight: JDK 8 with javac (also needed to build the agents), JDK 11 with javac if a JDK 11 row still needs a result,
+     Maven, disk space, Maven Central reachable, protoc for Hadoop rows. Hard problems stop the run before anything starts.
   3. Plan: which rows still need a result (nothing that already has one is run again), and which archives are missing;
      missing archives of rows that need a run are downloaded and set up (download_zips.sh, setup_archives.py).
-  4. Controls (run_controls.sh): tiny tests with a known race, JUnit 4 and JUnit 5. They are only information: if a
+  4. Controls (run_controls.sh): tiny tests with a known race, JUnit 4 and JUnit 5, on JDK 8 for the JDK 8 rows and on
+     JDK 11 (run_controls.sh with CONTROL_JDK=11, ASM 9 agent) for the JDK 11 rows. They are only information: if a
      control does not give the expected answer or cannot run, the main run still goes on (nobody can act at night) and
      the report says in capitals that the results are NOT VALIDATED.
   5. Main run: flaky_check.py flakerake on the rows that need a result. Ctrl+C is safe; start again to continue.
@@ -40,6 +43,7 @@ CONTROLS_OUT = HERE / "controls_out"
 FR_OUT = HERE / "flaky_check_out" / "flakerake"
 REPORT = HERE / "NIGHT_REPORT.txt"
 RESULTS = HERE / "flaky_check_out" / "flakerake_results.csv"
+MARK = HERE / "flaky_check_out" / ".junit5_results_set_aside"  # written by --redo-junit5 once it has moved the old results
 MIN_FREE_GB = 20
 PROTOC_ZIPS = re.compile(r"hadoop|yarn", re.I)
 
@@ -82,6 +86,52 @@ def make_plan(tests):
     return plan
 
 
+def set_aside_junit5(plan):
+    """--redo-junit5. The earlier results of the JDK 8 JUnit 5 rows came from a bug (an empty argLine broke the java command,
+    so every method 'failed without sleeping'), not from the tests. They are MOVED, with their logs, to
+    flaky_check_out/flakerake_junit5_set_aside_<time>/ and the rows are taken out of rows.csv (a copy is kept there). The rows
+    then simply have no result yet: this run does them, an interrupted run continues where it stopped, and a later start with
+    or without the flag does not touch the new results. Done only once (marker file). Returns a list of notes."""
+    if MARK.is_file():
+        say(f"--redo-junit5: the earlier JUnit 5 results were already set aside ({MARK.read_text().strip()}); "
+            "continuing with what is there (delete " + str(MARK) + " to set aside again)")
+        return []
+    targets = [p["rid"] for p in plan if str(p["java"]).strip() == "8" and str(p["junit"]).strip() == "5"]
+    stash = FR_OUT.parent / ("flakerake_junit5_set_aside_" + time.strftime("%Y%m%d_%H%M%S"))
+    moved = []
+    for rid in targets:
+        d = FR_OUT / "rows" / rid
+        if d.exists():
+            (stash / "rows").mkdir(parents=True, exist_ok=True)
+            shutil.move(str(d), str(stash / "rows" / rid))
+            moved.append(rid)
+            # After an unclean stop (killed, power loss) the row folder holds what the next run needs to clean the module
+            # (copied.txt = generated tests still in src/test, pom.xml.used/.before = a swapped pom). Keep that in place.
+            moved_dir = stash / "rows" / rid
+            if any((moved_dir / n).is_file() for n in ("copied.txt", "pom.xml.used")):
+                d.mkdir(parents=True, exist_ok=True)
+                for n in ("copied.txt", "pom.xml.used", "pom.xml.before"):
+                    if (moved_dir / n).is_file():
+                        shutil.copy2(moved_dir / n, d / n)
+    dropped = []
+    rows_csv = FR_OUT / "rows.csv"
+    if rows_csv.is_file():
+        old = list(csv.DictReader(open(rows_csv, encoding="utf-8", newline="")))
+        keep = [r for r in old if r["id"] not in targets]
+        dropped = [r["id"] for r in old if r["id"] in targets]
+        if dropped:
+            stash.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(rows_csv, stash / "rows.csv.before")
+            B.csv_write(rows_csv, keep, F.ROW_FIELDS)
+    MARK.parent.mkdir(parents=True, exist_ok=True)
+    MARK.write_text(f"{time.strftime('%Y-%m-%d %H:%M')}, old results in {stash}\n")  # written last
+    msg = (f"--redo-junit5: moved the earlier results of {len(moved)} row(s) and took {len(dropped)} row(s) out of rows.csv; "
+           f"nothing deleted, everything is in {stash}" if moved or dropped else
+           "--redo-junit5: there were no earlier JUnit 5 results to set aside")
+    say(msg)
+    return [msg]
+
+
 def preflight(plan):
     """([hard problems], [warnings])"""
     stops, warns = [], []
@@ -94,6 +144,12 @@ def preflight(plan):
         stops.append("no JDK 8 with javac found (install openjdk-8-jdk or set JAVA_HOME_8)")
     else:
         say(f"JDK 8: {jdk8}")
+    if any(p["state"] in ("pending", "archive_missing") and str(p["java"]).strip() == "11" for p in plan):
+        jdk11 = B.find_jdk("11")
+        if not jdk11 or not (Path(jdk11) / "bin" / "javac").exists():
+            stops.append("no JDK 11 with javac found (install openjdk-11-jdk or set JAVA_HOME_11)")
+        else:
+            say(f"JDK 11: {jdk11}")
     if not shutil.which("mvn"):
         stops.append("mvn (Maven) not found")
     free = shutil.disk_usage(HERE).free / 1e9
@@ -131,24 +187,38 @@ def ensure_archives(plan, env):
                 break
 
 
-def run_controls(kinds, env, redo):
+def control_label(kind, jdk):
+    """junit4 / junit5 for the JDK 8 controls (as before), junit4_jdk11 / junit5_jdk11 for the JDK 11 ones."""
+    return kind if str(jdk) == "8" else f"{kind}_jdk{jdk}"
+
+
+CONTROL_LABELS = [control_label(k, j) for j in ("8", "11") for k in ("junit4", "junit5")]
+
+
+def run_controls(wanted, env, redo):
+    """wanted: [(kind, jdk)], e.g. [("junit4", "8"), ("junit5", "8")]. Returns {label: result}."""
     out = {}
-    for kind in kinds:
-        d = CONTROLS_OUT / kind
+    for kind, jdk in wanted:
+        label = control_label(kind, jdk)
+        d = CONTROLS_OUT / label
         d.mkdir(parents=True, exist_ok=True)
         saved = d / "control_result.json"
         if saved.is_file() and not redo:
-            out[kind] = json.loads(saved.read_text())
-            say(f"control {kind}: earlier result is {out[kind]['verdict']} (--redo-controls runs it again)")
+            out[label] = json.loads(saved.read_text())
+            say(f"control {label}: earlier result is {out[label]['verdict']} (--redo-controls runs it again)")
             continue
-        log = NIGHT / f"controls_{kind}.log"
-        say(f"control {kind}: running (log {log})")
-        code = F.run_group(["bash", "run_controls.sh", kind], HERE, env, log, 4 * 3600)
+        log = NIGHT / f"controls_{label}.log"
+        say(f"control {label}: running (log {log})")
+        cenv = dict(env)
+        cenv.pop("CONTROL_JDK", None)
+        if str(jdk) != "8":
+            cenv["CONTROL_JDK"] = str(jdk)
+        code = F.run_group(["bash", "run_controls.sh", kind], HERE, cenv, log, 4 * 3600)
         verdict = {0: "AS EXPECTED", 3: "NOT AS EXPECTED"}.get(code, f"COULD NOT RUN (exit {code})")
-        out[kind] = {"code": code, "verdict": verdict, "time": time.strftime("%Y-%m-%d %H:%M")}
+        out[label] = {"code": code, "verdict": verdict, "time": time.strftime("%Y-%m-%d %H:%M")}
         if code in (0, 3):  # a failure to run is not remembered, it is tried again next time
-            saved.write_text(json.dumps(out[kind]))
-        say(f"control {kind}: {verdict}")
+            saved.write_text(json.dumps(out[label]))
+        say(f"control {label}: {verdict}")
         for line in tail(log, 9):
             say("    " + line)
     return out
@@ -200,12 +270,12 @@ def write_report(args, st):
         w.writeheader()
         w.writerows(rows)
     L = [f"NIGHT REPORT, written {time.strftime('%Y-%m-%d %H:%M')}", ""]
-    ctl = st.get("controls") or {}
-    if not ctl:  # not run this time: show the saved results of an earlier run
-        for kind in ("junit4", "junit5"):
-            saved = CONTROLS_OUT / kind / "control_result.json"
-            if saved.is_file():
-                ctl[kind] = json.loads(saved.read_text())
+    ctl = {}
+    for kind in CONTROL_LABELS:  # the saved results of earlier runs, then what this run recorded
+        saved = CONTROLS_OUT / kind / "control_result.json"
+        if saved.is_file():
+            ctl[kind] = json.loads(saved.read_text())
+    ctl.update(st.get("controls") or {})
     if ctl:
         L.append("Controls (tiny tests with a known race; they show whether FlakeRake can find a failure on this machine):")
         for k, v in ctl.items():
@@ -222,16 +292,17 @@ def write_report(args, st):
     if mainrun:
         L.append(f"Main run: exit {mainrun['code']}, rows {', '.join(mainrun['rows'])}, log {mainrun['log']}")
         L.append("")
-    L.append("Rows (JDK 8 = supported; JDK 11 rows are not run, FlakeRake's agent needs JDK 8):")
+    L.append("Rows (JDK 8 and JDK 11 are supported; JDK 11 rows use the ASM 9 agent; other JDKs are not run):")
     for p in plan:
         tds = Counter(r["td"] for r in rows if r["row"] == p["rid"])
         L.append(f"  {p['rid']:<20} JDK {p['java']:<3} JUnit {p['junit']}  {p['state']:<15} "
                  + (", ".join(f"{k}={v}" for k, v in sorted(tds.items())) or "-"))
     L.append("")
-    L.append("td per JUnit version (supported rows):")
-    for junit in ("4", "5"):
-        c = Counter(r["td"] for r in rows if r["junit"] == junit and r["java"] == "8")
-        L.append(f"  JUnit {junit}: " + (", ".join(f"{k}={v}" for k, v in sorted(c.items())) or "no results yet"))
+    L.append("td per JDK and JUnit version (supported rows):")
+    for java in ("8", "11"):
+        for junit in ("4", "5"):
+            c = Counter(r["td"] for r in rows if r["junit"] == junit and str(r["java"]).strip() == java)
+            L.append(f"  JDK {java:<2} JUnit {junit}: " + (", ".join(f"{k}={v}" for k, v in sorted(c.items())) or "no results yet"))
     L.append("")
     problems = [r for r in rows if r["td"] in ("error",)]
     if problems:
@@ -261,6 +332,9 @@ def main():
     a.add_argument("--report-only", action="store_true")
     a.add_argument("--skip-controls", action="store_true")
     a.add_argument("--redo-controls", action="store_true")
+    a.add_argument("--redo-junit5", action="store_true",
+                   help="once: move the earlier JDK 8 JUnit 5 results aside (nothing deleted) and run those rows again "
+                        "(JUnit 4 rows are not touched)")
     a.add_argument("--flakerake-runs", type=int, default=5)
     a.add_argument("--flakerake-max-hours", type=float, default=2.0)
     a.add_argument("--flakerake-sleep-ms", type=int, default=10000)
@@ -277,6 +351,9 @@ def main():
     jdk8 = B.find_jdk("8")
     if jdk8:
         env.setdefault("JAVA_HOME_8", jdk8)
+    jdk11 = B.find_jdk("11")
+    if jdk11:
+        env.setdefault("JAVA_HOME_11", jdk11)
     code = 0
     try:
         say("=== night run starts ===" + (f" (lock: {lock.name})" if lock else ""))
@@ -290,6 +367,8 @@ def main():
                 say("STOP: " + s_)
                 st["notes"].append("STOPPED BEFORE STARTING: " + s_)
             return 2
+        if args.redo_junit5:  # after the preflight: nothing is moved if the run cannot start anyway
+            st["notes"] += set_aside_junit5(plan)
         ensure_archives(plan, env)
         plan = make_plan(args.tests)
         for p in plan:
@@ -299,8 +378,11 @@ def main():
         if missing:
             st["notes"].append("ARCHIVE STILL MISSING, these rows were not run: " + ", ".join(missing)
                                + " (see night_out/archive_*.log)")
-        if not args.skip_controls and any(p["state"] == "pending" for p in plan):
-            st["controls"] = run_controls(["junit4", "junit5"], env, args.redo_controls)
+        # A control is run for each JDK that still has a row to do (JDK 8 controls: JDK 8 rows, JDK 11 controls: JDK 11 rows).
+        wanted = [(k, j) for j in ("8", "11") if any(p["state"] == "pending" and str(p["java"]).strip() == j for p in plan)
+                  for k in ("junit4", "junit5")]
+        if not args.skip_controls and wanted:
+            st["controls"] = run_controls(wanted, env, args.redo_controls)
             bad = [k for k, v in st["controls"].items() if v["code"] != 0]
             if bad:
                 # The controls are new and the main run is what the night is for, so it goes on; the report says that

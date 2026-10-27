@@ -1,6 +1,11 @@
-
 # Which package version produced what
 - v2 (flaky_check_package_flakerake_v2.zip, sha256 30a6a55f54bf4e067908c31927d9696d2b3a9bc86be47edebb36f9df850ff671): JDK 8 + JUnit 4 only. Produced the stage-1 results in flakerake_stage1_results.csv (16 methods: 11 false, 5 inconclusive, 0 true; 23-24 Oct 2026).
-- v4 (flaky_check_package_flakerake_v4.zip, sha256 fbf568308911a347345260d28f1719ebf4ddcfd2561790d72e6b5579ae9a1664): the files in this folder. Adds the JUnit 5 runner (JDK 8), controls, a run lock and night_run.py. JDK 11 rows are not run (FlakeRake's agent needs JDK 8).
+- v4 (flaky_check_package_flakerake_v4.zip, sha256 fbf568308911a347345260d28f1719ebf4ddcfd2561790d72e6b5579ae9a1664): the files first pushed on 24 Oct 2026 (commit 50cf1f8). Adds the JUnit 5 runner (JDK 8), controls, a run lock and night_run.py. JDK 11 rows are not run (FlakeRake's agent needs JDK 8). Its JUnit 5 results were not real: the java command broke on an empty argLine (fixed in v5).
 - v3 was never run (v4 replaces it).
+- v5 (flaky_check_package_flakerake_v5.zip, sha256 daf1617079a1fa57317ad258355637f4e07f2ca9a5c56424d2f30a2f9c46bd7f): v4 + fix of the empty-argLine bug (patch 8), an exit-status guard, the number of naps in the detail column of every false, --redo-junit5. Produced the JDK 8 JUnit 5 results (ormlite, 11 methods: 11 false; night run finished 26 Oct 2026).
+- v6 (flaky_check_package_flakerake_v6.zip, sha256 0d0d1a7a439960104a669efdff4952ee531d177eb97ff4ae7d2501b81f10391f): the files in this folder. v5 + JDK 11: a second agent built with ASM 9.7.1 (flakerake/asm9/, JDK 8 agent unchanged), -Xbootclasspath/a: on Java 9+ (patch 9), a guard against the agent failing silently on JDK 11 class files, JDK 11 controls. Produced the JDK 11 results (8 rows, 21 methods: 18 JUnit 4 + 3 JUnit 5, all false, but 9 of them took no nap, see below; night run of 27 Oct 2026, main run 8 h 16 min; JDK 11 controls AS EXPECTED).
+
+- Final state, all 48 methods (JDK 8 + JDK 11), 27 Oct 2026: flakerake_results_27oct.csv and NIGHT_REPORT_27oct.txt. JDK 8 JUnit 4: 11 false + 5 inconclusive; JDK 8 JUnit 5: 11 false; JDK 11 JUnit 4: 18 false; JDK 11 JUnit 5: 3 false. 
+In total 43 false, 5 inconclusive (CAMEL, 2 h cap), 0 true. 
+A false is not proof that a test is not timing-dependent: see the detail column (naps taken). 9 of the 21 JDK 11 false took no nap at all (NOTHING WAS SLOWED: scimono row_003 and crane4j row_006 with 0 interception points, SCB-2692 part2_row_016 with 8 points but 0 naps), so for those 9 the false says little and their logs have not been checked yet; the other 12 took 210-978 naps each; none of the 27 JDK 8 methods is flagged.
 Details: README_flakerake.md and flakerake/PATCHES.md.
