@@ -68,7 +68,7 @@ python3 setup_archives.py --only marineapi     # one archive (without --only: al
 
 ## Unattended run: `night_run.py`
 
-One command that does everything below in the right order and checks itself, for a run when nobody is watching it:
+One command that does everything below in the right order and checks itself, for a run nobody watches:
 
 ```
 python3 night_run.py                   # inside tmux: controls, then every row that has no result yet
@@ -99,8 +99,8 @@ again, with or without the flag, and it continues; the new results are never mov
 A run that says `false` for every test only means something if FlakeRake can say `true` on this machine at all. `controls/` has
 tiny tests with a known timing race, as JUnit 4 and as JUnit 5. The JUnit 4 ones are copied from FlakeRake's own integration
 test (`EasySourceTest`); the JUnit 5 file is our port of them. Expected: the single-threaded test shows no TD failure, the two
-multi-thread tests do. (This expectation comes from the comments in the upstream test; **we have not observed it yet**, that is
-what this run is for.)
+multi-thread tests do. (This expectation comes from the comments in the upstream test. Observed: `AS EXPECTED` on JDK 8 with JUnit 4 and JUnit 5
+(night runs of 24-26 Oct 2026) and on JDK 11 with JUnit 4 and JUnit 5 (night run of 27 Oct 2026).)
 
 ```
 bash run_controls.sh junit4        # FlakeRake's own runner, as shipped
@@ -225,15 +225,62 @@ Tested:
   NOTHING WAS SLOWED, so for them the `false` says little:** scimono `out_part1_row_003` and crane4j `out_part1_row_006` (8 methods, 0 interception points) and SCB-2692
   `out_part2_row_016` (8 interception points, 0 naps). None of the 27 JDK 8 methods is flagged. No agent stack trace was found in any `sleepy-script.log`.
 - A purely single-threaded test also gives 0 interception points in our sandbox on JDK 8 and JDK 11 (control `testSingleThreadedNoInterception`), so 0 points can simply mean that
-  the test touches nothing FlakeRake can slow. That this is the case for these 9 methods has **not been checked in their logs yet**.
+  the test touches nothing FlakeRake can slow. That this is the case for the 9 methods was checked on 27 Oct 2026 in the logs of one method of each of the 3 test classes (scimono `out_part1_row_003`, crane4j `out_part1_row_006` `testGetWithArray`, SCB-2692 `out_part2_row_016`): the Java output of the first 6 runs of each (all that was printed) shows `OK`, i.e. the test passed. row_003 and row_006: 0 interception points in 0 threads, and the generated test is plain single-threaded code (reflection on private fields, list/map lookups, no thread, lock or executor; Mockito is only imported: none of the three files contains `mock(`, `when(`, `verify(`, `@RunWith`, `@ExtendWith`, `Thread`, `Executor` or `synchronized`). row_016: 8 interception points, all in JMockit internals (`mockit/internal/...`) on the main thread, and 0 naps; the generated test does not use JMockit, so this is most likely the project's own JMockit setup, and the points were probably reached before the test method started (the Java side records every point, but sleeping only starts when a `test*` or `@Before` method is entered; not verified). The other 6 crane4j methods were not opened one by one.
 - All 48 methods (JDK 8 + JDK 11) are in `flakerake_results_27oct.csv`, the report is `NIGHT_REPORT_27oct.txt`: 43 `false` (of which 9 took no nap), 5 `inconclusive` (CAMEL, 2 h cap), 0 `true`.
 - Environment: OpenJDK 1.8.0_504, OpenJDK 11.0.32.1, Maven 3.9.16; agent jars in `~/.m2/flakerake-asm9-repository`: sleepy-interceptor sha256 starts a7d00ef6add7, sleepy-runner 5cfc74e59e0e.
 
-**Still open (not done, not decided):** why the 9 methods had nothing to slow (their logs); a positive control on tests that are known to be TD-flaky (so that `false` can be told
-apart from "FlakeRake cannot find TD here"); the 5 CAMEL methods that hit the 2 h cap; JDK 17 and newer (not run).
+**Still open (not done, not decided):** the 5 CAMEL methods that hit the 2 h cap; more known TD tests (the positive control below is one project; `TestYarnNativeServices#testExpressUpgrade` of YARN-9405 is in an archive that is set up here but was not run, the other 24 archives with a known TD test are not set up); JDK 17 and newer (not run).
 
 Chosen by us, not by FlakeRake: ASM 9.7.1; the `module-info` filter; the repository path `~/.m2/flakerake-asm9-repository`; "an agent stack trace that says ASM is too old turns the method
 into `error`" (other agent stack traces only add a NOTE); `-Dmaven.compiler.source/target=11` for the JDK 11 controls.
+
+## Known TD check (positive control), 27-28 Oct 2026
+
+**Question.** Can FlakeRake say `true` on real code with a known timing-dependent failure? Without that, a `false` on the generated tests cannot be told apart from "FlakeRake cannot find TD here"
+(the controls use tiny tests written for FlakeRake).
+
+**Tests used.** ReproFlake's `test_config.csv` lists 36 tests of type `td`, all on JDK 8, in 26 archives. Only two of those archives are among the 15 of this package: CAMEL-12025
+(7 `td` tests, module `components/camel-reactor`, class `ReactorStreamsServiceTest`) and YARN-9405 (1 test, `TestYarnNativeServices#testExpressUpgrade`, not run). The 7 CAMEL-12025 tests were run on JDK 8 with the
+JUnit 4 runner. Checked in the archive: the test class imports `org.junit.Test`, and nothing in the module's `src/test` uses `org.junit.jupiter`.
+
+**How (a workaround, not a feature of the package).** `flaky_check.py` runs generated test files and refuses to overwrite a test file that already exists in the module (`would_overwrite`). For an existing test, the CSV row
+names the known test in `generated_test` and `focal_from_test`, and `test_file` points to a tiny placeholder class (`public class KnownTdPlaceholderCamel {}`) that the package copies into the module for the run and removes afterwards.
+(Checked in a sandbox with a fake archive, also with the archive's real nested layout `CAMEL-12025/CAMEL-12025/Flaky/`: the archive was byte-identical afterwards. The real archive, build and FlakeRake were first used in the pilot below.)
+`known_td/setup_known_td.sh` creates the two placeholder files and `known_td/known_td_tests.csv` (8 rows: the 7 CAMEL tests as `known_td_row_900`, the YARN test as `known_td_row_901`).
+Chosen by us: the placeholder trick, the row numbers 900 and 901, `junit` = 4, and `project` / `sha`, which are copied from the generated CAMEL-12025 and YARN-9405 rows of `task_csvs/flaky_generated_tests.csv` (FlakeRake only uses them as labels).
+
+```
+cd ~/flakecheck/flaky_check_package            # the package folder (where flaky_check.py is)
+bash /path/to/known_td/setup_known_td.sh       # creates known_td/ in the package folder
+# pilot: one method, 2 runs, 15 minute cap, its own output folder
+python3 flaky_check.py flakerake --tests known_td/known_td_tests.csv --archive-dir extracted \
+  --out flaky_check_out/known_td_pilot --only ReactorStreamsServiceTest#testFromStreamTimer \
+  --flakerake-runs 2 --flakerake-max-hours 0.25 2>&1 | tee known_td_pilot.log
+# full run of the 7 CAMEL tests (defaults: 5 runs, 2 h cap, 10 s sleeps), up to 14 hours, inside tmux
+python3 flaky_check.py flakerake --tests known_td/known_td_tests.csv --archive-dir extracted \
+  --out flaky_check_out/known_td --only known_td_row_900 2>&1 | tee known_td_camel.log
+```
+`--only` is a substring match (`testTo` would also match `testToFunction`, ...), and a row that is finished is skipped on a second start (`--redo`), which is why the pilot has its own `--out`.
+
+**Results.** Pilot (`testFromStreamTimer`, 2 runs, 15 minute cap): `true` after 16.3 minutes (first failure `AssertionError: expected:<30> but was:<0>`); the failing rows were all for one thread, the slowed lines started with
+`org/apache/camel/impl/DefaultInflightRe...` and `reactor/core/publisher/FluxCreate...` / `FluxOnBackpressu...` (cut off in the output we looked at), 4 other threads gave `NoFail` and one more hit the cap. Full run (night of 27-28 Oct 2026):
+
+| method | td | minutes | failing thread analysis rows | failures in the runs without sleeping |
+|---|---|---|---|---|
+| `testFrom` | true | 118.7 | 76 | 0 |
+| `testFromStreamTimer` | true | 120.3 | 76 | 0 |
+| `testMultipleSubscriptionsWithTimer` | true | 120.1 | 78 | 0 |
+| `testTo` | true | 121.1 | 63 | 0 |
+| `testToFunction` | true | 121.1 | 63 | 0 |
+| `testToFunctionWithExchange` | true | 120.5 | 63 | 0 |
+| `testToWithExchange` | true | 120.3 | 63 | 0 |
+
+7 `true`, 0 `false`; 842 minutes (14.0 hours) in total. The last column is the number of `Unaltered flaky_fail_attempt` lines in each method's `sleepy-script.log`: the test never failed in the runs without sleeping, so the failures came from the slowing.
+Each method used about the whole 2 h cap and still ended `true`, because failing rows were found (`classify_flakerake` looks for a failure first). Output: `flaky_check_out/known_td/` and `flaky_check_out/known_td_pilot/` (kept); the summary is `known_td/known_td_results_28oct.txt`.
+
+**What this shows and what it does not.** It shows that on a real project the setup (agent, runner, JDK 8, our Python wiring) can produce `true` for tests that ReproFlake lists as timing-dependent. It does not show a detection rate:
+one project, one test class (the 7 tests are methods of one class, so they are not independent), and no information about false positives. We do not know how ReproFlake assigned the `td` label. For comparison: the 5 generated CAMEL-12025 methods hit the same 2 h cap without a failure
+(`inconclusive`); that does not say whether they are flaky.
 
 ## What is tested and what is not (package v3)
 
@@ -269,5 +316,5 @@ Tested without the real tools (in a sandbox with JDK 21 and no access to Maven C
 - `night_run.py` itself on a real machine (its preflight needs JDK 8, Maven and Maven Central),
 - `download_zips.sh` / `setup_archives.py` for the ormlite archive from `night_run.py` (they are the existing scripts, called unchanged).
 
-chosen by us, not by FlakeRake: control runs = 3 and cap = 30 minutes per method; free disk space limit 20 GB; "control not as expected does not stop the main run"; launcher 1.8.2 as the compile-time version; the `true / false / timeout / inconclusive`
+Chosen by us, not by FlakeRake: control runs = 3 and cap = 30 minutes per method; free disk space limit 20 GB; "control not as expected does not stop the main run"; launcher 1.8.2 as the compile-time version; the `true / false / timeout / inconclusive`
 classification; the 2-hour analysis cap and 3-hour wall clock per method.

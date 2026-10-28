@@ -1,0 +1,20 @@
+=== rows.csv
+id,zip,status,methods,flaky_generated
+known_td_row_900,CAMEL-12025,flaky_found,7,7
+=== flakerake.csv
+test,td,detail,minutes
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testFrom,true,76 failing thread analysis row(s); first: java.lang.AssertionError,118.7
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testFromStreamTimer,true,76 failing thread analysis row(s); first: java.lang.AssertionError: expected:<30> but was:<0>,120.3
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testMultipleSubscriptionsWithTimer,true,78 failing thread analysis row(s); first: java.lang.AssertionError,120.1
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testTo,true,63 failing thread analysis row(s); first: java.lang.AssertionError,121.1
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToFunction,true,63 failing thread analysis row(s); first: java.lang.AssertionError,121.1
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToFunctionWithExchange,true,63 failing thread analysis row(s); first: java.lang.AssertionError,120.5
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToWithExchange,true,63 failing thread analysis row(s); first: java.lang.AssertionError,120.3
+=== failures in the runs WITHOUT sleeping, per method (0 = none)
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testFrom: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testFromStreamTimer: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testMultipleSubscriptionsWithTimer: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testTo: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToFunction: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToFunctionWithExchange: 0
+org.apache.camel.component.reactor.engine.ReactorStreamsServiceTest#testToWithExchange: 0
